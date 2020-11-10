@@ -10,6 +10,13 @@
      padding-top: 0px;
 
   }
+
+  body {
+		background-image:url('main_video.gif');
+		background-repeat:repeat-y;
+		background-size:100%;
+		background-attachment:fixed;
+	}
   .front{
    height : 104px;
    margin : 0px 0px 0px 0px ;
@@ -59,6 +66,12 @@
       font-family: 나눔고딕;
       text-align: center;
       padding-bottom: 40px;
+   }
+
+   #content {
+    background-color : #ffffff;
+
+
    }
 
    footer {
