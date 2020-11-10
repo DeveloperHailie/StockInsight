@@ -24,9 +24,9 @@
    border-width : 0.1px ;
    border-top-style : solid;
    border-bottom-style : solid ;  
-    border-color : #212D3A;
-    background-color : #212D3A;
-    style
+   border-color : #212D3A;
+   background-color : #212D3A;
+ 
   }
   .front ul {
    margin : 60px 40px 0px 0px ;
@@ -84,8 +84,9 @@
    border-color : #cfd9df;
    height : 1.7em;
     padding-top : 20px;
-    padding-left:200px;
+    padding-left:100px;
     padding-bottom : 40px;
+    background-color : #ffffff;
     }
 
    .logo{
