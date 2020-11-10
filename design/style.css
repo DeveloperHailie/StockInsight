@@ -2,6 +2,13 @@
     font-family: "나눔고딕";
     src: url("./NanumGothic.ttf");
 }
+body {
+	background-image:url('대문.jpg');
+	background-repeat:repeat-y;
+	background-size:100%;
+	background-attachment:fixed;
+}
+
 *{
 	padding : 0 ;
 	margin : 0 ;
