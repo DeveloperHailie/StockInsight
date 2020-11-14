@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "³ª´®°íµñ";
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     src: url("./NanumGothic.ttf");
 }
 
@@ -41,7 +41,7 @@ body {
 
 .front ul li {
     display: inline;
-    font-family: "³ª´®°íµñ";
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     font-size: 9.5pt;
 }
 
@@ -63,14 +63,14 @@ nav {
     border-bottom-style: solid;
     border-width: 0px;
     padding-top: 70px;
-    font-family: ³ª´®°íµñ;
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     font-size: 55px;
     text-align: center;
     padding-bottom: 30px;
 }
 
 .menu_content {
-    font-family: ³ª´®°íµñ;
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     text-align: center;
     padding-bottom: 40px;
 }
@@ -80,7 +80,7 @@ nav {
 }
 
 footer {
-    font-family: "³ª´®°íµñ";
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     font-size: 9.5px;
     clear: both;
     border-width: 0.1px;
@@ -98,7 +98,7 @@ footer {
     position: absolute;
 }
 
-/**·Î±×ÀÎ ½ÃÀÛ **/
+/**ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ **/
 .welcome {
     font-size: 30px;
     text-align: center;
@@ -240,7 +240,7 @@ img {
 
 .login_under {
     margin-top: 15px;
-    font-family: "³ª´®°íµñ";
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
     margin-bottom: 15px;
 }
 
@@ -250,5 +250,68 @@ img {
 
 .help {
     margin-bottom: 20px;
-    font-family: "³ª´®°íµñ";
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
+}
+
+/** Hailie _ qna **/
+table.questionTable{
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin : 20px 10px;
+}
+table.questionTable tr {
+    width: 50px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.questionTable td {
+     padding: 7.6px;
+     vertical-align: middle;
+     border-bottom: 1px solid #ccc;
+     font-size: 20px;
+}
+.question_content{
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
+}
+.btn_question_submit{
+    margin: 15 0 10 0;
+    width: 15%;
+    height: 25px;
+    border-radius: 3px;
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
+    font-size: 15px;
+    color: #fff;
+    background: linear-gradient(to right, #B06AB3, #4568DC); 
+    background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+    border: none;
+}
+.btn_question_list{
+    margin: 15 0 10 0;
+    width: 15%;
+    height: 25px;
+    border-radius: 3px;
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
+    font-size: 15px;
+    color: #fff;
+    background: #283048;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
+}
+table.questionTable .button_table{
+    border-bottom: 0px;
+    text-align: end;
+}
+table.questionTable .title{
+    height:40px;
+    font-size:13px;
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
+}
+table .questionTable .content{
+    font-family: "ë‚˜ëˆ”ê³ ë”•";
 }
