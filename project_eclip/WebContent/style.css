@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "나눔고딕";
+    font-family: "nanum";
     src: url("./NanumGothic.ttf");
 }
 
@@ -41,7 +41,7 @@ body {
 
 .front ul li {
     display: inline;
-    font-family: "나눔고딕";
+    font-family: "nanum";
     font-size: 9.5pt;
 }
 
@@ -63,14 +63,14 @@ nav {
     border-bottom-style: solid;
     border-width: 0px;
     padding-top: 70px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
     font-size: 55px;
     text-align: center;
     padding-bottom: 30px;
 }
 
 .menu_content {
-    font-family: "나눔고딕";
+    font-family: "nanum";
     text-align: center;
     padding-bottom: 40px;
 }
@@ -80,7 +80,7 @@ nav {
 }
 
 footer {
-    font-family: "나눔고딕";
+    font-family: "nanum";
     font-size: 9.5px;
     clear: both;
     border-width: 0.1px;
@@ -176,13 +176,14 @@ img {
 }
 
 .btn_login {
-    margin: 20px 0 0;
+   margin: 20px 0 0;
     width: 100%;
     height: 48px;
     border-radius: 3px;
     font-size: 16px;
     color: #fff;
-    background-color: #212D3A;
+    background: linear-gradient(to right, #B06AB3, #4568DC);   
+    border-color: white;
 }
 
 .login_append {
@@ -240,7 +241,7 @@ img {
 
 .login_under {
     margin-top: 15px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
     margin-bottom: 15px;
 }
 
@@ -250,7 +251,7 @@ img {
 
 .help {
     margin-bottom: 20px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
 }
 
 /** Hailie _ qna **/
@@ -276,14 +277,14 @@ table.questionTable td {
      font-size: 20px;
 }
 .question_content{
-    font-family: "나눔고딕";
+    font-family: "nanum";
 }
 .btn_question_submit{
     margin: 15 0 10 0;
     width: 15%;
     height: 25px;
     border-radius: 3px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
     font-size: 15px;
     color: #fff;
     background: linear-gradient(to right, #B06AB3, #4568DC); 
@@ -295,7 +296,7 @@ table.questionTable td {
     width: 15%;
     height: 25px;
     border-radius: 3px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
     font-size: 15px;
     color: #fff;
     background: #283048;  /* fallback for old browsers */
@@ -310,8 +311,8 @@ table.questionTable .button_table{
 table.questionTable .title{
     height:40px;
     font-size:13px;
-    font-family: "나눔고딕";
+    font-family: "nanum";
 }
 table .questionTable .content{
-    font-family: "나눔고딕";
+    font-family: "nanum";
 }

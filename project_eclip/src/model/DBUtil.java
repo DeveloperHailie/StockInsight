@@ -29,18 +29,16 @@ public class DBUtil {
       return null;
    }
 
-   public static void addMember(Connection con, String newId, String newpasswd 
-         ,String newName, String address, String phone) throws SQLException {
+   public static void addMember(Connection con, String new_name, String new_id, 
+         String new_pwd) throws SQLException {
       
       PreparedStatement pstmt = null;
       try {
          con.setAutoCommit(false);
-         pstmt = con.prepareStatement("INSERT INTO User VALUES( ?, ?, ? , ?, ?)");
-         pstmt.setString(1, newId);
-         pstmt.setString(2, newpasswd);
-         pstmt.setString(3, newName);
-         pstmt.setString(4, address);
-         pstmt.setString(5, phone);
+         pstmt = con.prepareStatement("INSERT INTO User (user_name, user_email, user_pwd) VALUES(?, ? ,?)");
+         pstmt.setString(1, new_name);
+         pstmt.setString(2, new_id);
+         pstmt.setString(3, new_pwd);
          pstmt.executeUpdate();
 
          con.commit();
