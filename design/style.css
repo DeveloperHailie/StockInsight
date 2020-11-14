@@ -13,7 +13,7 @@
 
   body {
 		background-image:url('main_video.gif');
-		background-repeat:repeat-y;
+	
 		background-size:100%;
 		background-attachment:fixed;
 	}
