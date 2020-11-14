@@ -98,7 +98,7 @@ footer {
     position: absolute;
 }
 
-/**�α��� ���� **/
+/** login **/
 .welcome {
     font-size: 30px;
     text-align: center;
@@ -271,7 +271,7 @@ table.questionTable tr {
     border-bottom: 1px solid #ccc;
 }
 table.questionTable td {
-     padding: 7.6px;
+     padding: 15 12;
      vertical-align: middle;
      border-bottom: 1px solid #ccc;
      font-size: 20px;
@@ -293,10 +293,10 @@ table.questionTable td {
 }
 .btn_question_list{
     margin: 15 0 10 0;
-    width: 15%;
-    height: 25px;
+    padding : 4 17 4 17;
     border-radius: 3px;
     font-family: "nanum";
+    font-weight : normal;
     font-size: 15px;
     color: #fff;
     background: #283048;  /* fallback for old browsers */
