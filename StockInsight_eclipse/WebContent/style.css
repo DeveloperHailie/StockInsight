@@ -1,0 +1,231 @@
+@font-face {
+    font-family: "나눔고딕";
+    src: url("./NanumGothic.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    padding-top: 0px;
+
+}
+
+body {
+    background-image: url('main_video.gif');
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.front {
+    height: 104px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    border-width: 0.1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #212D3A;
+    background-color: #212D3A;
+
+}
+
+.front ul {
+    margin: 60px 40px 0px 0px;
+    list-style: none;
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+.front ul li {
+    display: inline;
+    font-family: "나눔고딕";
+    font-size: 9.5pt;
+}
+
+.front ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.front ul li a:hover {
+    color: #AAAAAA;
+}
+
+#yellow {
+    /**-11.10 yellow plus**/
+    color: #E8CE48;
+}
+
+nav {
+    border-bottom-style: solid;
+    border-width: 0px;
+    padding-top: 70px;
+    font-family: 나눔고딕;
+    font-size: 55px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.menu_content {
+    font-family: 나눔고딕;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+#content {
+    background-color: #ffffff;
+}
+
+footer {
+    font-family: "나눔고딕";
+    font-size: 9.5px;
+    clear: both;
+    border-width: 0.1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #cfd9df;
+    height: 1.7em;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-bottom: 40px;
+    background-color: #ffffff;
+}
+
+.logo {
+    position: absolute;
+}
+
+/**로그인 시작 **/
+ .welcome{
+	font-size:30px;	
+	text-align: center;
+}
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.inner_login {
+    left: 50%;  
+    top : 100%;
+}
+.login_start {
+    width: 320px;
+    margin: auto;
+}
+
+.login_show {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+body,input,select,td,textarea,th {
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+fieldset,img {
+    border: 0;
+}
+
+.login_start .box_login {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.login_start .inp_text {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 18px 19px 19px;
+    box-sizing: border-box;
+}
+
+.login_start .inp_text {
+    border-top: 1px solid #ddd;
+}
+
+.inp_text input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    color: #000;
+    border: none;
+    outline: 0;
+    -webkit-appearance: none;
+    background-color: transparent;
+}
+
+.btn_login {
+    margin: 20px 0 0;
+    width: 100%;
+    height: 48px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #212D3A;
+}
+
+.login_append {
+    overflow: hidden;
+    padding: 15px 0 0;
+}
+
+.inp_chk {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -1px;
+}
+
+.login_append .inp_chk {
+    float: left;
+}
+
+.inp_chk .inp_radio {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 0;
+}
+
+.inp_chk .lab_g {
+    display: inline-block;
+    margin-right: 19px;
+    color: #909090;
+    font-size: 13px;
+    line-height: 19px;
+    vertical-align: top;
+}
+
+.inp_chk .ico_check {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 1px 4px 0 0;
+    background-position: -60px 0;
+    color: #333;
+}
+
+.inp_chk .txt_lab {
+    vertical-align: top;
+}
+
+.login_append .txt_find {
+   
+    float: right;
+    color: #777;
+}
