@@ -316,3 +316,104 @@ table.questionTable .title{
 table .questionTable .content{
     font-family: "nanum";
 }
+.qna_table {
+    margin-top : 30px;
+    font-family: "nanum";
+    border-collapse: collapse;
+    width: 80%;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #212529;
+}
+.qna_table th{
+    font-size: 14pt;
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    background-color: #eeee
+}
+.qna_table td {
+    font-size: 12pt;
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.qna_table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.qna_table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+.btn_question{
+    position: relative;
+    left: 550px;
+    top: 15px;
+    padding : 7 17 7 17;
+    border-radius: 3px;
+    font-family: "nanum";
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #aaaa;
+}
+.btn_list{
+    position: relative;
+    left: 515px;
+    top: 15px;
+    padding : 7 17 7 17;
+    border-radius: 3px;
+    font-family: "nanum";
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #aaaa;
+}
+.btn_answer{
+    position: relative;
+    left: 510px;
+    top: 15px;
+    padding : 7 17 7 17;
+    border-radius: 3px;
+    font-family: "nanum";
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #aaaa;
+}
+.question_content_table{
+    margin : 30px 5px 60px 5px;
+    font-family: "nanum";
+    border-collapse: collapse;
+    width: 80%;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+.question_content_table th {
+    padding : 30px;
+    border: 1px solid #ccc;
+    font-size: 14pt;
+    background-color: #eeee;
+}
+
+.question_content_table td {
+    padding : 30px;
+    border: 1px solid #ccc;
+    font-size: 12pt;
+}
+
+#answer {
+    margin-top : 35px;
+}
+
+.answer_button{
+    margin: 15 0 10 0;
+    width: 7%;
+    height: 25px;
+    border-radius: 3px;
+    font-family: "nanum";
+    font-size: 15px;
+    color: #fff;
+    background: linear-gradient(to right, #B06AB3, #4568DC); 
+    background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
+    border: none;
+}
