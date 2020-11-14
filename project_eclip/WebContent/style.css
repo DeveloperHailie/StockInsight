@@ -1,43 +1,47 @@
 @font-face {
-    font-family: "ë‚˜ëˆ”ê³ ë”•";
+    font-family: "³ª´®°íµñ";
     src: url("./NanumGothic.ttf");
 }
 
-*{
-   padding : 0 ;
-   margin : 0 ;
-  }
-  .header{
-     padding-top: 0px;
+* {
+    padding: 0;
+    margin: 0;
+}
 
-  }
+.header {
+    padding-top: 0px;
 
-  body {
-		background-image:url('main_video.gif');
-	
-		background-size:100%;
-		background-attachment:fixed;
-	}
-  .front{
-   height : 104px;
-   margin : 0px 0px 0px 0px ;
-   padding : 0px;
-   border-width : 0.1px ;
-   border-top-style : solid;
-   border-bottom-style : solid ;  
-   border-color : #212D3A;
-   background-color : #212D3A;
- 
-  }
-  .front ul {
-   margin : 60px 40px 0px 0px ;
-   list-style : none ;
-   text-align : right;
-   letter-spacing : 2px;
-  }
-  .front ul li {
-    display : inline ;
-    font-family: "ë‚˜ëˆ”ê³ ë”•";
+}
+
+body {
+    background-image: url('main_video.gif');
+
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.front {
+    height: 104px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    border-width: 0.1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: #212D3A;
+    background-color: #212D3A;
+
+}
+
+.front ul {
+    margin: 60px 40px 0px 0px;
+    list-style: none;
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+.front ul li {
+    display: inline;
+    font-family: "³ª´®°íµñ";
     font-size: 9.5pt;
 }
 
@@ -59,14 +63,14 @@ nav {
     border-bottom-style: solid;
     border-width: 0px;
     padding-top: 70px;
-    font-family: ë‚˜ëˆ”ê³ ë”•;
+    font-family: ³ª´®°íµñ;
     font-size: 55px;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 
 .menu_content {
-    font-family: ë‚˜ëˆ”ê³ ë”•;
+    font-family: ³ª´®°íµñ;
     text-align: center;
     padding-bottom: 40px;
 }
@@ -76,7 +80,7 @@ nav {
 }
 
 footer {
-    font-family: "ë‚˜ëˆ”ê³ ë”•";
+    font-family: "³ª´®°íµñ";
     font-size: 9.5px;
     clear: both;
     border-width: 0.1px;
@@ -94,20 +98,22 @@ footer {
     position: absolute;
 }
 
-/**ë¡œê·¸ì¸ ì‹œì‘ **/
- .welcome{
-	font-size:30px;	
-	text-align: center;
+/**·Î±×ÀÎ ½ÃÀÛ **/
+.welcome {
+    font-size: 30px;
+    text-align: center;
 }
+
 a {
     color: #333;
     text-decoration: none;
 }
 
 .inner_login {
-    left: 50%;  
-    top : 100%;
+    left: 50%;
+    top: 100%;
 }
+
 .login_start {
     width: 320px;
     margin: auto;
@@ -122,13 +128,19 @@ a {
     text-indent: -9999px;
 }
 
-body,input,select,td,textarea,th {
+body,
+input,
+select,
+td,
+textarea,
+th {
     font-size: 13px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
 
-fieldset,img {
+fieldset,
+img {
     border: 0;
 }
 
@@ -221,7 +233,22 @@ fieldset,img {
 }
 
 .login_append .txt_find {
-   
+
     float: right;
     color: #777;
+}
+
+.login_under {
+    margin-top: 15px;
+    font-family: "³ª´®°íµñ";
+    margin-bottom: 15px;
+}
+
+.join {
+    margin-left: 105px;
+}
+
+.help {
+    margin-bottom: 20px;
+    font-family: "³ª´®°íµñ";
 }
