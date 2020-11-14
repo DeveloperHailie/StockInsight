@@ -3,44 +3,40 @@
     src: url("./NanumGothic.ttf");
 }
 
-* {
-    padding: 0;
-    margin: 0;
-}
+*{
+   padding : 0 ;
+   margin : 0 ;
+  }
+  .header{
+     padding-top: 0px;
 
-.header {
-    padding-top: 0px;
+  }
 
-}
-
-body {
-    background-image: url('main_video.gif');
-    background-repeat: repeat-y;
-    background-size: 100%;
-    background-attachment: fixed;
-}
-
-.front {
-    height: 104px;
-    margin: 0px 0px 0px 0px;
-    padding: 0px;
-    border-width: 0.1px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-color: #212D3A;
-    background-color: #212D3A;
-
-}
-
-.front ul {
-    margin: 60px 40px 0px 0px;
-    list-style: none;
-    text-align: right;
-    letter-spacing: 2px;
-}
-
-.front ul li {
-    display: inline;
+  body {
+		background-image:url('main_video.gif');
+	
+		background-size:100%;
+		background-attachment:fixed;
+	}
+  .front{
+   height : 104px;
+   margin : 0px 0px 0px 0px ;
+   padding : 0px;
+   border-width : 0.1px ;
+   border-top-style : solid;
+   border-bottom-style : solid ;  
+   border-color : #212D3A;
+   background-color : #212D3A;
+ 
+  }
+  .front ul {
+   margin : 60px 40px 0px 0px ;
+   list-style : none ;
+   text-align : right;
+   letter-spacing : 2px;
+  }
+  .front ul li {
+    display : inline ;
     font-family: "나눔고딕";
     font-size: 9.5pt;
 }
