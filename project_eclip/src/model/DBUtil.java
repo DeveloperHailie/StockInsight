@@ -74,45 +74,49 @@ public class DBUtil {
    }
 
    public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
-
+		System.out.println("1");
 		// index 받아오기
 		String selectSql = "SELECT MAX(ques_index) FROM Question";
 		Statement st;
-		int number;
+		int number = -1;
 		try {
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(selectSql);
-			System.out.println(rs.getInt(1));
-			number = rs.getInt(1)+1;
-			
-			// 받아온 index+1로 insert
-			PreparedStatement pstmt = null;
-			try {
-				conn.setAutoCommit(false);
-				// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거 아닌가요?','20201115',null,'1');
-				String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
-				pstmt = conn.prepareStatement(sqlSt);
-				pstmt.setString(1,Integer.toString(number));
-				pstmt.setString(2,title);
-				pstmt.setString(3,content);
-				pstmt.setString(4,date);
-				pstmt.setString(5,null);
-				pstmt.setString(6, Integer.toString(uidx));
-				
-				pstmt.executeUpdate();
-				conn.commit();
-				conn.setAutoCommit(true);
-				
-				return number;
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
+
+			System.out.println(rs.toString());
+			while (rs.next()) {
+				number = rs.getInt(1) + 1;
+				System.out.println(number);
 			}
-			
+			if (number > -1) {
+				// 받아온 index+1로 insert
+				PreparedStatement pstmt = null;
+				try {
+					conn.setAutoCommit(false);
+					// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거
+					// 아닌가요?','20201115',null,'1');
+					String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
+					pstmt = conn.prepareStatement(sqlSt);
+					pstmt.setString(1, Integer.toString(number));
+					pstmt.setString(2, title);
+					pstmt.setString(3, content);
+					pstmt.setString(4, date);
+					pstmt.setString(5, null);
+					pstmt.setString(6, Integer.toString(uidx));
+
+					pstmt.executeUpdate();
+					conn.commit();
+					conn.setAutoCommit(true);
+
+					return number;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	   
 		// 실패하면 -1
 		return -1;
 		

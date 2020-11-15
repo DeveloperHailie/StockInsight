@@ -56,8 +56,9 @@ public class WriteQuestion extends HttpServlet {
 		} else {
 			// 로그인 되어 있으면 (1)question db update, (2)작성된 글 보는 페이지 반환
 			// 사용자 idx와 name 가져오기
-			int uidx = (int)session.getAttribute("idx");
-			String name = (String)session.getAttribute("name");
+			int uidx =  Integer.parseInt((String)session.getAttribute("INDEX"));
+			String name = (String)session.getAttribute("ID");
+			
 			int number = DBUtil.addQuestion(conn, uidx, title, content, date);
 			if (number!=-1) {
 				// name, title, content, date 를 question_content.jsp로 전송
@@ -65,7 +66,7 @@ public class WriteQuestion extends HttpServlet {
 				request.setAttribute("title",title);
 				request.setAttribute("content",content);
 				request.setAttribute("date",date);
-				request.setAttribute("number",number);
+				request.setAttribute("number",Integer.toString(number));
 				RequestDispatcher view = request.getRequestDispatcher("question_content.jsp");
 				view.forward(request, response);
 			}else {
