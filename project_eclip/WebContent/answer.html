@@ -50,11 +50,11 @@
             <div class="menu_content">
                 <center>
                     <table class="question_content_table">
-                        <tr class="title">
+                        <tr class="cont">
                             <th>제목</th>
                             <td colspan="5">삼성 전자도 추가해주세요.</td>
                         </tr>
-                        <tr class="writeranddate">
+                        <tr class="cont">
                             <th>작성자</th>
                             <td>임용이</td>
                             <th>작성일</th>
@@ -62,9 +62,9 @@
                             <th>글번호</th>
                             <td>1</td>
                         </tr>
-                        <tr class="content">
+                        <tr class="cont">
                             <th>내용</th>
-                            <td colspan="5">삼성전자도 추가해주세요.</td>
+                            <td colspan="5" height="500">삼성전자도 추가해주세요.</td>
                         </tr>
                     </table>
                     <form method = "post" action = "/writeAnswer">
@@ -74,18 +74,19 @@
                                 <table class = "questionTable" id="answer">
                                         <tr>
                                         <td>제목</td>
-                                        <td><input type = "text" class="title"  name ="title" size=181.7 required></td>
+                                        <td><input type = "text" class="title"  name ="title" size=86.5 required></td>
                                         </tr>
                 
                                         <tr>
                                         <td>내용</td>
-                                        <td><textarea name ="content" class="content" cols=180 rows=30 required></textarea></td>
+                                        <td><textarea name ="content" class="content" cols=85 rows=30 required></textarea></td>
                                         </tr>
-      
+
+
                                         <tr>
                                           <td colspan="2" class="button_table">
-                                            <a href="qna.html" class="btn_question_list">목록보기</button></a>
-                                            <input type = "submit" class="answer_button" value="등록하기">
+                                            <a href="qna.html" class="btn_question_list">목록가기</button></a>
+                                            <input type = "submit" class="btn_question_submit" value="등록하기">
                                           </td>
                                         </tr>
       

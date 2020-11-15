@@ -280,28 +280,28 @@ table.questionTable td {
     font-family: "nanum";
 }
 .btn_question_submit{
+    font-weight: bold;
     margin: 15 0 10 0;
     width: 15%;
-    height: 25px;
+    height: 24px;
     border-radius: 3px;
     font-family: "nanum";
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
     background: linear-gradient(to right, #B06AB3, #4568DC); 
     background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
     border: none;
 }
 .btn_question_list{
+    font-weight: bold;
     margin: 15 0 10 0;
-    padding : 4 17 4 17;
+    padding : 4 18 4 18;
     border-radius: 3px;
     font-family: "nanum";
     font-weight : normal;
-    font-size: 15px;
-    color: #fff;
-    background: #283048;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size: 14px;
+    color: #000;
+    background-color: #aaaa;
     border: none;
 }
 table.questionTable .button_table{
@@ -316,6 +316,7 @@ table.questionTable .title{
 table .questionTable .content{
     font-family: "nanum";
 }
+
 .qna_table {
     margin-top : 30px;
     font-family: "nanum";
@@ -358,9 +359,6 @@ table .questionTable .content{
     background-color: #aaaa;
 }
 .btn_list{
-    position: relative;
-    left: 515px;
-    top: 15px;
     padding : 7 17 7 17;
     border-radius: 3px;
     font-family: "nanum";
@@ -369,9 +367,6 @@ table .questionTable .content{
     background-color: #aaaa;
 }
 .btn_answer{
-    position: relative;
-    left: 510px;
-    top: 15px;
     padding : 7 17 7 17;
     border-radius: 3px;
     font-family: "nanum";
@@ -386,34 +381,54 @@ table .questionTable .content{
     width: 80%;
     margin-bottom: 1rem;
     text-align: center;
-    border: 1px solid #ccc;
 }
-.question_content_table th {
+.question_content_table .cont th {
     padding : 30px;
     border: 1px solid #ccc;
     font-size: 14pt;
     background-color: #eeee;
 }
 
-.question_content_table td {
+.question_content_table .cont td {
     padding : 30px;
     border: 1px solid #ccc;
     font-size: 12pt;
 }
+
+.button_table_content{
+    border: none;
+    
+}
+.button_table_content td{
+    text-align: end;
+    border: none;
+}
+
 
 #answer {
     margin-top : 35px;
 }
 
 .answer_button{
-    margin: 15 0 10 0;
-    width: 7%;
-    height: 25px;
+    width: 15%;
+    height: 28px;
     border-radius: 3px;
     font-family: "nanum";
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 13px;
     color: #fff;
     background: linear-gradient(to right, #B06AB3, #4568DC); 
     background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
     border: none;
+}
+
+.page tr td button{
+    margin-top:30px;
+    border : none;
+    margin-right:10px;
+    margin-left:10px;
+    padding : 10 10 10 10;
+    font-family: "nanum";
+    font-weight: bold;
+    font-size: 13px;
 }
