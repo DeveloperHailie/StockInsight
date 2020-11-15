@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +42,12 @@ public class PostList extends HttpServlet {
 		ServletContext sc = getServletContext();
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 		ArrayList<QnAList> postList = DBUtil.getPostList(conn);
-		System.out.println(postList.size()+"");
-		for(int i=0;i<postList.size();i++) {
-			System.out.println(postList.get(i));
-		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		request.setAttribute("postList",postList);
+		String a = request.getParameter("pageIndex");
+		System.out.println(a);
+		RequestDispatcher view = request.getRequestDispatcher("qna_list.jsp");
+		view.forward(request, response);
 	}
 
 	/**
