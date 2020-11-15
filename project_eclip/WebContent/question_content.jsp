@@ -76,7 +76,11 @@
                         <tr class="button_table_content">
                             <th></th>
                             <td colspan="5"  height="50">
-                                <a href="answer.html" class="btn_answer">답변하기</a>
+                            <%
+                            	if((Boolean)request.getAttribute("admin")){
+                            		out.println("<a href=\"answer.html\" class=\"btn_answer\">답변하기</a>");
+                            	}
+                            %>
                                 <a href="qna.html" class="btn_list">목록가기</a>
                             </td>
                         </tr>

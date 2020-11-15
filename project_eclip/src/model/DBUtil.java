@@ -74,7 +74,6 @@ public class DBUtil {
    }
 
    public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
-		System.out.println("1");
 		// index 받아오기
 		String selectSql = "SELECT MAX(ques_index) FROM Question";
 		Statement st;
@@ -121,6 +120,30 @@ public class DBUtil {
 		return -1;
 		
 	}
-   
+
+	public static Boolean checkAdmin(Connection conn, int uidx) {
+		// admin이면 true, admin아니면 false
+		String selectSql = "SELECT user_admin FROM User WHERE user_index="+Integer.toBinaryString(uidx);
+
+		Statement st;
+		int number = -1;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(selectSql);
+
+			System.out.println(rs.toString());
+			while (rs.next()) {
+				number = rs.getInt(1);
+				if(number==1) {
+					return true;
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
    
 }

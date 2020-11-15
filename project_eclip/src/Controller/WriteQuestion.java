@@ -52,7 +52,6 @@ public class WriteQuestion extends HttpServlet {
 		if (session == null) {
 			// 로그인 안 되어있으면 login.html 반환
 			response.sendRedirect("login.html");
-
 		} else {
 			// 로그인 되어 있으면 (1)question db update, (2)작성된 글 보는 페이지 반환
 			// 사용자 idx와 name 가져오기
@@ -60,6 +59,7 @@ public class WriteQuestion extends HttpServlet {
 			String name = (String)session.getAttribute("ID");
 			
 			int number = DBUtil.addQuestion(conn, uidx, title, content, date);
+			Boolean admin = DBUtil.checkAdmin(conn, uidx);
 			if (number!=-1) {
 				// name, title, content, date 를 question_content.jsp로 전송
 				request.setAttribute("name", name);
@@ -67,6 +67,7 @@ public class WriteQuestion extends HttpServlet {
 				request.setAttribute("content",content);
 				request.setAttribute("date",date);
 				request.setAttribute("number",Integer.toString(number));
+				request.setAttribute("admin",admin);
 				RequestDispatcher view = request.getRequestDispatcher("question_content.jsp");
 				view.forward(request, response);
 			}else {
@@ -75,15 +76,6 @@ public class WriteQuestion extends HttpServlet {
 			}
 		}
 
-		// ResultSet rs = DBUtil.findUser(conn, user_id); //id 비교
-
-		PrintWriter out = response.getWriter();
-
-		/*
-		 * if(true) { try {
-		 * 
-		 * } catch (SQLException e) { e.printStackTrace(); } }
-		 */
 	}
 
 	/**

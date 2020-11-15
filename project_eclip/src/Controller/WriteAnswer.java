@@ -1,11 +1,20 @@
 package Controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.DBUtil;
 
 /**
  * Servlet implementation class WriteAnswer
@@ -26,8 +35,44 @@ public class WriteAnswer extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(cal.getTime());
+
+		ServletContext sc = getServletContext();
+		Connection conn = (Connection) sc.getAttribute("DBconnection");
+
+		// 로그인 되어 있는 상태인지 체크
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			// 로그인 안 되어있으면 login.html 반환
+			response.sendRedirect("login.html");
+
+		} else {
+			// 로그인 되어 있으면 (1)question db update, (2)작성된 글 보는 페이지 반환
+			// 사용자 idx와 name 가져오기
+			int uidx =  Integer.parseInt((String)session.getAttribute("INDEX"));
+			String name = (String)session.getAttribute("ID");
+			
+			int number = DBUtil.addQuestion(conn, uidx, title, content, date);
+			if (number!=-1) {
+				// name, title, content, date 를 question_content.jsp로 전송
+				request.setAttribute("name", name);
+				request.setAttribute("title",title);
+				request.setAttribute("content",content);
+				request.setAttribute("date",date);
+				request.setAttribute("number",Integer.toString(number));
+				RequestDispatcher view = request.getRequestDispatcher("question_content.jsp");
+				view.forward(request, response);
+			}else {
+				// 다시 문의하기 페이지로
+				response.sendRedirect("question.html");
+			}
+		}
 	}
 
 	/**
