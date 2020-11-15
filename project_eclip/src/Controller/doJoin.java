@@ -41,27 +41,34 @@ public class doJoin extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String name = request.getParameter("user_name");
-		String id = request.getParameter("user_email");	
+		String id = request.getParameter("user_id");	
+		String email = request.getParameter("user_email");	
 		String pwd = request.getParameter("user_pwd");
 
 		ServletContext sc = getServletContext();
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-		ResultSet rs = DBUtil.findUser(conn, id);
-
-		PrintWriter out = response.getWriter();
-
-		if (rs != null) {
-			try{
-				if(rs.next()){ // existing user
-						response.sendRedirect("main.html");
-				}
-				else { 				
-					DBUtil.addMember(conn, name, id, pwd); //db
-					response.sendRedirect("login.html"); //�씠�룞 濡쒓렇�씤�쑝濡�
-				}
-			}catch (SQLException e) {e.printStackTrace();}
+		boolean overlap = DBUtil.checkID(conn, id);
+		System.out.println(overlap);
+		if (overlap == true) {
+			// name, title, content, date 瑜� question_content.jsp濡� �쟾�넚
+			request.setAttribute("name", name);
+			request.setAttribute("id",id);
+			request.setAttribute("pwd",pwd);
+			request.setAttribute("email",email);
+			RequestDispatcher view = request.getRequestDispatcher("checkid.jsp");
+			view.forward(request, response);
 		}
+		else { //가입이 안된 유저
+			try {
+				DBUtil.addMember(conn, name, id, email, pwd);
+				response.sendRedirect("login.html"); //로그인으로
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //가입
+           
+		}		
 
 	}
 	/**
