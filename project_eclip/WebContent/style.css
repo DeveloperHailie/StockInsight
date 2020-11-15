@@ -282,7 +282,7 @@ table.questionTable td {
 .btn_question_submit{
     font-weight: bold;
     margin: 15 0 10 0;
-    width: 15%;
+    width: 90px;
     height: 24px;
     border-radius: 3px;
     font-family: "nanum";
