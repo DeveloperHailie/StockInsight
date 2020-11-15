@@ -432,3 +432,6 @@ table .questionTable .content{
     font-weight: bold;
     font-size: 13px;
 }
+.reply{
+    background-color: #eeeeff;
+}
