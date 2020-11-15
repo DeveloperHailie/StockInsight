@@ -38,41 +38,53 @@ public class doMypagecheck extends HttpServlet {
 		// TODO Auto-generated method stub
 	      request.setCharacterEncoding("UTF-8");
 	      
+	      System.out.println("Here");
+	      String user_pwd = request.getParameter("user_pwd");// å ì™ì˜™æ©˜å ì‹«ï¿½ å ìŒ¨ì•„ìš¸ì˜™
+	      System.out.println(user_pwd);
+	      
 	      HttpSession session = request.getSession();
-	      String user_id = (String)session.getAttribute("ID");//¼¼¼Ç¿¡¼­ ¾ÆÀÌµğ ¹Ş¾Æ¿È
+	      String user_id = (String)session.getAttribute("ID");//å ì™ì˜™å ì‹¤ìš¸ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ë“¸ì˜™ å ìŒ¨ì•„ìš¸ì˜™
+	      
+	      PrintWriter out = response.getWriter();
+	      System.out.println(user_id); //ì´ë©”ì¼ì°í˜
+	      
 	      
 	      //String user_id = request.getParameter("user_email");
-	      String user_pwd = request.getParameter("user_pwd");// ºñ¹Ğ¹øÈ£ ¹Ş¾Æ¿È
+	     // String user_pwd = request.getParameter("user_pwd");// å ì™ì˜™æ©˜å ì‹«ï¿½ å ìŒ¨ì•„ìš¸ì˜™
+	      System.out.println(user_pwd);
+	      
 
 	      ServletContext sc = getServletContext();
 	      Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-	      ResultSet rs = DBUtil.findUser(conn, user_id); //id ë¹„êµ
+	      ResultSet rs = DBUtil.checkMypage(conn, user_id); //id é®ê¾§íƒ³
+	      System.out.println("here2");
 
-	      PrintWriter out = response.getWriter();
+	      
 	   
 	      if(rs != null) {
 	         try
 	         {
+	        	 System.out.println(rs);
 	            if(rs.next()) { // existing user
-	               String checkpw = rs.getString(4);
+	               String checkpw = rs.getString(5);
 	               System.out.println(checkpw);
 	               if(checkpw.equals(user_pwd)){
-	            	   out.println("È¸¿øÃ¼Å© ¿Ï·á : ¼º°ø");
+	            	   out.println("member check fin");
 	                  // valid user and passwd
 	                  //response.sendRedirect("main.html");
 	               }
 	               else
 	               {
 	                  // wrong passwd
-	            	   out.println("È¸¿øÃ¼Å© ¿Ï·á : ½ÇÆĞ");
+	            	   out.println("member check but not correct");
 	               }
 	            }
 	            else { // invalid user
-	               out.println("¼¼¼Ç½ÇÆĞ");
+	               out.println("not invalid");
 	            }
-	         } catch (SQLException e) {
-	        	 out.println("¿¹¿Ü ½ÇÆĞ");
+	         } catch (SQLException e) { 
+	        	 out.println("just Fail Fail Fail....");
 	            e.printStackTrace();
 	         } 
 	      } 
