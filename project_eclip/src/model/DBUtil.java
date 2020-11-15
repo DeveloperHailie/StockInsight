@@ -47,6 +47,27 @@ public class DBUtil {
       }
       return null;
    }
+   public static ResultSet checkMypage(Connection con, String memail) {
+
+	      String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
+	      Statement st;
+	      try {
+
+	         st = con.createStatement();
+
+	         if (st.execute(sqlSt + "'" + memail + "'")) {
+	        	 System.out.println("1");
+	            return st.getResultSet();
+	         }
+
+	      } catch (SQLException e) {
+	    	  System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+
+	      }
+	      return null;
+	   }
 
    public static void addMember(Connection con, String new_name, String new_id, 
          String new_pwd) throws SQLException {
@@ -75,7 +96,7 @@ public class DBUtil {
 
    public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
 
-		// index 받아오기
+		// index 諛쏆븘�삤湲�
 		String selectSql = "SELECT MAX(ques_index) FROM Question";
 		Statement st;
 		int number;
@@ -85,11 +106,11 @@ public class DBUtil {
 			System.out.println(rs.getInt(1));
 			number = rs.getInt(1)+1;
 			
-			// 받아온 index+1로 insert
+			// 諛쏆븘�삩 index+1濡� insert
 			PreparedStatement pstmt = null;
 			try {
 				conn.setAutoCommit(false);
-				// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거 아닌가요?','20201115',null,'1');
+				// INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄� �븘�땶媛��슂?','20201115',null,'1');
 				String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sqlSt);
 				pstmt.setString(1,Integer.toString(number));
@@ -113,7 +134,7 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 	   
-		// 실패하면 -1
+		// �떎�뙣�븯硫� -1
 		return -1;
 		
 	}
