@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +39,16 @@
 </head>
 
 <body onload='rotate()'>
-
+	<script type="text/javascript">
+	<%
+		String check = (String)request.getAttribute("check");
+	   	System.out.println(check);
+		if(check.equals("0"))
+			out.println("alert(\"비밀번호가 다릅니다.\");");
+		else
+			out.println("alert(\"가입된 정보가 없습니다.\");");
+	%>
+	</script>
     <div class="front">
         <div class="logo">
             <a href="main.html"><img src="logo.png" style="width: 336px; height: 148px; float: left;"></a>

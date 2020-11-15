@@ -39,7 +39,8 @@ public class doJoin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
+		response.setContentType("text/html; charset=UTF-8");
+		
 		String name = request.getParameter("user_name");
 		String id = request.getParameter("user_id");	
 		String email = request.getParameter("user_email");	
@@ -49,9 +50,8 @@ public class doJoin extends HttpServlet {
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 
 		boolean overlap = DBUtil.checkID(conn, id);
-		System.out.println(overlap);
+		
 		if (overlap == true) {
-			// name, title, content, date 瑜� question_content.jsp濡� �쟾�넚
 			request.setAttribute("name", name);
 			request.setAttribute("id",id);
 			request.setAttribute("pwd",pwd);
@@ -64,7 +64,6 @@ public class doJoin extends HttpServlet {
 				DBUtil.addMember(conn, name, id, email, pwd);
 				response.sendRedirect("login.html"); //로그인으로
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} //가입
            

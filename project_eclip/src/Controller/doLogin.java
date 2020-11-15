@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,85 +20,92 @@ import model.DBUtil;
  */
 @WebServlet("/doLogin")
 public class doLogin extends HttpServlet {
-   private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-   /**
-    * @see HttpServlet#HttpServlet()
-    */
-   public doLogin() {
-      super();
-      // TODO Auto-generated constructor stub
-   }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public doLogin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-   /**
-    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-    */
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.setCharacterEncoding("UTF-8");
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		HttpSession session = request.getSession();          
 
-      HttpSession session = request.getSession();          
+		String user_id = request.getParameter("user_id");
+		String user_pwd = request.getParameter("user_pwd");
 
-      String user_id = request.getParameter("user_id");
-      String user_pwd = request.getParameter("user_pwd");
+		ServletContext sc = getServletContext();
+		Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-      ServletContext sc = getServletContext();
-      Connection conn = (Connection) sc.getAttribute("DBconnection");
+		//index Ï∞æÏïÑÏÑú Ïä§Ìä∏ÎßÅ ÎßåÎì§Í≥† ÏÑ∏ÏÖòÌï†Îãπ
+		ResultSet index_set = DBUtil.findIndex(conn, user_id);
 
-      //ººº« «“¥Á ∫Œ∫–(¿Œµ¶Ω∫, id)
-      ResultSet index_set = DBUtil.findIndex(conn, user_id);
-      
-      String user_index = "null";
-      if(index_set != null) {
-         try
-         {
-            if(index_set.next()) { // existing user
-               user_index = index_set.getString(1);
-            }
-         } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-         }   
-      }
-      session.setAttribute("ID",user_id);   //id ººº« «“¥Á 
-      session.setAttribute("INDEX",user_index); //index ººº« «“¥Á 
+		String user_index = "null";
+		if(index_set != null) {
+			try
+			{
+				if(index_set.next()) { // existing user
+					user_index = index_set.getString(1);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}   
+		}
+		session.setAttribute("ID",user_id);   //id ÔøΩÔøΩÔøΩÔøΩ ÔøΩ“¥ÔøΩ 
+		session.setAttribute("INDEX",user_index); //index ÔøΩÔøΩÔøΩÔøΩ ÔøΩ“¥ÔøΩ 
 
-//      String str = (String) session.getAttribute("ID");
-//      String str2 = (String) session.getAttribute("INDEX");
+		//      String str = (String) session.getAttribute("ID");
+		//      String str2 = (String) session.getAttribute("INDEX");
 
-      //ID√£±‚ Ω√¿€
-      ResultSet rs = DBUtil.findUser(conn, user_id); 
-      PrintWriter out = response.getWriter();
+		//ID√£ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+		ResultSet rs = DBUtil.findUser(conn, user_id); 
+		PrintWriter out = response.getWriter();
+		String check = null;
+		if(rs != null) {
+			try
+			{
+				if(rs.next()) { // existing user
+					String checkpw = rs.getString(1);
+					if(checkpw.equals(user_pwd)){
+						// valid user and passwd
+						response.sendRedirect("main.html");
+					}
+					else
+					{
+						check = "0";
+						// wrong passwd
+						//response.sendRedirect("login.html");
+					}
+				}
+				else { // invalid user
+					//response.sendRedirect("login.html");
+					check = "1";
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
+		}
+		
+		request.setAttribute("check",check);
+		RequestDispatcher view = request.getRequestDispatcher("noLogin.jsp");
+		view.forward(request, response);
+	}
 
-      if(rs != null) {
-         try
-         {
-            if(rs.next()) { // existing user
-               String checkpw = rs.getString(1);
-               if(checkpw.equals(user_pwd)){
-                  // valid user and passwd
-                  response.sendRedirect("main.html");
-               }
-               else
-               {
-                  // wrong passwd
-                  out.println("Wrong Passwd!!");
-               }
-            }
-            else { // invalid user
-               out.println("Invalid User Name!!");
-            }
-         } catch (SQLException e) {
-            e.printStackTrace();
-         } 
-      } 
-   }
-
-   /**
-    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-    */
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      // TODO Auto-generated method stub
-      doGet(request, response);
-   }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }
