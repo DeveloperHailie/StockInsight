@@ -40,22 +40,22 @@ public class QnAList {
 		this.content = content;
 		this.date = date;
 	}
-	Boolean getIsQuestion() {
+	public Boolean getIsQuestion() {
 		return isQuestion;
 	}
-	String getIndex() {
+	public String getIndex() {
 		return index;
 	}
-	String getWriter() {
+	public String getWriter() {
 		return writer;
 	}
-	String getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	String getContent() {
+	public String getContent() {
 		return content;
 	}
-	String getDate() {
+	public String getDate() {
 		return date;
 	}
 	@Override

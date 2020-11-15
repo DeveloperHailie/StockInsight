@@ -301,7 +301,9 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	
 	public static ArrayList<QnAList> getPostList(Connection conn){
 		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
-		QnAList post = new QnAList();
+		
+		
+		
 		String qu_title="";
 		String qu_content="";
 		String qu_date="";
@@ -310,11 +312,14 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		String qu_reply="";
 		
 		Statement stmt = null;
-		String questionQuery = "SELECT * FROM Question";
+		String questionQuery = "SELECT * FROM Question order by ques_date";
+	
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
 			while(rs.next()) {
+				QnAList post = new QnAList();
+				QnAList post_answer = new QnAList();
 				// index, title, content, date, answer_index, user_index
 				qu_index = rs.getString(1);
 				qu_title= rs.getString(2);
@@ -324,15 +329,16 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				qu_writer= rs.getString(6);
 				// writer (index)로 사용자 id 받아오기
 				qu_writer = getUserId(conn, qu_writer);
+				
 				if(qu_writer!=null) {
 					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
 					// question_post를 list에 넣기
 					qnaList.add(post);
 					// reply가 null이 아니면  reply_post 받아오기
 					if(qu_reply!=null) {
-						post = getAnswerPost(conn, qu_reply);
+						post_answer = getAnswerPost(conn, qu_reply);
 						// reply_post를 list에 넣기
-						qnaList.add(post);
+						qnaList.add(post_answer);
 					}
 				}
 			}
@@ -361,7 +367,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				an_content = rs.getString(3);
 				an_date = rs.getString(4);
 			}
-			answer.setQnAList(false, "[re]"+idx, "admin", an_title, an_content, an_date);
+			answer.setQnAList(false, idx, "admin", an_title, an_content, an_date);
 			return answer;
 		}catch(SQLException e) {
 			e.printStackTrace();
