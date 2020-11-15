@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DBUtil;
 
@@ -33,17 +34,41 @@ public class doLogin extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.setCharacterEncoding("UTF-8");
-      
+
+      HttpSession session = request.getSession();          
+
       String user_id = request.getParameter("user_email");
       String user_pwd = request.getParameter("user_pwd");
 
       ServletContext sc = getServletContext();
       Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-      ResultSet rs = DBUtil.findUser(conn, user_id); //id 鍮꾧탳
+      //세션 할당 부분(인덱스, id)
+      ResultSet index_set = DBUtil.findIndex(conn, user_id);
+      String user_index = "null";
+      if(index_set != null) {
+         try
+         {
+            if(index_set.next()) { // existing user
+               user_index = index_set.getString(1);
+            }
+         } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+         }   
+      }
+      session.setAttribute("ID",user_id);   //id 세션 할당 
+      session.setAttribute("INDEX",user_index); //index 세션 할당 
 
+      String str = (String) session.getAttribute("ID");
+      String str2 = (String) session.getAttribute("INDEX");
+
+      System.out.println("s: " + str + "  I: " + str2);
+
+      //ID찾기 시작
+      ResultSet rs = DBUtil.findUser(conn, user_id); 
       PrintWriter out = response.getWriter();
-   
+
       if(rs != null) {
          try
          {

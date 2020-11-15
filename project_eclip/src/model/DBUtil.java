@@ -10,6 +10,23 @@ import java.util.Calendar;
 
 public class DBUtil {
 
+	public static ResultSet findIndex(Connection con, String mid) {
+	      String sql = "SELECT user_index FROM User WHERE user_email=";
+	       Statement st;
+
+	      try {
+	          st = con.createStatement();
+
+	            if (st.execute(sql + "'" + mid + "'")) {
+	               return st.getResultSet();
+	            }
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }
+	      return null;
+	   }
+	   
+
    public static ResultSet findUser(Connection con, String mid) {
 
       String sqlSt = "SELECT user_pwd FROM User WHERE user_email=";
