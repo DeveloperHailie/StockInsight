@@ -45,6 +45,7 @@ public class doLogin extends HttpServlet {
 
       //세션 할당 부분(인덱스, id)
       ResultSet index_set = DBUtil.findIndex(conn, user_id);
+      
       String user_index = "null";
       if(index_set != null) {
          try

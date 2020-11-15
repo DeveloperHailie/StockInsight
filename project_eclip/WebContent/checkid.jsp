@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,6 +60,7 @@
          return false;
       }
 
+      alert("회원가입이 완료되었습니다.");
    }
    function check(re, what, message) {
       if (re.test(what.value)) {
@@ -74,6 +76,9 @@
 
 <body onload='rotate()'>
 
+<script type="text/javascript">
+alert("아이디가 중복됩니다.\n다시입력해주세요");
+</script>
    <div class="front">
       <div class="logo">
          <a href="home.html"><img src="logo.png"
@@ -110,43 +115,23 @@
       <form name="join" onsubmit="return validate();" action="doJoin"
          method="POST">
          <center>
-            <table class="table">
-               <br>
-               <tr>
-                  <td>이름 :</td>
-                  <td><input type="text" name="user_name" id="name"
-                     maxlength="12" /></td>
-               </tr>
-               <tr>
-                  <td>ID :</td>
-                  <td><input type="text" name="user_id" id="id"
-                     maxlength="20" /> </td>
-
-               </tr>
-               <tr>
-                  <td>email :</td>
-                  <td><input type="text" name="user_email" id="email"
-                     maxlength="50" /> </td>
-
-               </tr>
-               <tr>
-                  <td></td>
-                  <td colspan="2" style="color: red;">ex)
-                     stockinsight@naver.com</td>
-               </tr>
-               <tr>
-                  <td>비밀번호 :</td>
-                  <td><input type="password" name="user_pwd" id="pw"
-                     maxlength="12"></td>
-               </tr>
-               <tr>
-                  <td></td>
-                  <td colspan="2" style="color: red;">※ 4-12자의 영문 대소문자와 숫자로만 입력</td>
-               </tr>
-               <tr>
-                  <td>비밀번호 확인 :</td>
-                  <td><input type="password" id="checkpw" maxlength="12"></td>
-               </tr>
+          <table class="table">
+                    	<%
+                    	// name, title, content, date, number
+                    	String name = (String)request.getAttribute("name");
+                    	String title = (String)request.getAttribute("title");
+                    	String content = (String)request.getAttribute("content");
+                    	String date = (String)request.getAttribute("date");
+                    	String number = (String)request.getAttribute("number");
+                    	
+                    	out.println("<tr><td>이름 :</td><td><input type=\"text\" name=\"user_name\" id=\"name\"maxlength=\"12\"></td></tr>");
+                    	out.println("<tr><td>ID :</td><td><input type=\"text\" name=\"user_id\" id=\"id\"maxlength=\"20\"></td></tr>");
+                    	out.println("<tr><td>email :</td><td><input type=\"text\" name=\"user_email\" id=\"email\"maxlength=\"50\"></td></tr>");
+                    	out.println("<tr><td></td><td colspan=\"2\" style=\"color: red;\">ex) stockinsight@naver.com</td>");
+                    	out.println("<tr><td>비밀번호 :</td><td><input type=\"password\" name=\"user_pwd\" id=\"pw\"maxlength=\"12\"></td></tr>");
+                    	out.println("<tr><td></td><td colspan=\"2\" style=\"color: red;\">※ 4-12자의 영문 대소문자와 숫자로만 입력</td>");
+                      	out.println("<tr><td>비밀번호 확인 :</td><td><input type=\"password\" id=\"checkpw\"maxlength=\"12\"></td></tr>");
+                    	%>
             </table>
             <br /> <br /> <input type="submit" class="okayjoin" value=" 회원가입 ">
             </td>

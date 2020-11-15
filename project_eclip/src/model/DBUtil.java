@@ -47,17 +47,43 @@ public class DBUtil {
      }
      return null;
   }
+  
+  public static Boolean checkID(Connection conn, String input_id) {
+		
+		String idfind_Sql = "SELECT user_id FROM User WHERE user_id=";
 
-  public static void addMember(Connection con, String new_name, String new_id, 
-        String new_pwd) throws SQLException {
+		Statement st;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(idfind_Sql+ "'" + input_id + "'");
+
+			while (rs.next()) {
+				String id = rs.getString(1);
+				if(id.equals(input_id)) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
+  public static void addMember(Connection con, String new_name, String new_id,
+		  String new_email, String new_pwd) throws SQLException {
      
      PreparedStatement pstmt = null;
      try {
         con.setAutoCommit(false);
-        pstmt = con.prepareStatement("INSERT INTO User (user_name, user_id, user_pwd) VALUES(?, ? ,?)");
+        pstmt = con.prepareStatement("INSERT INTO User (user_name, user_id, user_email, user_pwd) VALUES(?, ?,? ,?)");
         pstmt.setString(1, new_name);
         pstmt.setString(2, new_id);
-        pstmt.setString(3, new_pwd);
+        pstmt.setString(3, new_email);
+        pstmt.setString(4, new_pwd);
         pstmt.executeUpdate();
 
         con.commit();
