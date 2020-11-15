@@ -47,7 +47,7 @@ public class DBUtil {
       }
       return null;
    }
-   public static ResultSet checkMypage(Connection con, String memail) {
+   public static ResultSet checkMypage(Connection con, String mid) {
 
 	      String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
 	      Statement st;
@@ -55,7 +55,7 @@ public class DBUtil {
 
 	         st = con.createStatement();
 
-	         if (st.execute(sqlSt + "'" + memail + "'")) {
+	         if (st.execute(sqlSt + "'" + mid + "'")) {
 	        	 System.out.println("1");
 	            return st.getResultSet();
 	         }
@@ -124,7 +124,7 @@ public class DBUtil {
 
 
 public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
-    // index 받아오기
+    // index 諛쏆븘�삤湲�
     String selectSql = "SELECT MAX(ques_index) FROM Question";
     Statement st;
     int number = -1;
@@ -138,12 +138,12 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
           System.out.println(number);
        }
        if (number > -1) {
-          // 받아온 index+1로 insert
+          // 諛쏆븘�삩 index+1濡� insert
           PreparedStatement pstmt = null;
           try {
              conn.setAutoCommit(false);
-             // INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거
-             // 아닌가요?','20201115',null,'1');
+             // INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
+             // �븘�땶媛��슂?','20201115',null,'1');
              String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
              pstmt = conn.prepareStatement(sqlSt);
              pstmt.setString(1, Integer.toString(number));
@@ -166,14 +166,14 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
     } catch (SQLException e) {
        e.printStackTrace();
     }
-    // 실패하면 -1
+    // �떎�뙣�븯硫� -1
     return -1;
     
  }
 
 
 	public static Boolean checkAdmin(Connection conn, int uidx) {
-		// admin�씠硫� true, admin�븘�땲硫� false
+		// admin占쎌뵠筌롳옙 true, admin占쎈툡占쎈빍筌롳옙 false
 		String selectSql = "SELECT user_admin FROM User WHERE user_index="+Integer.toBinaryString(uidx);
 
 		Statement st;
@@ -198,8 +198,8 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	}
 	
 	public static int addAnswer(Connection conn, String title, String content, String date) {
-		// answer table에 넣기
-		// answer_index 반환
+		// answer table�뿉 �꽔湲�
+		// answer_index 諛섑솚
 		String selectSql = "SELECT MAX(answer_index) FROM Answer";
 		Statement st;
 		int number = -1;
@@ -213,11 +213,11 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				System.out.println(number);
 			}
 			if (number > -1) {
-				// 받아온 index+1로 insert
+				// 諛쏆븘�삩 index+1濡� insert
 				PreparedStatement pstmt = null;
 				try {
 					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Answer VALUES('','답변드립니다.','답변내용','2020.11.15');
+					// INSERT INTO Stockinsight.Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
 					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
 					pstmt = conn.prepareStatement(sqlSt);
 					pstmt.setString(1, Integer.toString(number));
@@ -238,12 +238,12 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// 실패하면 -1
+		// �떎�뙣�븯硫� -1
 		return -1;
 	}
 	
 	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
-		// Question DB에 question_index row의 Answer_answer_index 수정
+		// Question DB�뿉 question_index row�쓽 Answer_answer_index �닔�젙
 		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
 		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
 		Statement stmt = null;
