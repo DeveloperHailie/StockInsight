@@ -48,6 +48,7 @@ public class DBUtil {
       }
       return null;
    }
+  
    public static ResultSet checkMypage(Connection con, String mid) {
 
 	      String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
@@ -94,8 +95,43 @@ public class DBUtil {
 		}
 
 		return false;
-
 	}
+  
+  public static ResultSet findID(Connection conn, String input_name, String input_email) {
+		
+		  String sqlSt = "SELECT user_id FROM User WHERE user_name=";
+		     Statement st;
+		     try {
+
+		        st = conn.createStatement();
+
+		        if (st.execute(sqlSt + "'" + input_name + "'and user_email='" + input_email + "'")) {
+		           return st.getResultSet();
+		        }
+
+		     } catch (SQLException e) {
+		        e.printStackTrace();
+		      }
+		      return null;
+		}
+  public static ResultSet findPWD(Connection conn, String input_name, String input_id, String input_email) {
+		
+	  String sqlSt = "SELECT user_pwd FROM User WHERE user_name=";
+	     Statement st;
+	     try {
+
+	        st = conn.createStatement();
+
+	        if (st.execute(sqlSt + "'" + input_name + "'and user_id = '" + input_id + "'and user_email='" + input_email + "'")) {
+	           return st.getResultSet();
+	        }
+
+	     } catch (SQLException e) {
+	        e.printStackTrace();
+	      }
+	      return null;
+	}  
+  
   public static void addMember(Connection con, String new_name, String new_id,
 		  String new_email, String new_pwd) throws SQLException {
      
@@ -350,4 +386,5 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		return null;
 	}
 	
+
 }

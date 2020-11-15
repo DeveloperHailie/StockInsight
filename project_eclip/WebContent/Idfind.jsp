@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -18,26 +20,35 @@
     </script>
     <script>
    function validate() {
-
       if (login.id.value == "") {
          alert("아이디를 입력해 주세요");
          login.id.focus();
          return false;
       }
-
       if (login.pw.value == "") { // 비밀번호 확인 입력하지 않을때,
          alert("비밀번호를 입력해주세요.");
          login.pw.value = "";
          login.pw.focus();
          return false;
       }
-
    }
 </script>
 </head>
 
 <body onload='rotate()'>
 
+<script type="text/javascript">
+	<%
+		String check = (String)request.getAttribute("checkid");
+		String name = (String)request.getAttribute("name");
+	   	System.out.println(check);
+		if(check.equals("가입된 정보가 없습니다."))
+			out.println("alert(\"가입된 정보가 없습니다.\");");
+		else
+			out.println("alert(\"" + name + "님의 아이디는 " + check + "입니다.\");");
+	%>
+	</script>
+	
     <div class="front">
         <div class="logo">
             <a href="main.html"><img src="logo.png" style="width: 336px; height: 148px; float: left;"></a>
@@ -74,12 +85,10 @@
                     <fieldset>
                         <div class="box_login">
                             <div class="inp_text">
-                                <label for="loginId" class="login_show">아이디</label> 
-                                <input type="text" id="id" name="user_id" placeholder="ID">
+                                <label for="loginId" class="login_show">아이디</label> <input type="text" id="id" name="user_id" placeholder="ID">
                             </div>
                             <div class="inp_text">
-                                <label for="loginPw" class="login_show">비밀번호</label> 
-                                <input type="password" id="pw" name="user_pwd" placeholder="Password">
+                                <label for="loginPw" class="login_show">비밀번호</label> <input type="password" id="pw" name="user_pwd" placeholder="Password">
                             </div>
                         </div>
                         <input type="submit" class="btn_login" value="로그인">
