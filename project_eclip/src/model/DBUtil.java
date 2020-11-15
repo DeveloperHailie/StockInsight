@@ -44,7 +44,6 @@ public class DBUtil {
         // TODO Auto-generated catch block
         e.printStackTrace();
 
-<<<<<<< HEAD
       }
       return null;
    }
@@ -69,10 +68,7 @@ public class DBUtil {
 	      }
 	      return null;
 	   }
-=======
-     }
-     return null;
-  }
+
   
   public static Boolean checkID(Connection conn, String input_id) {
 		
@@ -97,7 +93,6 @@ public class DBUtil {
 		}
 
 		return false;
->>>>>>> 7dac78cb4717abb89c70055754cd1df43be250fa
 
 	}
   public static void addMember(Connection con, String new_name, String new_id,
@@ -127,88 +122,55 @@ public class DBUtil {
   }
 
 
-<<<<<<< HEAD
-=======
-   public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
->>>>>>> 7dac78cb4717abb89c70055754cd1df43be250fa
-		// index 諛쏆븘�삤湲�
-		String selectSql = "SELECT MAX(ques_index) FROM Question";
-		Statement st;
-		int number = -1;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(selectSql);
-<<<<<<< HEAD
-			System.out.println(rs.getInt(1));
-			number = rs.getInt(1)+1;
-			
-			// 諛쏆븘�삩 index+1濡� insert
-			PreparedStatement pstmt = null;
-			try {
-				conn.setAutoCommit(false);
-				// INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄� �븘�땶媛��슂?','20201115',null,'1');
-				String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
-				pstmt = conn.prepareStatement(sqlSt);
-				pstmt.setString(1,Integer.toString(number));
-				pstmt.setString(2,title);
-				pstmt.setString(3,content);
-				pstmt.setString(4,date);
-				pstmt.setString(5,null);
-				pstmt.setString(6, Integer.toString(uidx));
-				
-				pstmt.executeUpdate();
-				conn.commit();
-				conn.setAutoCommit(true);
-				
-				return number;
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
-=======
 
-			System.out.println(rs.toString());
-			while (rs.next()) {
-				number = rs.getInt(1) + 1;
-				System.out.println(number);
-			}
-			if (number > -1) {
-				// 諛쏆븘�삩 index+1濡� insert
-				PreparedStatement pstmt = null;
-				try {
-					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
-					// �븘�땶媛��슂?','20201115',null,'1');
-					String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
-					pstmt = conn.prepareStatement(sqlSt);
-					pstmt.setString(1, Integer.toString(number));
-					pstmt.setString(2, title);
-					pstmt.setString(3, content);
-					pstmt.setString(4, date);
-					pstmt.setString(5, null);
-					pstmt.setString(6, Integer.toString(uidx));
+public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
+    // index 받아오기
+    String selectSql = "SELECT MAX(ques_index) FROM Question";
+    Statement st;
+    int number = -1;
+    try {
+       st = conn.createStatement();
+       ResultSet rs = st.executeQuery(selectSql);
 
-					pstmt.executeUpdate();
-					conn.commit();
-					conn.setAutoCommit(true);
+       System.out.println(rs.toString());
+       while (rs.next()) {
+          number = rs.getInt(1) + 1;
+          System.out.println(number);
+       }
+       if (number > -1) {
+          // 받아온 index+1로 insert
+          PreparedStatement pstmt = null;
+          try {
+             conn.setAutoCommit(false);
+             // INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거
+             // 아닌가요?','20201115',null,'1');
+             String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
+             pstmt = conn.prepareStatement(sqlSt);
+             pstmt.setString(1, Integer.toString(number));
+             pstmt.setString(2, title);
+             pstmt.setString(3, content);
+             pstmt.setString(4, date);
+             pstmt.setString(5, null);
+             pstmt.setString(6, Integer.toString(uidx));
 
-					return number;
+             pstmt.executeUpdate();
+             conn.commit();
+             conn.setAutoCommit(true);
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
->>>>>>> 7dac78cb4717abb89c70055754cd1df43be250fa
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-<<<<<<< HEAD
-	   
-=======
->>>>>>> 7dac78cb4717abb89c70055754cd1df43be250fa
-		// �떎�뙣�븯硫� -1
-		return -1;
-		
-	}
+             return number;
+
+          } catch (SQLException e) {
+             e.printStackTrace();
+          }
+       }
+    } catch (SQLException e) {
+       e.printStackTrace();
+    }
+    // 실패하면 -1
+    return -1;
+    
+ }
+
 
 	public static Boolean checkAdmin(Connection conn, int uidx) {
 		// admin�씠硫� true, admin�븘�땲硫� false
