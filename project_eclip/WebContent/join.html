@@ -7,14 +7,14 @@
 <link rel="stylesheet" type="text/css" href="style.css?ver=1.1">
 <!--design 폴더 내에 있는 css-->
 <script type="text/javascript">
-	var n = 0;
-	var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
+   var n = 0;
+   var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
 
-	function rotate() {
-		document.images.slide.src = imgs[n];
-		(n == (imgs.length - 1)) ? n = 0 : n++;
-		setTimeout("rotate()", 800);
-	}
+   function rotate() {
+      document.images.slide.src = imgs[n];
+      (n == (imgs.length - 1)) ? n = 0 : n++;
+      setTimeout("rotate()", 800);
+   }
 </script><script>
    function validate() {
       var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
@@ -56,10 +56,6 @@
          alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
          join.checkpw.value = "";
          join.checkpw.focus();
-         return false;
-      }
-      if (join.isCheck.value == "false") {
-         alert("아이디 중복체크를 해주세요");
          return false;
       }
 
@@ -136,10 +132,15 @@
                      maxlength="12" /></td>
                </tr>
                <tr>
-                  <td>Email :</td>
+                  <td>ID :</td>
+                  <td><input type="text" name="user_id" id="id"
+                     maxlength="50" /> </td>
+
+               </tr>
+               <tr>
+                  <td>email :</td>
                   <td><input type="text" name="user_email" id="email"
-                     maxlength="50" /> <input type="button" class="check"
-                     value=" 중복체크" onclick="idCheck(this.form.email.value)"></td>
+                     maxlength="50" /> </td>
 
                </tr>
                <tr>

@@ -37,7 +37,7 @@ public class doLogin extends HttpServlet {
 
       HttpSession session = request.getSession();          
 
-      String user_id = request.getParameter("user_email");
+      String user_id = request.getParameter("user_id");
       String user_pwd = request.getParameter("user_pwd");
 
       ServletContext sc = getServletContext();
@@ -60,10 +60,8 @@ public class doLogin extends HttpServlet {
       session.setAttribute("ID",user_id);   //id 세션 할당 
       session.setAttribute("INDEX",user_index); //index 세션 할당 
 
-      String str = (String) session.getAttribute("ID");
-      String str2 = (String) session.getAttribute("INDEX");
-
-      System.out.println("s: " + str + "  I: " + str2);
+//      String str = (String) session.getAttribute("ID");
+//      String str2 = (String) session.getAttribute("INDEX");
 
       //ID찾기 시작
       ResultSet rs = DBUtil.findUser(conn, user_id); 
@@ -74,7 +72,6 @@ public class doLogin extends HttpServlet {
          {
             if(rs.next()) { // existing user
                String checkpw = rs.getString(1);
-               System.out.println(checkpw);
                if(checkpw.equals(user_pwd)){
                   // valid user and passwd
                   response.sendRedirect("main.html");
