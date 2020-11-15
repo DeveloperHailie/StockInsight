@@ -29,6 +29,15 @@ public class GetAnswerPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		String title = (String)request.getParameter("title");
+		String content = (String)request.getParameter("content");
+		String name = (String)request.getParameter("name");
+		String number = (String)request.getParameter("number");
+		String date = (String)request.getParameter("date");
+		System.out.println(title+content);
 		RequestDispatcher view = request.getRequestDispatcher("answer.jsp");
 		view.forward(request, response);
 	}

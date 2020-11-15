@@ -52,11 +52,11 @@
 			<center>
 				<table class="question_content_table">
 					<%
-					String title = request.getParameter("title");
-					String content = request.getParameter("content");
-					String name = request.getParameter("name");
-					String number = request.getParameter("number");
-					String date = request.getParameter("date");
+					String title = (String)request.getParameter("title");
+					String content = (String)request.getParameter("content");
+					String name = (String)request.getParameter("name");
+					String number = (String)request.getParameter("number");
+					String date = (String)request.getParameter("date");
 					
 					out.println("<tr class=\"cont\"><th>제목</th><td colspan=\"5\">"+title+"</td></tr>");
                 	out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">"+name+"</td></tr>");
