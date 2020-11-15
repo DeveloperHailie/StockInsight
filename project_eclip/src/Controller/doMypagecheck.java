@@ -37,39 +37,41 @@ public class doMypagecheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	      request.setCharacterEncoding("UTF-8");
+	      response.setContentType("text/html; charset=UTF-8");
 	      
-	      System.out.println("Here");
-	      String user_pwd = request.getParameter("user_pwd");// 占쏙옙橘占싫� 占쌨아울옙
+	      //System.out.println("Here");
+	      String user_pwd = request.getParameter("user_pwd");// �뜝�룞�삕艅섇뜝�떕占� �뜝�뙣�븘�슱�삕
 	      System.out.println(user_pwd);
 	      
 	      HttpSession session = request.getSession();
-	      String user_id = (String)session.getAttribute("ID");//占쏙옙占실울옙占쏙옙 占쏙옙占싱듸옙 占쌨아울옙
+	      String user_id = (String)session.getAttribute("ID");//�뜝�룞�삕�뜝�떎�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙣�븘�슱�삕
 	      
 	      PrintWriter out = response.getWriter();
-	      System.out.println(user_id); //이메일찍힘
+	      //System.out.println(user_id); //�씠硫붿씪李랁옒
 	      
 	      
 	      //String user_id = request.getParameter("user_email");
-	     // String user_pwd = request.getParameter("user_pwd");// 占쏙옙橘占싫� 占쌨아울옙
-	      System.out.println(user_pwd);
+	     // String user_pwd = request.getParameter("user_pwd");// �뜝�룞�삕艅섇뜝�떕占� �뜝�뙣�븘�슱�삕
+	      //System.out.println(user_pwd);
 	      
 
 	      ServletContext sc = getServletContext();
 	      Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-	      ResultSet rs = DBUtil.checkMypage(conn, user_id); //id 鍮꾧탳
-	      System.out.println("here2");
+	      ResultSet rs = DBUtil.checkMypage(conn, user_id); //id �뜮袁㏉꺍
+	      //System.out.println("here2");
 
 	      
 	   
 	      if(rs != null) {
 	         try
 	         {
-	        	 System.out.println(rs);
+	        	 //System.out.println(rs);
 	            if(rs.next()) { // existing user
-	               String checkpw = rs.getString(5);
-	               System.out.println(checkpw);
+	               String checkpw = rs.getString(1);
+	               //System.out.println(checkpw);
 	               if(checkpw.equals(user_pwd)){
+	            	   response.sendRedirect("mypage_inner.html");
 	            	   out.println("member check fin");
 	                  // valid user and passwd
 	                  //response.sendRedirect("main.html");
