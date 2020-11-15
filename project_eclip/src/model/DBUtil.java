@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DBUtil {
@@ -262,6 +263,91 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		return false;
 	}
 	
+	public static ArrayList<QnAList> getPostList(Connection conn){
+		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
+		QnAList post = new QnAList();
+		String qu_title="";
+		String qu_content="";
+		String qu_date="";
+		String qu_writer="";
+		String qu_index="";
+		String qu_reply="";
+		
+		Statement stmt = null;
+		String questionQuery = "SELECT * FROM Question";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				// index, title, content, date, answer_index, user_index
+				qu_index = rs.getString(1);
+				qu_title= rs.getString(2);
+				qu_content= rs.getString(3);
+				qu_date= rs.getString(4);
+				qu_reply= rs.getString(5);
+				qu_writer= rs.getString(6);
+				// writer (index)로 사용자 id 받아오기
+				qu_writer = getUserId(conn, qu_writer);
+				if(qu_writer!=null) {
+					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
+					// question_post를 list에 넣기
+					qnaList.add(post);
+					// reply가 null이 아니면  reply_post 받아오기
+					if(qu_reply!=null) {
+						post = getAnswerPost(conn, qu_reply);
+						// reply_post를 list에 넣기
+						qnaList.add(post);
+					}
+				}
+			}
+			return qnaList;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return qnaList;
+	}
 	
+	public static QnAList getAnswerPost(Connection conn, String idx) {
+		QnAList answer = new QnAList();
+		String an_title="";
+		String an_content="";
+		String an_date="";
+		
+		Statement stmt = null;
+		String questionQuery = "SELECT * FROM Answer WHERE answer_index="+idx;
+		
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				an_title = rs.getString(2);
+				an_content = rs.getString(3);
+				an_date = rs.getString(4);
+			}
+			answer.setQnAList(false, "[re]"+idx, "admin", an_title, an_content, an_date);
+			return answer;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String getUserId(Connection conn, String idx) {
+		Statement stmt = null;
+		String questionQuery = "SELECT user_id FROM User WHERE user_index="+idx;
+		String user_id = "";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				user_id = rs.getString(1);
+			}
+			return user_id;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }
