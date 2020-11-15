@@ -16,16 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import model.DBUtil;
 
 /**
- * Servlet implementation class dofindId
+ * Servlet implementation class dofindPwd
  */
-@WebServlet("/dofindId")
-public class dofindId extends HttpServlet {
+@WebServlet("/dofindPwd")
+public class dofindPwd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public dofindId() {
+    public dofindPwd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,36 +38,35 @@ public class dofindId extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String name = request.getParameter("user_name");
+		String id = request.getParameter("user_id");
 		String email = request.getParameter("user_email");	
 
 		ServletContext sc = getServletContext();
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 
-		ResultSet rs = DBUtil.findID(conn, name, email);
-		String checkid = null;
+		ResultSet rs = DBUtil.findPWD(conn, name, id, email);
+		String checkpwd = null;
 		
 		if(rs != null) {
 			try
 			{
 				if(rs.next()) { // existing user
-					String db_id = rs.getString(1);
-					checkid = db_id;					
+					checkpwd = rs.getString(1);					
 				}
 				else {
-					checkid = "가입된 정보가 없습니다.";
+					checkpwd = "가입된 정보가 없습니다.";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 
 		}
-		if(checkid != null) {
+		if(checkpwd != null) {
 			request.setAttribute("name", name);
-			request.setAttribute("checkid", checkid);
-			RequestDispatcher view = request.getRequestDispatcher("Idfind.jsp");
+			request.setAttribute("checkpwd", checkpwd);
+			RequestDispatcher view = request.getRequestDispatcher("pwdfind.jsp");
 			view.forward(request, response);
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
