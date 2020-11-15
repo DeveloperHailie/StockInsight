@@ -145,5 +145,69 @@ public class DBUtil {
 		return false;
 
 	}
-   
+	
+	public static int addAnswer(Connection conn, String title, String content, String date) {
+		// answer table에 넣기
+		// answer_index 반환
+		String selectSql = "SELECT MAX(answer_index) FROM Answer";
+		Statement st;
+		int number = -1;
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(selectSql);
+
+			System.out.println(rs.toString());
+			while (rs.next()) {
+				number = rs.getInt(1) + 1;
+				System.out.println(number);
+			}
+			if (number > -1) {
+				// 받아온 index+1로 insert
+				PreparedStatement pstmt = null;
+				try {
+					conn.setAutoCommit(false);
+					// INSERT INTO Stockinsight.Answer VALUES('','답변드립니다.','답변내용','2020.11.15');
+					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
+					pstmt = conn.prepareStatement(sqlSt);
+					pstmt.setString(1, Integer.toString(number));
+					pstmt.setString(2, title);
+					pstmt.setString(3, content);
+					pstmt.setString(4, date);
+
+					pstmt.executeUpdate();
+					conn.commit();
+					conn.setAutoCommit(true);
+
+					return number;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// 실패하면 -1
+		return -1;
+	}
+	
+	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
+		// Question DB에 question_index row의 Answer_answer_index 수정
+		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
+		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			ResultSet uprs = stmt.executeQuery(selectSql);
+			while(uprs.next()) {
+				uprs.updateString("Answer_answer_index",Integer.toString(answer_index));
+				uprs.updateRow();
+			}
+			return true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }
