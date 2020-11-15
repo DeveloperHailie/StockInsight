@@ -174,10 +174,11 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 
 	public static Boolean checkAdmin(Connection conn, int uidx) {
 		// admin�씠硫� true, admin�븘�땲硫� false
-		String selectSql = "SELECT user_admin FROM User WHERE user_index="+Integer.toBinaryString(uidx);
-
+		String selectSql = "SELECT user_admin FROM User WHERE user_index="+Integer.toString(uidx);
+	
 		Statement st;
 		int number = -1;
+		
 		try {
 			st = conn.createStatement();
 			ResultSet rs = st.executeQuery(selectSql);
