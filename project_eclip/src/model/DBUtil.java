@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class DBUtil {
 
@@ -53,4 +55,39 @@ public class DBUtil {
       }
 
    }
+
+   public static Boolean addQuestion(Connection conn, int uidx, String title, String content) {
+		PreparedStatement pstmt = null;
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(cal.getTime());
+	
+		try {
+			// insert 성공하면 true
+			conn.setAutoCommit(false);
+			// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거 아닌가요?','20201115',null,'1');
+			String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sqlSt);
+			
+			pstmt.setString(1,"");
+			pstmt.setString(2,title);
+			pstmt.setString(3,content);
+			pstmt.setString(4,date);
+			pstmt.setString(5,null);
+			pstmt.setString(6, Integer.toString(uidx));
+			
+			pstmt.executeUpdate();
+			conn.commit();
+			conn.setAutoCommit(true);
+			
+			return true;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// 실패하면 false
+		return false;
+		
+	}
 }
