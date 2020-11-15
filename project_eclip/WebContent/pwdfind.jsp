@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -38,6 +40,18 @@
 
 <body onload='rotate()'>
 
+<script type="text/javascript">
+	<%
+		String check = (String)request.getAttribute("checkpwd");
+		String name = (String)request.getAttribute("name");
+	   	System.out.println(check);
+		if(check.equals("가입된 정보가 없습니다."))
+			out.println("alert(\"가입된 정보가 없습니다.\");");
+		else
+			out.println("alert(\"" + name + "님의 비밀번호는 " + check + "입니다.\");");
+	%>
+	</script>
+	
     <div class="front">
         <div class="logo">
             <a href="main.html"><img src="logo.png" style="width: 336px; height: 148px; float: left;"></a>
@@ -74,12 +88,10 @@
                     <fieldset>
                         <div class="box_login">
                             <div class="inp_text">
-                                <label for="loginId" class="login_show">아이디</label> 
-                                <input type="text" id="id" name="user_id" placeholder="ID">
+                                <label for="loginId" class="login_show">아이디</label> <input type="text" id="id" name="user_id" placeholder="ID">
                             </div>
                             <div class="inp_text">
-                                <label for="loginPw" class="login_show">비밀번호</label> 
-                                <input type="password" id="pw" name="user_pwd" placeholder="Password">
+                                <label for="loginPw" class="login_show">비밀번호</label> <input type="password" id="pw" name="user_pwd" placeholder="Password">
                             </div>
                         </div>
                         <input type="submit" class="btn_login" value="로그인">

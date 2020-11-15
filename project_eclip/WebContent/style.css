@@ -468,4 +468,25 @@ table .questionTable .content{
     background: #ccc;
     border: none;
 }
+<<<<<<< HEAD
 /** Amy add css style **/
+=======
+
+/**jh find id**/
+.find_idtable {
+	font-family: "nanum";
+	font-size: 25px;
+	width: 250px;
+	height: 100px;
+}
+.findid{
+	width: 90px;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	background: linear-gradient(to right, #B06AB3, #4568DC);
+	border-radius: 5px;
+	border-color: white;
+	margin-bottom: 10px;
+}
+>>>>>>> df1a05331d32964febdaf208cf313950a1baf07d

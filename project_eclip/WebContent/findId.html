@@ -16,6 +16,7 @@
       setTimeout("rotate()", 800);
    }
 </script>
+ 
 </head>
 
 <body onload='rotate()'>
@@ -53,23 +54,22 @@
          </div>
       </nav>
 
-      <form action="dofindId" method="POST">
+      <form  method="POST" action="dofindId" >
          <center>
             <table class="find_idtable">
                <br>
                <tr>
                   <td>이름 :</td>
-                  <td><input type="text" name="user_name" id="name"
+                  <td><input required type="text" name="user_name" id="name"
                      maxlength="12" /></td>
                </tr>
                <tr>
                   <td>email :</td>
-                  <td><input type="text" name="user_email" id="email"
+                  <td><input required type="email" name="user_email" id="email"
                      maxlength="50" /> </td>
                </tr>
             </table>
-            <input type="submit" class="findid" value=" ID 찾기 ">
-            </td>
+            <input type="submit" class="findid" value=" ID 찾기 ">            
          </center>
       </form>
    </section>
