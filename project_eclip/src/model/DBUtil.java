@@ -10,6 +10,23 @@ import java.util.Calendar;
 
 public class DBUtil {
 
+	public static ResultSet findIndex(Connection con, String mid) {
+	      String sql = "SELECT user_index FROM User WHERE user_email=";
+	       Statement st;
+
+	      try {
+	          st = con.createStatement();
+
+	            if (st.execute(sql + "'" + mid + "'")) {
+	               return st.getResultSet();
+	            }
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }
+	      return null;
+	   }
+	   
+
    public static ResultSet findUser(Connection con, String mid) {
 
       String sqlSt = "SELECT user_pwd FROM User WHERE user_email=";
@@ -56,38 +73,50 @@ public class DBUtil {
 
    }
 
-   public static Boolean addQuestion(Connection conn, int uidx, String title, String content) {
-		PreparedStatement pstmt = null;
-		
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String date = sdf.format(cal.getTime());
-	
+   public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
+
+		// index 받아오기
+		String selectSql = "SELECT MAX(ques_index) FROM Question";
+		Statement st;
+		int number;
 		try {
-			// insert 성공하면 true
-			conn.setAutoCommit(false);
-			// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거 아닌가요?','20201115',null,'1');
-			String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
-			pstmt = conn.prepareStatement(sqlSt);
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(selectSql);
+			System.out.println(rs.getInt(1));
+			number = rs.getInt(1)+1;
 			
-			pstmt.setString(1,"");
-			pstmt.setString(2,title);
-			pstmt.setString(3,content);
-			pstmt.setString(4,date);
-			pstmt.setString(5,null);
-			pstmt.setString(6, Integer.toString(uidx));
+			// 받아온 index+1로 insert
+			PreparedStatement pstmt = null;
+			try {
+				conn.setAutoCommit(false);
+				// INSERT INTO Stockinsight.Question VALUES('','문의드립니다.','카카오 너무 높게 예측하는거 아닌가요?','20201115',null,'1');
+				String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sqlSt);
+				pstmt.setString(1,Integer.toString(number));
+				pstmt.setString(2,title);
+				pstmt.setString(3,content);
+				pstmt.setString(4,date);
+				pstmt.setString(5,null);
+				pstmt.setString(6, Integer.toString(uidx));
+				
+				pstmt.executeUpdate();
+				conn.commit();
+				conn.setAutoCommit(true);
+				
+				return number;
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 			
-			pstmt.executeUpdate();
-			conn.commit();
-			conn.setAutoCommit(true);
-			
-			return true;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		// 실패하면 false
-		return false;
+	   
+		// 실패하면 -1
+		return -1;
 		
 	}
+   
+   
 }

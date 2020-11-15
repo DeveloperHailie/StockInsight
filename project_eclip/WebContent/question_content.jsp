@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -52,34 +55,35 @@
                 
 
                 <center>
-                    <form form method = "post" action = "/getAnswerPage">
+                	<form form method = "post" action = "/getAnswerPage">
                     <table class="question_content_table">
-                        <tr class="cont">
-                            <th>제목</th>
-                            <td colspan="5">삼성 전자도 추가해주세요.</td>
-                        </tr>
-                        <tr class="cont">
-                            <th>작성자</th>
-                            <td>임용이</td>
-                            <th>작성일</th>
-                            <td>2020.01.01</td>
-                            <th>글번호</th>
-                            <td>1</td>
-                        </tr>
-                        <tr class="cont">
-                            <th>내용</th>
-                            <td colspan="5" height="500">삼성전자도 추가해주세요.</td>
-                        </tr>
-
+                    	<%
+                    	// name, title, content, date, number
+                    	String name = (String)request.getAttribute("name");
+                    	String title = (String)request.getAttribute("title");
+                    	String content = (String)request.getAttribute("content");
+                    	String date = (String)request.getAttribute("date");
+                    	String number = (String)request.getAttribute("number");
+                    	
+                    	out.println("<tr class=\"cont\"><th>제목</th><td colspan=\"5\">"+title+"</td></tr>");
+                    	out.println("<tr class=\"cont\"><th>작성자</th><td colspan=\"5\">"+name+"</td></tr>");
+                    	out.println("<tr class=\"cont\"><th>작성일</th><td colspan=\"5\">"+date+"</td></tr>");
+                    	out.println("<tr class=\"cont\"><th>글번호</th><td colspan=\"5\">"+number+"</td></tr>");
+                    	out.println("<tr class=\"cont\"><th>내용</th><td colspan=\"5\" height=\"500\">"+content+"</td></tr>");
+                    	
+                    	%>
+                    
                         <tr class="button_table_content">
                             <th></th>
-                                <td colspan="5"  height="50">
-                                    <a href="answer.html" class="btn_answer">답변하기</a>
-                                    <a href="qna.html" class="btn_list">목록가기</a>
-                                </td>                     
+                            <td colspan="5"  height="50">
+                                <a href="answer.html" class="btn_answer">답변하기</a>
+                                <a href="qna.html" class="btn_list">목록가기</a>
+                            </td>
                         </tr>
                     </table>
-                    <input type="hidden" name="index" value="0000">
+                    <%
+                    out.println("<input type=\"hidden\" name=\"number\" value=\""+number+"\">");
+                    %>
                     </form>
                 </center>
             </div>
