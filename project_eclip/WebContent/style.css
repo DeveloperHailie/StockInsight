@@ -435,3 +435,28 @@ table .questionTable .content{
 .reply{
     background-color: #eeeeff;
 }
+/** jh join css **/
+.table{
+   font-family: "nanum";
+   font-size:25px;
+   width: 400px;
+    height: 200px
+}
+.check{
+   margin-left: 10px;
+   width: 80px;
+    color: white;
+    text-align: center;
+    background: #4948FF;
+    border-radius: 5px;
+    border-color : white;
+}
+.okayjoin{
+   width: 90px;
+    color: white;
+    font-size : 15px;
+    text-align: center;
+    background: linear-gradient(to right, #B06AB3, #4568DC);   
+    border-radius: 5px;
+    border-color : white;
+}
