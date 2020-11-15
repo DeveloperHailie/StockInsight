@@ -36,7 +36,7 @@ public class doLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		HttpSession session = request.getSession();          
 
 		String user_id = request.getParameter("user_id");
@@ -68,7 +68,7 @@ public class doLogin extends HttpServlet {
 
 		//IDã�� ����
 		ResultSet rs = DBUtil.findUser(conn, user_id); 
-		PrintWriter out = response.getWriter();
+
 		String check = null;
 		if(rs != null) {
 			try
@@ -82,22 +82,20 @@ public class doLogin extends HttpServlet {
 					else
 					{
 						check = "0";
-						// wrong passwd
-						//response.sendRedirect("login.html");
 					}
 				}
-				else { // invalid user
-					//response.sendRedirect("login.html");
+				else { 
 					check = "1";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} 
 		}
-		
-		request.setAttribute("check",check);
-		RequestDispatcher view = request.getRequestDispatcher("noLogin.jsp");
-		view.forward(request, response);
+		if(check != null) {
+			request.setAttribute("check",check);
+			RequestDispatcher view = request.getRequestDispatcher("noLogin.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**
