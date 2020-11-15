@@ -77,7 +77,8 @@ public class doLogin extends HttpServlet {
 					String checkpw = rs.getString(1);
 					if(checkpw.equals(user_pwd)){
 						// valid user and passwd
-						response.sendRedirect("main.html");
+						RequestDispatcher view = request.getRequestDispatcher("okayLogin.jsp");
+						view.forward(request, response);
 					}
 					else
 					{
