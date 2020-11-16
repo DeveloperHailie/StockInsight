@@ -1,5 +1,7 @@
+<%@page import="model.DBUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,16 +42,35 @@
          <a href="main.html"><img src="logo.png"
             style="width: 336px; height: 148px; float: left;"></a>
       </div>
-      <ul class="okaylogin_ul">
-         <li class="okaylogin_li"><b>알림확인</b></a></li></br>
-         <li class="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
-         <li class="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃 </a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a href="stock.html">종목조회</a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-         <li class="okaylogin_li"><a href="qna.html">문의하기</a></li>
+      <ul id="okaylogin_ul">
+         <li id="okaylogin_li">
+         <%
+         ServletContext sc = getServletContext();
+         Connection conn = (Connection) sc.getAttribute("DBconnection");
+         String id = (String)request.getAttribute("id");
+         	ResultSet rs = DBUtil.checkMypageinner(conn, id);
+         	if(rs != null){		
+         		try
+    			{
+    				if(rs.next()) { // existing user
+    					String name = rs.getString(2);
+    					out.println("<b>" + name + "</b> 님 환영합니다. </br>" );	    					
+    				}
+    			} catch (SQLException e) {
+    				e.printStackTrace();
+    			} 
+         	}         	
+         %>       
+       </li>
+       </br>
+         <li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+         <li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃 </a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="stock.html">종목조회</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="qna.html">문의하기</a></li>
          </br>
       </ul>
    </div>
