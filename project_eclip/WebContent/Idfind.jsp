@@ -51,15 +51,15 @@
 	
     <div class="front">
         <div class="logo">
-            <a href="main.html"><img src="logo.png" style="width: 336px; height: 148px; float: left;"></a>
+            <a href="main.jsp"><img src="logo.png" style="width: 336px; height: 148px; float: left;"></a>
         </div>
         <ul>
-            <li><a id="yellow" href="login.html">로그인</a></li> &nbsp; &nbsp;
-            <li><a href="main.html">메인화면</a></li> &nbsp; &nbsp;
-            <li><a href="stock.html">종목조회</a></li> &nbsp; &nbsp;
-            <li><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
-            <li><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
-            <li><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
+            <li><a id="yellow" href="login.jsp">로그인</a></li> &nbsp; &nbsp;
+            <li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
+            <li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
+            <li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
+            <li><a href="discuss.jsp">토론하기</a></li> &nbsp; &nbsp;
+            <li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
             <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
         </ul>
     </div>
@@ -95,8 +95,8 @@
                     </fieldset>
                 </form>
                 <fieldset class= "login_under">
-                    <a href="findId.html">ID 찾기 </a> / <a href="findPwd.html">PASSWORD 찾기</a>
-                <a href="join.html" class = "join">회원가입</a>               
+                    <a href="findId.jsp">ID 찾기 </a> / <a href="findPwd.jsp">PASSWORD 찾기</a>
+                <a href="join.jsp" class = "join">회원가입</a>               
                 
                 </fieldset>
 

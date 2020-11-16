@@ -41,7 +41,7 @@
          <li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
          <li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
          </a></li> &nbsp; &nbsp;
-         <li id="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li>
+         <li id="okaylogin_li"><a id="yellow" href="main.jsp">메인화면</a></li>
          &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp;
          &nbsp;
@@ -59,9 +59,9 @@
       // 세션존재하지 않음
             %>
              <ul>
-                <li><a href="login.jsp">로그인</a></li>
+                <li><a id="yellow" href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
-                <li><a id="yellow" href="main.jsp">메인화면</a></li>
+                <li><a href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
                 <li><a href="stock.jsp">종목조회</a></li>
                 &nbsp; &nbsp;  

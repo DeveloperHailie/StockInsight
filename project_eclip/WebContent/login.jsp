@@ -76,9 +76,9 @@
       // 세션존재하지 않음
             %>
              <ul>
-                <li><a href="login.jsp">로그인</a></li>
+                <li><a id="yellow" href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
-                <li><a id="yellow" href="main.jsp">메인화면</a></li>
+                <li><a href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
                 <li><a href="stock.jsp">종목조회</a></li>
                 &nbsp; &nbsp;  
@@ -127,8 +127,8 @@
                     </fieldset>
                 </form>
                 <fieldset class= "login_under">
-                    <a href="findId.html">ID 찾기 </a> / <a href="findPwd.html">PASSWORD 찾기</a>
-                <a href="join.html" class = "join">회원가입</a>               
+                    <a href="findId.jsp">ID 찾기 </a> / <a href="findPwd.jsp">PASSWORD 찾기</a>
+                <a href="join.jsp" class = "join">회원가입</a>               
                 
                 </fieldset>
 

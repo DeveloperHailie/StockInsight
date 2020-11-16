@@ -19,7 +19,7 @@
    }
 </script><script>
    function validate() {
-      var re = /^[a-zA-Z0-9]{4,12}$;/ // 아이디와 패스워드가 적합한지 검사할 정규식
+      var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
 ;
@@ -99,9 +99,9 @@
       // 세션존재하지 않음
             %>
              <ul>
-                <li><a href="login.jsp">로그인</a></li>
+                <li><a id="yellow" href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
-                <li><a id="yellow" href="main.jsp">메인화면</a></li>
+                <li><a href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
                 <li><a href="stock.jsp">종목조회</a></li>
                 &nbsp; &nbsp;  
