@@ -38,11 +38,11 @@
 			</a></li> &nbsp; &nbsp;
 			<li id="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="stock.html">종목조회</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp;
 			&nbsp;
-			<li id="okaylogin_li"><a href="interest.html">관심종목</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
 			&nbsp;
-			<li id="okaylogin_li"><a href="mypage.html">마이페이지</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a
 				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
@@ -54,15 +54,15 @@
 		// 세션존재하지 않음
 				%>
 				 <ul>
-                <li><a href="login.html">로그인</a></li>
+                <li><a href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
-                <li><a id="yellow" href="main.html">메인화면</a></li>
+                <li><a id="yellow" href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
-                <li><a href="stock.html">종목조회</a></li>
+                <li><a href="stock.jsp">종목조회</a></li>
                 &nbsp; &nbsp;  
-                <li><a href="interest.html">관심종목</a></li>
+                <li><a href="interest.jsp">관심종목</a></li>
                 &nbsp;  &nbsp; 
-                <li><a href="mypage.html">마이페이지</a></li>
+                <li><a href="mypage.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
                 <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>
