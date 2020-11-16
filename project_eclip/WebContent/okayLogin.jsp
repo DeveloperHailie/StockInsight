@@ -45,21 +45,8 @@
       <ul id="okaylogin_ul">
          <li id="okaylogin_li">
          <%
-         ServletContext sc = getServletContext();
-         Connection conn = (Connection) sc.getAttribute("DBconnection");
-         String id = (String)request.getAttribute("id");
-         	ResultSet rs = DBUtil.checkMypageinner(conn, id);
-         	if(rs != null){		
-         		try
-    			{
-    				if(rs.next()) { // existing user
-    					String name = rs.getString(2);
-    					out.println("<b>" + name + "</b> 님 환영합니다. </br>" );	    					
-    				}
-    			} catch (SQLException e) {
-    				e.printStackTrace();
-    			} 
-         	}         	
+         String name = (String)request.getAttribute("name");
+         out.println("<b>" + name + "</b> 님 환영합니다. </br>" ); 		
          %>       
        </li>
        </br>

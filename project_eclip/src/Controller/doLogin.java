@@ -67,9 +67,12 @@ public class doLogin extends HttpServlet {
 		//      String str2 = (String) session.getAttribute("INDEX");
 
 		//IDã�� ����
-		ResultSet rs = DBUtil.findUser(conn, user_id); 
-
-		String check = null;
+		ResultSet rs = DBUtil.findUser(conn, user_id);  //id가 있는지
+		ResultSet okay = DBUtil.checkMypageinner(conn, user_id); //name 받아오기
+		
+		String check = null; // check 변수는 비밀번호가 틀리든가 가입자가 아닐때의 jsp를 위함
+		boolean go_okay = false; //go_okay 변수는 로그인 성공과 이름받아서 환영합니다를 뿌려주기 위한 jsp 체크 변수
+		
 		if(rs != null) {
 			try
 			{
@@ -77,9 +80,8 @@ public class doLogin extends HttpServlet {
 					String checkpw = rs.getString(1);
 					if(checkpw.equals(user_pwd)){
 						// valid user and passwd
-						request.setAttribute("id",user_id);						
-						RequestDispatcher view = request.getRequestDispatcher("okayLogin.jsp");
-						view.forward(request, response);
+						request.setAttribute("id",user_id);	
+						go_okay= true;
 					}
 					else
 					{
@@ -93,9 +95,27 @@ public class doLogin extends HttpServlet {
 				e.printStackTrace();
 			} 
 		}
+		
+		if(okay != null){		
+     		try
+			{
+				if(okay.next()) { // existing user
+					String name = okay.getString(2);  
+					request.setAttribute("name",name);	
+					go_okay= true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
+     	}
+		
 		if(check != null) {
 			request.setAttribute("check",check);
 			RequestDispatcher view = request.getRequestDispatcher("noLogin.jsp");
+			view.forward(request, response);
+		}
+		if(go_okay == true) {
+			RequestDispatcher view = request.getRequestDispatcher("okayLogin.jsp");
 			view.forward(request, response);
 		}
 	}
