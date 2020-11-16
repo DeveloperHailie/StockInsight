@@ -90,10 +90,12 @@
 
 		<div class="menu_content">
 
-			<br> <br> <br> <br> <br> <br>
+			<br> <br> <br> 
 			<center>
 				<form id="mypage_inner" method="POST" action="getmypage">
-					<table class="mypage_inner">
+				<% out.println(
+										"<button type=\"button\" class=\"btn_collection\" onClick=\"location.href=\'my_question_collect.jsp\' \">내가 쓴 문의글</button>	</font>");%>
+					<br> <br> <br><table class="mypage_inner">
 
 
 						<%
@@ -125,12 +127,14 @@
 								out.println(
 								"<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"
 										+ user_pwd + "</font></td></tr>");
+								
 						%>
 					</table>
 					<br>
 					<br>
 					<br>
 					<%
+								
 						}
 
 					else { // invalid user
@@ -141,9 +145,6 @@
 					e.printStackTrace();
 					}
 					%>
-
-
-
 					</table>
 					<br>
 					<br>

@@ -521,3 +521,19 @@ table .questionTable .content {
    border-color: white;
    margin-bottom: 10px;
 }
+
+/** mypage by sunga**/
+.btn_collection {
+   position: relative;
+   left: 20%;
+   top: 15px;
+   padding: 7 17 7 17;
+   border-radius: 3px;
+   font-family: "nanum";
+   font-weight: bold;
+   font-size: 13px;
+   background-color: white;
+   color:#E8CE48;
+   outline-color:#E8CE48;
+   outline-style: default;
+}
