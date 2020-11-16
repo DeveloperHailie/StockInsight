@@ -1,3 +1,7 @@
+<%@ page import="model.DBUtil"%>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -61,27 +65,64 @@
                 <center>
                 <form id = "mypage_inner" method = "POST" action="getmypage">
                     <table class = "mypage_inner">
+                    
+                    
                     <%
-                    	// name, title, content, date, number
-                    	String user_id = (String)request.getAttribute("ID");
-                    	String name = (String)request.getAttribute("name");
-                    	String email = (String)request.getAttribute("email");
-                    	String passwd = (String)request.getAttribute("passwd");
-                   	out.println("<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
-                    	name+"</font></td></tr>");
-                   	out.println("<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
-                        	user_id+"</font></td></tr>");
-                   	out.println("<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
-                        	email+"</font></td></tr>");
-                   	out.println("<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
-                        	passwd+"</font></td></tr>");
-                        %>
+                    String session_user_id = (String)session.getAttribute("ID");
+                    //out.println(session.getAttribute("ID"));
+                    
+                    ServletContext sc = getServletContext();
+          	      Connection conn = (Connection) sc.getAttribute("DBconnection");
+
+          	      ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id �뜮袁㏉꺍
+          	      
+                    //out.println(rs);
+          	      
+          	      
+                    try
+                    {
+                   	 //System.out.println(rs);
+                       if(rs.next()) { // existing user
+                    	   String name = rs.getString(2);
+                    	   String user_id = rs.getString(3);
+                    	   String email = rs.getString(4);
+                           String user_pwd = rs.getString(5);
+                           
+                           System.out.println(email);
+                         
+                             // valid user and passwd
+                             //response.sendRedirect("main.html");
+                             
+                       	out.println("<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
+                            	name+"</font></td></tr>");
+                           	out.println("<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
+                                	user_id+"</font></td></tr>");
+                           	out.println("<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
+                                	email+"</font></td></tr>");
+                           	out.println("<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"+
+                           			user_pwd+"</font></td></tr>");
+                                %>
+                              </table>
+                              <br><br><br><% 
+                          } 
+                          
+                      
+                       else { // invalid user
+                          out.println("not invalid");
+                       }
+                    } catch (SQLException e) { 
+                   	 out.println("just Fail Fail Fail....");
+                       e.printStackTrace();
+                    } %>
+                    
+                    
+                    	
                       </table>
                       <br><br><br>
 
                        
                         
-                      <button type="button" class="btn_question_submit" onClick="location.href='mypage_inner.html' ">수정 완료</button>
+                      <button type="button" class="btn_question_submit" onClick="location.href='mypage_inner.html' ">수정하기</button>
 				</form>
             </div>
             

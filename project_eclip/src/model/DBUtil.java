@@ -70,6 +70,30 @@ public class DBUtil {
 	      }
 	      return null;
 	   }
+   
+   public static ResultSet checkMypageinner(Connection con, String mid) {
+
+	      String sqlSt = "SELECT * FROM User WHERE user_id=";
+	      Statement st;
+	      try {
+
+	         st = con.createStatement();
+	         String str = (sqlSt + "'" + mid + "'");
+
+	         if (st.execute(str)) {
+	        	 System.out.println("1");
+	        	 System.out.println("여기왔어?");
+	            return st.executeQuery(str);
+	         }
+
+	      } catch (SQLException e) {
+	    	  System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+
+	      }
+	      return null;
+	   }
 
   
   public static Boolean checkID(Connection conn, String input_id) {
