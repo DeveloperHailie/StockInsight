@@ -81,13 +81,36 @@ public class DBUtil {
 	         String str = (sqlSt + "'" + mid + "'");
 
 	         if (st.execute(str)) {
-	        	 System.out.println("1");
+	        	 //System.out.println("1");
 	        	 System.out.println("여기왔어?");
 	            return st.executeQuery(str);
 	         }
 
 	      } catch (SQLException e) {
 	    	  System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+
+	      }
+	      return null;
+	   }
+   
+   public static ResultSet checkMypageedit(Connection con, String mid, String new_email, String new_passwd) {
+
+	      String sqlSt = "UPDATE User SET user_email ='" + new_email+"', user_pwd='" +new_passwd+"' WHERE user_id='"+mid+"'";
+	      Statement st;
+	      try {
+
+	         st = con.createStatement();
+
+	         if (st.execute(sqlSt)) {
+	        	 //System.out.println("1");
+	        	 System.out.println("수정하러왔어요");
+	            return st.executeQuery(sqlSt);
+	         }
+
+	      } catch (SQLException e) {
+	    	  System.out.println("수정실패");
 	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 
