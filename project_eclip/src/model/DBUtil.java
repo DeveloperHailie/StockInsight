@@ -333,8 +333,6 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	public static ArrayList<QnAList> getPostList(Connection conn){
 		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
 		
-		
-		
 		String qu_title="";
 		String qu_content="";
 		String qu_date="";
@@ -368,6 +366,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 					// reply가 null이 아니면  reply_post 받아오기
 					if(qu_reply!=null) {
 						post_answer = getAnswerPost(conn, qu_reply);
+						post_answer.setIndex(qu_index);
 						// reply_post를 list에 넣기
 						qnaList.add(post_answer);
 					}
@@ -473,6 +472,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				ans_idx = rs.getString(1);
 			}
 			post = getAnswerPost(conn, ans_idx);
+			post.setIndex(ques_idx);
 			System.out.println("getAPUQI: "+post);
 			return post;			
 		}catch(SQLException e) {

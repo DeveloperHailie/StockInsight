@@ -21,7 +21,7 @@ public class QnAList {
 		if(isQuestion) {
 			this.index = index;
 		}else {
-			this.index = "[re]"+index;
+			this.index = ">[re]"+index;
 		}
 		this.writer = writer;
 		this.title = title;
@@ -33,12 +33,20 @@ public class QnAList {
 		if(isQuestion) {
 			this.index = index;
 		}else {
-			this.index = "[re]"+index;
+			this.index = ">[re]"+index;
 		}
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		this.date = date;
+	}
+	void setIndex(String index) {
+		if(this.isQuestion) {
+			this.index=index;
+		}
+		else {
+			this.index=">[re]"+index;
+		}
 	}
 	public Boolean getIsQuestion() {
 		return isQuestion;

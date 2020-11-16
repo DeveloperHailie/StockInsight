@@ -93,7 +93,7 @@ alert("아이디가 중복됩니다.\n다시입력해주세요");
          <li><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
          <li><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
          <li><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-         <li><a href="qna.html">문의하기</a></li>
+         <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
       </ul>
    </div>
    <div>

@@ -70,7 +70,8 @@
          <li id="okaylogin_li"><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-         <li id="okaylogin_li"><a href="qna.html">문의하기</a></li>
+         <li id="okaylogin_li"><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+
          </br>
       </ul>
    </div>
