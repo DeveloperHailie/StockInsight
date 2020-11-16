@@ -68,10 +68,11 @@ public class ReadPost extends HttpServlet {
 		Boolean admin = false;
 		HttpSession session = request.getSession(false);
 		String check_index = (String)session.getAttribute("INDEX");
-		
+		System.out.println(session);
 		if (session == null || check_index==null) {
 			System.out.println("세션없음");
 			admin = false;
+			// 혹시 모르니까 한번 더 무효화
 			session.invalidate();
 		} else {
 			System.out.println("세션있음");
