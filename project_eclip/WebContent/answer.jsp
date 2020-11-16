@@ -86,7 +86,7 @@
 
 
 									<tr>
-										<td colspan="2" class="button_table"><a href="qna.html"
+										<td colspan="2" class="button_table"><a href="/Stock_Insigh/postList?pageIndex=1"
 											class="btn_question_list">목록가기
 												</button>
 										</a> <input type="submit" class="btn_question_submit" value="등록하기">
