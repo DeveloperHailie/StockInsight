@@ -22,7 +22,12 @@
 <script>
 	function input_passwd_check() {
 		//var new_passwd = document.getElementById('user_pwd').value;
-		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+		var re = /^[A-Za-z0-9+]{4,12}$/; 
+		/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+		"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+		// 아이디와 패스워드가 적합한지 검사할 정규식
+			     ///^[a-zA-Z0-9]{10,15}$/
+			///^[A-Za-z0-9+]{4,12}$/; 
         var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       
 		
@@ -40,8 +45,8 @@
 	         mypage_edit.user_pwd.value = "";
 	         mypage_edit.user_pwd.focus();
 	         return false;
-	      }
-		if (!check(re, user_pwd, "패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
+	    }
+		if (!check(re, user_pwd, "패스워드는 4~12자 사이의 영문 대소문자와 숫자를 포함해야 합니다.")) {
 	         return false;
 	    }
 		if  (mypage_edit.user_pwd_check.value == "") { // 비밀번호 확인 입력하지 않을때,
@@ -57,7 +62,6 @@
 			mypage_edit.user_pwd_check.focus();
 	         return false;
 		}
-		//out.print((String)request.getAttribute("user_email"));
 	}
 	function check(re, what, message) {
 	      if (re.test(what.value)) {
@@ -124,10 +128,8 @@
 
 						ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id �뜮袁㏉꺍
 
-						//out.println(rs);
 
 						try {
-							//System.out.println(rs);
 							if (rs.next()) { // existing user
 								String name = rs.getString(2);
 								String user_id = rs.getString(3);
@@ -152,7 +154,7 @@
 								"<tr><td align=right><font size=\"5\"><b>비밀번호 확인</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"text\" name = \"user_pwd_check\" id = \"user_pwd_check\" size=23 font size=\"4\" placeholder=\"비밀번호를 한번 더 입력하세요\">"
 										+ "</font></td></tr>");
 
-								out.print((String) request.getAttribute("user_email"));
+								
 						%>
 					</table>
 					<br> <br> <br>
