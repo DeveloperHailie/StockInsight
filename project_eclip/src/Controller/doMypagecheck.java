@@ -71,7 +71,7 @@ public class doMypagecheck extends HttpServlet {
 	               String checkpw = rs.getString(1);
 	               //System.out.println(checkpw);
 	               if(checkpw.equals(user_pwd)){
-	            	   response.sendRedirect("mypage_inner.html");
+	            	   response.sendRedirect("mypage_inner.jsp");
 	            	   out.println("member check fin");
 	                  // valid user and passwd
 	                  //response.sendRedirect("main.html");
