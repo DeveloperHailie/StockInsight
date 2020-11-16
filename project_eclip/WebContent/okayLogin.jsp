@@ -45,6 +45,9 @@
       <ul id="okaylogin_ul">
          <li id="okaylogin_li">
          <%
+         session.getAttribute("ID");
+         
+         
          String name = (String)request.getAttribute("name");
          out.println("<b>" + name + "</b> 님 환영합니다. </br>" ); 		
          %>       
@@ -56,7 +59,7 @@
          <li id="okaylogin_li"><a href="stock.html">종목조회</a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
-         <li id="okaylogin_li"><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 
          </br>
