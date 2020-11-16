@@ -52,7 +52,7 @@
 
             <div class="menu_content">
 
-              <a href="question.html" class="btn_question">글 작성</a>
+              <a href="question.jsp" class="btn_question">글 작성</a>
 
               <center>
                 <table class = "qna_table">
@@ -108,10 +108,10 @@
                   <tr>
                   <%
                   	if (pageindex > 1) {
-                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex - 1) + "\"> &lt; </a></td>");
+                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex - 1) + "\" class=\"page_a\"> &lt; </a></td>");
                   }
                   if ((postList.size() / 15 + 1) > pageindex) {
-                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex + 1) + "\"> &gt; </a></td>");
+                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex + 1) + "\" class=\"page_a\"> &gt; </a></td>");
                   }
                   %>
                   </tr>

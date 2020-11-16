@@ -50,9 +50,15 @@ public class WriteQuestion extends HttpServlet {
 
 		// 로그인 되어 있는 상태인지 체크
 		HttpSession session = request.getSession(false);
-		if (session == null) {
+		String check_index = (String)session.getAttribute("INDEX");
+		
+		System.out.println(session);
+		
+		if (session == null || check_index == null) {
 			// 로그인 안 되어있으면 login.html 반환
 			response.sendRedirect("login.html");
+			// 혹시 모르니까 한번 더 무효화
+			session.invalidate();
 		} else {
 			// 로그인 되어 있으면 (1)question db update, (2)작성된 글 보는 페이지 반환
 			// 사용자 idx와 name 가져오기

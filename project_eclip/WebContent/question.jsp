@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -28,51 +31,55 @@
                 &nbsp;  &nbsp; 
                 <li><a href="discuss.html">토론하기</a></li>
                 &nbsp;   &nbsp; 
-                <li><a id="yellow" href="mypage.html">마이페이지</a></li>
+                <li><a href="mypage.html">마이페이지</a></li>
                 &nbsp;  &nbsp; 
-                <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+                <li><a id="yellow" href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>
           </div>
           <div>
           <header>
           <center>
             <img src="title_ver3_1.png" id="slide" style="width: 1200; height: auto"; >
-          </center>
+            </center>
           </header>
            </div>
           <section id="content" >
            
             <nav>
-                마이페이지<br/>
+                문의하기<br/>
                 <img class="bar" src="bar.jpg" style="padding-top:20px; width:121px; height : 10px; float:center;">
             </nav>
 
-            <div class="menu_content">
-            마이페이지 정보를 확인하기 전<br>
-            안전한 열람을 위해 비밀번호를 한번 더 입력해주세요<br><p>
+            <div class="question_content">
+              <center>
+              <form method = "POST" action="writeQuestion">
+                <table  style="padding-bottom:50px" align = center width=700 border=0 cellpadding=2 >
+                        <tr>
+                          <td bgcolor=white>
+                          <table class = "questionTable">
+                                  <tr>
+                                  <td>제목</td>
+                                  <td><input type = "text" class="title"  name ="title" size=86.5 required></td>
+                                  </tr>
+          
+                                  <tr>
+                                  <td>내용</td>
+                                  <td><textarea name ="content" class="content" cols=85 rows=30 required></textarea></td>
+                                  </tr>
 
-             
-      <form method = "POST" action="doMypagecheck">
-       <br>
-            <br>
-            <br>
-            <br>
-               <center>
-                 <font size="3" > 패스워드 </font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input requied type="password" name="user_pwd" id="user_pwd"
-                      placeholder="Enter your Password"/> 
-                     </center>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br /> <br />
-            <input type = "submit" class="btn_question_submit" value=" 확 인 "></form>
-</center>
+                                  <tr>
+                                    <td colspan="2" class="button_table">
+                                      <a href="/Stock_Insigh/postList?pageIndex=1" class="btn_question_list">목록보기</button></a>
+                                      <input type = "submit" class="btn_question_submit" value="등록하기">
+                                    </td>
+                                  </tr>
+
+                          </table>                      
+                          </td>
+                        </tr>
+                </table>
+                </form>
+              </center>
             </div>
             
           </section>

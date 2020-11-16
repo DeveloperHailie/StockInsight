@@ -20,22 +20,9 @@
       var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
-
-      var id = document.getElementById("id");
-      var pw = document.getElementById("pw");
+;
       var email = document.getElementById("email");
 
-      if (join.name.value == "") {
-         alert("이름을 입력해 주세요");
-         join.name.focus();
-         return false;
-      }
-
-      if (email.value == "") {
-         alert("이메일을 입력해 주세요");
-         email.focus();
-         return false;
-      }
 
       if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
          return false;
@@ -86,7 +73,7 @@
          <li><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
          <li><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
          <li><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-         <li><a href="qna.html">문의하기</a></li>
+         <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
       </ul>
    </div>
    <div>
@@ -114,18 +101,18 @@
                <br>
                <tr>
                   <td>이름 :</td>
-                  <td><input type="text" name="user_name" id="name"
+                  <td><input required type="text" name="user_name" id="name"
                      maxlength="12" /></td>
                </tr>
                <tr>
                   <td>ID :</td>
-                  <td><input type="text" name="user_id" id="id"
+                  <td><input required type="text" name="user_id" id="id"
                      maxlength="20" /> </td>
 
                </tr>
                <tr>
                   <td>email :</td>
-                  <td><input type="text" name="user_email" id="email"
+                  <td><input required type="text" name="user_email" id="email"
                      maxlength="50" /> </td>
 
                </tr>
@@ -136,7 +123,7 @@
                </tr>
                <tr>
                   <td>비밀번호 :</td>
-                  <td><input type="password" name="user_pwd" id="pw"
+                  <td><input required type="password" name="user_pwd" id="pw"
                      maxlength="12"></td>
                </tr>
                <tr>
@@ -145,7 +132,7 @@
                </tr>
                <tr>
                   <td>비밀번호 확인 :</td>
-                  <td><input type="password" id="checkpw" maxlength="12"></td>
+                  <td><input required type="password" id="checkpw" maxlength="12"></td>
                </tr>
             </table>
             <br /> <br /> <input type="submit" class="okayjoin" value=" 회원가입 ">

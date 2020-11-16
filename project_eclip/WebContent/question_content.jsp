@@ -30,7 +30,7 @@
 			<li><a href="interest.html">관심종목</a></li> &nbsp; &nbsp;
 			<li><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
 			<li><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-			<li><a id="yellow" href="qna.html">문의하기</a></li>
+			<li><a id="yellow" href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 	</div>
 	<div>
@@ -78,7 +78,7 @@
                             	if((Boolean)request.getAttribute("admin")){
                             		out.println("<button type=\"submit\" class=\"btn_answer\">답변하기</button>");
                             	}
-                            %> <a href="qna.html" class="btn_list">목록가기</a>
+                            %> <a href="/Stock_Insigh/postList?pageIndex=1" class="btn_list">목록가기</a>
 							</td>
 						</tr>
 					</table>

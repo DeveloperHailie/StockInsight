@@ -170,7 +170,7 @@ public class DBUtil {
 	        st = conn.createStatement();
 
 	        if (st.execute(sqlSt + "'" + input_name + "'and user_id = '" + input_id + "'and user_email='" + input_email + "'")) {
-	           return st.getResultSet();
+	        	return st.getResultSet();
 	        }
 
 	     } catch (SQLException e) {
@@ -301,6 +301,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				// 諛쏆븘�삩 index+1濡� insert
 				PreparedStatement pstmt = null;
 				try {
+					
 					conn.setAutoCommit(false);
 					// INSERT INTO Stockinsight.Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
 					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
@@ -330,14 +331,20 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
 		// Question DB�뿉 question_index row�쓽 Answer_answer_index �닔�젙
 		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
+		System.out.println("updateQuestion:"+question_index+" "+answer_index);
 		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet uprs = stmt.executeQuery(selectSql);
 			while(uprs.next()) {
+				conn.setAutoCommit(false);
+				
 				uprs.updateString("Answer_answer_index",Integer.toString(answer_index));
 				uprs.updateRow();
+				
+				conn.commit();
+				conn.setAutoCommit(true);
 			}
 			return true;
 		}catch(SQLException e) {
@@ -348,8 +355,6 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	
 	public static ArrayList<QnAList> getPostList(Connection conn){
 		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
-		
-		
 		
 		String qu_title="";
 		String qu_content="";
@@ -384,6 +389,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 					// reply가 null이 아니면  reply_post 받아오기
 					if(qu_reply!=null) {
 						post_answer = getAnswerPost(conn, qu_reply);
+						post_answer.setIndex(qu_index);
 						// reply_post를 list에 넣기
 						qnaList.add(post_answer);
 					}
@@ -489,6 +495,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				ans_idx = rs.getString(1);
 			}
 			post = getAnswerPost(conn, ans_idx);
+			post.setIndex(ques_idx);
 			System.out.println("getAPUQI: "+post);
 			return post;			
 		}catch(SQLException e) {
