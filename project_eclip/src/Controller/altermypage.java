@@ -46,11 +46,6 @@ public class altermypage extends HttpServlet {
 	    ServletContext sc = getServletContext();
 	    Connection conn = (Connection) sc.getAttribute("DBconnection");
 	    ResultSet rs = DBUtil.checkMypageedit(conn, user_id, new_email, new_passwd); //id �뜮袁㏉꺍
-	      
-		
-		System.out.println("변경된 이메일은 "+(String)request.getParameter("user_email"));
-		System.out.println("변경된 비밀번호는 "+(String)request.getParameter("user_pwd"));
-		System.out.println("변경된 비밀번호 확인은 "+(String)request.getParameter("user_pwd_check"));
 		response.sendRedirect("mypage_inner.jsp");
 	}
 

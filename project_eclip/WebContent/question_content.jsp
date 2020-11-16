@@ -20,7 +20,7 @@
 
 	<div class="front">
 		<div class="logo">
-			<a href="main.html"><img src="logo.png"
+			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
 
@@ -39,7 +39,7 @@
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li>
+			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp;
 			&nbsp;
@@ -48,7 +48,7 @@
 			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a
-				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+				href="/Stock_Insigh/postList?pageIndex=1" id="yellow">문의하기</a></li>
 
 			</br>
 		</ul>
