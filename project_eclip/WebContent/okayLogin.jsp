@@ -15,18 +15,25 @@
 		setTimeout("rotate()", 800);
 	}
 </script>
-</head>
-
-<body onload='rotate()'>
-
 <script type="text/javascript">
-	function popup() {
-		
-			window.open("https://8percent.kr","안녕하세요^^","width=800,height=400");
+	function popupOpen() {
 
-//window.open("https://www.naver.com", name, option);
+		var popUrl = "https://www.naver.com"; //팝업창에 출력될 페이지 URL
+
+		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+		window.open(popUrl, "", popOption);
 	}
 </script>
+</head>
+<body onload='rotate()'>
+	<script type="text/javascript">
+		var popUrl = "https://www.naver.com"; //팝업창에 출력될 페이지 URL
+
+		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+		window.open(popUrl, "", popOption);
+	</script>
 
 	<div class="front">
 		<div class="logo">
@@ -34,6 +41,7 @@
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
 		<ul>
+			<li><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
 			<li><a href="/Stock_Insigh/doLogout"> 로그아웃 </a></li> &nbsp; &nbsp;
 			<li><a id="yellow" href="okayLogin.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="stock.html">종목조회</a></li> &nbsp; &nbsp;

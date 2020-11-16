@@ -58,6 +58,10 @@ public class QnAList {
 	public String getDate() {
 		return date;
 	}
+	public String getIndexVerAnswer() {
+		String[] array = this.index.split("]");
+		return array[1];
+	}
 	@Override
 	public String toString() {
 		return index + " "+writer+ " "+title+ " "+content+ " "+date;

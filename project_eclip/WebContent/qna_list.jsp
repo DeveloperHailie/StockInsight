@@ -33,7 +33,7 @@
                 &nbsp;   &nbsp; 
                 <li><a href="mypage.html">마이페이지</a></li>
                 &nbsp;  &nbsp; 
-                <li><a id="yellow" href="/Stock_Insigh/postList">문의하기</a></li>
+                <li><a id="yellow" href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>
           </div>
           <div>
@@ -83,9 +83,15 @@
                   		out.print("<td>");
                   		out.print(postList.get(i).getIndex());
                   		out.print("</td>");
-                  		out.print("<td>");
+                  		String value = "type=";
+                  		if(postList.get(i).getIsQuestion()){
+                  			value = value + "question" + "&index=" + postList.get(i).getIndex();
+                  		}else{
+                  			value = value + "answer" + "&index="+ postList.get(i).getIndexVerAnswer();
+                  		}
+                  		out.print("<td><a href=\"/Stock_Insigh/readPost?"+value+"\">");
                   		out.print(postList.get(i).getTitle());
-                  		out.print("</td>");
+                  		out.print("</a></td>");
                   		out.print("<td>");
                   		out.print(postList.get(i).getWriter());
                   		out.print("</td>");

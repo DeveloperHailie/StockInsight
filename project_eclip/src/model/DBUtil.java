@@ -312,7 +312,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		String qu_reply="";
 		
 		Statement stmt = null;
-		String questionQuery = "SELECT * FROM Question order by ques_date";
+		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
 	
 		try {
 			stmt = conn.createStatement();
@@ -392,5 +392,61 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		return null;
 	}
 	
-
+	public static QnAList getQuestionPost(Connection conn, String idx) {
+		Statement stmt = null;
+		String questionQuery = "SELECT * FROM Question WHERE ques_index="+idx;
+		String qu_title="";
+		String qu_content="";
+		String qu_date="";
+		String qu_writer="";
+		String qu_index="";
+		String qu_reply="";
+		
+		try {
+			QnAList post = new QnAList();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				// index, title, content, date, answer_index, user_index
+				qu_index = rs.getString(1);
+				qu_title= rs.getString(2);
+				qu_content= rs.getString(3);
+				qu_date= rs.getString(4);
+				qu_reply= rs.getString(5);
+				qu_writer= rs.getString(6);
+				// writer (index)로 사용자 id 받아오기
+				qu_writer = getUserId(conn, qu_writer);
+				
+				if(qu_writer!=null) {
+					// question_post를 list에 넣기
+					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
+				}
+			}
+			return post;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static QnAList getAnswerPostUseQuesIdx(Connection conn, String ques_idx) {
+		Statement stmt = null;
+		String questionQuery = "SELECT Answer_answer_index FROM Question WHERE ques_index="+ques_idx;
+		
+		String ans_idx="";
+		try {
+			QnAList post = new QnAList();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				ans_idx = rs.getString(1);
+			}
+			post = getAnswerPost(conn, ans_idx);
+			System.out.println("getAPUQI: "+post);
+			return post;			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
