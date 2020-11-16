@@ -88,7 +88,7 @@
                     	   String email = rs.getString(4);
                            String user_pwd = rs.getString(5);
                            
-                           System.out.println(email);
+                           //System.out.println(email);
                          
                              // valid user and passwd
                              //response.sendRedirect("main.html");
@@ -122,7 +122,7 @@
 
                        
                         
-                      <button type="button" class="btn_question_submit" onClick="location.href='mypage_inner.html' ">수정하기</button>
+                      <button type="button" class="btn_question_submit" onClick="location.href='mypage_edit.jsp' ">수정하기</button>
 				</form>
             </div>
             
