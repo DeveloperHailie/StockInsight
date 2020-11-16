@@ -62,6 +62,7 @@ public class doLogin extends HttpServlet {
 		}
 		session.setAttribute("ID",user_id);   //id ���� �Ҵ� 
 		session.setAttribute("INDEX",user_index); //index ���� �Ҵ� 
+		
 
 		//      String str = (String) session.getAttribute("ID");
 		//      String str2 = (String) session.getAttribute("INDEX");
@@ -102,6 +103,7 @@ public class doLogin extends HttpServlet {
 				if(okay.next()) { // existing user
 					String name = okay.getString(2);  
 					request.setAttribute("name",name);	
+					session.setAttribute("NAME",name);
 					go_okay= true;
 				}
 			} catch (SQLException e) {
