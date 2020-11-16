@@ -50,9 +50,6 @@ public class getmypage extends HttpServlet {
 	      Connection conn = (Connection) sc.getAttribute("DBconnection");
 
 	      ResultSet rs = DBUtil.checkMypageinner(conn, user_id); //id �뜮袁㏉꺍
-	      
-		//RequestDispatcher view = request.getRequestDispatcher("answer.jsp");
-		//view.forward(request, response);if(rs != null) {
         try
         {
        	 //System.out.println(rs);

@@ -47,12 +47,6 @@ public class doMypagecheck extends HttpServlet {
 	      String user_id = (String)session.getAttribute("ID");//�뜝�룞�삕�뜝�떎�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙣�븘�슱�삕
 	      
 	      PrintWriter out = response.getWriter();
-	      //System.out.println(user_id); //�씠硫붿씪李랁옒
-	      
-	      
-	      //String user_id = request.getParameter("user_email");
-	     // String user_pwd = request.getParameter("user_pwd");// �뜝�룞�삕艅섇뜝�떕占� �뜝�뙣�븘�슱�삕
-	      //System.out.println(user_pwd);
 	      
 
 	      ServletContext sc = getServletContext();
