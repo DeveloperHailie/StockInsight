@@ -52,7 +52,7 @@
 
             <div class="menu_content">
 
-              <a href="question.html" class="btn_question">글 작성</a>
+              <a href="question.jsp" class="btn_question">글 작성</a>
 
               <center>
                 <table class = "qna_table">
