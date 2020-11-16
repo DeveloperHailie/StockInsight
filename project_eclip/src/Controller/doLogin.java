@@ -77,6 +77,7 @@ public class doLogin extends HttpServlet {
 					String checkpw = rs.getString(1);
 					if(checkpw.equals(user_pwd)){
 						// valid user and passwd
+						request.setAttribute("id",user_id);						
 						RequestDispatcher view = request.getRequestDispatcher("okayLogin.jsp");
 						view.forward(request, response);
 					}

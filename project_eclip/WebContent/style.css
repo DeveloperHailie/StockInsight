@@ -51,13 +51,13 @@ body {
    color: #AAAAAA;
 }
 /**jh okaylogin ul, li **/
-.okaylogin_ul {
-   margin: 40px 40px 0px 0px;
+#okaylogin_ul {
+   margin: 30px;;
    list-style: none;
    text-align: right;
    letter-spacing: 2px;
 }
-.okaylogin_li{
+#okaylogin_li{
    text-decoration: none;
    color: white;
 }
