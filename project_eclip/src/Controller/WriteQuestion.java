@@ -50,6 +50,8 @@ public class WriteQuestion extends HttpServlet {
 
 		// 로그인 되어 있는 상태인지 체크
 		HttpSession session = request.getSession(false);
+		
+		
 		if (session == null) {
 			// 로그인 안 되어있으면 login.html 반환
 			response.sendRedirect("login.html");

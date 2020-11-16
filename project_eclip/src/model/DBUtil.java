@@ -254,6 +254,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 				// 諛쏆븘�삩 index+1濡� insert
 				PreparedStatement pstmt = null;
 				try {
+					
 					conn.setAutoCommit(false);
 					// INSERT INTO Stockinsight.Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
 					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
@@ -283,14 +284,20 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
 		// Question DB�뿉 question_index row�쓽 Answer_answer_index �닔�젙
 		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
+		System.out.println("updateQuestion:"+question_index+" "+answer_index);
 		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			ResultSet uprs = stmt.executeQuery(selectSql);
 			while(uprs.next()) {
+				conn.setAutoCommit(false);
+				
 				uprs.updateString("Answer_answer_index",Integer.toString(answer_index));
 				uprs.updateRow();
+				
+				conn.commit();
+				conn.setAutoCommit(true);
 			}
 			return true;
 		}catch(SQLException e) {

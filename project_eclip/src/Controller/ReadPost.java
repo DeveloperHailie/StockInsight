@@ -56,9 +56,7 @@ public class ReadPost extends HttpServlet {
 			post = DBUtil.getAnswerPostUseQuesIdx(conn,index);
 			System.out.println("final:"+post);
 		}
-		
-		
-		
+				
 		String name = post.getWriter();
 		String title = post.getTitle();
 		String content = post.getContent();
@@ -67,15 +65,20 @@ public class ReadPost extends HttpServlet {
 		
 		// 세션 확인
 		// 로그인 되어 있는 상태인지 체크
-		Boolean admin;
+		Boolean admin = false;
 		HttpSession session = request.getSession(false);
-		if (session == null) {
+		String check_index = (String)session.getAttribute("INDEX");
+		
+		if (session == null || check_index==null) {
+			System.out.println("세션없음");
 			admin = false;
-		}else {
+			session.invalidate();
+		} else {
+			System.out.println("세션있음");
 			if(type.equals("answer")) {
 				admin=false;
 			}else {
-				int uidx =  Integer.parseInt((String)session.getAttribute("INDEX"));
+				int uidx =  Integer.parseInt(check_index);
 				admin = DBUtil.checkAdmin(conn,uidx);
 			}	
 		}
