@@ -92,9 +92,10 @@
 
 			<br> <br> <br> 
 			<center>
-				<form id="mypage_inner" method="POST" action="getmypage">
-				<% out.println(
-										"<button type=\"button\" class=\"btn_collection\" onClick=\"location.href=\'my_question_collect.jsp\' \">내가 쓴 문의글</button>	</font>");%>
+				<form id="mypage_inner" method="POST" action="getMyQna">
+					<button type=\"button\" class=\"btn_collection\" style="position: relative;left: 20%;top: 15px;padding: 7px 17px;border-radius: 3px;font-family:nanum;font-weight: bold;font-size: 13px;background-color:#fff;color:#E8CE48;outline-color:#E8CE48;outline-style: default;">내가 쓴 문의글</button>
+				</form>
+					<form id="mypage_inner" method="POST" action="getmypage">
 					<br> <br> <br><table class="mypage_inner">
 
 
