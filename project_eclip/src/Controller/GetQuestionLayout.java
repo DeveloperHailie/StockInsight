@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DBUtil;
 import model.QnAList;
@@ -37,8 +38,20 @@ public class GetQuestionLayout extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		RequestDispatcher view = request.getRequestDispatcher("question.jsp");
-		view.forward(request, response);
+		HttpSession session = request.getSession(false);
+		String check_index = (String)session.getAttribute("INDEX");
+		if (session == null || check_index==null) {
+		   // 세션 없음
+		   // 혹시 모르니까 한번 더 무효화
+		   session.invalidate();
+		   response.sendRedirect("login.jsp");
+		} else {
+		   // 세션있음
+			RequestDispatcher view = request.getRequestDispatcher("question.jsp");
+			view.forward(request, response);
+		}
+		
+		
 	}
 
 	/**
