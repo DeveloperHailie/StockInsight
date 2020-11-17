@@ -62,7 +62,7 @@
             <li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
             <li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
             <li><a href="discuss.jsp">토론하기</a></li> &nbsp; &nbsp;
-            <li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
+            <li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
             <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
         </ul>
     </div>

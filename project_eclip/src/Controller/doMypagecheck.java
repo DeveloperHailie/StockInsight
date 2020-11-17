@@ -66,14 +66,24 @@ public class doMypagecheck extends HttpServlet {
 	               //System.out.println(checkpw);
 	               if(checkpw.equals(user_pwd)){
 	            	   response.sendRedirect("mypage_inner.jsp");
-	            	   out.println("member check fin");
+	            	   
 	                  // valid user and passwd
 	                  //response.sendRedirect("main.html");
 	               }
 	               else
 	               {
 	                  // wrong passwd
-	            	   out.println("member check but not correct");
+	            	   out.println("<script>alert(\"올바른 비밀번호가 아닙니다. 다시 입력해주세요.\"); location.href='mypage.jsp';</script>");
+	            	   
+
+
+	            	   출처: https://epthffh.tistory.com/entry/JAVA단에서-alert창-띄우기 [물고기 개발자의 블로그]
+	            	    
+	            	   out.flush();
+	            	   
+
+
+	            	 //  out.println("NoNONO member check but not correct");
 	               }
 	            }
 	            else { // invalid user

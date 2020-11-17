@@ -54,7 +54,7 @@
       // 세션존재하지 않음
             %>
              <ul>
-                <li><a href="login.jsp">로그인</a></li>
+                <li><a id="yellow" href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
                 <li><a href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
@@ -62,7 +62,7 @@
                 &nbsp; &nbsp;  
                 <li><a href="interest.jsp">관심종목</a></li>
                 &nbsp;  &nbsp; 
-                <li><a id="yellow" href="mypage.jsp">마이페이지</a></li>
+                <li><a  href="login.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
                 <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>

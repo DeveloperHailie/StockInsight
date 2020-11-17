@@ -117,7 +117,7 @@
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
-			<li><a id="yellow" href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a id="yellow" href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
@@ -180,10 +180,10 @@
 								"<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"text\" name = \"user_email\" id = \"email\" size=23 font size=\"4\" value="
 										+ email + "></font></td></tr>");
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>비밀번호</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"text\" name = \"user_pwd\" id = \"user_pwd\" size=23 font size=\"4\" placeholder=\"변경할 비밀번호를 입력하세요\">"
+								"<tr><td align=right><font size=\"5\"><b>비밀번호</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"password\" name = \"user_pwd\" id = \"user_pwd\" size=23 font size=\"4\" placeholder=\"변경할 비밀번호를 입력하세요\">"
 										+ "</font></td></tr>");
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>비밀번호 확인</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"text\" name = \"user_pwd_check\" id = \"user_pwd_check\" size=23 font size=\"4\" placeholder=\"비밀번호를 한번 더 입력하세요\">"
+								"<tr><td align=right><font size=\"5\"><b>비밀번호 확인</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type=\"password\" name = \"user_pwd_check\" id = \"user_pwd_check\" size=23 font size=\"4\" placeholder=\"비밀번호를 한번 더 입력하세요\">"
 										+ "</font></td></tr>");
 						%>
 					</table>

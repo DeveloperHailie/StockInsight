@@ -65,7 +65,7 @@
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
-			<li><a id="yellow" href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a id="yellow" href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
@@ -116,16 +116,16 @@
 								String user_pwd = rs.getString(5);
 
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"
+								"<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ name + "</font></td></tr>");
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"
+								"<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ user_id + "</font></td></tr>");
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"
+								"<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ email + "</font></td></tr>");
 								out.println(
-								"<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"5\">"
+								"<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ user_pwd + "</font></td></tr>");
 								
 						%>
