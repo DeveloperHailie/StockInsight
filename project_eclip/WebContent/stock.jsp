@@ -19,23 +19,58 @@
 
     <body onload='rotate()'>
         
-        <div class="front">
-            <div class="logo"><a href="main.html"><img src="logo.png" style="width:336px; height:148px; float:left;"></a></div>
-            <ul>
+        	 <div class="front">
+            <div class="logo"><a href="main.jsp"><img src="logo.png" style="width:336px; height:148px; float:left;"></a></div>
+
+      <%
+         if(session.getAttribute("ID")!=null){
+                     // 세션 존재
+      %>
+      <ul id="okaylogin_ul">
+         <li id="okaylogin_li">
+            <%
+            String name = (String) session.getAttribute("NAME");
+            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+            %>
+         </li>
+         </br>
+         <li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+         <li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
+         </a></li> &nbsp; &nbsp;
+         <li id="okaylogin_li"><a  href="okayLogin.jsp">메인화면</a></li>
+         &nbsp; &nbsp;
+         <li id="okaylogin_li"><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
+         &nbsp;
+         <li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
+         &nbsp;
+         <li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
+         &nbsp;
+         <li id="okaylogin_li"><a
+            href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+
+         </br>
+      </ul>
+      <%
+         } else {
+      // 세션존재하지 않음
+            %>
+             <ul>
                 <li><a href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
-                <li><a href="main.jsp">메인화면</a></li>
+                <li><a  href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
                 <li><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li>
                 &nbsp; &nbsp;  
-                <li><a href="interest.html">관심종목</a></li>
+                <li><a href="interest.jsp">관심종목</a></li>
                 &nbsp;  &nbsp; 
-                <li><a href="discuss.html">토론하기</a></li>
-                &nbsp;   &nbsp; 
                 <li><a href="mypage.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
-                <li><a  href="qna.jsp">문의하기</a></li>
+                <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>
+            
+            <% 
+      }
+      %>
           </div>
           <div>
           <header>
