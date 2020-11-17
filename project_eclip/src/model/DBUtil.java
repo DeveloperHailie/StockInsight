@@ -117,6 +117,8 @@ public class DBUtil {
 	      }
 	      return null;
 	   }
+   
+  
 
   
   public static Boolean checkID(Connection conn, String input_id) {
@@ -427,6 +429,8 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
 		}
 		return null;
 	}
+	
+	
 	
 	public static String getUserId(Connection conn, String idx) {
 		Statement stmt = null;
