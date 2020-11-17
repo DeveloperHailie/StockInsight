@@ -36,7 +36,7 @@ public class doLogout extends HttpServlet {
         session.invalidate();
 
         //다시 login.jsp 페이지로 응답
-        response.sendRedirect("login.html");
+        response.sendRedirect("login.jsp");
 	}
 
 	/**
