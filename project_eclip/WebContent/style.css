@@ -85,7 +85,7 @@ nav {
 .menu_content {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 40px;
+   padding-bottom: 10px;
 }
 
 #content {
@@ -690,16 +690,22 @@ table .questionTable .content {
     font-size : 13pt;
  }
 /** jh main **/
+.main {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 500px;
+}
 .kos_char{
-	 border: 1px solid red;
+	margin-left: 18%;
+	border: 1px solid black;
     float: left;
-    width:30%;
-    box-sizing: border-box;
+    width: 30%;
+    height: 300px;
 }
 .kod_char{
-	 border: 1px solid green;
+	border: 1px solid black;
     float: left;
-    margin-left: 5%;
-    width:30%;
-    box-sizing: border-box;
+    margin-left: 5%;  
+    width: 30%;
+    height: 300px;
 }

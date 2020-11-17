@@ -52,7 +52,7 @@
       <%
          } else {
       // 세션존재하지 않음
-            %>
+            %>            
              <ul>
                 <li><a id="yellow" href="login.jsp">로그인</a></li>
                 &nbsp; &nbsp; 
