@@ -75,10 +75,6 @@ public class doMypagecheck extends HttpServlet {
 	                  // wrong passwd
 	            	   out.println("<script>alert(\"올바른 비밀번호가 아닙니다. 다시 입력해주세요.\"); location.href='mypage.jsp';</script>");
 	            	   
-
-
-	            	   출처: https://epthffh.tistory.com/entry/JAVA단에서-alert창-띄우기 [물고기 개발자의 블로그]
-	            	    
 	            	   out.flush();
 	            	   
 
