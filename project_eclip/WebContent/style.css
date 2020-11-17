@@ -611,7 +611,11 @@ table .questionTable .content {
     border: none;
     outline: none;
     background: #ffffff;
-
+  }
+  
+  .interbtn li a:visited{
+     background: linear-gradient(to right, #B06AB3, #4568DC); 
+    color: white;
   }
   
   .resultPrice{
@@ -691,14 +695,14 @@ table .questionTable .content {
  }
 /** jh main **/
 .kos_char{
-	margin-left: 230px;
-	border: 1px solid black;
+   margin-left: 230px;
+   border: 1px solid black;
     float: left;
     width: 30%;
     height: 300px;
 }
 .kod_char{
-	border: 1px solid black;
+   border: 1px solid black;
     float: left;
     margin-left: 5%;  
     width: 30%;
