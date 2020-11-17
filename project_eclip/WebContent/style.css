@@ -709,3 +709,26 @@ table .questionTable .content {
     width: 30%;
     height: 300px;
 }
+/**jh search_final css**/
+.final_content{
+   font-family: "nanum";
+   padding-bottom: 500px;
+}
+.left_final{
+	margin-left: 18%;
+	border: 1px solid black;
+    float: left;
+    width: 30%;
+    height: 450px;
+}
+.right_final{
+	border: 1px solid black;
+    float: left;
+    margin-left: 5%;  
+    width: 30%;
+    height: 450px;
+}
+.price{
+	margin-top: 30px;
+	font-size : 18px;
+}
