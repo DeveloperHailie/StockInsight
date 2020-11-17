@@ -87,39 +87,27 @@
 				String selectField = (String) request.getAttribute("selectField"); //분야
 				String selectCompany = (String) request.getAttribute("selectCompany"); //회사
 			%>
-			종목조회<br /> <img class="bar" src="bar.jpg"
+			예측결과<br /> <img class="bar" src="bar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
-		<div class="menu_content">
-			<div class="resultKind">
-				<p>${selectField}</p>
-				<p>:${selectCompany}</p>
-				
-				<div class="resultBtn">
-				<form method="POST" action="doInsertInterest">
-					<%
-					out.print("<button type=\"submit\" class=\"interbtn\" name=\"insertInterest\" value1=\"");
-					out.print(selectField);
-					out.print("\" value2=\"");
-					out.print(selectCompany);
-					out.print("\">");
-					out.print("<img src=\" heart.png\" height=\"50px\" width=\"50px\"");
-					out.print("</button>");
-					 %>
-				</form>
+		<div class="final_content">
+			<div class= "left_final">
+				<p style="font-size: 30px; color: black;">${selectField}분야 :  </p> <!-- yh 사용 -->
+				<p style="font-size: 38px; color: black;"><b>&nbsp;&emsp;&emsp;&emsp;&emsp;${selectCompany}</b></p> <!-- yh 사용 -->
+				<div class ="price">
+					IT분야 <b>카카오</b>의 실시간 가격 <br>
+					<b style="font-size: 20px">330,600원</b>입니다.
 				</div>
+				<div class = "price">
+					내일 예측 가격은
+				</div>
+				<button><img src="heart.png" style="width: 30px; height: auto";></button>							
 			</div>
-			
-			<div class ="resultPrice">
-			
-			</div>
-			
-			<div class ="resultChart">
-			
+			<div class="right_final"> <!-- chat -->
+				실시간 차트
 			</div>
 		</div>
-
-	</section>
+		</section>
 
 	<footer>
 		<p>© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>

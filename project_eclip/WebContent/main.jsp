@@ -85,7 +85,7 @@
                 <img class="bar" src="bar.jpg" style="padding-top:20px; width:121px; height : 10px; float:center;">
             </nav>
 
-            <div class="menu_content">
+            <div class="main">
             	<div class="kos_char">
             		KOSPI 차트
             	</div>

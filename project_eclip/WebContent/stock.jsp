@@ -3,23 +3,24 @@
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
- <head>
-        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-        <title>Stock Insight</title>
-        <link rel="stylesheet" type="text/css" href="style.css"/>
-        <script type="text/javascript">
-			var n = 0;
-			var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
-			function rotate() {
-				document.images.slide.src = imgs[n];
-				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
-			}
-        </script>
-    </head>
-    
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Stock Insight</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript">
+   var n = 0;
+   var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
+   function rotate() {
+      document.images.slide.src = imgs[n];
+      (n == (imgs.length - 1)) ? n = 0 : n++;
+      setTimeout("rotate()", 800);
+   }
+</script>
+</head>
+
 <body onload='rotate()'>
-        
-         <div class="front">
+
+       <div class="front">
             <div class="logo"><a href="main.jsp"><img src="logo.png" style="width:336px; height:148px; float:left;"></a></div>
 
       <%
@@ -128,9 +129,8 @@
          </div>
          <div class="interest">
             <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
-            
          </ul>
-      f</div>
+      </div>
       </div>
 
    </section>
