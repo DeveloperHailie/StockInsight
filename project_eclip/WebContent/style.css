@@ -309,7 +309,7 @@ table.questionTable td {
 
 .btn_question_list {
    font-weight: bold;
-   margin: 15px 0px 10px 0px;
+   margin: 15px 6px 10px 6px;
    padding: 4px 18px 4px 18px;
    border-radius: 3px;
    font-family: "nanum";
@@ -498,8 +498,9 @@ table .questionTable .content {
    border-radius: 3px;
    font-family: "nanum";
    font-size: 14px;
-   color: #000;
-   background: #ccc;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
    border: none;
 }
 

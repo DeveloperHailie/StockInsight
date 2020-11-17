@@ -594,6 +594,56 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
         }
         return null;
   }
-
+  
+  public static ArrayList<QnAList> getmyPostList(Connection conn, String param_user_index){
+		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
+		
+		String qu_title="";
+		String qu_content="";
+		String qu_date="";
+		String qu_writer_index = "";
+		String qu_writer="";
+		String qu_index="";
+		String qu_reply="";
+		
+		Statement stmt = null;
+		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
+	
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(questionQuery);
+			while(rs.next()) {
+				QnAList post = new QnAList();
+				QnAList post_answer = new QnAList();
+				// index, title, content, date, answer_index, user_index
+				qu_index = rs.getString(1);
+				qu_title= rs.getString(2);
+				qu_content= rs.getString(3);
+				qu_date= rs.getString(4);
+				qu_reply= rs.getString(5);
+				qu_writer_index= rs.getString(6);
+				// writer (index)로 사용자 id 받아오기
+				qu_writer = getUserId(conn, qu_writer_index);
+				
+				if(qu_writer!=null && qu_writer_index.contentEquals(param_user_index)) {
+					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
+					// question_post를 list에 넣기
+					qnaList.add(post);
+					// reply가 null이 아니면  reply_post 받아오기
+					if(qu_reply!=null) {
+						post_answer = getAnswerPost(conn, qu_reply);
+						post_answer.setIndex(qu_index);
+						// reply_post를 list에 넣기
+						qnaList.add(post_answer);
+					}
+				}
+			}
+			return qnaList;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return qnaList;
+	}
 	
 }
