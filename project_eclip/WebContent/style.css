@@ -700,13 +700,10 @@ table .questionTable .content {
    padding-bottom: 500px;
 }
 .kos_char{
-<<<<<<< HEAD
    margin-left: 230px;
    border: 1px solid black;
-=======
 	margin-left: 18%;
 	border: 1px solid black;
->>>>>>> a242b76d29117b456098208d9baa933913b7327b
     float: left;
     width: 30%;
     height: 300px;
@@ -717,8 +714,6 @@ table .questionTable .content {
     margin-left: 5%;  
     width: 30%;
     height: 300px;
-<<<<<<< HEAD
-=======
 }
 /**jh search_final css**/
 .final_content{
@@ -750,5 +745,4 @@ table .questionTable .content {
 	border: 1px solid #EAEAEA;
 	margin-top: 25px;
 	font-size : 18px;
->>>>>>> a242b76d29117b456098208d9baa933913b7327b
 }
