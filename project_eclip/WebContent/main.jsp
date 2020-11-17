@@ -46,7 +46,6 @@
 			&nbsp;
 			<li id="okaylogin_li"><a
 				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
-
 			</br>
 		</ul>
 		<%
@@ -87,8 +86,12 @@
             </nav>
 
             <div class="menu_content">
-                여기에 내용이 들어가면 됩니다.
-
+            	<div class="kos_char">
+            		하위
+            	</div>
+            	<div class="kod_char">
+            	바위
+            	</div>
             </div>
             
           </section>
