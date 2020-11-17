@@ -94,7 +94,7 @@
 			<center>
 				<form id="mypage_inner" method="POST" action="getmypage">
 				<% out.println(
-										"<button type=\"button\" class=\"btn_collection\" onClick=\"location.href=\'my_question_collect.jsp\' \">내가 쓴 문의글</button>	</font>");%>
+										"<button type=\"button\" class=\"btn_collection\" onClick=\"location.href=\'/Stock_Insigh/mypostList?pageIndex=1' \">내가 쓴 문의글</button>	</font>");%>
 					<br> <br> <br><table class="mypage_inner">
 
 
