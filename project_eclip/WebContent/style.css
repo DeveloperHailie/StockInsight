@@ -85,7 +85,7 @@ nav {
 .menu_content {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 500px;
+   padding-bottom: 10px;
 }
 
 #content {
@@ -690,6 +690,11 @@ table .questionTable .content {
     font-size : 13pt;
  }
 /** jh main **/
+.main {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 500px;
+}
 .kos_char{
 	margin-left: 18%;
 	border: 1px solid black;
