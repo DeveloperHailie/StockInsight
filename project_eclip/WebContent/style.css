@@ -537,3 +537,17 @@ table .questionTable .content {
    outline-color:#E8CE48;
    outline-style: default;
 }
+/** jh main **/
+.kos_char{
+	 border: 1px solid red;
+    float: left;
+    width:30%;
+    box-sizing: border-box;
+}
+.kod_char{
+	 border: 1px solid green;
+    float: left;
+    margin-left: 5%;
+    width:30%;
+    box-sizing: border-box;
+}
