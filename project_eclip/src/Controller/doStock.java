@@ -23,62 +23,62 @@ import model.DBUtil;
  */
 @WebServlet("/doStock")
 public class doStock extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public doStock() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+   /**
+    * @see HttpServlet#HttpServlet()
+    */
+   public doStock() {
+      super();
+      // TODO Auto-generated constructor stub
+   }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+    *      response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      request.setCharacterEncoding("UTF-8");
+      response.setContentType("text/html; charset=UTF-8");
 
-		ServletContext sc = getServletContext();
-		Connection conn = (Connection) sc.getAttribute("DBconnection");
-		PrintWriter out = response.getWriter();
+      ServletContext sc = getServletContext();
+      Connection conn = (Connection) sc.getAttribute("DBconnection");
+      PrintWriter out = response.getWriter();
 
-		try {
-			
-			Statement st = conn.createStatement();
-			ResultSet rs = DBUtil.findFieldSet(conn);
-			ArrayList<String> searchFieldList = new ArrayList<String>();
+      try {
+         
+         Statement st = conn.createStatement();
+         ResultSet rs = DBUtil.findFieldSet(conn);
+         ArrayList<String> searchFieldList = new ArrayList<String>();
 
-			if (rs != null) {
-				while (rs.next()) {
-					String searchField = rs.getString(1);
-					searchFieldList.add(searchField);
-					request.setAttribute("searchFieldList", searchFieldList);
-				}
-				RequestDispatcher view = sc.getRequestDispatcher("/stock.jsp");
-				view.forward(request, response);
-			}
-			
-			
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
+         if (rs != null) {
+            while (rs.next()) {
+               String searchField = rs.getString(1);
+               searchFieldList.add(searchField);
+               request.setAttribute("searchFieldList", searchFieldList);
+            }
+            RequestDispatcher view = sc.getRequestDispatcher("/stock.jsp");
+            view.forward(request, response);
+         }
+         
+         
+      } catch (SQLException e1) {
+         // TODO Auto-generated catch block
+         e1.printStackTrace();
+      }
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		doGet(request, response);
-	}
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+    *      response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+         throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      request.setCharacterEncoding("UTF-8");
+      doGet(request, response);
+   }
 
 }

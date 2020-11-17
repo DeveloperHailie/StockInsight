@@ -26,13 +26,13 @@
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
 		<ul>
-			<li><a href="login.html">로그인</a></li> &nbsp; &nbsp;
-			<li><a href="main.html">메인화면</a></li> &nbsp; &nbsp;
+			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
+			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a id="yellow" href="interest.html">관심종목</a></li> &nbsp; &nbsp;
 			<li><a href="discuss.html">토론하기</a></li> &nbsp; &nbsp;
-			<li><a href="mypage.html">마이페이지</a></li> &nbsp; &nbsp;
-			<li><a href="qna.html">문의하기</a></li>
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="qna.jsp">문의하기</a></li>
 		</ul>
 	</div>
 	<div>
