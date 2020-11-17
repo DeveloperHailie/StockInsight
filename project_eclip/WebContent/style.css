@@ -283,7 +283,7 @@ table.questionTable tr {
 }
 
 table.questionTable td {
-   padding: 15px 12px;
+   padding: 15px 5px;
    vertical-align: middle;
    border-bottom: 1px solid #ccc;
    font-size: 20px;
@@ -726,8 +726,8 @@ table .questionTable .content {
    padding-bottom: 500px;
 }
 .left_final{
-	margin-left: 18%;
-	border: 1px solid black;
+	padding: 10px;
+	margin-left: 18%;	
     float: left;
     width: 30%;
     height: 450px;
@@ -739,8 +739,16 @@ table .questionTable .content {
     width: 30%;
     height: 450px;
 }
-.price{
-	margin-top: 30px;
+.price{	
+	padding: 10px;
+	margin-top: 20px;
+	font-size : 18px;
+}
+.realtime_price{
+	padding: 10px;
+	background-color: #EAEAEA;
+	border: 1px solid #EAEAEA;
+	margin-top: 25px;
 	font-size : 18px;
 >>>>>>> a242b76d29117b456098208d9baa933913b7327b
 }

@@ -92,16 +92,27 @@
 		</nav>
 		<div class="final_content">
 			<div class= "left_final">
-				<p style="font-size: 30px; color: black;">${selectField}분야 :  </p> <!-- yh 사용 -->
-				<p style="font-size: 38px; color: black;"><b>&nbsp;&emsp;&emsp;&emsp;&emsp;${selectCompany}</b></p> <!-- yh 사용 -->
+				<!--<p style="font-size: 30px; color: black;">${selectField}분야 :  </p> <!-- yh 사용 
+				<p style="font-size: 38px; color: black;"><b>&nbsp;&emsp;&emsp;&emsp;&emsp;${selectCompany}</b></p> <!-- yh 사용 
 				<div class ="price">
-					IT분야 <b>카카오</b>의 실시간 가격 <br>
+					${selectField}분야 <b>${selectCompany}</b>의 실시간 가격 <br>
 					<b style="font-size: 20px">330,600원</b>입니다.
+				</div> 연희 수정 후에 주석 풀고 밑에꺼 삭제하기-->
+				
+				<p style="font-size: 35px; color: black;"><b>IT</b>분야 :  </p> <!-- yh 사용 -->
+				<p style="font-size: 40px; color: black; padding-left: 30px;"><b>카카오</b>
+				<button style="margin-left:20px;"><img src="heart.png" style="width: 30px; height: auto;"></button>	</p> <!-- yh 사용 -->
+				
+				<div class ="realtime_price">
+					<b>카카오</b>의 실시간 가격 <br>
+					<b style="font-size: 20px;">330,600원</b>입니다.
 				</div>
 				<div class = "price">
-					내일 예측 가격은
+					내일 예측 가격은<br>
+					<b style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text;
+                     -webkit-text-fill-color: transparent;">330,000원</b> 입니다.
 				</div>
-				<button><img src="heart.png" style="width: 30px; height: auto";></button>							
+				
 			</div>
 			<div class="right_final"> <!-- chat -->
 				실시간 차트
