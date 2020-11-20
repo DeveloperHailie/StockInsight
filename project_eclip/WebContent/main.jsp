@@ -40,7 +40,7 @@
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
 			&nbsp;
-			<li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
 			&nbsp;
@@ -59,7 +59,7 @@
                 &nbsp; &nbsp; 
                 <li><a href="/Stock_Insigh/doStock">종목조회</a></li>
                 &nbsp; &nbsp;  
-                <li><a href="interest.jsp">관심종목</a></li>
+                <li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
                 &nbsp;  &nbsp; 
                 <li><a href="login.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
