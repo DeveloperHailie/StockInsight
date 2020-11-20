@@ -40,7 +40,7 @@
          <li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
 
          &nbsp; &nbsp;
-         <li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp;
+         <li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
          &nbsp;
          <li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
          &nbsp;
@@ -60,7 +60,7 @@
                 &nbsp; &nbsp; 
                 <li><a id="yellow" href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
-                <li><a href="stock.jsp">종목조회</a></li>
+                <li><a href="/Stock_Insigh/doStock">종목조회</a></li>
                 &nbsp; &nbsp;  
                 <li><a href="interest.jsp">관심종목</a></li>
                 &nbsp;  &nbsp; 

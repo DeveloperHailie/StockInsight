@@ -59,7 +59,7 @@
         <ul>
             <li><a id="yellow" href="login.jsp">로그인</a></li> &nbsp; &nbsp;
             <li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
-            <li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
+            <li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
             <li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
             <li><a href="discuss.jsp">토론하기</a></li> &nbsp; &nbsp;
             <li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
