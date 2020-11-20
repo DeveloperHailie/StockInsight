@@ -44,7 +44,9 @@ public class doFindIndex extends HttpServlet {
 	         PrintWriter out = response.getWriter();
 	         
 	         try {
-	             
+	        	 String findUserIndex = null;
+	        	 String findStockIndex = null;
+	        	 
 	             Statement st = conn.createStatement();
 	             String user_id = request.getParameter("user_id");
 	             request.setAttribute("user_id", user_id);
@@ -60,18 +62,21 @@ public class doFindIndex extends HttpServlet {
 	       
 	             if (rs != null) {
 	                while (rs.next()) {
-	                   String findUserIndex = rs.getString(1);
+	                   findUserIndex = rs.getString(1);
 	                   request.setAttribute("user_index", findUserIndex);
 	                }
 	             }
 	             
 	             if(rsc != null) {
 	               while(rsc.next()) {
-	                  String findStockIndex = rsc.getString(1);
+	                  findStockIndex = rsc.getString(1);
 	                  request.setAttribute("stock_index", findStockIndex);
 	               }
 	            }
-	               
+	             
+	             Boolean interCheck = DBUtil.interestCheck(conn, findUserIndex, findStockIndex);
+	             request.setAttribute("interCheck", interCheck); 
+	             System.out.print("----두파인드인덱스의----------interCheck : " + interCheck);
 	             //RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
 	             RequestDispatcher view = sc.getRequestDispatcher("/doInsertInterest");
 	             view.forward(request, response);

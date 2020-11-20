@@ -86,6 +86,7 @@
 			<%
 				String selectField = (String) request.getAttribute("selectField"); //분야
 				String selectCompany = (String) request.getAttribute("selectCompany"); //회사
+				
 			%>
 			예측결과<br /> <img class="bar" src="bar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -107,20 +108,23 @@
                if(session.getAttribute("ID")!=null){ //세션 존재 
                	String user_id = (String) session.getAttribute("ID"); // 세션에 저장된 user_id 
                	String user_index = (String)request.getAttribute("user_index"); // 받아온 user_index 
+               	
                	String stock_index = (String)request.getAttribute("stock_index"); // 받아온 stock_index 
-               	String insertInterestRow = (String)request.getAttribute("insertInterestRow");
+               	Boolean interestCheck = (Boolean)request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
+               	System.out.print("있는지 없는지 :   " + interestCheck);
                %> 
 				
-               	<form method="POST" action="doFindIndex">
                	<%
-                	out.print("<button type = \"submit\" name= \"user_id\" style=\" border : none; margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
+               	if(interestCheck == false){//선택한 회사가 관심종목에 없을 때, x
+               		out.print("<form method = \"POST\" action=\"doFindIndex\">"); //관심종목에 현재 로그인한 user_index에 선택한 분야가 관심종목에 있을때 
+               		out.print("<button type = \"submit\" name= \"user_id\" style=\" border : none; margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
                		out.print(user_id);
                		out.print("\">");
                		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
                		out.print(selectCompany);
                		out.print("\"/>");
                		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background: white;\">");
-               		out.print("</button>");
+              		out.print("</button>");
                		out.print("</p>");
                		
                	 	out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
@@ -134,9 +138,35 @@
                  	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
                  	out.print(selectField);
                  	out.print("\"/>");
+                 	out.print("</form>");
+               	}else { //선택한 회사가 관심종목에 있을 때, o 
+               		out.print("<form method = \"POST\" action=\"doDeleteInterest\">");
+               		out.print("<button type = \"submit\" name= \"user_id\" style=\" border : none; margin-left:20px;\" onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
+               		out.print(user_id);
+               		out.print("\">");
+               		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
+               		out.print(selectCompany);
+               		out.print("\"/>");
+               		out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; background: white;\">");
+              		out.print("</button>");
+               		out.print("</p>");
+               		
+               	 	out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
+                 	out.print(user_index);
+                 	out.print("\"/>");
+  
+                 	out.print("<input type = \"hidden\" name = \"stock_index\" value = \"");
+                 	out.print(stock_index);
+                 	out.print("\"/>");
+                 	
+                 	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
+                 	out.print(selectField);
+                 	out.print("\"/>");
+                 	out.print("</form>");
+               	}
                	%>
               	
-                </form>
+                
                
                <% }else {
             	   // 세션존재하지 않음

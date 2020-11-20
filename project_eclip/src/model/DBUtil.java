@@ -847,13 +847,15 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
          st = con.createStatement(); 
          
          if (st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'" )) {
-        	 System.out.print(st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'" ));
-        	 return true;
+        	if(st.getResultSet().next()) {
+        		return true;
+        	}
+        	else {
+        		 return false;
+        	}
+        	 
          }
-         else {
-        	 return false;
-         }
-
+ 
       } catch (SQLException e) {
 
          // TODO Auto-generated catch block

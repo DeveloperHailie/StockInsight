@@ -90,7 +90,7 @@ public class doSearchFinal extends HttpServlet {
            //interest_index 있는지 없는지 확인
            Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index);
            request.setAttribute("interCheck", interCheck); 
-           System.out.print("interCheck : " + interCheck);
+           System.out.print("----두서치의----------interCheck : " + interCheck);
 			
 			
 			ResultSet rs = DBUtil.findFieldSelectCompany(conn, selectCompany); // 검색결과 비교 

@@ -114,7 +114,8 @@
 				
                	<form method="POST" action="doDeleteInterest">
                	<%
-                	if(interestCheck == true){
+               
+               		
                			out.print("<button type = \"submit\" name= \"user_id\" style=\"border : none; margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
                			out.print(user_id);
                			out.print("\">");
@@ -138,32 +139,7 @@
                  		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
                			out.print(selectCompany);
                			out.print("\"/>");
-                	}
-                	else{
-                		out.print("<button type = \"submit\" name= \"user_id\" style=\"border : none; margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
-                   		out.print(user_id);
-                   		out.print("\">");
-     		
-                   		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background : white;\">");
-                   		out.print("</button>");
-                   		out.print("</p>");
-                   		
-                   		out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
-                     	out.print(user_index);
-                     	out.print("\"/>");
-      
-                     	out.print("<input type = \"hidden\" name = \"stock_index\" value = \"");
-                     	out.print(stock_index);
-                     	out.print("\"/>");
-                     	
-                     	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
-                     	out.print(selectField);
-                     	out.print("\"/>");
-                     	
-                     	out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
-                   		out.print(selectCompany);
-                   		out.print("\"/>");
-                	}
+
                	%> 	
                	
                	

@@ -64,8 +64,12 @@ public class doInsertInterest extends HttpServlet {
             
             
             DBUtil.insertInterest(conn, user_index, stock_index);// user_id로 user_index 찾기 
+            
+            Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index);
+            request.setAttribute("interCheck", interCheck); 
+            System.out.print("----두인설트의----------interCheck : " + interCheck);
         
-            RequestDispatcher view = sc.getRequestDispatcher("/search_final_afterInsert.jsp");
+            RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
             view.forward(request, response);
             
          } catch (SQLException e1) {
