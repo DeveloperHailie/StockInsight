@@ -113,13 +113,13 @@
 				
                	<form method="POST" action="doFindIndex">
                	<%
-                	out.print("<button type = \"submit\" name= \"user_id\" style=\"margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
+                	out.print("<button type = \"submit\" name= \"user_id\" style=\" border : none; margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
                		out.print(user_id);
                		out.print("\">");
                		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
                		out.print(selectCompany);
                		out.print("\"/>");
-               		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto;\">");
+               		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background: white;\">");
                		out.print("</button>");
                		out.print("</p>");
                		
@@ -141,7 +141,7 @@
                <% }else {
             	   // 세션존재하지 않음
                    %>
-                   <button style="margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.')"><img src="empty_heart.png" style="width: 30px; height: auto;"></button></p>
+                   <button style="border : none; margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.')"><img src="empty_heart.png" style="width: 30px; height: auto; background: white;"></button></p>
                    <% } %>
 
 				<div class ="realtime_price">
