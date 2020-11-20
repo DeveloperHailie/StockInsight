@@ -83,7 +83,6 @@
 		<nav>
          <%
             ArrayList<String> findStockFieldList = (ArrayList<String>) request.getAttribute("findStockFieldFromStockIndex");
-            ArrayList<String> findStockIndexList = (ArrayList<String>) request.getAttribute("findStockIndexFromUser");
           %>
          관심종목<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -104,7 +103,7 @@
                   for (int i = 0; i < findStockFieldList.size(); i++) {
                %>
                <%
-               out.print("<button type = \"submit\" class=\"interbtn\" name= \"stock_index\" style=\"height: 40px; width: 340px;\" value = \"");
+               out.print("<button type = \"submit\" class=\"interbtn\" name= \"stock_field\" style=\"height: 40px; width: 340px;\" value = \"");
                out.print(findStockFieldList.get(i));
                out.print("\">");
                out.print("<li>");

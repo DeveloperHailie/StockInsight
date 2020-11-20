@@ -94,11 +94,11 @@ public class doSearchInterest extends HttpServlet {
         		               System.out.print(" \n findStockField: "  + findStockField_FromStockIndex );
         		                
         		               if(findStockFieldFromStockIndex.contains(findStockField_FromStockIndex)) {
-        		            	   System.out.print(" 배열에 넣지않을 분야:" + findStockField_FromStockIndex);
+        		            	   //System.out.print(" 배열에 넣지않을 분야:" + findStockField_FromStockIndex);
         		               }
         		               else {
         		            	    findStockFieldFromStockIndex.add(findStockField_FromStockIndex);
-           		            		System.out.print(" 배열에 넣을 분야:" + findStockField_FromStockIndex);
+           		            		//System.out.print(" 배열에 넣을 분야:" + findStockField_FromStockIndex);
         		               }         
                 		        request.setAttribute("findStockFieldFromStockIndex", findStockFieldFromStockIndex); // stock_index 리스트에 해당하는 분야 가져오기 
         		            }
@@ -106,7 +106,6 @@ public class doSearchInterest extends HttpServlet {
         		        }
                  }
 	         }
-
 	        
 	         RequestDispatcher view = sc.getRequestDispatcher("/interest.jsp");
 	         view.forward(request, response);
