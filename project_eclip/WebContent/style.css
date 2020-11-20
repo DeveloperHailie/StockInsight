@@ -3,7 +3,10 @@
    src: url("./NanumGothic.ttf");
 }
 
+
+
 * {
+   outline:none;
    padding: 0;
    margin: 0;
 }
@@ -546,12 +549,17 @@ table .questionTable .content {
 
 /**yeonhee _ interest**/
 
+.interest {
+   text-align: center;
+}
+
 .interest ul {
     list-style-type: none;
     background-color: #ffffff;
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
+    max-width: 100%;
     /* position: absolute;*/
   }
   
