@@ -4,8 +4,9 @@ public class StockData {
 	@Override
 	public String toString() {
 		return "StockData [code=" + code + ", presentPrice=" + presentPrice + ", sign=" + sign + ", difference="
-				+ difference + ", prevEndPrice=" + prevEndPrice + ", volume=" + volume + "]";
+				+ difference + ", prevEndPrice=" + prevEndPrice + ", volume=" + volume + ", date="+date+"]";
 	}
+	private String date = null;
 	// 종목코드
 	private String code = null;
 	// 현재가
@@ -19,7 +20,7 @@ public class StockData {
 	// 실시간 순위 측정 위한 거래량
 	private String volume = null;
 	StockData(){}
-	StockData(String code, String presentPrice, String sign, String difference, String prevEndPrice, String volume){
+	StockData(String code, String presentPrice, String sign, String difference, String prevEndPrice, String volume, String date){
 		presentPrice = presentPrice.replace(",", "");
 		prevEndPrice = prevEndPrice.replace(",", "");
 		volume = volume.replace(",", "");
@@ -29,6 +30,7 @@ public class StockData {
 		this.difference = difference;
 		this.prevEndPrice = prevEndPrice;
 		this.volume = volume;
+		this.date = date;
 	}
 	public String getCode() {
 		return code;
@@ -69,6 +71,12 @@ public class StockData {
 	public void setVolume(String volume) {
 		volume = volume.replace(",", "");
 		this.volume = volume;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 }
