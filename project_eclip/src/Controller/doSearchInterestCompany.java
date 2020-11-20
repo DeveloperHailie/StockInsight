@@ -138,28 +138,11 @@ public class doSearchInterestCompany extends HttpServlet {
 					            }
 					         }
 							
-							
-							//findStockCompanyFromStockField.add(findStockCompany_FromStockField);
-							//request.setAttribute("searchCompanyList", findStockCompanyFromStockField);
 						}
 				 }
 				 
-				 /*
-				 ResultSet rsc = DBUtil.findStockCompanyFromStockIndex(conn, stock_index); // stock_index --> stock_company
-		         
-		            
-		         ArrayList<String> searchCompanyList = new ArrayList<String>();
-
-		         if (rsc != null) {
-		            while (rsc.next()) {
-		               String searchCompany = rsc.getString(1);
-		               searchCompanyList.add(searchCompany);
-		               request.setAttribute("searchCompanyList", searchCompanyList);
-		            }
-		         }*/
-	 
 				 
-		         RequestDispatcher view = sc.getRequestDispatcher("/interest_company.jsp");
+		         RequestDispatcher view = sc.getRequestDispatcher("/interest.jsp");
 		         view.forward(request, response);
 		         
 		     } catch (SQLException e1) {

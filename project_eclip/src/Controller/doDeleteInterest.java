@@ -71,6 +71,10 @@ public class doDeleteInterest extends HttpServlet {
                }
             }
          
+            Boolean interCheck = DBUtil.interestCheck(conn, del_user_index, del_stock_index);
+            request.setAttribute("interCheck", interCheck); 
+            System.out.print("----두딜리트의----------interCheck : " + interCheck);
+            
             RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
                view.forward(request, response);
             

@@ -42,7 +42,7 @@
 			</a></li> &nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest" id="yellow">관심종목</a></li> &nbsp;
 			&nbsp;
@@ -60,7 +60,7 @@
 		<ul>
 			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
-			<li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
+			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a id="yellow" href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp; &nbsp;
 			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
@@ -83,6 +83,7 @@
 		<nav>
          <%
             ArrayList<String> findStockFieldList = (ArrayList<String>) request.getAttribute("findStockFieldFromStockIndex");
+            ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
           %>
          관심종목<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -122,9 +123,28 @@
          </ul>
       </div>
       <div class="interest">
-         <ul
-            style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
-
+         <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
+            <form method="POST" action="doSearchFinal">
+            <%
+                  if (companyList != null) {
+                  for (int i = 0; i < companyList.size(); i++) {
+               %>
+               <%
+               out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
+            out.print(companyList.get(i));
+            out.print("\">");
+            out.print("<li>");
+            out.print("<a>");
+            out.print(companyList.get(i));
+            out.print("</a>");
+            out.print("</li>");
+            out.print("</button>");   
+               %>
+               <%
+                  }
+               }
+               %>
+             </form>
          </ul>
       </div>
       

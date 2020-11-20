@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DBUtil;
 
@@ -45,10 +46,52 @@ public class doSearchFinal extends HttpServlet {
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 		PrintWriter out = response.getWriter();
 		
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("ID");
+		String user_index = null;
+		String stock_index = null;
+
+		
 		try {	
 			Statement st = conn.createStatement();
+			
+			
+			 // user_index 정보 추출 
+			ResultSet rs_user_id = DBUtil.findUserIndex(conn, user_id);
+	         
+	         
+	         if (rs_user_id != null) {
+		            while (rs_user_id.next()) {
+		               user_index = rs_user_id.getString(1);
+		               request.setAttribute("user_index", user_index); // user_id에 해당하는 user_index 가져오기 
+		            }
+		         }
+	         
+	         System.out.print("두서치파이널 유저 인덱스 : " + user_index + "\n");
+	         
+	       
+			
 			String selectCompany = request.getParameter("selectCompany");
 			request.setAttribute("selectCompany", selectCompany); //선택한 회사 넘기기 
+			
+			//selectCompany 으로부터 stock_index 정보추출 
+			ResultSet rs_stock_index = DBUtil.findStockIndex(conn, selectCompany);
+			
+			if (rs_stock_index != null) {
+	            while (rs_stock_index.next()) {
+	               stock_index = rs_stock_index.getString(1);
+	               request.setAttribute("stock_index", stock_index); // user_id에 해당하는 user_index 가져오기 
+	            }
+	         }
+         
+           System.out.print("두서치파이널 스톡 인덱스 : " + stock_index + "\n");
+           
+           
+           //interest_index 있는지 없는지 확인
+           Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index);
+           request.setAttribute("interCheck", interCheck); 
+           System.out.print("----두서치의----------interCheck : " + interCheck);
+			
 			
 			ResultSet rs = DBUtil.findFieldSelectCompany(conn, selectCompany); // 검색결과 비교 
 			

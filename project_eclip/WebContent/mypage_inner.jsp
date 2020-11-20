@@ -46,8 +46,8 @@
 			</a></li> &nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li> &nbsp;
 			&nbsp;
-			<li id="okaylogin_li"><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a id="yellow" href="mypage.jsp">마이페이지</a></li>
 			&nbsp; &nbsp;
@@ -63,8 +63,8 @@
 		<ul>
 			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
-			<li><a href="stock.jsp">종목조회</a></li> &nbsp; &nbsp;
-			<li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
+			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
+			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp; &nbsp;
 			<li><a id="yellow" href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
