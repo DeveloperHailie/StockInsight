@@ -86,6 +86,7 @@
 			<%
 				String selectField = (String) request.getAttribute("selectField"); //분야
 				String selectCompany = (String) request.getAttribute("selectCompany"); //회사
+				Boolean interestCheck = (Boolean)request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
 			%>
 			예측결과<br /> <img class="bar" src="bar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -113,29 +114,56 @@
 				
                	<form method="POST" action="doDeleteInterest">
                	<%
-                	out.print("<button type = \"submit\" name= \"user_id\" style=\"border : none; margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
-               		out.print(user_id);
-               		out.print("\">");
+                	if(interestCheck == true){
+               			out.print("<button type = \"submit\" name= \"user_id\" style=\"border : none; margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
+               			out.print(user_id);
+               			out.print("\">");
  		
-               		out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; background : white;\">");
-               		out.print("</button>");
-               		out.print("</p>");
+               			out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; background : white;\">");
+               			out.print("</button>");
+               			out.print("</p>");
                		
-               		out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
-                 	out.print(user_index);
-                 	out.print("\"/>");
+               			out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
+                 		out.print(user_index);
+                 		out.print("\"/>");
   
-                 	out.print("<input type = \"hidden\" name = \"stock_index\" value = \"");
-                 	out.print(stock_index);
-                 	out.print("\"/>");
+                 		out.print("<input type = \"hidden\" name = \"stock_index\" value = \"");
+                 		out.print(stock_index);
+                 		out.print("\"/>");
                  	
-                 	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
-                 	out.print(selectField);
-                 	out.print("\"/>");
+                 		out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
+                 		out.print(selectField);
+                 		out.print("\"/>");
                  	
-                 	out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
-               		out.print(selectCompany);
-               		out.print("\"/>");
+                 		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
+               			out.print(selectCompany);
+               			out.print("\"/>");
+                	}
+                	else{
+                		out.print("<button type = \"submit\" name= \"user_id\" style=\"border : none; margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
+                   		out.print(user_id);
+                   		out.print("\">");
+     		
+                   		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background : white;\">");
+                   		out.print("</button>");
+                   		out.print("</p>");
+                   		
+                   		out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
+                     	out.print(user_index);
+                     	out.print("\"/>");
+      
+                     	out.print("<input type = \"hidden\" name = \"stock_index\" value = \"");
+                     	out.print(stock_index);
+                     	out.print("\"/>");
+                     	
+                     	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
+                     	out.print(selectField);
+                     	out.print("\"/>");
+                     	
+                     	out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
+                   		out.print(selectCompany);
+                   		out.print("\"/>");
+                	}
                	%> 	
                	
                	

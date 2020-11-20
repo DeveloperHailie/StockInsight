@@ -835,5 +835,33 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
       return null;
 }
   
+  public static Boolean interestCheck(Connection con, String user_index ,String stock_index) { // interest table 안의 stock_index를 분야별로 나누기 
+
+	  String sql = "SELECT interest_index FROM Stockinsight.Interest WHERE User_user_index ="; 
+	  String sqltwo = "AND Stock_stock_index =";
+	  
+	  Statement st;
+
+      try {
+	 
+         st = con.createStatement(); 
+         
+         if (st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'" )) {
+        	 System.out.print(st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'" ));
+        	 return true;
+         }
+         else {
+        	 return false;
+         }
+
+      } catch (SQLException e) {
+
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+
+      }
+      return null;
+}
+  
 	
 }
