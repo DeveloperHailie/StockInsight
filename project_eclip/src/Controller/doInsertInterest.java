@@ -60,6 +60,7 @@ public class doInsertInterest extends HttpServlet {
             
             System.out.print("user_index : " + user_index);
             System.out.print("  stock_index : " + stock_index);
+            System.out.print("  selectField : " + selectField);
             
             
             DBUtil.insertInterest(conn, user_index, stock_index);// user_id로 user_index 찾기 

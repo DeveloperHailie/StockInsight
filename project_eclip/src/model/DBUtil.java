@@ -769,13 +769,35 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
   
   public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
 
-	  String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index ="; 
+	  String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index = "; 
 	  Statement st;
       try {
 	 
          st = con.createStatement();
     
          if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+        	
+        	 return st.getResultSet(); // field 넘김 
+         }
+
+      } catch (SQLException e) {
+
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+
+      }
+      return null;
+}
+  
+  public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_index로 company 이름 구하기 
+
+	  String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
+	  Statement st;
+      try {
+	 
+         st = con.createStatement();
+    
+         if (st.execute(sqlinter + "'" + stock_company + "'" )) {
         	 //interest_index = - 1;
         	 return st.getResultSet(); // field 넘김 
          }
@@ -789,17 +811,19 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
       return null;
 }
   
-  public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) {
+  public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
-	  String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
+	  String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
+	  
 	  Statement st;
+
       try {
 	 
          st = con.createStatement();
-    
-         if (st.execute(sqlinter + "'" + stock_company + "'" )) {
-        	 //interest_index = - 1;
-        	 return st.getResultSet(); // field 넘김 
+         
+         if (st.execute(sqlstock + "'" + stock_field + "')" )) {
+        	 
+        	 return st.getResultSet(); 
          }
 
       } catch (SQLException e) {
