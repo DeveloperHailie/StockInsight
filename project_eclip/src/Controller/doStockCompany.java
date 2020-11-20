@@ -73,7 +73,7 @@ public class doStockCompany extends HttpServlet {
 						}
 					}
 					
-					RequestDispatcher view = sc.getRequestDispatcher("/stock_company.jsp");
+					RequestDispatcher view = sc.getRequestDispatcher("/stock.jsp");
 					view.forward(request, response);
 					
 					

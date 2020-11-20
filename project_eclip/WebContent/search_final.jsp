@@ -141,7 +141,7 @@
                <% }else {
             	   // 세션존재하지 않음
                    %>
-                   <button style="margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.')"><img src="heart.png" style="width: 30px; height: auto;"></button></p>
+                   <button style="margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.')"><img src="empty_heart.png" style="width: 30px; height: auto;"></button></p>
                    <% } %>
 
 				<div class ="realtime_price">
