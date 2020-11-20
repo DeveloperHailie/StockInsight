@@ -150,9 +150,9 @@
                }
                %>
              </form>
-         </ul>
-      </div>
-      </div>
+			</ul>
+		</div>
+		</div>
 
    </section>
 

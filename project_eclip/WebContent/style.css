@@ -127,6 +127,11 @@ a {
    top: 100%;
 }
 
+.inner_search {
+   
+   top: 100%;
+}
+
 .login_start {
    width: 320px;
    margin: auto;
@@ -547,7 +552,7 @@ table .questionTable .content {
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
-    position: absolute;
+    /* position: absolute;*/
   }
   
   .interest li a {
@@ -569,12 +574,26 @@ table .questionTable .content {
   }
 
   .search{
-   height: 40px;
-   width: 890px;
    border: 5px solid #E8CE48;
    background: #ffffff;
-   margin-left: 500px;
-   margin-bottom: 70px;
+  
+ }
+ 
+   .search_inner{
+   border: 5px solid #E8CE48;
+   background: #ffffff;
+   width: 600px;
+   height: 30px;
+    
+   
+  
+ }
+ 
+   .search_button{
+   border: 2px solid #E8CE48;
+   background: #E8CE48;
+   color: #ffffff;
+   margin-left: -45px;
   
  }
 
@@ -702,8 +721,8 @@ table .questionTable .content {
 .kos_char{
    margin-left: 230px;
    border: 1px solid black;
-	margin-left: 18%;
-	border: 1px solid black;
+   margin-left: 18%;
+   border: 1px solid black;
     float: left;
     width: 30%;
     height: 300px;
@@ -721,28 +740,28 @@ table .questionTable .content {
    padding-bottom: 500px;
 }
 .left_final{
-	padding: 10px;
-	margin-left: 18%;	
+   padding: 10px;
+   margin-left: 18%;   
     float: left;
     width: 30%;
     height: 450px;
 }
 .right_final{
-	border: 1px solid black;
+   border: 1px solid black;
     float: left;
     margin-left: 5%;  
     width: 30%;
     height: 450px;
 }
-.price{	
-	padding: 10px;
-	margin-top: 20px;
-	font-size : 18px;
+.price{   
+   padding: 10px;
+   margin-top: 20px;
+   font-size : 18px;
 }
 .realtime_price{
-	padding: 10px;
-	background-color: #EAEAEA;
-	border: 1px solid #EAEAEA;
-	margin-top: 25px;
-	font-size : 18px;
+   padding: 10px;
+   background-color: #EAEAEA;
+   border: 1px solid #EAEAEA;
+   margin-top: 25px;
+   font-size : 18px;
 }
