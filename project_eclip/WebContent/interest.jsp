@@ -83,6 +83,7 @@
 		<nav>
          <%
             ArrayList<String> findStockFieldList = (ArrayList<String>) request.getAttribute("findStockFieldFromStockIndex");
+            ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
           %>
          관심종목<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -122,9 +123,28 @@
          </ul>
       </div>
       <div class="interest">
-         <ul
-            style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
-
+         <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
+            <form method="POST" action="doSearchFinal">
+            <%
+                  if (companyList != null) {
+                  for (int i = 0; i < companyList.size(); i++) {
+               %>
+               <%
+               out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
+            out.print(companyList.get(i));
+            out.print("\">");
+            out.print("<li>");
+            out.print("<a>");
+            out.print(companyList.get(i));
+            out.print("</a>");
+            out.print("</li>");
+            out.print("</button>");   
+               %>
+               <%
+                  }
+               }
+               %>
+             </form>
          </ul>
       </div>
       

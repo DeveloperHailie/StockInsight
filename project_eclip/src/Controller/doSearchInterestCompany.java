@@ -142,7 +142,7 @@ public class doSearchInterestCompany extends HttpServlet {
 				 }
 				 
 				 
-		         RequestDispatcher view = sc.getRequestDispatcher("/interest_company.jsp");
+		         RequestDispatcher view = sc.getRequestDispatcher("/interest.jsp");
 		         view.forward(request, response);
 		         
 		     } catch (SQLException e1) {
