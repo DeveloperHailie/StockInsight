@@ -88,77 +88,96 @@
             ArrayList<String> fieldList = (ArrayList<String>) request.getAttribute("searchFieldList");
             ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
          %>
-         종목조회<br /> <img class="bar" src="bar.jpg"
-            style="padding-top: 20px; width: 121px; height: 10px; float: center;">
-      </nav>
+        
+            종목조회2<br /> <img class="bar" src="bar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 
+            <br /> 
+        </nav>
 
-      <div class="menu_content style=">
-         <div class="search" style="float: center;">
-            <form method="POST" action="doSearch">
-               <input type="text" name="search" placeholder="검색어 입력">
-               <button type="submit" onclick="location.href='search_after.jsp'">검색</button>
-            </form>
-         </div>
-         <h1 style= "float:left; margin-left: 660px; "> 분야 </h1>
-         <h1 style= "float:right; margin-right: 670px;"> 회사 </h1>
-         <div class= "interest">
-            <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 500px;">
-               <form method="POST" action="doStockCompany">
-                  <%
-                     if (fieldList != null) {
-                     for (int i = 0; i < fieldList.size(); i++) {
-                  %>
-                  <%
-                  out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");
-                  out.print(fieldList.get(i));
-                  out.print("\">");
-                  out.print("<li>");
-                  out.print("<a>");
-                  out.print(fieldList.get(i));
-                  out.print("</a>");
-                  out.print("</li>");
-                  out.print("</button>");   
-                  %>
-                  <%
-                     }
-                  }
-                  %>
-               </form>
-            </ul>
-         </div>
-         <div class="interest">
-            <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
-            <form method="POST" action="doSearchFinal">
-            <%
-                  if (companyList != null) {
-                  for (int i = 0; i < companyList.size(); i++) {
-               %>
-               <%
-               out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
-            out.print(companyList.get(i));
-            out.print("\">");
-            out.print("<li>");
-            out.print("<a>");
-            out.print(companyList.get(i));
-            out.print("</a>");
-            out.print("</li>");
-            out.print("</button>");   
-               %>
-               <%
-                  }
-               }
-               %>
-             </form>
-			</ul>
-		</div>
-		</div>
+        <div class="inner_search">
+            <div >
+                <form id = "login" onsubmit="return validate();" method="POST" action="doLogin">
+                    <fieldset>
+                        <center>
+                           <form id = "stock" method="POST" action="doSearch">
+                              <input type="text" class="search_inner" placeholder="검색어 입력">
+                              <button type="submit" style="width:auto; height:27pt;" class="search_button" onclick="location.href='search_after.jsp'">&nbsp;검색&nbsp;</button>
+                           </form><br /><br/>
+                           <br />
+                           </center>
+                           <br/>
+                           <br />
+                        <h1 style= "float:left; margin-left: 30%;"> 분야 </h1>
+                        <h1 style= "float:right; margin-right: 30%;"> 회사 </h1>
+                        <br/><br/><br/>
+                        <div class= "interest">
+                           <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 17%;">
+                              <form method="POST" action="doStockCompany">
+                                 <%
+                                    if (fieldList != null) {
+                                    for (int i = 0; i < fieldList.size(); i++) {
+                                 %>
+                                 <%
+                                 out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");
+                                 out.print(fieldList.get(i));
+                                 out.print("\">");
+                                 out.print("<li>");
+                                 out.print("<a>");
+                                 out.print(fieldList.get(i));
+                                 out.print("</a>");
+                                 out.print("</li>");
+                                 out.print("</button>");   
+                                 %>
+                                 <%
+                                    }
+                                 }
+                                 %>
+                              </form>
+                           </ul>
+                        </div>
+                        <div class="interest">
+                           <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 17%;">
+                              <form method="POST" action="doSearchFinal">
+                                 <%
+                                       if (companyList != null) {
+                                       for (int i = 0; i < companyList.size(); i++) {
+                                    %>
+                                    <%
+                                    out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
+                                 out.print(companyList.get(i));
+                                 out.print("\">");
+                                 out.print("<li>");
+                                 out.print("<a>");
+                                 out.print(companyList.get(i));
+                                 out.print("</a>");
+                                 out.print("</li>");
+                                 out.print("</button>");   
+                                    %>
+                                    <%
+                                       }
+                                    }
+                                    %>
+                                  </form>
+                        </ul>
+                     </div>
+               
+                     </div>
+                     <br /><br/><br /><br /><br/><br />
+               
+               
+               
+                        
+                    </fieldset>
+                </form>
+                
 
-   </section>
-
-   <footer>
-      <p>© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
-   </footer>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p> © 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
+    </footer>
 
 </body>
+
 </html>
