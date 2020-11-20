@@ -31,124 +31,58 @@ import org.xml.sax.InputSource;
 
 public class ApiAnalysis {
 	
-	// other : (ex) ApiAnalysis("005930");
-	// return ? think
-	public static void api_stock(String code) {
-		// 종목 코드 넣으면 되게 getHtml 수정
+	// ApiAnalysis.api_stock_data("005930");
+	public static StockData api_stock_data(String code) {	
+		// 코드 현재가 부호처리 전일대비 전일종가 거래량
+		StockData stockData = new StockData();
 		String xmlContent = getHtml(code);
-		System.out.println(xmlContent);
-
-		System.out.println("\ndailyStock: ");
-
-		String[] DailyStockXPath = { "//DailyStock/@day_Date", "//DailyStock/@day_EndPrice",
-				"//DailyStock/@day_Dungrak", "//DailyStock/@day_getDebi", "//DailyStock/@day_Start",
-				"//DailyStock/@day_High", "//DailyStock/@day_Low", "//DailyStock/@day_Volume",
-				"//DailyStock/@day_getAmount" };
-
-		String[][] dailyStock = parseXML(xmlContent, DailyStockXPath, 10, DailyStockXPath.length);
-
-		for (int i = 0; i < dailyStock.length; i++) {
-			for (int j = 0; j < dailyStock[i].length; j++) {
-				System.out.print(dailyStock[i][j] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("\naskPrice: ");
-
-		String[] AskPriceXPath = { "//AskPrice/@member_memdoMem", "//AskPrice/@member_memdoVol",
-				"//AskPrice/@member_memsoMem", "//AskPrice/@member_mesuoVol" };
-
-		String[][] askPrice = parseXML(xmlContent, AskPriceXPath, 5, AskPriceXPath.length);
-
-		for (int i = 0; i < askPrice.length; i++) {
-			for (int j = 0; j < askPrice[i].length; j++) {
-				System.out.print(askPrice[i][j] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("\nTBL_StockInfo: ");
-
-		String[] TBL_StockInfoXPath = { "//TBL_StockInfo/@JongName", "//TBL_StockInfo/@CurJuka",
-				"//TBL_StockInfo/@DungRak", "//TBL_StockInfo/@Debi", "//TBL_StockInfo/@PrevJuka",
-				"//TBL_StockInfo/@Volume", "//TBL_StockInfo/@Money", "//TBL_StockInfo/@StartJuka",
-				"//TBL_StockInfo/@HighJuka", "//TBL_StockInfo/@LowJuka", "//TBL_StockInfo/@High52",
-				"//TBL_StockInfo/@Low52", "//TBL_StockInfo/@UpJuka", "//TBL_StockInfo/@DownJuka",
-				"//TBL_StockInfo/@Per", "//TBL_StockInfo/@Amount", "//TBL_StockInfo/@FaceJuka" };
+		stockData.setCode(code);
+		
+		String[] TBL_StockInfoXPath = { "//TBL_StockInfo/@CurJuka",
+				"//TBL_StockInfo/@DungRak", "//TBL_StockInfo/@Debi", 
+				"//TBL_StockInfo/@PrevJuka", "//TBL_StockInfo/@Volume"};
 
 		String[][] tbl_StockInfo = parseXML(xmlContent, TBL_StockInfoXPath, 1, TBL_StockInfoXPath.length);
-
-		for (int i = 0; i < tbl_StockInfo.length; i++) {
-			for (int j = 0; j < tbl_StockInfo[i].length; j++) {
-				System.out.print(tbl_StockInfo[i][j] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("\nTBL_Hoga: ");
-
-		String[] TBL_HogaXPath = { "//TBL_Hoga/@mesuJan0", "//TBL_Hoga/@mesuHoka0", "//TBL_Hoga/@mesuJan1",
-				"//TBL_Hoga/@mesuHoka1", "//TBL_Hoga/@mesuJan3", "//TBL_Hoga/@mesuHoka3", "//TBL_Hoga/@mesuJan4",
-				"//TBL_Hoga/@mesuHoka4", "//TBL_Hoga/@medoJan0", "//TBL_Hoga/@medoHoka0", "//TBL_Hoga/@medoJan1",
-				"//TBL_Hoga/@medoHoka1", "//TBL_Hoga/@medoJan2", "//TBL_Hoga/@medoHoka2", "//TBL_Hoga/@medoJan3",
-				"//TBL_Hoga/@medoHoka3", "//TBL_Hoga/@medoJan4", "//TBL_Hoga/@medoHoka4" };
-
-		String[][] tbl_Hoga = parseXML(xmlContent, TBL_HogaXPath, 1, TBL_HogaXPath.length);
-
-		for (int i = 0; i < tbl_Hoga.length; i++) {
-			for (int j = 0; j < tbl_Hoga[i].length; j++) {
-				System.out.print(tbl_Hoga[i][j] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("\nTBL_TimeConclude: ");
-
-		String[] TBL_TimeConcludeXPath = { "//TBL_TimeConclude/@time", "//TBL_TimeConclude/@negoprice",
-				"//TBL_TimeConclude/@Dungrak", "//TBL_TimeConclude/@Debi", "//TBL_TimeConclude/@sellprice",
-				"//TBL_TimeConclude/@buyprice", "//TBL_TimeConclude/@amount" };
-
-		String[][] tbl_TimeConclude = parseXML(xmlContent, TBL_TimeConcludeXPath, 10, TBL_TimeConcludeXPath.length);
-
-		for (int i = 0; i < tbl_TimeConclude.length; i++) {
-			for (int j = 0; j < tbl_TimeConclude[i].length; j++) {
-				System.out.print(tbl_TimeConclude[i][j] + " ");
-			}
-			System.out.println("");
-		}
-
-		System.out.println("\nstockInfo: ");
-
-		String[] stockInfoXPath = { "//stockInfo/@kosdaqJisu", "//stockInfo/@kosdaqJisuBuho",
-				"//stockInfo/@kosdaqJisuDebi", "//stockInfo/@starJisu", "//stockInfo/@starJisuBuho",
-				"//stockInfo/@starJisuDebi", "//stockInfo/@jisu50", "//stockInfo/@jisu50Buho",
-				"//stockInfo/@jisu50Debi", "//stockInfo/@myNowTime", "//stockInfo/@myJangGubun",
-				"//stockInfo/@myPublicPrice", "//stockInfo/@krx100Jisu", "//stockInfo/@krx100buho",
-				"//stockInfo/@krx100Debi", "//stockInfo/@kospiJisu", "//stockInfo/@kospiBuho", "//stockInfo/@kospiDebi",
-				"//stockInfo/@kospi200Jisu", "//stockInfo/@kospi200Buho", "//stockInfo/@kospi200Debi" };
-
-		String[][] stock_Info = parseXML(xmlContent, stockInfoXPath, 1, stockInfoXPath.length);
-
-		for (int i = 0; i < stock_Info.length; i++) {
-			for (int j = 0; j < stock_Info[i].length; j++) {
-				System.out.print(stock_Info[i][j] + " ");
-			}
-			System.out.println("");
-		}
 		
-		/*
-		저장 되는 String[][] 배열들
-		dailyStock
-		askPrice
-		tbl_StockInfo
-		tbl_Hoga
-		tbl_TimeConclude
-		stock_Info
-		*/
+		stockData.setPresentPrice(tbl_StockInfo[0][0]);
+		stockData.setSign(tbl_StockInfo[0][1]);
+		stockData.setDifference(tbl_StockInfo[0][2]);
+		stockData.setPrevEndPrice(tbl_StockInfo[0][3]);
+		stockData.setVolume(tbl_StockInfo[0][4]);
 		
+		return stockData;
 	}
+	
+	public static StockPredict[] api_stock_predict(String code) {	
+		// 코드 날짜 종가 시가 고가 저가 거래량
+		StockPredict[] stockPredict = new StockPredict[10];
+		for(int i=0;i<10;i++) {
+			stockPredict[i] = new StockPredict();
+			stockPredict[i].setCode(code);
+		}
+		
+		String xmlContent = getHtml(code);
+		
+		
+		String[] DailyStockXPath = { "//DailyStock/@day_Date", 
+				"//DailyStock/@day_EndPrice","//DailyStock/@day_Start",
+				"//DailyStock/@day_High", "//DailyStock/@day_Low", 
+				"//DailyStock/@day_Volume" };
 
+		String[][] dailyStock = parseXML(xmlContent, DailyStockXPath, 10, DailyStockXPath.length);
+		
+		for(int i=0;i<10;i++) {
+			stockPredict[i].setDate(dailyStock[i][0]);
+			stockPredict[i].setEndPrice(dailyStock[i][1]);
+			stockPredict[i].setStart(dailyStock[i][2]);
+			stockPredict[i].setHigh(dailyStock[i][3]);
+			stockPredict[i].setLow(dailyStock[i][4]);
+			stockPredict[i].setVolume(dailyStock[i][5]);
+		}
+		
+		return stockPredict;
+	}
+	
 	// url 통해 xml 가져오기
 	public static String getHtml(String code) {
 		String url = "http://asp1.krx.co.kr/servlet/krx.asp.XMLSiseEng?code=" + code;

@@ -101,7 +101,7 @@
             </form>
          </div>
          <h1 style= "float:left; margin-left: 660px; "> 분야 </h1>
-         <h1 style= "float:right; margin-right: 670px;"> 회사 </h1>
+         <h1 style= "float:right; margin-right: 620px;"> 회사 </h1>
          <div class= "interest">
             <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 500px;">
                <form method="POST" action="doStockCompany">

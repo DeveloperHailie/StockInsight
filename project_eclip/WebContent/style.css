@@ -547,7 +547,7 @@ table .questionTable .content {
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
-    position: absolute;
+    margin-right : 50px;
   }
   
   .interest li a {
@@ -571,10 +571,9 @@ table .questionTable .content {
   .search{
    height: 40px;
    width: 890px;
+   margin : 10px 450px 70px 450px;
    border: 5px solid #E8CE48;
    background: #ffffff;
-   margin-left: 500px;
-   margin-bottom: 70px;
   
  }
 
@@ -584,7 +583,7 @@ table .questionTable .content {
 
   .search input{
     font-size:22px;
-    width: 93%;
+    width: 90%;
     padding: 2px;
     border: 10px;
     outline:none;
