@@ -151,7 +151,7 @@
                %>
              </form>
 			</ul>
-		f</div>
+		</div>
 		</div>
 
 	</section>

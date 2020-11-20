@@ -85,7 +85,7 @@ nav {
 .menu_content {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 10px;
+   padding-bottom: 500px;
 }
 
 #content {
@@ -542,11 +542,15 @@ table .questionTable .content {
 
 .interest ul {
     list-style-type: none;
+    margin:0 auto;
+    padding: 0;
+    height: 400px;
+    width: 350px;
     background-color: #ffffff;
+    position: sticky;
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
-    position: absolute;
   }
   
   .interest li a {
@@ -568,17 +572,13 @@ table .questionTable .content {
   }
 
   .search{
-   height: 40px;
-   width: 890px;
-   border: 5px solid #E8CE48;
-   background: #ffffff;
-   margin-left: 500px;
-   margin-bottom: 70px;
-  
- }
-
-  .a{
-   width: 40%;
+    height: 40px;
+    width: 890px;
+    border: 5px solid #E8CE48;
+    background: #ffffff;
+    margin-left: 500px;
+    margin-bottom: 70px;
+   
   }
 
   .search input{
@@ -595,9 +595,10 @@ table .questionTable .content {
     height: 40px;
     border:0px;
     background: #E8CE48;
+    background-position: 5px center;
+    background-repeat: no-repeat;
     color: #ffffff;
-    float: right;
-    margin-bottom: 50px; 
+    float: right; 
   }
   
   .search button:active {
@@ -610,7 +611,11 @@ table .questionTable .content {
     border: none;
     outline: none;
     background: #ffffff;
-
+  }
+  
+  .interbtn li a:visited{
+     background: linear-gradient(to right, #B06AB3, #4568DC); 
+    color: white;
   }
   
   .resultPrice{
@@ -689,20 +694,15 @@ table .questionTable .content {
     font-size : 13pt;
  }
 /** jh main **/
-.main {
-   font-family: "nanum";
-   text-align: center;
-   padding-bottom: 500px;
-}
 .kos_char{
-	margin-left: 18%;
-	border: 1px solid black;
+   margin-left: 230px;
+   border: 1px solid black;
     float: left;
     width: 30%;
     height: 300px;
 }
 .kod_char{
-	border: 1px solid black;
+   border: 1px solid black;
     float: left;
     margin-left: 5%;  
     width: 30%;
