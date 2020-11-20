@@ -85,7 +85,7 @@ nav {
 .menu_content {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 500px;
+   padding-bottom: 10px;
 }
 
 #content {
@@ -543,15 +543,11 @@ table .questionTable .content {
 
 .interest ul {
     list-style-type: none;
-    margin:0 auto;
-    padding: 0;
-    height: 400px;
-    width: 350px;
     background-color: #ffffff;
-    position: sticky;
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
+    position: absolute;
   }
   
   .interest li a {
@@ -573,13 +569,17 @@ table .questionTable .content {
   }
 
   .search{
-    height: 40px;
-    width: 890px;
-    border: 5px solid #E8CE48;
-    background: #ffffff;
-    margin-left: 500px;
-    margin-bottom: 70px;
-   
+   height: 40px;
+   width: 890px;
+   border: 5px solid #E8CE48;
+   background: #ffffff;
+   margin-left: 500px;
+   margin-bottom: 70px;
+  
+ }
+
+  .a{
+   width: 40%;
   }
 
   .search input{
@@ -596,10 +596,9 @@ table .questionTable .content {
     height: 40px;
     border:0px;
     background: #E8CE48;
-    background-position: 5px center;
-    background-repeat: no-repeat;
     color: #ffffff;
-    float: right; 
+    float: right;
+    margin-bottom: 50px; 
   }
   
   .search button:active {
@@ -695,14 +694,16 @@ table .questionTable .content {
     font-size : 13pt;
  }
 /** jh main **/
+.main {
+   font-family: "nanum";
+   text-align: center;
+   padding-bottom: 500px;
+}
 .kos_char{
    margin-left: 230px;
    border: 1px solid black;
-<<<<<<< HEAD
-=======
-	margin-left: 18%;
-	border: 1px solid black;
->>>>>>> 1cd6dd8938ebb73259c11386a9446c552933bc89
+   margin-left: 18%;
+   border: 1px solid black;
     float: left;
     width: 30%;
     height: 300px;
@@ -713,8 +714,6 @@ table .questionTable .content {
     margin-left: 5%;  
     width: 30%;
     height: 300px;
-<<<<<<< HEAD
-=======
 }
 /**jh search_final css**/
 .final_content{
@@ -722,29 +721,28 @@ table .questionTable .content {
    padding-bottom: 500px;
 }
 .left_final{
-	padding: 10px;
-	margin-left: 18%;	
+   padding: 10px;
+   margin-left: 18%;   
     float: left;
     width: 30%;
     height: 450px;
 }
 .right_final{
-	border: 1px solid black;
+   border: 1px solid black;
     float: left;
     margin-left: 5%;  
     width: 30%;
     height: 450px;
 }
-.price{	
-	padding: 10px;
-	margin-top: 20px;
-	font-size : 18px;
+.price{   
+   padding: 10px;
+   margin-top: 20px;
+   font-size : 18px;
 }
 .realtime_price{
-	padding: 10px;
-	background-color: #EAEAEA;
-	border: 1px solid #EAEAEA;
-	margin-top: 25px;
-	font-size : 18px;
->>>>>>> 1cd6dd8938ebb73259c11386a9446c552933bc89
+   padding: 10px;
+   background-color: #EAEAEA;
+   border: 1px solid #EAEAEA;
+   margin-top: 25px;
+   font-size : 18px;
 }
