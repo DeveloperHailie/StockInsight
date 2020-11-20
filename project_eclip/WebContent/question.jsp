@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+ <head>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <title>Stock Insight</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
@@ -74,7 +74,7 @@
           <div>
           <header>
           <center>
-            <img src="title_ver3_1.png" id="slide" style="width: 1200; height: auto"; >
+            <img src="title_ver3_1.png" id="slide" style="height: auto"; >
             </center>
           </header>
            </div>

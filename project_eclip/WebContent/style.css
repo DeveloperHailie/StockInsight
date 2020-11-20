@@ -283,7 +283,7 @@ table.questionTable tr {
 }
 
 table.questionTable td {
-   padding: 15px 12px;
+   padding: 15px 5px;
    vertical-align: middle;
    border-bottom: 1px solid #ccc;
    font-size: 20px;
@@ -309,7 +309,7 @@ table.questionTable td {
 
 .btn_question_list {
    font-weight: bold;
-   margin: 15px 0px 10px 0px;
+   margin: 15px 6px 10px 6px;
    padding: 4px 18px 4px 18px;
    border-radius: 3px;
    font-family: "nanum";
@@ -498,8 +498,9 @@ table .questionTable .content {
    border-radius: 3px;
    font-family: "nanum";
    font-size: 14px;
-   color: #000;
-   background: #ccc;
+   color: #fff;
+   background: linear-gradient(to right, #B06AB3, #4568DC);
+   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
    border: none;
 }
 
@@ -697,6 +698,11 @@ table .questionTable .content {
 .kos_char{
    margin-left: 230px;
    border: 1px solid black;
+<<<<<<< HEAD
+=======
+	margin-left: 18%;
+	border: 1px solid black;
+>>>>>>> 1cd6dd8938ebb73259c11386a9446c552933bc89
     float: left;
     width: 30%;
     height: 300px;
@@ -707,4 +713,38 @@ table .questionTable .content {
     margin-left: 5%;  
     width: 30%;
     height: 300px;
+<<<<<<< HEAD
+=======
+}
+/**jh search_final css**/
+.final_content{
+   font-family: "nanum";
+   padding-bottom: 500px;
+}
+.left_final{
+	padding: 10px;
+	margin-left: 18%;	
+    float: left;
+    width: 30%;
+    height: 450px;
+}
+.right_final{
+	border: 1px solid black;
+    float: left;
+    margin-left: 5%;  
+    width: 30%;
+    height: 450px;
+}
+.price{	
+	padding: 10px;
+	margin-top: 20px;
+	font-size : 18px;
+}
+.realtime_price{
+	padding: 10px;
+	background-color: #EAEAEA;
+	border: 1px solid #EAEAEA;
+	margin-top: 25px;
+	font-size : 18px;
+>>>>>>> 1cd6dd8938ebb73259c11386a9446c552933bc89
 }

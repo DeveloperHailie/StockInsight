@@ -77,7 +77,7 @@
 		<header>
 			<center>
 				<img src="title_ver3_1.png" id="slide"
-					style="width: 1200; height: auto"; >
+					style=" height: auto"; >
 			</center>
 		</header>
 	</div>

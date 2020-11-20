@@ -81,7 +81,7 @@
           <section id="content" >
            
             <nav>
-                문의 게시판<br/>
+                내 문의글 모아보기<br/>
                 <img class="bar" src="bar.jpg" style="padding-top:20px; width:121px; height : 10px; float:center;">
             </nav>
 
@@ -104,11 +104,9 @@
                   <%
                   // 출력할 post list
                   	ArrayList<QnAList> postList = (ArrayList<QnAList>)request.getAttribute("postList");
-                  // 현재 page
-                  	String pageIndexStr = (String)request.getParameter("pageIndex");
-                  	int pageindex = Integer.parseInt(pageIndexStr);
+                  
                   	
-                  	for(int i=(15*(pageindex-1));i<postList.size()&&i<(15*(pageindex-1)+15);i++){
+                  	for(int i=0;i<postList.size();i++){
                   		if(!postList.get(i).getIsQuestion()){
                   			out.println("<tr class=\"reply\">");
                   		}
@@ -139,18 +137,7 @@
                   </tbody>
                 </table>
 
-				<table class="page">
-                  <tr>
-                  <%
-                  	if (pageindex > 1) {
-                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex - 1) + "\" class=\"page_a\"> &lt; </a></td>");
-                  }
-                  if ((postList.size() / 15 + 1) > pageindex) {
-                  	out.println("<td><a href=\"/Stock_Insigh/postList?pageIndex=" + (pageindex + 1) + "\" class=\"page_a\"> &gt; </a></td>");
-                  }
-                  %>
-                  </tr>
-                </table>
+
 
               </center>
             </div>

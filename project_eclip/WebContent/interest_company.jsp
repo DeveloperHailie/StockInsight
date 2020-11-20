@@ -40,9 +40,9 @@
          </a></li> &nbsp; &nbsp;
          <li id="okaylogin_li"><a  href="okayLogin.jsp">메인화면</a></li>
          &nbsp; &nbsp;
-         <li id="okaylogin_li"><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
+         <li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
          &nbsp;
-         <li id="okaylogin_li"><a href="interest.jsp">관심종목</a></li> &nbsp;
+         <li id="okaylogin_li"><a id="yellow" href="interest.jsp">관심종목</a></li> &nbsp;
          &nbsp;
          <li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
          &nbsp;
@@ -60,9 +60,9 @@
                 &nbsp; &nbsp; 
                 <li><a  href="main.jsp">메인화면</a></li>
                 &nbsp; &nbsp; 
-                <li><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li>
+                <li><a  href="/Stock_Insigh/doStock">종목조회</a></li>
                 &nbsp; &nbsp;  
-                <li><a href="interest.jsp">관심종목</a></li>
+                <li><a id="yellow" href="interest.jsp">관심종목</a></li>
                 &nbsp;  &nbsp; 
                 <li><a href="mypage.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
@@ -85,8 +85,8 @@
 
       <nav>
          <%
-            ArrayList<String> fieldList = (ArrayList<String>) request.getAttribute("searchFieldList");
-            ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
+         ArrayList<String> findStockList = (ArrayList<String>) request.getAttribute("findStockIndexFromUser");
+         ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
          %>
          종목조회<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -104,18 +104,18 @@
          <h1 style= "float:right; margin-right: 670px;"> 회사 </h1>
          <div class= "interest">
             <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 500px;">
-               <form method="POST" action="doStockCompany">
+               <form method="POST" action="doSearchInterestCompany">
                   <%
-                     if (fieldList != null) {
-                     for (int i = 0; i < fieldList.size(); i++) {
+                     if (findStockList != null) {
+                     for (int i = 0; i < findStockList.size(); i++) {
                   %>
                   <%
                   out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");
-                  out.print(fieldList.get(i));
+                  out.print(findStockList.get(i));
                   out.print("\">");
                   out.print("<li>");
                   out.print("<a>");
-                  out.print(fieldList.get(i));
+                  out.print(findStockList.get(i));
                   out.print("</a>");
                   out.print("</li>");
                   out.print("</button>");   
@@ -150,9 +150,9 @@
                }
                %>
              </form>
-			</ul>
-		</div>
-		</div>
+         </ul>
+      </div>
+      </div>
 
    </section>
 

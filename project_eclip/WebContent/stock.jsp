@@ -127,12 +127,7 @@
                </form>
             </ul>
          </div>
-         <div class="interest">
-            <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
-            
-         </ul>
-      </div>
-      </div>
+         
 
    </section>
 

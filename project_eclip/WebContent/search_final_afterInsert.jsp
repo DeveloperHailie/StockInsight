@@ -105,25 +105,23 @@
 				
 				<%
                if(session.getAttribute("ID")!=null){ //세션 존재 
-               	String user_id = (String) session.getAttribute("ID"); // 세션에 저장된 user_id 
-               	String user_index = (String)request.getAttribute("user_index"); // 받아온 user_index 
-               	String stock_index = (String)request.getAttribute("stock_index"); // 받아온 stock_index 
-               	String insertInterestRow = (String)request.getAttribute("insertInterestRow");
+               		String user_id = (String) session.getAttribute("ID"); // 세션에 저장된 user_id 
+               		String user_index = (String)request.getAttribute("user_index"); // 받아온 user_index 
+               		String stock_index = (String)request.getAttribute("stock_index"); // 받아온 stock_index 
+               	
                %> 
 				
-               	<form method="POST" action="doFindIndex">
+               	<form method="POST" action="doDeleteInterest">
                	<%
-                	out.print("<button type = \"submit\" name= \"user_id\" style=\"margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
+                	out.print("<button type = \"submit\" name= \"user_id\" style=\"margin-left:20px;\"  onClick=\"alert('관심종목이 취소되었습니다.')\" value = \"");
                		out.print(user_id);
                		out.print("\">");
-               		out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
-               		out.print(selectCompany);
-               		out.print("\"/>");
-               		out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto;\">");
+ 		
+               		out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto;\">");
                		out.print("</button>");
                		out.print("</p>");
                		
-               	 	out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
+               		out.print("<input type = \"hidden\" name = \"user_index\" value = \"");
                  	out.print(user_index);
                  	out.print("\"/>");
   
@@ -134,8 +132,13 @@
                  	out.print("<input type = \"hidden\" name = \"selectField\" value = \"");
                  	out.print(selectField);
                  	out.print("\"/>");
-               	%>
-              	
+                 	
+                 	out.print("<input type = \"hidden\" name = \"selectCompany\" value = \"");
+               		out.print(selectCompany);
+               		out.print("\"/>");
+               	%> 	
+               	
+               	
                 </form>
                
                <% }else {
