@@ -102,18 +102,26 @@
     </div>
     <section id="content">
         <nav>
-            로그인<br /> <img class="bar" src="bar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
+            종목조회<br /> <img class="bar" src="bar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 
-            <br /> <div style = "font-size: 20px; margin-top: 10px;">
-                <b class="welcome">스톡인사이트 </b>에 오신 것을 환영합니다!                
-            </div>
+            <br /> 
         </nav>
 
-        <div class="inner_login">
-            <div class="login_start">
+        <div class="inner_search">
+            <div >
                 <form id = "login" onsubmit="return validate();" method="POST" action="doLogin">
                     <fieldset>
-                        <div class="box_login">
+                        <center>
+                           <form id = "stock" method="POST" action="doSearch">
+                              <input type="text" class="search_inner" placeholder="검색어 입력">
+                              <button type="submit" style="width:auto; height:27pt;" class="search_button" onclick="location.href='search_after.jsp'">&nbsp;검색&nbsp;</button>
+                           </form><br /><br/>
+                           <br />
+                           </center>
+                           <br/>
+                           <br />
+                           <center>
+                           <div class="box_login">
                             <div class="inp_text">
                                 <label for="loginId" class="login_show">아이디</label> 
                                 <input type="text" id="id" name="user_id" placeholder="ID">
@@ -122,7 +130,7 @@
                                 <label for="loginPw" class="login_show">비밀번호</label> 
                                 <input type="password" id="pw" name="user_pwd" placeholder="Password">
                             </div>
-                        </div>
+                        </div></center>
                         <input type="submit" class="btn_login" value="로그인"  onclick="showPopup();">
                     </fieldset>
                 </form>

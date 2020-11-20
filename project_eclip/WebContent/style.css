@@ -127,6 +127,11 @@ a {
    top: 100%;
 }
 
+.inner_search {
+   
+   top: 100%;
+}
+
 .login_start {
    width: 320px;
    margin: auto;
@@ -569,12 +574,26 @@ table .questionTable .content {
   }
 
   .search{
-   height: 40px;
-   width: 890px;
    border: 5px solid #E8CE48;
    background: #ffffff;
-   margin-left: 500px;
-   margin-bottom: 70px;
+  
+ }
+ 
+   .search_inner{
+   border: 5px solid #E8CE48;
+   background: #ffffff;
+   width: 600px;
+   height: 30px;
+    
+   
+  
+ }
+ 
+   .search_button{
+   border: 2px solid #E8CE48;
+   background: #E8CE48;
+   color: #ffffff;
+   margin-left: -45px;
   
  }
 
