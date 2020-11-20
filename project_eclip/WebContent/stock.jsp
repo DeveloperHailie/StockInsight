@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -102,6 +103,11 @@
     </div>
     <section id="content">
         <nav>
+         <%
+            ArrayList<String> fieldList = (ArrayList<String>) request.getAttribute("searchFieldList");
+            ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
+         %>
+        
             종목조회<br /> <img class="bar" src="bar.jpg" style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 
             <br /> 
@@ -120,25 +126,49 @@
                            </center>
                            <br/>
                            <br />
-                           <center>
-                           <div class="box_login">
-                            <div class="inp_text">
-                                <label for="loginId" class="login_show">아이디</label> 
-                                <input type="text" id="id" name="user_id" placeholder="ID">
-                            </div>
-                            <div class="inp_text">
-                                <label for="loginPw" class="login_show">비밀번호</label> 
-                                <input type="password" id="pw" name="user_pwd" placeholder="Password">
-                            </div>
-                        </div></center>
-                        <input type="submit" class="btn_login" value="로그인"  onclick="showPopup();">
+                        <h1 style= "float:left; margin-left: 30%;"> 분야 </h1>
+                        <h1 style= "float:right; margin-right: 30%;"> 회사 </h1>
+                        <br/><br/><br/>
+                        <div class= "interest">
+                           <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 17%;">
+                              <form method="POST" action="doStockCompany">
+                                 <%
+                                    if (fieldList != null) {
+                                    for (int i = 0; i < fieldList.size(); i++) {
+                                 %>
+                                 <%
+                                 out.print("<button type = \"submit\" class=\"interbtn\" name= \"field\" style=\"height: 40px; width: 340px;\" value = \"");
+                                 out.print(fieldList.get(i));
+                                 out.print("\">");
+                                 out.print("<li>");
+                                 out.print("<a>");
+                                 out.print(fieldList.get(i));
+                                 out.print("</a>");
+                                 out.print("</li>");
+                                 out.print("</button>");   
+                                 %>
+                                 <%
+                                    }
+                                 }
+                                 %>
+                              </form>
+                           </ul>
+                        </div>
+                        <div class="interest">
+                           <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 17%;">
+                           
+                        </ul>
+                     </div>
+               
+                     </div>
+                     <br /><br/><br /><br /><br/><br />
+               
+               
+               
+                        
                     </fieldset>
                 </form>
-                <fieldset class= "login_under">
-                    <a href="findId.jsp">ID 찾기 </a> / <a href="findPwd.jsp">PASSWORD 찾기</a>
-                <a href="join.jsp" class = "join">회원가입</a>               
                 
-                </fieldset>
 
             </div>
         </div>

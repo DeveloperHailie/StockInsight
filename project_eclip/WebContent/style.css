@@ -552,7 +552,7 @@ table .questionTable .content {
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
-    position: absolute;
+    /* position: absolute;*/
   }
   
   .interest li a {
