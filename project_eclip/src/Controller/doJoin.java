@@ -62,7 +62,7 @@ public class doJoin extends HttpServlet {
 		else { //가입이 안된 유저
 			try {
 				DBUtil.addMember(conn, name, id, email, pwd);
-				response.sendRedirect("login.html"); //로그인으로
+				response.sendRedirect("login.jsp"); //로그인으로
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} //가입
