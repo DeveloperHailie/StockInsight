@@ -559,8 +559,6 @@ table .questionTable .content {
     overflow: scroll;
     overflow-x: hidden;
     border: #ffffff;
-    max-width: 100%;
-    /* position: absolute;*/
   }
   
   .interest li a {
@@ -580,6 +578,11 @@ table .questionTable .content {
     background-color: #ff8080;
     color: white;
   }
+
+  .interst_stock {
+   
+   top: 100%;
+}
 
   .search{
    border: 5px solid #E8CE48;
@@ -602,7 +605,6 @@ table .questionTable .content {
    background: #E8CE48;
    color: #ffffff;
    margin-left: -45px;
-  
  }
 
   .a{
