@@ -13,7 +13,9 @@
   </welcome-file-list>
     <context-param>
       <param-name>JDBCUrl</param-name>
-      <param-value>jdbc:mysql://database-1.cty7hqkct5us.ap-northeast-2.rds.amazonaws.com:3306/Stockinsight?autoReconnection=true</param-value>
+      <param-value>
+      jdbc:mysql://database-1.cty7hqkct5us.ap-northeast-2.rds.amazonaws.com:3306/Stockinsight?autoReconnection=true
+      </param-value>
    </context-param>
    <context-param>
       <param-name>DBuser</param-name>
