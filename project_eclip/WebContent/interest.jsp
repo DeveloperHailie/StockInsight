@@ -3,14 +3,17 @@
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
+
 <script type="text/javascript">
 			var n = 0;
 			var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
-			function rotate() {
+			
+         function rotate() {
 				document.images.slide.src = imgs[n];
 				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
 			}
@@ -88,16 +91,17 @@
          관심종목<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
       </nav>
-<div class="menu_content">
+<div class="interst_stock">
+   <div >                   <fieldset>
       <%
        if(session.getAttribute("ID")!=null){ //세션 존재 
         
     	%>
-      <h1 style="float: left; margin-left: 660px;">분야</h1>
-      <h1 style="float: right; margin-right: 670px;">회사</h1>
-      <div class="interest">
-         <ul
-            style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 500px;">
+       <h1 style= "float:left; margin-left: 33%;"> 분야 </h1>
+       <h1 style= "float:right; margin-right: 33%;"> 회사 </h1>
+       <br/><br/><br/>
+       <div class= "interest">
+          <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 20%;">
             <form method="POST" action="doSearchInterestCompany">
                <%
                   if (findStockFieldList != null) {
@@ -123,7 +127,7 @@
          </ul>
       </div>
       <div class="interest">
-         <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; margin-right: 500px;">
+         <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 20%;">
             <form method="POST" action="doSearchFinal">
             <%
                   if (companyList != null) {
@@ -152,8 +156,14 @@
        else { // 세션존재하지 않음
        %>
                   <h1> 로그인 후 이용해주세요. </h1>
-    <% } %>
-</div>
+    <% } %></div>
+   </fieldset>
+                
+                
+
+
+</div></div>
+<br /><br/><br /><br /><br/><br />
 
    </section>
 
