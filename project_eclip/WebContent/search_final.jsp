@@ -171,8 +171,9 @@
                <% }else {
             	   // 세션존재하지 않음
                    %>
-                   <button style="border : none; margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.')"><img src="empty_heart.png" style="width: 30px; height: auto; background: white;"></button></p>
-                   <% } %>
+                   <button style="border : none; margin-left:20px;" onClick="alert('로그인이 필요한 서비스입니다.');"><img src="empty_heart.png" style="width: 30px; height: auto; background: white;"></button></p>
+                   <% 
+               		} %>
 
 				<div class ="realtime_price">
 					<b>${selectCompany}</b>의 실시간 가격 <br>
