@@ -111,12 +111,12 @@
                	
                	String stock_index = (String)request.getAttribute("stock_index"); // 받아온 stock_index 
                	Boolean interestCheck = (Boolean)request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
-               	System.out.print("있는지 없는지 :   " + interestCheck);
+               	System.out.print("search_final.jsp 관심종목 유무 :  " + interestCheck + "\n\n");
                %> 
 				
                	<%
                	if(interestCheck == false){//선택한 회사가 관심종목에 없을 때, x
-               		out.print("<form method = \"POST\" action=\"doFindIndex\">"); //관심종목에 현재 로그인한 user_index에 선택한 분야가 관심종목에 있을때 
+               		out.print("<form method = \"POST\" action=\"doInsertInterest\">"); //관심종목에 현재 로그인한 user_index에 선택한 분야가 관심종목에 있을때 
                		out.print("<button type = \"submit\" name= \"user_id\" style=\" border : none; margin-left:20px;\" onClick=\"alert('관심종목에 담겼습니다.')\" value = \"");
                		out.print(user_id);
                		out.print("\">");

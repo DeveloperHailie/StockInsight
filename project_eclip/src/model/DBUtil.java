@@ -559,7 +559,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
         try {
 
            st = con.createStatement();
-           System.out.println("findFieldSelectCompany:" + selectCompany);
+           System.out.println("DBUtil_findFieldSelectCompany:" + selectCompany);
            if (st.execute(sqlinter + "'" + selectCompany + "'")) {
               return st.getResultSet(); // field 넘김 
              
@@ -675,7 +675,7 @@ public static int addQuestion(Connection conn, int uidx, String title, String co
       try {
 
          st = con.createStatement();
-         System.out.println("selectCompany:" + selectCompany);
+         //System.out.println("DBUtil_findStockIndex_selectCompany:" + selectCompany);
          if (st.execute(sqlinter + "'" + selectCompany + "'")) {
             return st.getResultSet(); // field 넘김 
            
