@@ -154,8 +154,14 @@
       
       <% } 
        else { // 세션존재하지 않음
-       %>
-                  <h1> 로그인 후 이용해주세요. </h1>
+       %><center>
+                 <% 
+                  out.print("<h1> 로그인 후 이용해주세요. </h1>");
+                  out.print("<script>");
+                  out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+                  out.print("</script>");
+                  %>
+         </center>
     <% } %></div>
    </fieldset>
                 

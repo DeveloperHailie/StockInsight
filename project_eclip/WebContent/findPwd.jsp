@@ -113,7 +113,7 @@
                      maxlength="50" /> </td>
                </tr>
             </table>
-            <input type="submit" class="findid" value=" ID 찾기 ">
+            <input type="submit" class="findid" value="PW 찾기">
             </td>
          </center>
       </form>

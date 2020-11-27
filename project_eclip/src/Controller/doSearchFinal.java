@@ -67,7 +67,7 @@ public class doSearchFinal extends HttpServlet {
 		            }
 		         }
 	         
-	         System.out.print("두서치파이널 유저 인덱스 : " + user_index + "\n");
+	         System.out.print("doSearchFinal_user_index : " + user_index + "\n");
 	         
 	       
 			
@@ -84,13 +84,13 @@ public class doSearchFinal extends HttpServlet {
 	            }
 	         }
          
-           System.out.print("두서치파이널 스톡 인덱스 : " + stock_index + "\n");
+           System.out.print("doSearchFinal_stock_index : " + stock_index + "\n");
            
            
            //interest_index 있는지 없는지 확인
            Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index);
            request.setAttribute("interCheck", interCheck); 
-           System.out.print("----두서치의----------interCheck : " + interCheck);
+           System.out.print("doSearchFinal_interCheck : " + interCheck + "\n");
 			
 			
 			ResultSet rs = DBUtil.findFieldSelectCompany(conn, selectCompany); // 검색결과 비교 
