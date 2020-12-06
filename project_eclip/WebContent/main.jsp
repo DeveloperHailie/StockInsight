@@ -42,12 +42,6 @@
 	height: 20px;
 	line-height: 20px;
 }
-
-.chart {
-	border: 1px solid orange;
-	float: left;
-	margin: 30px;
-}
 </style>
 <script src="./js/myAjax.js"></script>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">

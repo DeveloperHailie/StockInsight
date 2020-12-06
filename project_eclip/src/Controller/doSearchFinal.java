@@ -51,7 +51,7 @@ public class doSearchFinal extends HttpServlet {
 		String user_index = null;
 		String stock_index = null;
 
-		
+		int value = 0;
 		try {	
 			Statement st = conn.createStatement();
 			
@@ -99,16 +99,30 @@ public class doSearchFinal extends HttpServlet {
 				if(rs.next()) { //결과가 1개인 경우 
 					String selectField = rs.getString(1); // 분야 
 					request.setAttribute("selectField", selectField); // 분야 넘기기 
+					value = 2;
 				}
-				RequestDispatcher view =  sc.getRequestDispatcher("/search_final.jsp");
-				view.forward(request, response);
 			}
 			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		ResultSet code = DBUtil.find_stockcode(conn, stock_index);
+		if(code !=null) {
+			try
+			{
+				if(code.next()) { //결과가 1개인 경우 
+					String st_cd = code.getString(1);
+					request.setAttribute("stock_code", st_cd);
+					value = 2;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();} 
+		}
+		if(value !=0) {
+			RequestDispatcher view =  request.getRequestDispatcher("/search_final.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**
