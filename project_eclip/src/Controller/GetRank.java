@@ -1,64 +1,67 @@
 package Controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DBUtil;
+
 /**
- * Servlet implementation class dochart
+ * Servlet implementation class GetRank
  */
-@WebServlet("/csv")
-public class dochart extends HttpServlet {
+@WebServlet("/getRank")
+public class GetRank extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public dochart() {
+    public GetRank() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    /**
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		 // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-	      String name = request.getParameter("code"); 
-	      // name db filename
-	      
-	      // code.csv파일 열어서 그 안의 내용 저장
-	      ArrayList<String[]> file = model.CsvToData.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
-	      request.setAttribute("file", file); 
-	      RequestDispatcher view = request.getRequestDispatcher("data.jsp");
-	      view.forward(request, response);
-	   }
+		ServletContext sc = getServletContext();
+		Connection conn = (Connection) sc.getAttribute("DBconnection");
+		
+		// 뭐를 기준으로 ranking 매기는지
+		String ranking = request.getParameter("table"); // volume
+		
+		// DBUtil에서 stock table에서 volume 상위 10개 회사이름 가져오기
+		String[] rank = DBUtil.getRanking(conn, ranking);
+		// attribute로 설정
+		request.setAttribute("rank", rank);
+		// rankData.jsp로 forward
+		RequestDispatcher view = request.getRequestDispatcher("rankData.jsp");
+		
+		
+		view.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		doGet(request, response);
 	}
 

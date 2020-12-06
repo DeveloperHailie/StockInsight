@@ -85,8 +85,10 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag = "<a href=\"#\" id=\"current\">1 순위</a></br>";
-				tag += "<a href=\"#\">2 순위</a></li>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank'>";
+				
+				tag += "</section>";
 				//tag += "</ul>";
 				btn.innerHTML = tag;
 				$("#synopMore").text("▲");
@@ -141,6 +143,46 @@
 				currentData_kosdaq(kosdaq_pre_data, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
 			});
 		};
+		// 보여지는 순위만 reload
+		var loadShowRank = function() {
+			var btn = document.getElementById('showRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateShowRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		// 숨겨진 순위만 reload
+		var loadHiddenRank = function() {
+			var btn = document.getElementById('hiddenRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		
+		// 보여지는 순위 그리는 코드
+		function updateShowRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...@회사명        
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<li><a href='javascript:showplay();'>"+rowIndex + "위. "+companyName+"</a></li>";
+			};
+			element.innerHTML = strTag;
+		};
+		
+		// 숨긴 순위 그리는 코드
+		function updateHiddenRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...         
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<a href=\'#\'>"+rowIndex + "위. "+companyName+"</a></br>";
+			};
+			element.innerHTML = strTag;
+		};
+		
+		
 		// 차트 그리기
 		function ajaxMakeChart_kospi(element, txtData) {
 			row = txtData.split("@"); // row1@row2@...         
@@ -278,6 +320,14 @@
 			repeatChart();
 			loadPresentPrice();
 		}, 30000);
+		setInterval(function() { 
+			loadShowRank();
+			loadHiddenRank();
+		}, 1000);
+		window.onload = function(){
+			loadShowRank();
+			loadHiddenRank();
+		}
 	</script>
 	<div class="front">
 		<div class="logo">
@@ -289,23 +339,14 @@
 			style="position: absolute; margin-left: 380px; margin-top: 65px;">
 			<dl id="rank-list">
 				<dd>
-					<ol>
-						<li><a href="javascript:showplay();">1 순위</a></li>
-						<li><a href="javascript:showplay();">2 순위</a></li>
-						<li><a href="javascript:showplay();">3 순위</a></li>
-						<li><a href="javascript:showplay();">4 순위</a></li>
-						<li><a href="javascript:showplay();">5 순위</a></li>
-						<li><a href="javascript:showplay();">6 순위</a></li>
-						<li><a href="javascript:showplay();">7 순위</a></li>
-						<li><a href="javascript:showplay();">8 순위</a></li>
-						<li><a href="javascript:showplay();">9 순위</a></li>
-						<li><a href="javascript:showplay();">10 순위</a></li>
+					<ol id="showRank" style="font-family: 'nanum';" >
+						<li><a href='javascript:showplay();'> </a></li>
 					</ol>
 				</dd>
 			</dl>
 		</div>
 		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background: white;"></div>
+			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
