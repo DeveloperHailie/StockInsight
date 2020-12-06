@@ -46,7 +46,7 @@ public class dochart extends HttpServlet {
 	      // name db filename
 	      
 	      // code.csv파일 열어서 그 안의 내용 저장
-	      ArrayList<String[]> file = csv.chart_csv.addToList("C:\\Users\\User\\Desktop\\Git\\StockInsight\\project_eclip\\"+name+".csv");
+	      ArrayList<String[]> file = csv.chart_csv.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
 	      for(int i=0;i<file.size();i++) {
 	         System.out.println(file.get(i)[0]+file.get(i)[1]+file.get(i)[2]+file.get(i)[3]+file.get(i)[4]);
 	      }
