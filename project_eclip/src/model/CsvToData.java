@@ -60,15 +60,4 @@ static Scanner in = new Scanner(System.in);
     		}
     	return null;
 	}
-
-	public static void addToCsv(String fileName, String code, String date, String presentPrice, String sign, String difference, String prevEndPrice, String volume) throws IOException {
-		BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
-		//﻿code date presentPrice sign difference prevEndPrice volume
-		String line = code + "," + date + "," + presentPrice + "," + sign + "," + difference + "," + prevEndPrice + "," + volume;
-		fw.write(line);
-		
-		fw.newLine();
-		fw.flush();
-		fw.close();
-	}
 }
