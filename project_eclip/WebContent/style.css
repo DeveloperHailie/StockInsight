@@ -550,7 +550,18 @@ table .questionTable .content {
 /**yeonhee _ interest**/
 
 .interest {
-   text-align: center;
+   margin:auto;
+   width:800px;
+}
+
+.inn{
+	 margin:auto;
+	 diplay: inline-block;
+	 width : 700px;
+}
+
+.inn h1{
+	display:inline;
 }
 
 .interest ul {
@@ -580,7 +591,6 @@ table .questionTable .content {
   }
 
   .interst_stock {
-   
    top: 100%;
 }
 
@@ -726,22 +736,6 @@ table .questionTable .content {
    font-family: "nanum";
    text-align: center;
    padding-bottom: 500px;
-}
-.kos_char{
-   margin-left: 230px;
-   border: 1px solid black;
-   margin-left: 18%;
-   border: 1px solid black;
-    float: left;
-    width: 30%;
-    height: 300px;
-}
-.kod_char{
-   border: 1px solid black;
-    float: left;
-    margin-left: 5%;  
-    width: 30%;
-    height: 300px;
 }
 /**jh search_final css**/
 .final_content{
