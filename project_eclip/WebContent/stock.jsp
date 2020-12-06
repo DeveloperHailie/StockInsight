@@ -114,21 +114,25 @@
         </nav>
 
         <div class="inner_search">
-            <div >                   <fieldset>
+                      <fieldset>
                         <center>
                            <form id = "stock" method="POST" action="doSearch">
                               <input type="text" name="search" class="search_inner" placeholder="검색어 입력">
                               <button type="submit" style="width:auto; height:27pt;" class="search_button" onclick="location.href='search_after.jsp'">&nbsp;검색&nbsp;</button>
                            </form><br /><br/>
                            <br />
-                           </center>
+                        </center>
                            <br/>
                            <br />
-                        <h1 style= "float:left; margin-left: 33%;"> 분야 </h1>
-                        <h1 style= "float:right; margin-right: 33%;"> 회사 </h1>
+                     <div class = "inn">
+                        <h1 class = "inn h1" style="margin-left:17%"> 분야 </h1>
+                        <h1 class = "inn h1"style="margin-left:50%" > 회사 </h1>
+                     </div>
                         <br/><br/><br/>
+                       
                         <div class= "interest">
-                           <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 20%;">
+ 
+                           <ul class = "interest ul" style="border: 5px solid #4568DC; width: 360px; height: 510px; float: left">
                               <form method="POST" action="doStockCompany">
                                  <%
                                     if (fieldList != null) {
@@ -151,9 +155,12 @@
                                  %>
                               </form>
                            </ul>
-                        </div>
-                        <div class="interest">
-                           <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 20%;">
+                        <!--	</center> -->
+                         <!--</div> -->
+                    	
+                        <!--  <div class="interest"> -->
+                        <!--  <center> -->
+                           <ul class = "interest ul"style="border: 5px solid #B06AB3; width: 360px; height: 510px;">
                               <form method="POST" action="doSearchFinal">
                                  <%
                                        if (companyList != null) {
@@ -175,15 +182,12 @@
                                     }
                                     %>
                                   </form>
-                        </ul>
-                     </div>
-               
-                     </div>
-                     <br /><br/><br /><br /><br/><br />
-               
-               
-               
-                        
+                        	</ul>
+
+                 	</div>  
+                 	
+          </div>
+                     <br /><br/><br /><br /><br/><br />      
                     </fieldset>
                 
                 
