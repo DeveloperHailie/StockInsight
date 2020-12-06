@@ -550,7 +550,18 @@ table .questionTable .content {
 /**yeonhee _ interest**/
 
 .interest {
-   text-align: center;
+   margin:auto;
+   width:800px;
+}
+
+.inn{
+	 margin:auto;
+	 diplay: inline-block;
+	 width : 700px;
+}
+
+.inn h1{
+	display:inline;
 }
 
 .interest ul {
@@ -580,7 +591,6 @@ table .questionTable .content {
   }
 
   .interst_stock {
-   
    top: 100%;
 }
 
