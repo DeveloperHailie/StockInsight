@@ -204,7 +204,8 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 		<nav>
 			<%
 				String selectField = (String) request.getAttribute("selectField"); //분야
-			String selectCompany = (String) request.getAttribute("selectCompany"); //회사
+				String selectCompany = (String) request.getAttribute("selectCompany"); //회사
+				String selectFuture = (String) request.getAttribute("selectFuture"); // 예측가격
 			%>
 			예측결과<br /> <img class="bar" src="bar.jpg"
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -303,7 +304,7 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 				</div>
 				<div class="price">
 					내일 예측 가격은<br> <b
-						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">330,000원</b>
+						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}</b>
 					입니다.
 				</div>
 
