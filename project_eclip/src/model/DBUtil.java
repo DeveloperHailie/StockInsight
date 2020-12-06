@@ -918,4 +918,24 @@ public class DBUtil {
 		// 실패 시
 		return null;
 	}
+	public static ResultSet getStockCode(Connection con, String companyName) {
+		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_company ="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sql + "'" + companyName + "'" )) {
+				//interest_index = - 1;
+				return st.getResultSet(); // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
+	}
 }

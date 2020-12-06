@@ -177,7 +177,7 @@
 			row = txtData.split("@"); // 회사명@회사명@...         
 			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
 				var companyName = row[rowIndex-1];
-				strTag += "<a href=\'#\'>"+rowIndex + "위. "+companyName+"</a></br>";
+				strTag += "<a href='"+"/Stock_Insigh/getRankInfo?companyName="+companyName+"'>"+rowIndex + "위. "+companyName+"</a></br>";
 			};
 			element.innerHTML = strTag;
 		};
