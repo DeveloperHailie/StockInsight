@@ -35,7 +35,7 @@ public class RunProgram {
 					// 외부 프로그램 실행
 				    process = processBuilder.start();
 				    System.out.print(fileName);
-				    System.out.println("start");	
+				    System.out.println(" start");	
 			
 				} catch (IOException e) {
 				    e.printStackTrace();
@@ -50,7 +50,7 @@ public class RunProgram {
 					e.printStackTrace();
 				}
 				// 프로그램 종료 상태 출력 (0이면 정상 종료)	
-				System.out.print(fileName);
+				System.out.print(fileName+": ");
 				System.out.println(process.exitValue());
 				System.out.println("finish");
 	}

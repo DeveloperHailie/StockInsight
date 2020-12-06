@@ -42,14 +42,11 @@ public class dochart extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 	      String name = request.getParameter("code"); 
-	      System.out.println(name);
 	      // name db filename
 	      
 	      // code.csv파일 열어서 그 안의 내용 저장
 	      ArrayList<String[]> file = csv.chart_csv.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
-	      for(int i=0;i<file.size();i++) {
-	         System.out.println(file.get(i)[0]+file.get(i)[1]+file.get(i)[2]+file.get(i)[3]+file.get(i)[4]);
-	      }
+	      
 	      request.setAttribute("file", file); 
 	      RequestDispatcher view = request.getRequestDispatcher("data.jsp");
 	      view.forward(request, response);
