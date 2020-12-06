@@ -811,6 +811,52 @@ public class DBUtil {
 		return null;
 	}
 
+	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+
+		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+				//interest_index = - 1;
+				return st.getResultSet(); // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	
+	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+
+		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+				//interest_index = - 1;
+				return st.getResultSet(); // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	
 	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
 		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 

@@ -112,52 +112,24 @@
                %>
                <%
                out.print("<div class = \"like\">");
-               out.print("<button type = \"submit\" class=\"likebtn\" name= \"stock_field\"  value = \"");
-               out.print(stockindexList.get(i));
+               out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
+               out.print(companyList.get(i));
                out.print("\">"); 
                %>
-               <h1><%= findStockFieldList.get(i)%></h1><p>분야</p>  
+               <h1>[<%= findStockFieldList.get(i)%>]</h1>  
+               <br/>
                <h1><%= companyList.get(i)%></h1>
-               <p>실시간 가격 : </p>  <h1><%= beforeList.get(i)%></h1>  
-               <p>내일 예측 가격 : </p><h1><%= futureList.get(i)%></h1>
-               
+               <br/>
+               <p>실시간 가격 : <%= beforeList.get(i)%>원</p>  
+               <p>내일 예측 가격 : <%= futureList.get(i)%>원</p>
                </button>
                </div>
                <%
                   }
                }
                %>
-               
               </div>
             </form>
-         
-      <!--  
-      <div class="interest">
-         <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 20%;">
-            <form method="POST" action="doSearchFinal">
-            <%
-                  if (companyList != null) {
-                  for (int i = 0; i < companyList.size(); i++) {
-               %>
-               <%
-              	out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
-            	out.print(companyList.get(i));
-            	out.print("\">");
-            	out.print("<li>");
-            	out.print("<a>");
-            	out.print(companyList.get(i));
-            	out.print("</a>");
-            	out.print("</li>");
-            	out.print("</button>");   
-               %>
-               <%
-                  }
-               }
-               %>
-             </form>
-         </ul>
-      </div>
-      -->
       <% } 
        else { // 세션존재하지 않음
        %><center>

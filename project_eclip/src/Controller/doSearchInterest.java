@@ -121,7 +121,7 @@ public class doSearchInterest extends HttpServlet {
      		            
      		              findCompanyList.add(findStockCompany_FromStockIndex);
         		                    		                     
-             		       request.setAttribute("searchCompanyList", findCompanyList); // stock_index 리스트에 해당하는 분야 가져오기 
+             		       request.setAttribute("searchCompanyList", findCompanyList); // stock_index 리스트에 해당하는 회사 가져오기 
      		            }
      		            
      		        }
@@ -132,7 +132,7 @@ public class doSearchInterest extends HttpServlet {
       		            
       		             findBeforeList.add(findStockBefore_FromStockIndex);
          		                    		                     
-              		       request.setAttribute("findBeforeList", findBeforeList); // stock_index 리스트에 해당하는 분야 가져오기 
+              		       request.setAttribute("findBeforeList", findBeforeList); // stock_index 리스트에 해당하는 현재가격 가져오기 
       		            }
       		            
       		        }
@@ -143,7 +143,7 @@ public class doSearchInterest extends HttpServlet {
       		            
       		              findFutureList.add(findStockFuture_FromStockIndex);
          		                    		                     
-              		       request.setAttribute("findFutureList", findFutureList); // stock_index 리스트에 해당하는 분야 가져오기 
+              		       request.setAttribute("findFutureList", findFutureList); // stock_index 리스트에 해당하는 예측가격 가져오기 
       		            }
       		            
       		        }
