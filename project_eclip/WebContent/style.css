@@ -550,7 +550,58 @@ table .questionTable .content {
 /**yeonhee _ interest**/
 
 .interest {
-   text-align: center;
+   margin:auto;
+   width:800px;
+}
+
+.like{
+	width: 250px;
+	height : 250px;
+	
+	margin-bottom: 115px;
+    float:left;
+    margin-left: 115px;
+   
+    
+    border: 5px;
+    border-style: solid;
+    
+    border-image: linear-gradient(to top, #B06AB3, #4568DC);
+    border-image: linear-gradient(to bottom, #B06AB3, #4568DC);
+    border-image: linear-gradient(to left, #B06AB3, #4568DC);
+    border-image: linear-gradient(to right, #B06AB3, #4568DC);
+    
+    
+    border-image-slice: 1;
+    background : white;
+}
+
+.alllike{
+	 margin-left:160px;
+	 height : 3000px;
+}
+
+.like button{
+	width: 250px;
+	height : 250px;
+	background-color : white;
+	border-color:white;
+	border : 0.5px ;
+}
+
+.like button:hover{
+	background: linear-gradient(to right, #B06AB3, #4568DC);
+    color: white;
+}
+
+.inn{
+	 margin:auto;
+	 diplay: inline-block;
+	 width : 700px;
+}
+
+.inn h1{
+	display:inline;
 }
 
 .interest ul {
@@ -580,7 +631,6 @@ table .questionTable .content {
   }
 
   .interst_stock {
-   
    top: 100%;
 }
 
@@ -725,23 +775,7 @@ table .questionTable .content {
 .main {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 500px;
-}
-.kos_char{
-   margin-left: 230px;
-   border: 1px solid black;
-   margin-left: 18%;
-   border: 1px solid black;
-    float: left;
-    width: 30%;
-    height: 300px;
-}
-.kod_char{
-   border: 1px solid black;
-    float: left;
-    margin-left: 5%;  
-    width: 30%;
-    height: 300px;
+   padding-bottom: 100px;
 }
 /**jh search_final css**/
 .final_content{
@@ -750,7 +784,7 @@ table .questionTable .content {
 }
 .left_final{
    padding: 10px;
-   margin-left: 18%;   
+   margin-left: 15%;   
     float: left;
     width: 30%;
     height: 450px;

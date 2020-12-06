@@ -71,6 +71,7 @@ public class doSearchInterest extends HttpServlet {
 	         if (rs_stock_index != null) {
 	            while (rs_stock_index.next()) {
 	               String findStockIndex_FromUser = rs_stock_index.getString(1);
+	               
 	               findStockIndexFromUser.add(findStockIndex_FromUser);
 	               request.setAttribute("findStockIndexFromUser", findStockIndexFromUser); // user_index에 해당하는 stock_index list
 	            }
@@ -79,31 +80,75 @@ public class doSearchInterest extends HttpServlet {
 	         
 	         
 	         //stock_index를 field 이름으로 매핑 --> 관심종목에 넣은 분야 출력 
-	         ResultSet  rs_stock_field = null; // 중복 제거한 stock_field들의 모음 
+	         ResultSet rs_stock_field = null;
 	         ArrayList<String> findStockIndex_FromUser = (ArrayList<String>) request.getAttribute("findStockIndexFromUser"); // user가 넣은 종목 index 리스트 
 	         ArrayList<String> findStockFieldFromStockIndex = new ArrayList<String>(); //인덱스로부터 분야 추출 
 	         
+	         ResultSet rs_stock_company = null;
+	         ArrayList<String> findCompanyList = new ArrayList<String>();
+	         
+	         ResultSet rs_stock_before = null;
+	         ArrayList<String> findBeforeList = new ArrayList<String>();
+	         
+	         ResultSet rs_stock_future = null;
+	         ArrayList<String> findFutureList = new ArrayList<String>();
 	         
 	         if (findStockIndex_FromUser != null) {
                  for (int i = 0; i < findStockIndex_FromUser.size(); i++) { //stock_index list에서 stock_index 하나씩 가져와서 field 구하기  
+                	 
                 	 rs_stock_field = DBUtil.findStockFieldFromStockIndex(conn, findStockIndex_FromUser.get(i)); // stock_index --> stock_field
+                	 rs_stock_company = DBUtil.findStockCompanyFromStockIndex(conn, findStockIndex_FromUser.get(i));
+                	 rs_stock_before = DBUtil.findStockBeforeFromStockIndex(conn, findStockIndex_FromUser.get(i));
+                	 rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, findStockIndex_FromUser.get(i));
+                	 
+                	 
                 	 
                 	 if (rs_stock_field != null) {
         		            while (rs_stock_field.next()) {
         		               String findStockField_FromStockIndex = rs_stock_field.getString(1); //분야 얻어오기 
         		               System.out.print(" \n findStockField: "  + findStockField_FromStockIndex );
-        		                
-        		               if(findStockFieldFromStockIndex.contains(findStockField_FromStockIndex)) {
-        		            	   //System.out.print(" 배열에 넣지않을 분야:" + findStockField_FromStockIndex);
-        		               }
-        		               else {
-        		            	    findStockFieldFromStockIndex.add(findStockField_FromStockIndex);
-           		            		//System.out.print(" 배열에 넣을 분야:" + findStockField_FromStockIndex);
-        		               }         
-                		        request.setAttribute("findStockFieldFromStockIndex", findStockFieldFromStockIndex); // stock_index 리스트에 해당하는 분야 가져오기 
+        		               
+        		               findStockFieldFromStockIndex.add(findStockField_FromStockIndex);
+           		                    		                     
+                		       request.setAttribute("findStockFieldFromStockIndex", findStockFieldFromStockIndex); // stock_index 리스트에 해당하는 분야 가져오기 
         		            }
         		            
         		        }
+                	 
+                	 if (rs_stock_company != null) {
+     		            while (rs_stock_company.next()) {
+     		               String findStockCompany_FromStockIndex = rs_stock_company.getString(1); //분야 얻어오기 
+     		            
+     		              findCompanyList.add(findStockCompany_FromStockIndex);
+        		                    		                     
+             		       request.setAttribute("searchCompanyList", findCompanyList); // stock_index 리스트에 해당하는 회사 가져오기 
+     		            }
+     		            
+     		        }
+                	 
+                	 if (rs_stock_before != null) {
+      		            while (rs_stock_before.next()) {
+      		               String findStockBefore_FromStockIndex = rs_stock_before.getString(1); //분야 얻어오기 
+      		            
+      		             findBeforeList.add(findStockBefore_FromStockIndex);
+         		                    		                     
+              		       request.setAttribute("findBeforeList", findBeforeList); // stock_index 리스트에 해당하는 현재가격 가져오기 
+      		            }
+      		            
+      		        }
+                	 
+                	 if (rs_stock_future != null) {
+      		            while (rs_stock_future.next()) {
+      		               String findStockFuture_FromStockIndex = rs_stock_future.getString(1); //분야 얻어오기 
+      		            
+      		              findFutureList.add(findStockFuture_FromStockIndex);
+         		                    		                     
+              		       request.setAttribute("findFutureList", findFutureList); // stock_index 리스트에 해당하는 예측가격 가져오기 
+      		            }
+      		            
+      		        }
+                	 
+                	 
                  }
 	         }
 	        
