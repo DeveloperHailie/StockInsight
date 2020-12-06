@@ -554,6 +554,46 @@ table .questionTable .content {
    width:800px;
 }
 
+.like{
+	width: 250px;
+	height : 250px;
+	
+	margin-bottom: 115px;
+    float:left;
+    margin-left: 115px;
+   
+    
+    border: 5px;
+    border-style: solid;
+    
+    border-image: linear-gradient(to top, #B06AB3, #4568DC);
+    border-image: linear-gradient(to bottom, #B06AB3, #4568DC);
+    border-image: linear-gradient(to left, #B06AB3, #4568DC);
+    border-image: linear-gradient(to right, #B06AB3, #4568DC);
+    
+    
+    border-image-slice: 1;
+    background : white;
+}
+
+.alllike{
+	 margin-left:160px;
+	 height : 3000px;
+}
+
+.like button{
+	width: 250px;
+	height : 250px;
+	background-color : white;
+	border-color:white;
+	border : 0.5px ;
+}
+
+.like button:hover{
+	background: linear-gradient(to right, #B06AB3, #4568DC);
+    color: white;
+}
+
 .inn{
 	 margin:auto;
 	 diplay: inline-block;

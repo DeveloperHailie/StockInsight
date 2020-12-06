@@ -87,6 +87,9 @@
          <%
             ArrayList<String> findStockFieldList = (ArrayList<String>) request.getAttribute("findStockFieldFromStockIndex");
             ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
+            ArrayList<String> stockindexList = (ArrayList<String>) request.getAttribute("findStockIndexFromUser");
+            ArrayList<String> beforeList = (ArrayList<String>) request.getAttribute("findBeforeList");
+            ArrayList<String> futureList = (ArrayList<String>) request.getAttribute("findFutureList");
           %>
          관심종목<br /> <img class="bar" src="bar.jpg"
             style="padding-top: 20px; width: 121px; height: 10px; float: center;">
@@ -97,35 +100,38 @@
        if(session.getAttribute("ID")!=null){ //세션 존재 
         
     	%>
-       <h1 style= "float:left; margin-left: 33%;"> 분야 </h1>
-       <h1 style= "float:right; margin-right: 33%;"> 회사 </h1>
+       
        <br/><br/><br/>
-       <div class= "interest">
-          <ul style="border: 5px solid #4568DC; width: 350px; height: 500px; float: left; margin-left: 20%;">
-            <form method="POST" action="doSearchInterestCompany">
+       
+         
+           <form method="POST" action="doSearchFinal">                       
+               <div class = "alllike">
                <%
-                  if (findStockFieldList != null) {
-                  for (int i = 0; i < findStockFieldList.size(); i++) {
+                  if (stockindexList != null) {
+                  for (int i = 0; i < stockindexList.size(); i++) {
                %>
                <%
-               out.print("<button type = \"submit\" class=\"interbtn\" name= \"stock_field\" style=\"height: 40px; width: 340px;\" value = \"");
-               out.print(findStockFieldList.get(i));
-               out.print("\">");
-               out.print("<li>");
-               out.print("<a>");
-               out.print(findStockFieldList.get(i));
-               out.print("</a>");
-               out.print("</li>");
-               out.print("</button>");
-
+               out.print("<div class = \"like\">");
+               out.print("<button type = \"submit\" class=\"likebtn\" name= \"stock_field\"  value = \"");
+               out.print(stockindexList.get(i));
+               out.print("\">"); 
                %>
+               <h1><%= findStockFieldList.get(i)%></h1><p>분야</p>  
+               <h1><%= companyList.get(i)%></h1>
+               <p>실시간 가격 : </p>  <h1><%= beforeList.get(i)%></h1>  
+               <p>내일 예측 가격 : </p><h1><%= futureList.get(i)%></h1>
+               
+               </button>
+               </div>
                <%
                   }
                }
                %>
+               
+              </div>
             </form>
-         </ul>
-      </div>
+         
+      <!--  
       <div class="interest">
          <ul style="border: 5px solid #B06AB3; width: 350px; height: 500px; float:right; margin-right: 20%;">
             <form method="POST" action="doSearchFinal">
@@ -134,15 +140,15 @@
                   for (int i = 0; i < companyList.size(); i++) {
                %>
                <%
-               out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
-            out.print(companyList.get(i));
-            out.print("\">");
-            out.print("<li>");
-            out.print("<a>");
-            out.print(companyList.get(i));
-            out.print("</a>");
-            out.print("</li>");
-            out.print("</button>");   
+              	out.print("<button type = \"submit\" class=\"interbtn\" name= \"selectCompany\" style=\"height: 40px; width: 340px;\" value = \"");
+            	out.print(companyList.get(i));
+            	out.print("\">");
+            	out.print("<li>");
+            	out.print("<a>");
+            	out.print(companyList.get(i));
+            	out.print("</a>");
+            	out.print("</li>");
+            	out.print("</button>");   
                %>
                <%
                   }
@@ -151,7 +157,7 @@
              </form>
          </ul>
       </div>
-      
+      -->
       <% } 
        else { // 세션존재하지 않음
        %><center>
