@@ -103,7 +103,7 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 				presentPrice = col[1].split("=");
 				sign = col[2].split("=");
 				difference = col[3].split("=");
-				strTag += "현재 가격: " + presentPrice[1];
+				strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";
 				if (sign[1] == "상승") {
 					strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
 
