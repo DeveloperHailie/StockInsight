@@ -61,7 +61,6 @@ public class DBConnection implements ServletContextListener {
         } catch (SQLException e) {
            e.printStackTrace();
         }
-        System.out.println(conn);
         sc.setAttribute("DBconnection", conn);
      }
   }

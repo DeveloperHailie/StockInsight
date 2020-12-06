@@ -775,23 +775,7 @@ table .questionTable .content {
 .main {
    font-family: "nanum";
    text-align: center;
-   padding-bottom: 500px;
-}
-.kos_char{
-   margin-left: 230px;
-   border: 1px solid black;
-   margin-left: 18%;
-   border: 1px solid black;
-    float: left;
-    width: 30%;
-    height: 300px;
-}
-.kod_char{
-   border: 1px solid black;
-    float: left;
-    margin-left: 5%;  
-    width: 30%;
-    height: 300px;
+   padding-bottom: 100px;
 }
 /**jh search_final css**/
 .final_content{
@@ -800,7 +784,7 @@ table .questionTable .content {
 }
 .left_final{
    padding: 10px;
-   margin-left: 18%;   
+   margin-left: 15%;   
     float: left;
     width: 30%;
     height: 450px;
