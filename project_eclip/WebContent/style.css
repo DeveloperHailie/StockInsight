@@ -560,7 +560,7 @@ table .questionTable .content {
 	
 	margin-bottom: 115px;
     float:left;
-    margin-left: 115px;
+    margin-left:100px;
    
     
     border: 5px;
@@ -578,7 +578,7 @@ table .questionTable .content {
 
 .alllike{
 	 margin: auto;
-	 height : 3000px;
+	 height: 100%;
 }
 
 .like button{
@@ -592,6 +592,10 @@ table .questionTable .content {
 .like button:hover{
 	background: linear-gradient(to right, #B06AB3, #4568DC);
     color: white;
+}
+
+.today{
+	font-size: 15pt;
 }
 
 .inn{

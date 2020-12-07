@@ -46,7 +46,6 @@ public class GetRankInfo extends HttpServlet {
 		Connection conn = (Connection) sc.getAttribute("DBconnection");
 
 		String companyName = request.getParameter("companyName");
-		
 		// companyName으로 다음 세값 알아내기
 		// selectField
 		// selectCampany
@@ -66,6 +65,7 @@ public class GetRankInfo extends HttpServlet {
 		// 회사이름으로 회사 종목 코드 찾아내기
 		ResultSet comCode = DBUtil.getStockCode(conn, companyName);
 		String stock_code = null;
+		if(comCode != null) {
 		try {
 			if(comCode.next()) {
 				stock_code = comCode.getString(1);
@@ -74,7 +74,7 @@ public class GetRankInfo extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}}
 		
 		HttpSession session = request.getSession(false);
 		String check_index = (String)session.getAttribute("INDEX");
@@ -108,8 +108,32 @@ public class GetRankInfo extends HttpServlet {
 			Boolean interCheck = DBUtil.interestCheck(conn, check_index, stock_index);
 			request.setAttribute("interCheck", interCheck);
 		}
-		
-		
+		String st_stock_index = null;
+		//stock_index 얻기   
+		ResultSet rs_stock_index = DBUtil.findStockIndex(conn,companyName);
+		 if (rs_stock_index != null) {
+	        	try {
+					while (rs_stock_index.next()) {
+						st_stock_index = rs_stock_index.getString(1); // 분야 얻어오기
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	         }
+		//future price 가격   
+        ResultSet rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, st_stock_index);
+        if (rs_stock_future != null) {
+        	try {
+				while (rs_stock_future.next()) {
+					String findStockFuture_FromStockIndex = rs_stock_future.getString(1); // 분야 얻어오기
+					request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         }
 		RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
 		view.forward(request, response);
 

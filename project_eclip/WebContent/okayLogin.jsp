@@ -118,8 +118,44 @@
 </head>
 
 <body onload='rotate()'>
+	<!-- 차트 그리기 -->
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+		//Google Stuff
+		google.charts.load('current', {
+			packages : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(function() {
+			repeatChart();
+			loadPresentPrice();
+		});
+	</script>
+
 	<script>
-// 보여지는 순위만 reload
+		var kospi = "000000";
+		var kosdaq = "111111";
+		// 차트 부분만 reload
+		var repeatChart = function() {
+			myAjax("/Stock_Insigh/csv", "code=" + kospi, function() {
+				ajaxMakeChart_kospi(kospi_chart, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
+			});
+			myAjax("/Stock_Insigh/csv", "code=" + kosdaq, function() {
+				ajaxMakeChart_kosdaq(kosdaq_chart, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
+			});
+		}
+		// 현재 가격 부분만 reload
+		var loadPresentPrice = function() {
+			var btn = document.getElementById('btn');
+			myAjax("/Stock_Insigh/csv", "code=" + kospi, function() {
+				currentData_kospi(kospi_pre_data, this.responseText.trim()); //현재가격 영역
+			});
+			myAjax("/Stock_Insigh/csv", "code=" + kosdaq, function() {
+				currentData_kosdaq(kosdaq_pre_data, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
+			});
+		};
+		// 보여지는 순위만 reload
 		var loadShowRank = function() {
 			var btn = document.getElementById('showRank');
 			var table = "stock_volume"
@@ -157,15 +193,154 @@
 			};
 			element.innerHTML = strTag;
 		};
-setInterval(function() { 
+		
+		
+		// 차트 그리기
+		function ajaxMakeChart_kospi(element, txtData) {
+			row = txtData.split("@"); // row1@row2@...         
+			var one_row;
+			var all_row = [];
+			// 한 tr이 한 row
+			for (var rowIndex = 0; rowIndex < row.length - 1; rowIndex++) {
+				col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)            
+				//one_row 초기화
+				one_row = [];
+				// date
+				dateNameValue = col[0].split("=");
+				one_row.push(dateNameValue[1]);
+				// price
+				priceNameValue = col[1].split("=");
+				one_row.push(parseInt(priceNameValue[1]));
+				// (date, price)
+				all_row.push(one_row);
+			};
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'date');
+			data.addColumn('number', 'price');
+			data.addRows(all_row);
+			var options = null;
+			var options = {
+					hAxis : {
+						title : 'time',
+						textPosition: 'none'
+					},
+					vAxis : {
+						title : 'price'
+					}
+				
+				};
+			var chart = new google.visualization.LineChart(document
+					.getElementById('kospi_chart'));
+
+			chart.draw(data, options);
+		};
+		function ajaxMakeChart_kosdaq(element, txtData) {
+			row = txtData.split("@"); // row1@row2@...         
+			var one_row;
+			var all_row = [];
+			// 한 tr이 한 row
+			for (var rowIndex = 0; rowIndex < row.length - 1; rowIndex++) {
+				col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)            
+				//one_row 초기화
+				one_row = [];
+				// date
+				dateNameValue = col[0].split("=");
+				one_row.push(dateNameValue[1]);
+				// price
+				priceNameValue = col[1].split("=");
+				one_row.push(parseInt(priceNameValue[1]));
+				// (date, price)
+				all_row.push(one_row);
+			};
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'date');
+			data.addColumn('number', 'price');
+			data.addRows(all_row);
+			var options = null;
+			var options = {
+				hAxis : {
+					title : 'time',
+					textPosition: 'none'
+				},
+				vAxis : {
+					title : 'price'
+				}
+			
+			};
+			var chart = new google.visualization.LineChart(document
+					.getElementById('kosdaq_chart'));
+			chart.draw(data, options);
+		};
+		// 현재 주식 상황 보기 그리기
+		var currentData_kospi = function(element, txtData) {
+			row = txtData.split("@"); // row1@row2@... 
+			var strTag = "<b>";
+
+			// 내가 필요한 것은 가장 최근이므로, 가장 마지막 row(에서 2번째. 가장 마지막 row는 비어있다.)
+			rowIndex = row.length - 2;
+			col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)
+
+			// code , date, presentPrice, sign, difference, prevEndPrice, volume
+			if (col.length > 4) {
+				presentPrice = col[1].split("=");
+				sign = col[2].split("=");
+				difference = col[3].split("=");
+				strTag += "현재 가격: " + presentPrice[1];
+				if (sign[1] == "상승") {
+					strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
+
+				} else if (sign[1] == "하락") {
+					strTag += "<b style='color:blue;'>&emsp;&emsp;&emsp; ▼ ";
+				} else { // 보합, ���� 
+					strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
+				}
+
+				strTag += difference[1] + "</b><br/>";
+			}
+			strTag += "</b>";
+			element.innerHTML = strTag;
+		};
+		var currentData_kosdaq = function(element, txtData) {
+			row = txtData.split("@"); // row1@row2@... 
+			var strTag = "<b>";
+
+			// 내가 필요한 것은 가장 최근이므로, 가장 마지막 row(에서 2번째. 가장 마지막 row는 비어있다.)
+			rowIndex = row.length - 2;
+			col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)
+
+			// code , date, presentPrice, sign, difference, prevEndPrice, volume
+			if (col.length > 4) {
+				presentPrice = col[1].split("=");
+				sign = col[2].split("=");
+				difference = col[3].split("=");
+				strTag += "현재 가격: " + presentPrice[1];
+				if (sign[1] == "상승") {
+					strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
+
+				} else if (sign[1] == "하락") {
+					strTag += "<b style='color:blue;'>&emsp;&emsp;&emsp; ▼ ";
+				} else { // 보합, ���� 
+					strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
+				}
+
+				strTag += difference[1] + "</b><br/>";
+			}
+			strTag += "</b>";
+			element.innerHTML = strTag;
+		};
+		setInterval(function() { 
+			repeatChart();
+			loadPresentPrice();
+		}, 30000);
+		setInterval(function() { 
 			loadShowRank();
 			loadHiddenRank();
 		}, 1000);
 		window.onload = function(){
 			loadShowRank();
 			loadHiddenRank();
-		} 
-		</script>
+		}
+	</script>
 
 	<script type="text/javascript">
       var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
@@ -246,12 +421,41 @@ setInterval(function() {
 				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
-		<div class="menu_content">여기에 내용이 들어가면 됩니다.</div>
+		<div class="main">
+			<table style="width: 90%; margin-left: auto; margin-right: auto; ">
+				<tr >
+					<td style="font-size:20pt">
+						<div id="kospi_name" ><b> KOSPI 차트 </b></div>
+					</td>
+					<td style="font-size:20pt">
+						<div id="kosdaq_name"><b> KOSDAQ 차트 </b></div>
+					</td>
+				</tr>
+				<tr >
+					<td >
+					<div id="kospi_chart"
+							style="border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
+					</td>
+					<td >
+						<div id="kosdaq_chart"
+							style=" border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="kospi_pre_data" style="font-size:15pt" > </div>
+					</td>
+					<td>
+						<div id="kosdaq_pre_data" style="font-size:15pt"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
 
 	</section>
 
 	<footer>
-		<p>© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
+		<p>​© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
 	</footer>
 
 </body>

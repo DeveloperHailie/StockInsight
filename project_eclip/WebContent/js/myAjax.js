@@ -25,6 +25,7 @@ var myAjax = function(requestUri, queryStr, callbackFn) {
    };
    xhr.open("POST", requestUri, true);
    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   console.log(queryStr);
    xhr.send(queryStr);
    return xhr;
 };

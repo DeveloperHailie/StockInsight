@@ -61,6 +61,17 @@ public class doDeleteInterest extends HttpServlet {
             request.setAttribute("selectCompany", selectCompany);
             
             
+            ResultSet rs_stock_future = null;
+            rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, del_stock_index);
+            
+            if (rs_stock_future != null) {
+ 					while (rs_stock_future.next()) {
+ 						String findStockFuture_FromStockIndex = rs_stock_future.getString(1); // 분야 얻어오기
+ 						request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
+ 					}
+
+            }
+            
             
             ResultSet rs = DBUtil.deleteInterest(conn, del_user_index, del_stock_index);
         

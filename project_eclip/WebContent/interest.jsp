@@ -9,6 +9,49 @@
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 
+<style>
+#rank-list a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rank-list a:hover {
+	text-decoration: underline;
+}
+
+#rank-list {
+	overflow: hidden;
+	width: 160px;
+	height: 20px;
+	margin: 0;
+}
+
+#rank-list dt {
+	display: none;
+}
+
+#rank-list dd {
+	position: relative;
+	margin: 0;
+}
+
+#rank-list ol {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#rank-list li {
+	height: 20px;
+	line-height: 20px;
+}
+</style>
+<script src="./js/myAjax.js"></script>
+
+
 <script type="text/javascript">
 			var n = 0;
 			var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
@@ -18,9 +61,140 @@
 				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
 			}
         </script>
+        <script type="text/javascript">
+   function popupOpen() {
+
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+      window.open(popUrl, "", popOption);
+   }
+</script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(function() {
+		var count = $('#rank-list li').length;
+		var height = $('#rank-list li').height();
+		function step(index) {
+			$('#rank-list ol').delay(2000).animate({
+				top : -height * index,
+			}, 500, function() {
+				step((index + 1) % count);
+			});
+		}
+		step(1);
+	});
+</script>
+<script>
+	function showplay() {
+		var flag = $('#hidTempSynopsis');
+		var btn = document.getElementById("D");
+		var SynopsisDiv = $('#content');
+		var real = $('#D');
+		var flagValue = flag.val();
+		if (flag != null) {
+			if (flagValue == "0") {
+				real.css("display", "block");
+				var tag;
+				//tag = "<ul>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank'>";
+				
+				tag += "</section>";
+				//tag += "</ul>";
+				btn.innerHTML = tag;
+				$("#synopMore").text("▲");
+				flag.val("1");
+			} else {
+				//SynopsisDiv.css("height", "77px");
+				real.css("display", "none");
+				$("#synopMore").text("▼");
+				flag.val("0");
+			}
+		}
+	}
+</script>
 </head>
 
+
 <body onload='rotate()'>
+
+	<script>
+// 보여지는 순위만 reload
+		var loadShowRank = function() {
+			var btn = document.getElementById('showRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateShowRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		// 숨겨진 순위만 reload
+		var loadHiddenRank = function() {
+			var btn = document.getElementById('hiddenRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		
+		// 보여지는 순위 그리는 코드
+		function updateShowRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...@회사명        
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<li><a href='javascript:showplay();'>"+rowIndex + "위. "+companyName+"</a></li>";
+			};
+			element.innerHTML = strTag;
+		};
+		
+		// 숨긴 순위 그리는 코드
+		function updateHiddenRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...         
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<a href='"+"/Stock_Insigh/getRankInfo?companyName="+companyName+"'>"+rowIndex + "위. "+companyName+"</a></br>";
+			};
+			element.innerHTML = strTag;
+		};
+setInterval(function() { 
+			loadShowRank();
+			loadHiddenRank();
+		}, 1000);
+		window.onload = function(){
+			loadShowRank();
+			loadHiddenRank();
+		} </script>
+Session 체크 해서 메뉴바 다르게 하는 그 부분 위에
+	<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';" >
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>						
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+			value="0">
+		<!-- value 체크값을 위함 -->
+	
 
 	<div class="front">
 		<div class="logo">
@@ -109,24 +283,43 @@
                <%
                   if (stockindexList != null) {
                   for (int i = 0; i < stockindexList.size(); i++) {
-               %>
-               <%
+                	  
                out.print("<div class = \"like\">");
                out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
                out.print(companyList.get(i));
                out.print("\">"); 
+               
+               out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
+               out.print("<br/>");
+               out.print("<br/>");
                %>
-               <h1>[<%= findStockFieldList.get(i)%>]</h1>  
+               <h1 style="font-size: 17pt;"><%= findStockFieldList.get(i)%></h1>  
                <br/>
-               <h1><%= companyList.get(i)%></h1>
+               <h1><b><%= companyList.get(i)%></b></h1>
                <br/>
-               <p>실시간 가격 : <%= beforeList.get(i)%>원</p>  
-               <p>내일 예측 가격 : <%= futureList.get(i)%>원</p>
+               <p class = "today" ><b>실시간 가격 :<u> <%= beforeList.get(i)%>원</u></b></p>  
+               <p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><u><%= futureList.get(i)%>원</u></b></b></p>
                </button>
                </div>
                <%
                   }
+                  
                }
+                  else{
+                	  out.print("<center>");
+                	  out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background: white;\">");
+                	  out.print("<br/>");
+                	  out.print("<br/>");
+                	  out.print("<h1>");
+                	  out.print("관심종목이 없습니다.");
+                	  out.print("</h1>");
+                	  out.print("<br/>");
+                	  out.print("<h3>");
+                	  out.print("관심 표시 된 종목들은 한 번에 확인할 수 있어요!");
+                	  out.print("</h3>");
+                	  out.print("</center>");
+                	 
+                  }
                %>
               </div>
             </form>
