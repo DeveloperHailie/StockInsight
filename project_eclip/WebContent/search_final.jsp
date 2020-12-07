@@ -238,7 +238,7 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 
 						String stock_index = (String) request.getAttribute("stock_index"); // 받아온 stock_index 
 						Boolean interestCheck = (Boolean) request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
-						System.out.print("search_final.jsp 관심종목 유무 :  " + interestCheck + "\n\n");
+						//System.out.print("search_final.jsp 관심종목 유무 :  " + interestCheck + "\n\n");
 					%>
 
 					<%

@@ -621,7 +621,7 @@ public class DBUtil {
 		try {
 
 			st = con.createStatement();
-			System.out.println("DBUtil_findFieldSelectCompany:" + selectCompany);
+			
 			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
 				return st.getResultSet(); // field 넘김 
 
