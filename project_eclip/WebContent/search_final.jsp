@@ -21,17 +21,19 @@
 <script type="text/javascript">
 	
 <%String stock_code = (String) request.getAttribute("stock_code");
-System.out.println("code: " + stock_code); // 종목코드 테스트%>
+System.out.println("code1: " + stock_code); // 종목코드 테스트%>
 
 	// 차트 부분만 reload
-	var code = ${stock_code}
+	
 	var repeatChart = function() {
+		var code = <%=stock_code%>;
 		myAjax("/Stock_Insigh/csv", "code=" + code, function() {
 			ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
 		});
 	}
 	// 현재 가격 부분만 reload
 	var loadPresentPrice = function() {
+		var code = <%=stock_code%>;
 		var btn = document.getElementById('btn');
 		myAjax("/Stock_Insigh/csv", "code=" + code, function() {
 			stock_pre_data(stock_pre, this.responseText.trim()); //현재가격 영역

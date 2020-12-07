@@ -40,7 +40,7 @@ public static ArrayList<String[]> addToList(String fileName) {
           return list;
        } 
        catch (FileNotFoundException e) { 
-          System.out.println("FileNotFoundException");
+          System.out.println(fileName+" FileNotFoundException");
           
        }
        catch (IOException e) { 

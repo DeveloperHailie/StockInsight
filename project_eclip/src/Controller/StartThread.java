@@ -22,6 +22,7 @@ public class StartThread implements ServletContextListener {
     public StartThread() {
         // TODO Auto-generated constructor stub
     }
+    
 
 	/**
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
@@ -40,30 +41,32 @@ public class StartThread implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent sce)  { 
-		// 스레드 시작    	
-    	BackThread_Stock stockProgram = new BackThread_Stock();
-    	BackThread_Cos cosProgram = new BackThread_Cos();
-    	BackThread_Predict predictProgram = new BackThread_Predict();
-    	
-		Thread stockThread = new Thread(stockProgram);
-		Thread cosThread = new Thread(cosProgram);
-		Thread predictThread = new Thread(predictProgram);
-		
-		stockThread.setDaemon(true);
-		cosThread.setDaemon(true);
-		predictThread.setDaemon(true);
-		
-        stockThread.start();
-    	cosThread.start();
-    	predictThread.start();
-    	
-    	System.out.println("startThread!");
-    	
-    	// 속성에 등록
+		// 스레드 시작   
     	ServletContext sc = sce.getServletContext();
-    	sc.setAttribute("stockP", stockProgram);
-    	sc.setAttribute("cosP", cosProgram);
-    	sc.setAttribute("predictP", predictProgram);
+    	
+    	BackThread_Stock stockProgram = new BackThread_Stock();
+        BackThread_Cos cosProgram = new BackThread_Cos();
+        BackThread_Predict predictProgram = new BackThread_Predict();
+        	
+    	Thread stockThread = new Thread(stockProgram);
+    	Thread cosThread = new Thread(cosProgram);
+    	Thread predictThread = new Thread(predictProgram);
+    		
+    	stockThread.setDaemon(true);
+    	cosThread.setDaemon(true);
+    	predictThread.setDaemon(true);
+    		
+        stockThread.start();
+        cosThread.start();
+        predictThread.start();
+        	
+        System.out.println("startThread!");
+        	
+        // 속성에 등록
+        sc.setAttribute("stockP", stockProgram);
+        sc.setAttribute("cosP", cosProgram);
+        sc.setAttribute("predictP", predictProgram);
+        	
     }
 	
 }

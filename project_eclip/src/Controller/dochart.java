@@ -41,12 +41,12 @@ public class dochart extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-	      String name = request.getParameter("code"); 
+	      String codeName = request.getParameter("code"); 
 	      // name db filename
-	      
+	     
 	      // code.csv파일 열어서 그 안의 내용 저장
-	      ArrayList<String[]> file = model.CsvToData.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
-	      request.setAttribute("file", file); 
+	      String filePath = "C:\\StockInsightPython\\realtimeData\\"+codeName+".csv";
+	      ArrayList<String[]> file = model.CsvToData.addToList(filePath);
 	      RequestDispatcher view = request.getRequestDispatcher("data.jsp");
 	      view.forward(request, response);
 	   }
