@@ -60,41 +60,63 @@ public class doDeleteInterest extends HttpServlet {
             String selectCompany = request.getParameter("selectCompany");
             request.setAttribute("selectCompany", selectCompany);
             
+            Boolean interCheck = DBUtil.interestCheck(conn, del_user_index, del_stock_index); //관심 종목에 있는지 없는지 체크 
             
-            ResultSet rs_stock_future = null;
-            rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, del_stock_index);
+            if(interCheck == true) { //관심종목에 있으면 
+            	interCheck = true;
+            }else { // 관심종목에 없으면 
+            	DBUtil.insertInterest(conn, del_user_index, del_stock_index);// user_id로 user_index 찾기 
+            	interCheck = true;
+            }
             
+            ResultSet rs_stock_index = DBUtil.getStockCode(conn, selectCompany);
+            if(rs_stock_index !=null) {
+    			try
+    			{
+    				if(rs_stock_index.next()) { //결과가 1개인 경우 
+    					String st_cd = rs_stock_index.getString(1);
+    					System.out.println("야2" + st_cd);
+    					request.setAttribute("stock_code", st_cd);
+    				}
+    			} catch (SQLException e) {
+    				e.printStackTrace();
+    			} 
+    		}       
+            String st_stock_index = null;
+    		//stock_index 얻기   
+    		ResultSet rs_st_index = DBUtil.findStockIndex(conn,selectCompany);
+    		 if (rs_st_index != null) {
+    	        	try {
+    					while (rs_st_index.next()) {
+    						st_stock_index = rs_st_index.getString(1); // 분야 얻어오기
+    					}
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    	         }
+    		//future price 가격   
+            ResultSet rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, st_stock_index);
             if (rs_stock_future != null) {
- 					while (rs_stock_future.next()) {
- 						String findStockFuture_FromStockIndex = rs_stock_future.getString(1); // 분야 얻어오기
- 						request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
- 					}
-
-            }
-            
-            
-            ResultSet rs = DBUtil.deleteInterest(conn, del_user_index, del_stock_index);
-        
-            if (rs != null) {
-               while (rs.next()) {
-            	   String deleteInterestRow = rs.getString(1);
-                  request.setAttribute("deleteInterestRow", deleteInterestRow);
-               }
-            }
-         
-            Boolean interCheck = DBUtil.interestCheck(conn, del_user_index, del_stock_index);
-            request.setAttribute("interCheck", interCheck); 
-            System.out.print("----두딜리트의----------interCheck : " + interCheck);
-            
+            	try {
+    				while (rs_stock_future.next()) {
+    					String findStockFuture_FromStockIndex = rs_stock_future.getString(1); // 분야 얻어오기
+    					request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
+    				}
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+             } 
+            request.setAttribute("interCheck", interCheck);
             RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
-               view.forward(request, response);
+            view.forward(request, response);
             
          } catch (SQLException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
          }
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
