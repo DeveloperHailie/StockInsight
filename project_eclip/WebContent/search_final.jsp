@@ -17,6 +17,16 @@
 		setTimeout("rotate()", 800);
 	}
 </script>
+<script type="text/javascript">
+   function popupOpen() {
+
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+      window.open(popUrl, "", popOption);
+   }
+</script>
 <script src="./js/myAjax.js"></script>
 <script type="text/javascript">
 	
@@ -304,7 +314,7 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 				</div>
 				<div class="price">
 					내일 예측 가격은<br> <b
-						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}</b>
+						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}원</b>
 					입니다.
 				</div>
 

@@ -594,6 +594,10 @@ table .questionTable .content {
     color: white;
 }
 
+.today{
+	font-size: 15pt;
+}
+
 .inn{
 	 margin:auto;
 	 diplay: inline-block;

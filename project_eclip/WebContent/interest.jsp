@@ -18,6 +18,16 @@
 				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
 			}
         </script>
+        <script type="text/javascript">
+   function popupOpen() {
+
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+      window.open(popUrl, "", popOption);
+   }
+</script>
 </head>
 
 <body onload='rotate()'>
@@ -109,24 +119,43 @@
                <%
                   if (stockindexList != null) {
                   for (int i = 0; i < stockindexList.size(); i++) {
-               %>
-               <%
+                	  
                out.print("<div class = \"like\">");
                out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
                out.print(companyList.get(i));
                out.print("\">"); 
+               
+               out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
+               out.print("<br/>");
+               out.print("<br/>");
                %>
-               <h1>[<%= findStockFieldList.get(i)%>]</h1>  
+               <h1 style="font-size: 17pt;"><%= findStockFieldList.get(i)%></h1>  
                <br/>
-               <h1><%= companyList.get(i)%></h1>
+               <h1><b><%= companyList.get(i)%></b></h1>
                <br/>
-               <p>실시간 가격 : <%= beforeList.get(i)%>원</p>  
-               <p>내일 예측 가격 : <%= futureList.get(i)%>원</p>
+               <p class = "today" ><b>실시간 가격 :<u> <%= beforeList.get(i)%>원</u></b></p>  
+               <p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><u><%= futureList.get(i)%>원</u></b></b></p>
                </button>
                </div>
                <%
                   }
+                  
                }
+                  else{
+                	  out.print("<center>");
+                	  out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background: white;\">");
+                	  out.print("<br/>");
+                	  out.print("<br/>");
+                	  out.print("<h1>");
+                	  out.print("관심종목이 없습니다.");
+                	  out.print("</h1>");
+                	  out.print("<br/>");
+                	  out.print("<h3>");
+                	  out.print("관심 표시 된 종목들은 한 번에 확인할 수 있어요!");
+                	  out.print("</h3>");
+                	  out.print("</center>");
+                	 
+                  }
                %>
               </div>
             </form>
