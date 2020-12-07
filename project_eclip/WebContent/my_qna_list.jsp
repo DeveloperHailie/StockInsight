@@ -3,6 +3,48 @@
 
 <html>
     <head>
+    <style>
+#rank-list a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rank-list a:hover {
+	text-decoration: underline;
+}
+
+#rank-list {
+	overflow: hidden;
+	width: 160px;
+	height: 20px;
+	margin: 0;
+}
+
+#rank-list dt {
+	display: none;
+}
+
+#rank-list dd {
+	position: relative;
+	margin: 0;
+}
+
+#rank-list ol {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#rank-list li {
+	height: 20px;
+	line-height: 20px;
+}
+</style>
+<script src="./js/myAjax.js"></script>
+    
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <title>Stock Insight</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
@@ -14,6 +56,7 @@
 				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
 			}
         </script>
+<<<<<<< HEAD
         <script type="text/javascript">
    function popupOpen() {
 
@@ -24,13 +67,133 @@
       window.open(popUrl, "", popOption);
    }
 </script>
+=======
+        <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(function() {
+		var count = $('#rank-list li').length;
+		var height = $('#rank-list li').height();
+		function step(index) {
+			$('#rank-list ol').delay(2000).animate({
+				top : -height * index,
+			}, 500, function() {
+				step((index + 1) % count);
+			});
+		}
+		step(1);
+	});
+</script>
+<script>
+	function showplay() {
+		var flag = $('#hidTempSynopsis');
+		var btn = document.getElementById("D");
+		var SynopsisDiv = $('#content');
+		var real = $('#D');
+		var flagValue = flag.val();
+		if (flag != null) {
+			if (flagValue == "0") {
+				real.css("display", "block");
+				var tag;
+				//tag = "<ul>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank'>";
+				
+				tag += "</section>";
+				//tag += "</ul>";
+				btn.innerHTML = tag;
+				$("#synopMore").text("▲");
+				flag.val("1");
+			} else {
+				//SynopsisDiv.css("height", "77px");
+				real.css("display", "none");
+				$("#synopMore").text("▼");
+				flag.val("0");
+			}
+		}
+	}
+</script>
+        
+>>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
     </head>
 
     <body onload='rotate()'>
+        <script>
+// 보여지는 순위만 reload
+		var loadShowRank = function() {
+			var btn = document.getElementById('showRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateShowRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		// 숨겨진 순위만 reload
+		var loadHiddenRank = function() {
+			var btn = document.getElementById('hiddenRank');
+			var table = "stock_volume"
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+				updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
+			});
+		}
+		
+		// 보여지는 순위 그리는 코드
+		function updateShowRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...@회사명        
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<li><a href='javascript:showplay();'>"+rowIndex + "위. "+companyName+"</a></li>";
+			};
+			element.innerHTML = strTag;
+		};
+		
+		// 숨긴 순위 그리는 코드
+		function updateHiddenRank(element, txtData) {
+			var strTag = "";
+			row = txtData.split("@"); // 회사명@회사명@...         
+			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+				var companyName = row[rowIndex-1];
+				strTag += "<a href='"+"/Stock_Insigh/getRankInfo?companyName="+companyName+"'>"+rowIndex + "위. "+companyName+"</a></br>";
+			};
+			element.innerHTML = strTag;
+		};
+setInterval(function() { 
+			loadShowRank();
+			loadHiddenRank();
+		}, 1000);
+		window.onload = function(){
+			loadShowRank();
+			loadHiddenRank();
+		} </script>
         
         <div class="front">
             <div class="logo"><a href="main.jsp"><img src="logo.png" style="width:336px; height:148px; float:left;"></a></div>
-
+			<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';" >
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>						
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+			value="0">
+		<!-- value 체크값을 위함 -->
+		
 		<%
 			if(session.getAttribute("ID")!=null){
 		            	// 세션 존재
