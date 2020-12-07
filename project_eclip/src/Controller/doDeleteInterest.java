@@ -63,10 +63,7 @@ public class doDeleteInterest extends HttpServlet {
             Boolean interCheck = DBUtil.interestCheck(conn, del_user_index, del_stock_index); //관심 종목에 있는지 없는지 체크 
             
             if(interCheck == true) { //관심종목에 있으면 
-            	interCheck = true;
-            }else { // 관심종목에 없으면 
-            	DBUtil.insertInterest(conn, del_user_index, del_stock_index);// user_id로 user_index 찾기 
-            	interCheck = true;
+            	interCheck = false;
             }
             
             ResultSet rs_stock_index = DBUtil.getStockCode(conn, selectCompany);
@@ -75,7 +72,6 @@ public class doDeleteInterest extends HttpServlet {
     			{
     				if(rs_stock_index.next()) { //결과가 1개인 경우 
     					String st_cd = rs_stock_index.getString(1);
-    					System.out.println("야2" + st_cd);
     					request.setAttribute("stock_code", st_cd);
     				}
     			} catch (SQLException e) {

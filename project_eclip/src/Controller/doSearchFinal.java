@@ -81,10 +81,7 @@ public class doSearchFinal extends HttpServlet {
 	               stock_index = rs_stock_index.getString(1);
 	               request.setAttribute("stock_index", stock_index); // user_id에 해당하는 user_index 가져오기 
 	            }
-	         }
-         
-           
-           
+	         }           
            //future price 가격 
            
            ResultSet rs_stock_future = null;
