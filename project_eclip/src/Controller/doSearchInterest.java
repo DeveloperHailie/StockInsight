@@ -105,7 +105,6 @@ public class doSearchInterest extends HttpServlet {
                 	 if (rs_stock_field != null) {
         		            while (rs_stock_field.next()) {
         		               String findStockField_FromStockIndex = rs_stock_field.getString(1); //분야 얻어오기 
-        		               System.out.print(" \n findStockField: "  + findStockField_FromStockIndex );
         		               
         		               findStockFieldFromStockIndex.add(findStockField_FromStockIndex);
            		                    		                     
@@ -146,8 +145,7 @@ public class doSearchInterest extends HttpServlet {
       		            }
       		            
       		        }
-                	 
-                	 
+  	 
                  }
 	         }
 	        
