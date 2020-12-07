@@ -51,7 +51,6 @@
 <script src="./js/myAjax.js"></script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
    var n = 0;
    var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
 
@@ -111,7 +110,6 @@
       what.focus();
       //return false;
    }
-=======
 	var n = 0;
 	var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
 
@@ -207,7 +205,6 @@
 			}
 		}
 	}
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 </script>
 </head>
 

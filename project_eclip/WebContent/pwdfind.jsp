@@ -60,7 +60,6 @@
             setTimeout("rotate()", 800);
         }
     </script>
-<<<<<<< HEAD
     <script type="text/javascript">
    function popupOpen() {
 
@@ -72,9 +71,7 @@
    }
 </script>
     <script>
-=======
 <script>
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
    function validate() {
 
       if (login.id.value == "") {

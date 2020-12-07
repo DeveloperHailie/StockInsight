@@ -60,7 +60,6 @@
       setTimeout("rotate()", 800);
    }
 </script>
-<<<<<<< HEAD
 <script type="text/javascript">
    function popupOpen() {
 
@@ -71,8 +70,6 @@
       window.open(popUrl, "", popOption);
    }
 </script>
- 
-=======
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
 	type="text/javascript"></script>
@@ -119,7 +116,6 @@
 		}
 	}
 </script>
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 </head>
 
 <body onload='rotate()'>

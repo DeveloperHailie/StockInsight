@@ -172,7 +172,7 @@ textarea {
 		<label>급락 종목</label> 
 		<%if(rs2.next()){out.println("<div id=\"info\" name=\"decrease\">"+rs2.getString(1)+" <sapn style=\"color:blue;\"> ▼ </span>"+rs2.getString(2)+" 예상</div>");}else out.println("적합한 종목이 없습니다");%> <label></label>
 		<button type="button" id="okay" onClick="window.close()">확인</button><br><br>
-		<%if(!rs2.next()&&!rs.next()){out.println(" <sapn style=\"color:black; font-size:small;\"> 관심종목이 없습니다.</br> 관심종목을 먼저 추가해주세요 </span>");}%>
+		<%if(!DBUtil.popupplus(conn, session_user_id).next()&&!DBUtil.popupminus(conn, session_user_id).next()){out.println(" <sapn style=\"color:black; font-size:small;\"> 관심종목이 없습니다.</br> 관심종목을 먼저 추가해주세요 </span>");}%>
 		<label></label></center>
 	</div>
 

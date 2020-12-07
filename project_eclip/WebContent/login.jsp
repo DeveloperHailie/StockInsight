@@ -4,7 +4,6 @@
 <html>
 
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <title>Stock Insight</title>
     <link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
@@ -46,7 +45,6 @@
       }
 
    }
-=======
 <meta charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
@@ -167,7 +165,6 @@
 			}
 		}
 	}
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 </script>
 </head>
 
