@@ -100,7 +100,7 @@ public class DBUtil {
 	      String sqlSt = 
 	      "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
 	      "from Stock\r\n" + 
-	      "where stock_index=any(select Stock_stock_index\r\n" + 
+	      "where stock_future-stock_before>0 and stock_index=any(select Stock_stock_index\r\n" + 
 	      "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
 	      "where user_id = '"+mid+"') order by gap desc limit 1;";
 	      Statement st;
@@ -130,7 +130,7 @@ public class DBUtil {
 	      String sqlSt = 
 	      "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
 	      "from Stock\r\n" + 
-	      "where stock_index=any(select Stock_stock_index\r\n" + 
+	      "where stock_future-stock_before<0 and stock_index=any(select Stock_stock_index\r\n" + 
 	      "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
 	      "where user_id = '"+mid+"') order by gap limit 1;";
 	      Statement st;
