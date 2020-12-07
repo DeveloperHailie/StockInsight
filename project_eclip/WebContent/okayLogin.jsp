@@ -1,7 +1,7 @@
-<%@page import="model.DBUtil"%>
+<%@page import="model.DBUtil"%><%@page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%@page import="java.sql.*" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,19 +20,20 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "https://www.naver.com"; //팝업창에 출력될 페이지 URL
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
 
-      var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
       window.open(popUrl, "", popOption);
    }
 </script>
 </head>
+
 <body onload='rotate()'>
    <script type="text/javascript">
-      var popUrl = "https://www.naver.com"; //팝업창에 출력될 페이지 URL
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
 
-      var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
       window.open(popUrl, "", popOption);
    </script>
@@ -40,14 +41,12 @@
    <div class="front">
       <div class="logo">
          <a href="main.jsp"><img src="logo.png"
-            style="width: 336px; height: 148px; float: left;"></a>
+            style="width: 336px; height: 160px; float: left;"></a>
       </div>
       <ul id="okaylogin_ul">
          <li id="okaylogin_li">
          <%
          session.getAttribute("ID");
-         
-         
          String name = (String)request.getAttribute("name");
          out.println("<b>" + name + "</b> 님 환영합니다. </br>" ); 		
          %>       
