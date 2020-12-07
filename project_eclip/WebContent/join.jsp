@@ -264,7 +264,30 @@ setInterval(function() {
 			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
-
+<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';">
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+			value="0">
+		<!-- value 체크값을 위함 -->
 		<%
          if(session.getAttribute("ID")!=null){
                      // 세션 존재

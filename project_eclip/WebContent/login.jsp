@@ -8,6 +8,48 @@
     <title>Stock Insight</title>
     <link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
     <!--design 폴더 내에 있는 css-->
+    <style>
+#rank-list a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rank-list a:hover {
+	text-decoration: underline;
+}
+
+#rank-list {
+	overflow: hidden;
+	width: 160px;
+	height: 20px;
+	margin: 0;
+}
+
+#rank-list dt {
+	display: none;
+}
+
+#rank-list dd {
+	position: relative;
+	margin: 0;
+}
+
+#rank-list ol {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#rank-list li {
+	height: 20px;
+	line-height: 20px;
+}
+</style>
+<script src="./js/myAjax.js"></script>
+    
     <script type="text/javascript">
         var n = 0;
         var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
@@ -49,47 +91,6 @@
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
 <!--design 폴더 내에 있는 css-->
-<style>
-#rank-list a {
-	color: #FFF;
-	text-decoration: none;
-}
-
-#rank-list a:hover {
-	text-decoration: underline;
-}
-
-#rank-list {
-	overflow: hidden;
-	width: 160px;
-	height: 20px;
-	margin: 0;
-}
-
-#rank-list dt {
-	display: none;
-}
-
-#rank-list dd {
-	position: relative;
-	margin: 0;
-}
-
-#rank-list ol {
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-#rank-list li {
-	height: 20px;
-	line-height: 20px;
-}
-</style>
-<script src="./js/myAjax.js"></script>
 
 <script type="text/javascript">
 	var n = 0;
