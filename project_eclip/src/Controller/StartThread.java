@@ -40,8 +40,7 @@ public class StartThread implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent sce)  { 
-// 스레드 시작
-    	
+		// 스레드 시작    	
     	BackThread_Stock stockProgram = new BackThread_Stock();
     	BackThread_Cos cosProgram = new BackThread_Cos();
     	BackThread_Predict predictProgram = new BackThread_Predict();
