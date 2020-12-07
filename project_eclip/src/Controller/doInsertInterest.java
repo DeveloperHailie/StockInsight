@@ -47,8 +47,7 @@ public class doInsertInterest extends HttpServlet {
         
         try {
             
-            Statement st = conn.createStatement();
-            
+            Statement st = conn.createStatement();            
             
             String user_index = request.getParameter("user_index");
             request.setAttribute("user_index", user_index);
@@ -66,8 +65,7 @@ public class doInsertInterest extends HttpServlet {
             //DBUtil.insertInterest(conn, user_index, stock_index);// user_id로 user_index 찾기 
           
             Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index); //관심 종목에 있는지 없는지 체크 
-            
-            
+                        
             if(interCheck == true) { //관심종목에 있으면 
             	interCheck = true;
             }else { // 관심종목에 없으면 
@@ -76,7 +74,7 @@ public class doInsertInterest extends HttpServlet {
             }
             
             request.setAttribute("interCheck", interCheck); 
-         
+                   
             RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
             view.forward(request, response);
             

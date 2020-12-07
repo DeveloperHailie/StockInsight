@@ -36,15 +36,18 @@ public class dochart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		 // TODO Auto-generated method stub
+		//request.setCharacterEncoding("UTF-8");
+		//response.setCharacterEncoding("UTF-8");
+		//response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-	      String name = request.getParameter("code"); 
+	      String name = request.getParameter("code");
 	      // name db filename
 	      
 	      // code.csv파일 열어서 그 안의 내용 저장
+	      //System.out.println("야 : C:\\StockInsightPython\\realtimeData\\"+name+".csv");
+
 	      ArrayList<String[]> file = model.CsvToData.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
 	      request.setAttribute("file", file); 
 	      RequestDispatcher view = request.getRequestDispatcher("data.jsp");

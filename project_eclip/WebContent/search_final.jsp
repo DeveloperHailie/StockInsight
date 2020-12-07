@@ -5,6 +5,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+#rank-list a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rank-list a:hover {
+	text-decoration: underline;
+}
+
+#rank-list {
+	overflow: hidden;
+	width: 160px;
+	height: 20px;
+	margin: 0;
+}
+
+#rank-list dt {
+	display: none;
+}
+
+#rank-list dd {
+	position: relative;
+	margin: 0;
+}
+
+#rank-list ol {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#rank-list li {
+	height: 20px;
+	line-height: 20px;
+}
+</style>
+<script src="./js/myAjax.js"></script>
 <meta charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -27,112 +68,51 @@
       window.open(popUrl, "", popOption);
    }
 </script>
-<script src="./js/myAjax.js"></script>
-<script type="text/javascript">
-	
-<%String stock_code = (String) request.getAttribute("stock_code");
-System.out.println("code: " + stock_code); // 종목코드 테스트%>
-
-	// 차트 부분만 reload
-	var code = ${stock_code}
-	var repeatChart = function() {
-		myAjax("/Stock_Insigh/csv", "code=" + code, function() {
-			ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
-		});
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(function() {
+		var count = $('#rank-list li').length;
+		var height = $('#rank-list li').height();
+		function step(index) {
+			$('#rank-list ol').delay(2000).animate({
+				top : -height * index,
+			}, 500, function() {
+				step((index + 1) % count);
+			});
+		}
+		step(1);
+	});
+</script>
+<script>
+	function showplay() {
+		var flag = $('#hidTempSynopsis');
+		var btn = document.getElementById("D");
+		var SynopsisDiv = $('#content');
+		var real = $('#D');
+		var flagValue = flag.val();
+		if (flag != null) {
+			if (flagValue == "0") {
+				real.css("display", "block");
+				var tag;
+				//tag = "<ul>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank'>";
+				
+				tag += "</section>";
+				//tag += "</ul>";
+				btn.innerHTML = tag;
+				$("#synopMore").text("▲");
+				flag.val("1");
+			} else {
+				//SynopsisDiv.css("height", "77px");
+				real.css("display", "none");
+				$("#synopMore").text("▼");
+				flag.val("0");
+			}
+		}
 	}
-	// 현재 가격 부분만 reload
-	var loadPresentPrice = function() {
-		var btn = document.getElementById('btn');
-		myAjax("/Stock_Insigh/csv", "code=" + code, function() {
-			stock_pre_data(stock_pre, this.responseText.trim()); //현재가격 영역
-		});
-	};
-	// 차트 그리기
-	function ajaxMakeChart(element, txtData) {
-		row = txtData.split("@"); // row1@row2@...         
-		var one_row;
-		var all_row = [];
-		// 한 tr이 한 row
-		for (var rowIndex = 0; rowIndex < row.length - 1; rowIndex++) {
-			col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)            
-			//one_row 초기화
-			one_row = [];
-			// date
-			dateNameValue = col[0].split("=");
-			one_row.push(dateNameValue[1]);
-			// price
-			priceNameValue = col[1].split("=");
-			one_row.push(parseInt(priceNameValue[1]));
-			// (date, price)
-			all_row.push(one_row);
-		}
-		;
-		var data = new google.visualization.DataTable();
-		data.addColumn('string', 'date');
-		data.addColumn('number', 'price');
-		data.addRows(all_row);
-		var options = null;
-		var options = {
-			title : '실시간 차트',
-			textAlign : 'center',
-			titleTextStyle: {
-				display : true,
-		    	fontSize: 20, // 12, 18 whatever you want (don't specify px)
-		    	bold: true,  // true of false
-		    	titleAlign:'center',
-		    },
-			hAxis : {
-				title : 'time',
-				textPosition : 'none'
-			},
-			vAxis : {
-				title : 'price'
-			}
-
-		};
-		var chart = new google.visualization.LineChart(document
-				.getElementById('right_final'));
-
-		chart.draw(data, options);
-	};
-	var stock_pre_data = function(element, txtData) {
-		if(txtData=="파일없음"){
-			var strTag = "<b>실시간 데이터를 갱신하지 못했습니다.</br>조금만 기다려 주세요.</b>";
-			element.innerHTML = strTag;
-		}
-		else{
-			row = txtData.split("@"); // row1@row2@... 
-			var strTag = "<b>";
-
-			// 내가 필요한 것은 가장 최근이므로, 가장 마지막 row(에서 2번째. 가장 마지막 row는 비어있다.)
-			rowIndex = row.length - 2;
-			col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)
-
-			// code , date, presentPrice, sign, difference, prevEndPrice, volume
-			if (col.length > 4) {
-				presentPrice = col[1].split("=");
-				sign = col[2].split("=");
-				difference = col[3].split("=");
-				strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";
-				if (sign[1] == "상승") {
-					strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
-
-				} else if (sign[1] == "하락") {
-					strTag += "<b style='color:blue;'>&emsp;&emsp;&emsp; ▼ ";
-				} else { // 보합, ���� 
-					strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
-				}
-
-				strTag += difference[1] + "</b><br/>";
-			}
-			strTag += "</b>";
-			element.innerHTML = strTag;
-		}		
-	};
-	setInterval(function() {
-		repeatChart();
-		loadPresentPrice();
-	}, 30000);
 </script>
 </head>
 <body onload='rotate()'>
@@ -150,12 +130,146 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 			loadPresentPrice();
 		});
 	</script>
+	<script>
+<%String stock_code = (String) request.getAttribute("stock_code"); %>
+
+   // 차트 부분만 reload
+   
+   var repeatChart = function() {
+      myAjax("/Stock_Insigh/csv", "code=" + "${stock_code}", function() {
+         ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
+      });
+   }
+   // 현재 가격 부분만 reload
+   var loadPresentPrice = function() {
+      myAjax("/Stock_Insigh/csv", "code=" + "${stock_code}", function() {
+         stock_pre_data(stock_pre, this.responseText.trim()); //현재가격 영역
+      });
+   };
+   // 차트 그리기
+   function ajaxMakeChart(element, txtData) {
+      row = txtData.split("@"); // row1@row2@...         
+      var one_row;
+      var all_row = [];
+      // 한 tr이 한 row
+      for (var rowIndex = 0; rowIndex < row.length - 1; rowIndex++) {
+         col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)            
+         //one_row 초기화
+         one_row = [];
+         // date
+         dateNameValue = col[0].split("=");
+         one_row.push(dateNameValue[1]);
+         // price
+         priceNameValue = col[1].split("=");
+         one_row.push(parseInt(priceNameValue[1]));
+         // (date, price)
+         all_row.push(one_row);
+      };
+      
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'date');
+      data.addColumn('number', 'price');
+      data.addRows(all_row);
+      var options = null;
+      var options = {
+         title : '실시간 차트',
+         textAlign : 'center',
+         titleTextStyle: {
+            display : true,
+             fontSize: 20, // 12, 18 whatever you want (don't specify px)
+             bold: true,  // true of false
+             titleAlign:'center',
+          },
+         hAxis : {
+            title : 'time',
+            textPosition : 'none'
+         },
+         vAxis : {
+            title : 'price'
+         }
+
+      };
+      var chart = new google.visualization.LineChart(document
+            .getElementById('right_final'));
+
+      chart.draw(data, options);
+   };
+   var stock_pre_data = function(element, txtData) {
+      if(txtData=="파일없음"){
+         var strTag = "<b>실시간 데이터를 갱신하지 못했습니다.</br>조금만 기다려 주세요.</b>";
+         element.innerHTML = strTag;
+      }
+      else{
+         row = txtData.split("@"); // row1@row2@... 
+         var strTag = "<b>";
+
+         // 내가 필요한 것은 가장 최근이므로, 가장 마지막 row(에서 2번째. 가장 마지막 row는 비어있다.)
+         rowIndex = row.length - 2;
+         col = row[rowIndex].split("|"); // row의 각 col들 (name=value|name=value)
+
+         // code , date, presentPrice, sign, difference, prevEndPrice, volume
+         if (col.length > 4) {
+            presentPrice = col[1].split("=");
+            sign = col[2].split("=");
+            difference = col[3].split("=");
+            strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";
+            if (sign[1] == "상승") {
+               strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
+
+            } else if (sign[1] == "하락") {
+               strTag += "<b style='color:blue;'>&emsp;&emsp;&emsp; ▼ ";
+            } else { // 보합,      
+               strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
+            }
+
+            strTag += difference[1] + "</b><br/>";
+         }
+         strTag += "</b>";
+         element.innerHTML = strTag;
+      }      
+   };
+   setInterval(function() { 
+      repeatChart();
+      loadPresentPrice();
+   }, 30000);
+   setInterval(function() { 
+      loadShowRank();
+      loadHiddenRank();
+   }, 1000);
+   window.onload = function(){
+      loadShowRank();
+      loadHiddenRank();
+   }
+</script>
 	<div class="front">
 		<div class="logo">
 			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
-
+<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';" >
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>						
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+			value="0">
+		<!-- value 체크값을 위함 -->
 		<%
 			if (session.getAttribute("ID") != null) {
 			// 세션 존재
@@ -229,8 +343,6 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 				<!-- yh 사용 -->
 				<p style="font-size: 40px; color: black; padding-left: 30px;">
 					<b>${selectCompany}</b>
-
-
 					<%
 						if (session.getAttribute("ID") != null) { //세션 존재 
 						String user_id = (String) session.getAttribute("ID"); // 세션에 저장된 user_id 

@@ -973,7 +973,7 @@ public class DBUtil {
 		return null;
 	}
 	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
-
+		System.out.println("DBU: " + stock_index);
 		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
 		Statement st;
 		try {

@@ -67,8 +67,7 @@ public class doSearchFinal extends HttpServlet {
 		            }
 		         }
 	         
-	         System.out.print("doSearchFinal_user_index : " + user_index + "\n");
-	         
+	         System.out.print("doSearchFinal_user_index : " + user_index + "\n");	         
 			
 			String selectCompany = request.getParameter("selectCompany");
 			request.setAttribute("selectCompany", selectCompany); //선택한 회사 넘기기 
@@ -96,14 +95,12 @@ public class doSearchFinal extends HttpServlet {
 						request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
 					}
 
-           }
-           
+           }           
            
            //interest_index 있는지 없는지 확인
            Boolean interCheck = DBUtil.interestCheck(conn, user_index, stock_index);
            request.setAttribute("interCheck", interCheck); 
            System.out.print("doSearchFinal_interCheck : " + interCheck + "\n");
-			
 			
 			ResultSet rs = DBUtil.findFieldSelectCompany(conn, selectCompany); // 검색결과 비교 
 			
