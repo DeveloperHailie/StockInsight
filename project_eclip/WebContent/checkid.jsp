@@ -59,7 +59,6 @@
       setTimeout("rotate()", 800);
    }
 </script>
-<<<<<<< HEAD
 <script type="text/javascript">
    function popupOpen() {
 
@@ -70,8 +69,6 @@
       window.open(popUrl, "", popOption);
    }
 </script>
-=======
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 <script>
    function validate() {
       var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식

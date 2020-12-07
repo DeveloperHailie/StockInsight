@@ -4,54 +4,11 @@
 <html>
 
 <head>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <title>Stock Insight</title>
     <link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
     <!--design 폴더 내에 있는 css-->
-    <script type="text/javascript">
-        var n = 0;
-        var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
-
-        function rotate() {
-            document.images.slide.src = imgs[n];
-            (n == (imgs.length - 1)) ? n = 0: n++;
-            setTimeout("rotate()", 800);
-        }
-    </script>
-    <script type="text/javascript">
-   function popupOpen() {
-
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
-
-      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
-
-      window.open(popUrl, "", popOption);
-   }
-</script>
-    <script>
-   function validate() {
-
-      if (login.id.value == "") {
-         alert("아이디를 입력해 주세요");
-         login.id.focus();
-         return false;
-      }
-
-      if (login.pw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 입력해주세요.");
-         login.pw.value = "";
-         login.pw.focus();
-         return false;
-      }
-
-   }
-=======
-<meta charset="UTF-8">
-<title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
-<!--design 폴더 내에 있는 css-->
-<style>
+    <style>
 #rank-list a {
 	color: #FFF;
 	text-decoration: none;
@@ -92,6 +49,48 @@
 }
 </style>
 <script src="./js/myAjax.js"></script>
+    
+    <script type="text/javascript">
+        var n = 0;
+        var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
+
+        function rotate() {
+            document.images.slide.src = imgs[n];
+            (n == (imgs.length - 1)) ? n = 0: n++;
+            setTimeout("rotate()", 800);
+        }
+    </script>
+    <script type="text/javascript">
+   function popupOpen() {
+
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+      window.open(popUrl, "", popOption);
+   }
+</script>
+    <script>
+   function validate() {
+
+      if (login.id.value == "") {
+         alert("아이디를 입력해 주세요");
+         login.id.focus();
+         return false;
+      }
+
+      if (login.pw.value == "") { // 비밀번호 확인 입력하지 않을때,
+         alert("비밀번호를 입력해주세요.");
+         login.pw.value = "";
+         login.pw.focus();
+         return false;
+      }
+
+   }
+<meta charset="UTF-8">
+<title>Stock Insight</title>
+<link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
+<!--design 폴더 내에 있는 css-->
 
 <script type="text/javascript">
 	var n = 0;
@@ -167,7 +166,6 @@
 			}
 		}
 	}
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 </script>
 </head>
 

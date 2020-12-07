@@ -60,7 +60,6 @@
       setTimeout("rotate()", 800);
    }
 </script>
-<<<<<<< HEAD
 <script type="text/javascript">
    function popupOpen() {
 
@@ -69,8 +68,7 @@
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
       window.open(popUrl, "", popOption);
-   }
-=======
+   }</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
 	type="text/javascript"></script>
@@ -116,7 +114,6 @@
 			}
 		}
 	}
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
 </script>
 </head>
 

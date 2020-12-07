@@ -51,7 +51,6 @@
 <script src="./js/myAjax.js"></script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
    var n = 0;
    var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
 
@@ -111,7 +110,6 @@
       what.focus();
       //return false;
    }
-=======
 	var n = 0;
 	var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
 
@@ -119,47 +117,6 @@
 		document.images.slide.src = imgs[n];
 		(n == (imgs.length - 1)) ? n = 0 : n++;
 		setTimeout("rotate()", 800);
-	}
-</script>
-<script>
-	function validate() {
-		var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		// 이메일이 적합한지 검사할 정규식
-		;
-		var email = document.getElementById("email");
-
-		if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-			return false;
-		}
-
-		if (!check(re, pw, "패스워드는 4~12자 사이의 영문 대소문자와 숫자를 포함해야 합니다.")) {
-			return false;
-		}
-
-		if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
-			alert("비밀번호를 확인을 입력해주세요.");
-			join.checkpw.value = "";
-			join.checkpw.focus();
-			return false;
-		}
-
-		if (join.pw.value != join.checkpw.value) {
-			alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-			join.checkpw.value = "";
-			join.checkpw.focus();
-			return false;
-		}
-
-	}
-	function check(re, what, message) {
-		if (re.test(what.value)) {
-			return true;
-		}
-		alert(message);
-		what.value = "";
-		what.focus();
-		//return false;
 	}
 </script>
 <script
@@ -191,9 +148,9 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
 				tag += "<section id='hiddenRank'>";
-
+				
 				tag += "</section>";
 				//tag += "</ul>";
 				btn.innerHTML = tag;
@@ -207,17 +164,58 @@
 			}
 		}
 	}
->>>>>>> 97a5790ac4d49c14ba6c02d3a69b053dba496868
+</script>
+<script>
+   function validate() {
+      var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+      var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      // 이메일이 적합한지 검사할 정규식
+;
+      var email = document.getElementById("email");
+
+
+      if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+         return false;
+      }
+
+      if (!check(re, pw, "패스워드는 4~12자 사이의 영문 대소문자와 숫자를 포함해야 합니다.")) {
+         return false;
+      }
+
+      if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
+         alert("비밀번호를 확인을 입력해주세요.");
+         join.checkpw.value = "";
+         join.checkpw.focus();
+         return false;
+      }
+
+      if (join.pw.value != join.checkpw.value) {
+         alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+         join.checkpw.value = "";
+         join.checkpw.focus();
+         return false;
+      }
+
+   }
+   function check(re, what, message) {
+      if (re.test(what.value)) {
+         return true;
+      }
+      alert(message);
+      what.value = "";
+      what.focus();
+      //return false;
+   }
 </script>
 </head>
 
 <body onload='rotate()'>
 	<script>
-		// 보여지는 순위만 reload
+// 보여지는 순위만 reload
 		var loadShowRank = function() {
 			var btn = document.getElementById('showRank');
 			var table = "stock_volume"
-			myAjax("/Stock_Insigh/getRank", "table=" + table, function() {
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
 				updateShowRank(btn, this.responseText.trim()); //현재가격 영역
 			});
 		}
@@ -225,54 +223,48 @@
 		var loadHiddenRank = function() {
 			var btn = document.getElementById('hiddenRank');
 			var table = "stock_volume"
-			myAjax("/Stock_Insigh/getRank", "table=" + table, function() {
+			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
 				updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
 			});
 		}
-
+		
 		// 보여지는 순위 그리는 코드
 		function updateShowRank(element, txtData) {
 			var strTag = "";
 			row = txtData.split("@"); // 회사명@회사명@...@회사명        
 			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
-				var companyName = row[rowIndex - 1];
-				strTag += "<li><a href='javascript:showplay();'>" + rowIndex
-						+ "위. " + companyName + "</a></li>";
-			}
-			;
+				var companyName = row[rowIndex-1];
+				strTag += "<li><a href='javascript:showplay();'>"+rowIndex + "위. "+companyName+"</a></li>";
+			};
 			element.innerHTML = strTag;
 		};
-
+		
 		// 숨긴 순위 그리는 코드
 		function updateHiddenRank(element, txtData) {
 			var strTag = "";
 			row = txtData.split("@"); // 회사명@회사명@...         
 			for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
-				var companyName = row[rowIndex - 1];
-				strTag += "<a href='"
-						+ "/Stock_Insigh/getRankInfo?companyName="
-						+ companyName + "'>" + rowIndex + "위. " + companyName
-						+ "</a></br>";
-			}
-			;
+				var companyName = row[rowIndex-1];
+				strTag += "<a href='"+"/Stock_Insigh/getRankInfo?companyName="+companyName+"'>"+rowIndex + "위. "+companyName+"</a></br>";
+			};
 			element.innerHTML = strTag;
 		};
-		setInterval(function() {
+setInterval(function() { 
 			loadShowRank();
 			loadHiddenRank();
 		}, 1000);
-		window.onload = function() {
+		window.onload = function(){
 			loadShowRank();
 			loadHiddenRank();
-		}
-	</script>
+		} 
+		</script>
 
 	<div class="front">
 		<div class="logo">
 			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
-		<div id="content-rank"
+<div id="content-rank"
 			style="position: absolute; margin-left: 380px; margin-top: 65px;">
 			<dl id="rank-list">
 				<dd>
@@ -296,17 +288,16 @@
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
-
 		<%
-			if (session.getAttribute("ID") != null) {
-			// 세션 존재
-		%>
+         if(session.getAttribute("ID")!=null){
+                     // 세션 존재
+      %>
 		<ul id="okaylogin_ul">
 			<li id="okaylogin_li">
 				<%
-					String name = (String) session.getAttribute("NAME");
-				out.println("<b>" + name + "</b> 님 환영합니다. </br>");
-				%>
+            String name = (String) session.getAttribute("NAME");
+            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+            %>
 			</li>
 			</br>
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
@@ -326,9 +317,9 @@
 			</br>
 		</ul>
 		<%
-			} else {
-		// 세션존재하지 않음
-		%>
+         } else {
+      // 세션존재하지 않음
+            %>
 		<ul>
 			<li><a id="yellow" href="login.jsp">로그인</a></li> &nbsp; &nbsp;
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
@@ -339,9 +330,9 @@
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
-		<%
-			}
-		%>
+		<% 
+      }
+      %>
 	</div>
 
 	<div>
