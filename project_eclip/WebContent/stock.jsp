@@ -19,7 +19,6 @@
             setTimeout("rotate()", 800);
         }
     </script>
-<<<<<<< HEAD
     <script type="text/javascript">
    function popupOpen() {
 
