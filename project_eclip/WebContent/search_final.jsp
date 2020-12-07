@@ -314,7 +314,7 @@ System.out.println("code: " + stock_code); // 종목코드 테스트%>
 				</div>
 				<div class="price">
 					내일 예측 가격은<br> <b
-						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}</b>
+						style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}원</b>
 					입니다.
 				</div>
 
