@@ -17,7 +17,18 @@
       (n == (imgs.length - 1)) ? n = 0 : n++;
       setTimeout("rotate()", 800);
    }
-</script><script>
+</script>
+<script type="text/javascript">
+   function popupOpen() {
+
+      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+
+      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+      window.open(popUrl, "", popOption);
+   }
+</script>
+<script>
    function validate() {
       var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
