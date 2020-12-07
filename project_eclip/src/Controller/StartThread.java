@@ -28,13 +28,23 @@ public class StartThread implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent sce)  { 
-    	// 스레드 종료
+    	// 프로그램 종료
     	BackThread_Stock stockProgram = (BackThread_Stock) sce.getServletContext().getAttribute("stockP");
     	BackThread_Cos cosProgram = (BackThread_Cos) sce.getServletContext().getAttribute("cosP");
     	BackThread_Predict predictProgram = (BackThread_Predict) sce.getServletContext().getAttribute("predictP");
     	stockProgram.stop();
     	cosProgram.stop();
     	predictProgram.stop();
+    	System.out.println("finishProgram!");
+    	// 스레드 종료
+    	Thread stockT = (Thread)sce.getServletContext().getAttribute("stockT");
+    	Thread cosT = (Thread)sce.getServletContext().getAttribute("cosT");
+    	Thread predictT = (Thread)sce.getServletContext().getAttribute("predictT");
+    	
+    	stockT.interrupt();
+    	cosT.interrupt();
+    	predictT.interrupt();
+    	System.out.println("finishThread!");
     }
 
 	/**
@@ -55,17 +65,21 @@ public class StartThread implements ServletContextListener {
     	stockThread.setDaemon(true);
     	cosThread.setDaemon(true);
     	predictThread.setDaemon(true);
+    	
+    	System.out.println("startThread!");
     		
         stockThread.start();
         cosThread.start();
         predictThread.start();
         	
-        System.out.println("startThread!");
-        	
         // 속성에 등록
         sc.setAttribute("stockP", stockProgram);
         sc.setAttribute("cosP", cosProgram);
         sc.setAttribute("predictP", predictProgram);
+        
+        sc.setAttribute("stockT", stockThread);
+        sc.setAttribute("cosT", cosThread);
+        sc.setAttribute("predictT", predictThread);
         	
     }
 	

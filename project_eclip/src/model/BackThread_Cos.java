@@ -6,8 +6,11 @@ public class BackThread_Cos implements Runnable {
 	private final AtomicBoolean running = new AtomicBoolean(false);
 	static RunProgram cos = new RunProgram();
 	public void stop() {
-		System.out.println("BackThread_Cos Stop");
+		// false로 설정해서 while문 빠져나오게
 		running.set(false);
+		// 자식 프로세스 죽이기
+		cos.stopPrograms();
+		System.out.println("BackThread_Cos Stop");
 	}
 	@Override
 	public void run() {
@@ -20,9 +23,10 @@ public class BackThread_Cos implements Runnable {
 				cos.runProgram("cospi_cosdap.py");
 				Thread.sleep(180000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				stop();
 			}
 		}
-	}
+		stop();
+		System.out.println("cospi_cosdap.py run 빠져나옴");
+	} 
 }

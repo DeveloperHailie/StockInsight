@@ -6,8 +6,9 @@ public class BackThread_Predict implements Runnable {
 	private final AtomicBoolean running = new AtomicBoolean(false);
 	static RunProgram pre = new RunProgram();
 	public void stop() {
-		System.out.println("BackThread_Predict Stop");
 		running.set(false);
+		pre.stopPrograms();
+		System.out.println("BackThread_Predict Stop");
 	}
 	@Override
 	public void run() {
@@ -20,10 +21,11 @@ public class BackThread_Predict implements Runnable {
 				pre.runProgram("predict\\GetPredict.py");
 				Thread.sleep(300000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				stop(); break;
 			}
 		}
+		stop();
+		System.out.println("GetPredict.py run 빠져나옴");
 	}
 }
 
