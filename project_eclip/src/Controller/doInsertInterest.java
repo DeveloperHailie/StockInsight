@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.protocol.Resultset;
+
 import model.DBUtil;
 
 /**
@@ -59,8 +61,7 @@ public class doInsertInterest extends HttpServlet {
             request.setAttribute("selectField", selectField);
             
             String selectCompany = request.getParameter("selectCompany");
-            request.setAttribute("selectCompany", selectCompany);
-            
+            request.setAttribute("selectCompany", selectCompany);            
               
             //DBUtil.insertInterest(conn, user_index, stock_index);// user_id로 user_index 찾기 
           
@@ -72,9 +73,47 @@ public class doInsertInterest extends HttpServlet {
             	DBUtil.insertInterest(conn, user_index, stock_index);// user_id로 user_index 찾기 
             	interCheck = true;
             }
-            
+            ResultSet rs_stock_index = DBUtil.getStockCode(conn, selectCompany);
+            if(rs_stock_index !=null) {
+    			try
+    			{
+    				if(rs_stock_index.next()) { //결과가 1개인 경우 
+    					String st_cd = rs_stock_index.getString(1);
+    					System.out.println("야2" + st_cd);
+    					request.setAttribute("stock_code", st_cd);
+    				}
+    			} catch (SQLException e) {
+    				e.printStackTrace();
+    			} 
+    		}       
+            String st_stock_index = null;
+    		//stock_index 얻기   
+    		ResultSet rs_st_index = DBUtil.findStockIndex(conn,selectCompany);
+    		 if (rs_st_index != null) {
+    	        	try {
+    					while (rs_st_index.next()) {
+    						st_stock_index = rs_st_index.getString(1); // 분야 얻어오기
+    					}
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    	         }
+    		//future price 가격   
+            ResultSet rs_stock_future = DBUtil.findStockFutureFromStockIndex(conn, st_stock_index);
+            if (rs_stock_future != null) {
+            	try {
+    				while (rs_stock_future.next()) {
+    					String findStockFuture_FromStockIndex = rs_stock_future.getString(1); // 분야 얻어오기
+    					request.setAttribute("selectFuture", findStockFuture_FromStockIndex); // stock_index 리스트에 해당하는 예측가격 가져오기
+    				}
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+             }
             request.setAttribute("interCheck", interCheck); 
-                   
+            
             RequestDispatcher view = sc.getRequestDispatcher("/search_final.jsp");
             view.forward(request, response);
             

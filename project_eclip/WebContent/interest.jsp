@@ -169,7 +169,6 @@ setInterval(function() {
 			loadShowRank();
 			loadHiddenRank();
 		} </script>
-Session 체크 해서 메뉴바 다르게 하는 그 부분 위에
 	<div id="content-rank"
 			style="position: absolute; margin-left: 380px; margin-top: 65px;">
 			<dl id="rank-list">

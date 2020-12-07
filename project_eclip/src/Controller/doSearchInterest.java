@@ -78,7 +78,6 @@ public class doSearchInterest extends HttpServlet {
 	            
 	         }
 	         
-	         
 	         //stock_index를 field 이름으로 매핑 --> 관심종목에 넣은 분야 출력 
 	         ResultSet rs_stock_field = null;
 	         ArrayList<String> findStockIndex_FromUser = (ArrayList<String>) request.getAttribute("findStockIndexFromUser"); // user가 넣은 종목 index 리스트 
