@@ -12,139 +12,200 @@ import java.util.Calendar;
 public class DBUtil {
 
 	public static ResultSet findIndex(Connection con, String mid) {
-		String sql = "SELECT user_index FROM User WHERE user_id=";
-		Statement st;
+        String sql = "SELECT user_index FROM User WHERE user_id=";
+         Statement st;
 
-		try {
-			st = con.createStatement();
+        try {
+            st = con.createStatement();
 
-			if (st.execute(sql + "'" + mid + "'")) {
-				return st.getResultSet();
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+              if (st.execute(sql + "'" + mid + "'")) {
+                 return st.getResultSet();
+              }
+        }catch(SQLException e) {
+           e.printStackTrace();
+        }
+        return null;
+     }
+     
 
+  public static ResultSet findUser(Connection con, String mid) {
 
-	public static ResultSet findUser(Connection con, String mid) {
+     String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
+     Statement st;
+     try {
 
-		String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
-		Statement st;
-		try {
+        st = con.createStatement();
 
-			st = con.createStatement();
+        if (st.execute(sqlSt + "'" + mid + "'")) {
+           return st.getResultSet();
+        }
 
-			if (st.execute(sqlSt + "'" + mid + "'")) {
-				return st.getResultSet();
-			}
+     } catch (SQLException e) {
 
-		} catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
 
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+      }
+      return null;
+   }
+  
+   public static ResultSet checkMypage(Connection con, String mid) {
 
-		}
-		return null;
-	}
+	      String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
+	      Statement st;
+	      try {
 
-	public static ResultSet checkMypage(Connection con, String mid) {
+	         st = con.createStatement();
 
-		String sqlSt = "SELECT user_pwd FROM User WHERE user_id=";
-		Statement st;
-		try {
+	         if (st.execute(sqlSt + "'" + mid + "'")) {
+	        	 System.out.println("1");
+	            return st.getResultSet();
+	         }
 
-			st = con.createStatement();
+	      } catch (SQLException e) {
+	    	  System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
 
-			if (st.execute(sqlSt + "'" + mid + "'")) {
-				System.out.println("1");
-				return st.getResultSet();
-			}
+	      }
+	      return null;
+	   }
+   
+   public static ResultSet checkMypageinner(Connection con, String mid) {
 
-		} catch (SQLException e) {
-			System.out.println("2");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	      String sqlSt = "SELECT * FROM User WHERE user_id=";
+	      Statement st;
+	      try {
 
-		}
-		return null;
-	}
+	         st = con.createStatement();
+	         String str = (sqlSt + "'" + mid + "'");
 
-	public static ResultSet checkMypageinner(Connection con, String mid) {
+	         if (st.execute(str)) {
+	        	 //System.out.println("1");
+	        	 System.out.println("여기왔어?");
+	            return st.executeQuery(str);
+	         }
 
-		String sqlSt = "SELECT * FROM User WHERE user_id=";
-		Statement st;
-		try {
+	      } catch (SQLException e) {
+	    	  System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
 
-			st = con.createStatement();
-			String str = (sqlSt + "'" + mid + "'");
+	      }
+	      return null;
+	   }
+   
+   public static ResultSet popupplus(Connection con, String mid) {
 
-			if (st.execute(str)) {
-				//System.out.println("1");
-				System.out.println("여기왔어?");
-				return st.executeQuery(str);
-			}
+	      String sqlSt = 
+	      "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
+	      "from Stock\r\n" + 
+	      "where stock_index=any(select Stock_stock_index\r\n" + 
+	      "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
+	      "where user_id = '"+mid+"') order by gap desc limit 1;";
+	      Statement st;
+	      try {
 
-		} catch (SQLException e) {
-			System.out.println("2");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	         st = con.createStatement();
+	        // String str = (sqlSt + "'" + mid + "'");
 
-		}
-		return null;
-	}
+	         if (st.execute(sqlSt)) {
+	        	 //System.out.println("1");
+	        	// System.out.println("여기왔어?");
+	        	// System.out.println("here");
+	            return st.executeQuery(sqlSt);
+	         }
 
-	public static ResultSet checkMypageedit(Connection con, String mid, String new_email, String new_passwd) {
+	      } catch (SQLException e) {
+	    	  //System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
 
-		String sqlSt = "UPDATE User SET user_email ='" + new_email+"', user_pwd='" +new_passwd+"' WHERE user_id='"+mid+"'";
-		Statement st;
-		try {
+	      }
+	      return null;
+	   }
+   
+   public static ResultSet popupminus(Connection con, String mid) {
 
-			st = con.createStatement();
+	      String sqlSt = 
+	      "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
+	      "from Stock\r\n" + 
+	      "where stock_index=any(select Stock_stock_index\r\n" + 
+	      "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
+	      "where user_id = '"+mid+"') order by gap limit 1;";
+	      Statement st;
+	      try {
 
-			if (st.execute(sqlSt)) {
-				//System.out.println("1");
-				System.out.println("수정하러왔어요");
-				return st.executeQuery(sqlSt);
-			}
+	         st = con.createStatement();
+	        // String str = (sqlSt + "'" + mid + "'");
 
-		} catch (SQLException e) {
-			System.out.println("수정실패");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	         if (st.execute(sqlSt)) {
+	        	 //System.out.println("1");
+	        	// System.out.println("여기왔어?");
+	        	// System.out.println("here");
+	            return st.executeQuery(sqlSt);
+	         }
 
-		}
-		return null;
-	}
+	      } catch (SQLException e) {
+	    	  //System.out.println("2");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
 
+	      }
+	      return null;
+	   }
+   
+   public static ResultSet checkMypageedit(Connection con, String mid, String new_email, String new_passwd) {
 
+	      String sqlSt = "UPDATE User SET user_email ='" + new_email+"', user_pwd='" +new_passwd+"' WHERE user_id='"+mid+"'";
+	      Statement st;
+	      try {
 
+	         st = con.createStatement();
 
-	public static Boolean checkID(Connection conn, String input_id) {
+	         if (st.execute(sqlSt)) {
+	        	 //System.out.println("1");
+	        	 System.out.println("수정하러왔어요");
+	            return st.executeQuery(sqlSt);
+	         }
 
-		String idfind_Sql = "SELECT user_id FROM User WHERE user_id=";
+	      } catch (SQLException e) {
+	    	  System.out.println("수정실패");
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
 
-		Statement st;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(idfind_Sql+ "'" + input_id + "'");
+	      }
+	      return null;
+	   }
+   
+  
 
-			while (rs.next()) {
-				String id = rs.getString(1);
-				if(id.equals(input_id)) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+  
+   public static Boolean checkID(Connection conn, String input_id) {
 
-		return false;
-	}
+	      String idfind_Sql = "SELECT user_id FROM User WHERE user_id=";
+
+	      Statement st;
+	      try {
+	         st = conn.createStatement();
+	         ResultSet rs = st.executeQuery(idfind_Sql+ "'" + input_id + "'");
+
+	         while (rs.next()) {
+	            String id = rs.getString(1);
+	            if(id.equals(input_id)) {
+	               return true;
+	            }
+	            else {
+	               return false;
+	            }
+	         }
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	      }
+
+	      return false;
+	   }
+
 
 	public static ResultSet findID(Connection conn, String input_name, String input_email) {
 
@@ -163,6 +224,7 @@ public class DBUtil {
 		}
 		return null;
 	}
+	
 	public static ResultSet findPWD(Connection conn, String input_name, String input_id, String input_email) {
 
 		String sqlSt = "SELECT user_pwd FROM User WHERE user_name=";
@@ -811,6 +873,52 @@ public class DBUtil {
 		return null;
 	}
 
+	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+
+		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+				//interest_index = - 1;
+				return st.getResultSet(); // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	
+	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+
+		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+				//interest_index = - 1;
+				return st.getResultSet(); // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	
 	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
 		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 

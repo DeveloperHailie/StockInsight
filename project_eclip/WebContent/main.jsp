@@ -341,6 +341,15 @@
 				<dd>
 					<ol id="showRank" style="font-family: 'nanum';" >
 						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>						
 					</ol>
 				</dd>
 			</dl>
