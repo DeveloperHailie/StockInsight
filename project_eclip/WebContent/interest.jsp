@@ -274,30 +274,46 @@ setInterval(function() {
         
     	%>
        
-       <br/><br/><br/>
+       <br/>
        
-         
+       <h1 style="text-align:center;">예측 가격 <b style="color:#E84620;"> 상승</b> 종목은 <b style="color:#E84620;"> 빨간색</b>, <b style="color:#0066FF;"> 하락</b> 종목은 <b style="color:#0066FF;"> 파란색</b>으로 표시됩니다. </h1><br/><br/><br/>
+       
+         	
            <form method="POST" action="doSearchFinal">                       
                <div class = "alllike">
                <%
                   if (stockindexList != null) {
                   for (int i = 0; i < stockindexList.size(); i++) {
                 	  
-               out.print("<div class = \"like\">");
-               out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
-               out.print(companyList.get(i));
-               out.print("\">"); 
+               	  out.print("<div class = \"like\">");
+               	  out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
+               	  out.print(companyList.get(i));
+               	  out.print("\">"); 
                
-               out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
-               out.print("<br/>");
-               out.print("<br/>");
+               	  out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
+               	  out.print("<br/>");
+               	  out.print("<br/>");
+               
+               	  int gap = Integer.parseInt(beforeList.get(i))-Integer.parseInt(futureList.get(i));
+               	  boolean up = true;
+               	  if(gap < 0)
+               		  up = true;
+               	  else
+               		  up = false;	  
                %>
                <h1 style="font-size: 17pt;"><%= findStockFieldList.get(i)%></h1>  
                <br/>
                <h1><b><%= companyList.get(i)%></b></h1>
                <br/>
-               <p class = "today" ><b>실시간 가격 :<u> <%= beforeList.get(i)%>원</u></b></p>  
-               <p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><u><%= futureList.get(i)%>원</u></b></b></p>
+               <p class = "today" ><b>실시간 가격 : <%= beforeList.get(i)%>원</b></p>  
+               <%
+               	  if (up == true){%>
+               		<p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><u><%= futureList.get(i)%>원</u></b></b></p>
+               <% }
+               
+               	  else { %>
+               		<p class = "today"><b>내일 예측 가격 : <b style="color:#0066FF;"><u><%= futureList.get(i)%>원</u></b></b></p>
+               	 <% }  %>
                </button>
                </div>
                <%
