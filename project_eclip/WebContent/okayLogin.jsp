@@ -383,8 +383,7 @@
 		<ul id="okaylogin_ul">
 			<li id="okaylogin_li">
 				<%
-         session.getAttribute("ID");
-         String name = (String)request.getAttribute("name");
+         String name = (String)session.getAttribute("NAME");
          out.println("<b>" + name + "</b> 님 환영합니다. </br>" ); 		
          %>
 			</li>

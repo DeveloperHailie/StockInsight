@@ -271,8 +271,7 @@
 		</div>
 		<div id="D"
 			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
-		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
-			value="0">
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
 		<!-- value 체크값을 위함 -->
 		<%
          if (session.getAttribute("ID") != null) {

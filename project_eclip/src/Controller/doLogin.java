@@ -110,7 +110,6 @@ public class doLogin extends HttpServlet {
 				e.printStackTrace();
 			} 
      	}
-		
 		if(check != null) {
 			request.setAttribute("check",check);
 			RequestDispatcher view = request.getRequestDispatcher("noLogin.jsp");
