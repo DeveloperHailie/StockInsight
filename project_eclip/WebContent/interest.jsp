@@ -301,18 +301,18 @@ setInterval(function() {
                	  else
                		  up = false;	  
                %>
-               <h1 style="font-size: 17pt;"><%= findStockFieldList.get(i)%></h1>  
+               <h1 style="font-size: 17pt;"><b><%= companyList.get(i)%></b></h1>
                <br/>
-               <h1><b><%= companyList.get(i)%></b></h1>
+               <h1 style="font-size: 13pt;"><%= findStockFieldList.get(i)%></h1>
                <br/>
                <p class = "today" ><b>실시간 가격 : <%= beforeList.get(i)%>원</b></p>  
                <%
                	  if (up == true){%>
-               		<p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><u><%= futureList.get(i)%>원</u></b></b></p>
+               		<p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><%= futureList.get(i)%>원</b></b></p>
                <% }
                
                	  else { %>
-               		<p class = "today"><b>내일 예측 가격 : <b style="color:#0066FF;"><u><%= futureList.get(i)%>원</u></b></b></p>
+               		<p class = "today"><b>내일 예측 가격 : <b style="color:#0066FF;"><%= futureList.get(i)%>원</b></b></p>
                	 <% }  %>
                </button>
                </div>
