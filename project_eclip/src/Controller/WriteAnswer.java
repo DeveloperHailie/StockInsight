@@ -51,8 +51,8 @@ public class WriteAnswer extends HttpServlet {
 		// 로그인 되어 있는 상태인지 체크
 		HttpSession session = request.getSession(false);
 		if (session == null) {
-			// 로그인 안 되어있으면 login.html 반환
-			response.sendRedirect("login.html");
+			// 로그인 안 되어있으면 login반환
+			response.sendRedirect("login.jsp");
 		} else {
 			//로그인 되어 있고 관계자이면 
 			//(1)answer db insert
@@ -80,7 +80,7 @@ public class WriteAnswer extends HttpServlet {
 				}
 			}else {
 				// 다시 문의하기 페이지로
-				response.sendRedirect("question.html");
+				response.sendRedirect("/postList?pageIndex=1");
 			}
 		}
 	}

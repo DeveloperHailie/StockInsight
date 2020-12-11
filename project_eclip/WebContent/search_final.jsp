@@ -138,6 +138,7 @@
    %>
 
    // 차트 부분만 reload
+
    var repeatChart = function() {
       myAjax("/Stock_Insigh/csv", "code=" + "${stock_code}", function() {
          ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
@@ -250,10 +251,11 @@
 
          // code , date, presentPrice, sign, difference, prevEndPrice, volume
          if (col.length > 4) {
-            presentPrice = col[1].split("=");
+            presentPrice = col[1].split("=");    
+            volume = col[4].split("=");
             sign = col[2].split("=");
             difference = col[3].split("=");
-            strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";
+            strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";           
             if (sign[1] == "상승") {
                strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
 
@@ -263,7 +265,8 @@
                strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
             }
 
-            strTag += difference[1] + "</b><br/>";
+            strTag += difference[1] + "</b>";
+            strTag += "</br>실시간 거래량: " + volume[1] + "&nbsp";
          }
          strTag += "</b>";
          element.innerHTML = strTag;
@@ -389,9 +392,7 @@
 
                   String stock_index = (String) request.getAttribute("stock_index"); // 받아온 stock_index 
                   Boolean interestCheck = (Boolean) request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
-                  //System.out.print("search_final.jsp 관심종목 유무 :  " + interestCheck + "\n\n");
                %>
-
                <%
                   if (interestCheck == false) {//선택한 회사가 관심종목에 없을 때, x
                   out.print("<form method = \"POST\" action=\"doInsertInterest\">"); //관심종목에 현재 로그인한 user_index에 선택한 분야가 관심종목에 있을때 
@@ -464,7 +465,12 @@
                   style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}원</b>
                입니다.
             </div>
-
+            <% %>
+            <div style="margin-top:10%">
+            	<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=<%=selectCompany%>" 
+            	target="_blank" style="text-decoration: underline; color: gray; ">
+            	<b style="font-size: 20px;"> 📢 관련 이슈가 궁금하신가요?</b></a>
+            </div>
          </div>
 
          <div id="right_final"

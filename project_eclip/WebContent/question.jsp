@@ -43,6 +43,15 @@
 	line-height: 20px;
 }
 </style>
+<%
+
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script src="./js/myAjax.js"></script>
  
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -94,9 +103,8 @@
 			if (flagValue == "0") {
 				real.css("display", "block");
 				var tag;
-				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -185,9 +193,7 @@ setInterval(function() {
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
-		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
 		

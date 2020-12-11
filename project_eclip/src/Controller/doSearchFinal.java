@@ -115,16 +115,17 @@ public class doSearchFinal extends HttpServlet {
 			e1.printStackTrace();
 		}
 		ResultSet code = DBUtil.find_stockcode(conn, stock_index);
+		String st_cd = null;
 		if(code !=null) {
 			try
 			{
 				if(code.next()) { //결과가 1개인 경우 
-					String st_cd = code.getString(1);
+					st_cd = code.getString(1);
 					request.setAttribute("stock_code", st_cd);
 					value = 2;
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();} 
+				e.printStackTrace(); } 
 		}
 		if(value !=0) {
 			RequestDispatcher view =  request.getRequestDispatcher("/search_final.jsp");

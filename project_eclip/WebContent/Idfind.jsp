@@ -69,7 +69,7 @@
       window.open(popUrl, "", popOption);
    }
 </script>
-    <script>
+    
 <script>
    function validate() {
       if (login.id.value == "") {

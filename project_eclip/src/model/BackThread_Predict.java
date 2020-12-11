@@ -8,7 +8,6 @@ public class BackThread_Predict implements Runnable {
 	public void stop() {
 		running.set(false);
 		pre.stopPrograms();
-		System.out.println("BackThread_Predict Stop");
 	}
 	@Override
 	public void run() {
@@ -16,10 +15,9 @@ public class BackThread_Predict implements Runnable {
 		while(running.get()) {
 			try {
 				// 프로그램 실행
-				System.out.println("BackThread_Predict Start");
 				// 예측(회사)
 				pre.runProgram("predict\\GetPredict.py");
-				Thread.sleep(300000);
+				Thread.sleep(180000);
 			} catch (InterruptedException e) {
 				stop(); break;
 			}

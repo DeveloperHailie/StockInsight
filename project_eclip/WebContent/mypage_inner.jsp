@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
+
 <script type="text/javascript">
 	var n = 0;
 	var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
@@ -47,6 +48,7 @@
 		step(1);
 	});
 </script>
+
 <script>
 	function showplay() {
 		var flag = $('#hidTempSynopsis');
@@ -122,6 +124,15 @@
 
 
 <body onload='rotate()'>
+<%
+
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
@@ -264,10 +275,10 @@ setInterval(function() {
 
 			<br> <br> <br> 
 			<center>
-            <form id="mypage_inner" method="POST" action="getMyQna">
+            <form id="mypage_inner" action="getMyQna">
                <button type=\"button\" class=\"btn_collection\" style="position: relative;left: 20%;top: 15px;padding: 7px 17px;border-radius: 3px;font-family:nanum;font-weight: bold;font-size: 13px;background-color:#fff;color:#E8CE48;outline-color:#E8CE48;outline-style: default;">내가 쓴 문의글</button>
             </form>
-               <form id="mypage_inner" method="POST" action="getmypage">
+              
                <br> <br> <br><table class="mypage_inner">
 
 
@@ -327,7 +338,7 @@ setInterval(function() {
 
                <button type="button" class="btn_question_submit"
                   onClick="location.href='mypage_edit.jsp' ">수정하기</button>
-            </form>
+            
       </div>
 
    </section>

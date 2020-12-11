@@ -1047,6 +1047,7 @@ public class DBUtil {
 		return null;
 	}
 	
+
 	public static ResultSet sortVolumeLow(Connection con, String search) {
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume ASC";
@@ -1161,4 +1162,5 @@ public class DBUtil {
 		}
 		return null;
 	}
+
 }

@@ -227,7 +227,7 @@ alert("아이디가 중복됩니다.\n다시입력해주세요");
 
 	<div class="front">
 		<div class="logo">
-			<a href="home.jsp"><img src="logo.png"
+			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
 		<div id="content-rank"
