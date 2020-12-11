@@ -464,9 +464,12 @@
                   style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}원</b>
                입니다.
             </div>
-			<div>
-				<p style="font-size: 20px; color: black;">
-			</div>
+            <% %>
+            <div style="margin-top:10%">
+            	<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=<%=selectCompany%>" 
+            	target="_blank" style="text-decoration: underline; color: gray; ">
+            	<b style="font-size: 20px;"> 📢 관련 이슈가 궁금하신가요?</b></a>
+            </div>
          </div>
 
          <div id="right_final"
