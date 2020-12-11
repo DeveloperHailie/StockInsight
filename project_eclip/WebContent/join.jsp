@@ -71,7 +71,7 @@
    }
 </script><script>
    function validate() {
-      var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+      var re = /^[a-zA-Z0-9]{4,16}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
 ;
@@ -167,7 +167,10 @@
 </script>
 <script>
    function validate() {
-      var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+      var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
+    	  ///^[A-Za-z0-9]{8,12}$/;
+    	  ///^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+    	  
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
 ;
@@ -383,19 +386,20 @@ setInterval(function() {
 					<tr>
 						<td>비밀번호 :</td>
 						<td><input required type="password" name="user_pwd" id="pw"
-							maxlength="12"></td>
+							maxlength="16"></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2" style="color: red;">※ 4-12자의 영문 대소문자와 숫자로만 입력</td>
+						<td colspan="2" style="color: red;">※ 4-16자의 영문 대소문자와 숫자로만 입력</td>
 					</tr>
 					<tr>
 						<td>비밀번호 확인 :</td>
 						<td><input required type="password" id="checkpw"
-							maxlength="12"></td>
+							maxlength="16"></td>
 					</tr>
 				</table>
 				<br /> <br /> <input type="submit" class="okayjoin" value=" 회원가입 ">
+				<br/><br/>
 				</td>
 			</center>
 		</form>
