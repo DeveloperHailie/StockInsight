@@ -138,7 +138,7 @@
    %>
 
    // 차트 부분만 reload
-   
+
    var repeatChart = function() {
       myAjax("/Stock_Insigh/csv", "code=" + "${stock_code}", function() {
          ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
@@ -150,6 +150,44 @@
          stock_pre_data(stock_pre, this.responseText.trim()); //현재가격 영역
       });
    };
+// 보여지는 순위만 reload
+	var loadShowRank = function() {
+		var btn = document.getElementById('showRank');
+		var table = "stock_volume"
+		myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+			updateShowRank(btn, this.responseText.trim()); //현재가격 영역
+		});
+	}
+	// 숨겨진 순위만 reload
+	var loadHiddenRank = function() {
+		var btn = document.getElementById('hiddenRank');
+		var table = "stock_volume"
+		myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+			updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
+		});
+	}
+	
+	// 보여지는 순위 그리는 코드
+	function updateShowRank(element, txtData) {
+		var strTag = "";
+		row = txtData.split("@"); // 회사명@회사명@...@회사명        
+		for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+			var companyName = row[rowIndex-1];
+			strTag += "<li><a href='javascript:showplay();'>"+rowIndex + "위. "+companyName+"</a></li>";
+		};
+		element.innerHTML = strTag;
+	};
+	
+	// 숨긴 순위 그리는 코드
+	function updateHiddenRank(element, txtData) {
+		var strTag = "";
+		row = txtData.split("@"); // 회사명@회사명@...         
+		for (var rowIndex = 1; rowIndex <= row.length; rowIndex++) {
+			var companyName = row[rowIndex-1];
+			strTag += "<a href='"+"/Stock_Insigh/getRankInfo?companyName="+companyName+"'>"+rowIndex + "위. "+companyName+"</a></br>";
+		};
+		element.innerHTML = strTag;
+	};
    // 차트 그리기
    function ajaxMakeChart(element, txtData) {
       row = txtData.split("@"); // row1@row2@...         
@@ -213,10 +251,11 @@
 
          // code , date, presentPrice, sign, difference, prevEndPrice, volume
          if (col.length > 4) {
-            presentPrice = col[1].split("=");
+            presentPrice = col[1].split("=");    
+            volume = col[4].split("=");
             sign = col[2].split("=");
             difference = col[3].split("=");
-            strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";
+            strTag += "현재 가격: " + presentPrice[1] + "&nbsp원";           
             if (sign[1] == "상승") {
                strTag += "<b style='color:red;'>&emsp;&emsp;&emsp; ▲ ";
 
@@ -226,7 +265,8 @@
                strTag += "<b style='color:black;'>&emsp;&emsp;&emsp; 〓 ";
             }
 
-            strTag += difference[1] + "</b><br/>";
+            strTag += difference[1] + "</b>";
+            strTag += "</br>실시간 거래량: " + volume[1] + "&nbsp";
          }
          strTag += "</b>";
          element.innerHTML = strTag;
@@ -245,35 +285,35 @@
       loadHiddenRank();
    }
 </script>
-   <div class="front">
-      <div class="logo">
-         <a href="main.jsp"><img src="logo.png"
-            style="width: 336px; height: 148px; float: left;"></a>
-      </div>
-      <div id="content-rank"
-         style="position: absolute; margin-left: 380px; margin-top: 65px;">
-         <dl id="rank-list">
-            <dd>
-               <ol id="showRank" style="font-family: 'nanum';">
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-                  <li><a href='javascript:showplay();'> </a></li>
-               </ol>
-            </dd>
-         </dl>
-      </div>
-      <div id="D"
-         style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
-      <input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
-      <!-- value 체크값을 위함 -->
-      <%
+	<div class="front">
+		<div class="logo">
+			<a href="main.jsp"><img src="logo.png"
+				style="width: 336px; height: 148px; float: left;"></a>
+		</div>
+		<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';">
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
+		<!-- value 체크값을 위함 -->
+		<%
          if (session.getAttribute("ID") != null) {
          // 세션 존재
       %>
@@ -352,9 +392,7 @@
 
                   String stock_index = (String) request.getAttribute("stock_index"); // 받아온 stock_index 
                   Boolean interestCheck = (Boolean) request.getAttribute("interCheck"); //관심 종목에 들어가있는지 유무 
-                  //System.out.print("search_final.jsp 관심종목 유무 :  " + interestCheck + "\n\n");
                %>
-
                <%
                   if (interestCheck == false) {//선택한 회사가 관심종목에 없을 때, x
                   out.print("<form method = \"POST\" action=\"doInsertInterest\">"); //관심종목에 현재 로그인한 user_index에 선택한 분야가 관심종목에 있을때 
@@ -427,7 +465,12 @@
                   style="font-size: 30px; background: linear-gradient(to right, #B06AB3, #4568DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${selectFuture}원</b>
                입니다.
             </div>
-
+            <% %>
+            <div style="margin-top:10%">
+            	<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=<%=selectCompany%>" 
+            	target="_blank" style="text-decoration: underline; color: gray; ">
+            	<b style="font-size: 20px;"> 📢 관련 이슈가 궁금하신가요?</b></a>
+            </div>
          </div>
 
          <div id="right_final"
