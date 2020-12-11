@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.1">
+<link rel="stylesheet" type="text/css" href="style.css">
 <!--design 폴더 내에 있는 css-->
 <style>
 #rank-list a {
@@ -51,15 +51,15 @@
 <script src="./js/myAjax.js"></script>
 
 <script type="text/javascript">
-   var n = 0;
-   var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
+        var n = 0;
+        var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
 
-   function rotate() {
-      document.images.slide.src = imgs[n];
-      (n == (imgs.length - 1)) ? n = 0 : n++;
-      setTimeout("rotate()", 800);
-   }
-</script>
+        function rotate() {
+            document.images.slide.src = imgs[n];
+            (n == (imgs.length - 1)) ? n = 0: n++;
+            setTimeout("rotate()", 800);
+        }
+    </script>
 <script type="text/javascript">
    function popupOpen() {
 
@@ -246,7 +246,8 @@ setInterval(function() {
 	<div>
 		<header>
 			<center>
-				<img src="title.PNG" id="slide" style="width: 1200px; height: auto";>
+				<img src="title_ver3_1.png" id="slide"
+					style="width: 1200; height: auto"; >
 			</center>
 		</header>
 	</div>
