@@ -268,13 +268,56 @@ setInterval(function() {
 					String search = (String) request.getAttribute("search");
 					int count = (int) request.getAttribute("count");
 					ArrayList<String> result = (ArrayList<String>) request.getAttribute("searchResult");
+					String click = (String)request.getAttribute("click");
 				%>
 
 				<div class="result_count">
-					<strong style="font-size: 20px;">"${search}"</strong>에 대한 검색결과 <strong
-						style="font-size: 20px;">총 ${count} 건</strong> 입니다.
+					<strong style="font-size: 20px;">"${search}"</strong>에 대한 검색결과 
+					<strong style="font-size: 20px;">총 ${count} 건</strong> 입니다.
+			
 				</div>
-
+				
+				<form method="POST" action="doSearch">
+					
+					<input type = "hidden" name = "search" value="${search}"/>
+		
+					<%
+					 if(click.equals("btnVolumeLow")){
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnVolumeLow\" class=\"updown\"><b><u>거래량 낮은순</u></b></button>");
+					 }else{
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnVolumeLow\" class=\"updown\"><b>거래량 낮은순</b></button>");
+					 }
+					     out.print("|");
+					 if(click.equals("btnVolumeHigh")){
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnVolumeHigh\" class=\"updown\"><b><u>거래량 높은순</u></b></button>");
+					 }else{
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnVolumeHigh\" class=\"updown\"><b>거래량 높은순</b></button>");
+					 }
+					     out.print("|");
+					 if(click.equals("btnBeforeLow")){
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnBeforeLow\" class=\"updown\"><b><u>실시간 낮은순</u></b></button>");
+					 }else{
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnBeforeLow\" class=\"updown\"><b>실시간 낮은순</b></button>");
+					 }
+					     out.print("|");
+					 if(click.equals("btnBeforeHigh")){
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnBeforeHigh\" class=\"updown\"><b><u>실시간 높은순</u></b></button>");
+					 }else{
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnBeforeHigh\" class=\"updown\"><b>실시간 높은순</b></button>");
+					 }
+					     out.print("|");
+					 if(click.equals("btnName")){
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnName\" class=\"updown\" style=\"text-align:left;\"><b><u>   이름순</u></b></button>");
+					 }else{
+						 out.print("<button type = \"submit\" name = \"btnUpDown\" value=\"btnName\" class=\"updown\" style=\"text-align:left;\"><b>   이름순</b></button>");
+					 }
+					
+					
+					%>
+				</form>
+				</br>
+				</br>
+		
 				<form method="POST" action="doSearchFinal">
 					<table class="srch" width="50%"
 						style="border-top: 1px solid #ccc; border-right: 1px solid #ccc;">

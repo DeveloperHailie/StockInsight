@@ -59,7 +59,7 @@ public class doJoin extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("checkid.jsp");
 			view.forward(request, response);
 		}
-		else { //가입이 안된 유저
+		else { //가입이 된 유저
 			try {
 				DBUtil.addMember(conn, name, id, email, pwd);
 				response.sendRedirect("login.jsp"); //로그인으로

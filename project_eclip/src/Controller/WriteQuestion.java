@@ -56,7 +56,7 @@ public class WriteQuestion extends HttpServlet {
 		
 		if (session == null || check_index == null) {
 			// 로그인 안 되어있으면 login.html 반환
-			response.sendRedirect("login.html");
+			response.sendRedirect("login.jsp");
 			// 혹시 모르니까 한번 더 무효화
 			session.invalidate();
 		} else {
@@ -79,7 +79,7 @@ public class WriteQuestion extends HttpServlet {
 				view.forward(request, response);
 			}else {
 				// 다시 문의하기 페이지로
-				response.sendRedirect("question.html");
+				response.sendRedirect("question.jsp");
 			}
 		}
 
