@@ -255,7 +255,7 @@ setInterval(function() {
 
 
 			<center>
-				<form method="POST" action="getAnswerPage">
+				
 					<table class="question_content_table">
 						<%
                     	// name, title, content, date, number
@@ -275,23 +275,38 @@ setInterval(function() {
 
 						<tr class="button_table_content">
 							<th></th>
+							
 							<td colspan="5" height="50">
+							<form method="POST" action="getAnswerPage" style="padding-top:10px;padding-bottom:10px;">
 								<%
                             	if((Boolean)request.getAttribute("admin")){
                             		out.println("<button type=\"submit\" class=\"btn_answer\">답변하기</button>");
                             	}
                             %> <a
 								href="/Stock_Insigh/postList?pageIndex=1" class="btn_list">목록가기</a>
-							</td>
-						</tr>
-					</table>
-					<%
+							<%
                     out.println("<input type=\"hidden\" name=\"title\" value=\""+title+"\">");
                     out.println("<input type=\"hidden\" name=\"name\" value=\""+name+"\">");
                     out.println("<input type=\"hidden\" name=\"date\" value=\""+date+"\">");
                     out.println("<input type=\"hidden\" name=\"content\" value=\""+content+"\">");
                     out.println("<input type=\"hidden\" name=\"number\" value=\""+number+"\">");
                     %>
+	                    </form>
+	                    <form method="POST" action="/deleteQuestion">
+                    	<%
+                    		if(session.getAttribute("ID").equals(name)){
+                    			out.println("<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">삭제하기</button>");
+                    		}
+                    	%>
+                    	<input type="hidden" name="number" value="number"/>
+                    </form>
+							</td>
+							
+   
+						</tr>
+					</table>
+					
+                    
 				</form>
 			</center>
 		</div>
