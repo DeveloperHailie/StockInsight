@@ -234,7 +234,7 @@
 
 		<div class="menu_content">
 
-			<a href="/Stock_Insigh/getQuestionLayout" class="btn_question">글
+			<a href="question.jsp" class="btn_question">글
 				작성</a>
 
 			<center>

@@ -258,7 +258,7 @@ setInterval(function() {
 
 
 			<center>
-				<form form method="POST" action="getAnswerPage">
+				<form method="POST" action="getAnswerPage">
 					<table class="question_content_table">
 						<%
                     	// name, title, content, date, number

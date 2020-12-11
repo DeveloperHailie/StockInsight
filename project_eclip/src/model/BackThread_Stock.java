@@ -8,7 +8,6 @@ public class BackThread_Stock  implements Runnable {
 	public void stop() {
 		running.set(false);
 		st.stopPrograms();
-		System.out.println("BackThread_Stock Stop");
 	}
 	@Override
 	public void run() {
@@ -16,10 +15,9 @@ public class BackThread_Stock  implements Runnable {
 		while(running.get()) {
 			try {
 				// 프로그램 실행
-				System.out.println("BackThread_Stock Start");
 				// 실시간 데이터 업데이트(회사)
 				st.runProgram("realtime_data_crawling.py");
-				Thread.sleep(300000);
+				Thread.sleep(180000);
 			} catch (InterruptedException e) {
 				stop(); break;
 			}

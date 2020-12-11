@@ -43,6 +43,15 @@
 	line-height: 20px;
 }
 </style>
+<% 
+if(session.getAttribute("ID")==null){
+	out.print("<script>");
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script src="./js/myAjax.js"></script>
  
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">

@@ -47,6 +47,15 @@
 		step(1);
 	});
 </script>
+<% 
+if(session.getAttribute("ID")==null){
+	out.print("<script>");
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script>
 	function showplay() {
 		var flag = $('#hidTempSynopsis');
@@ -264,10 +273,10 @@ setInterval(function() {
 
 			<br> <br> <br> 
 			<center>
-            <form id="mypage_inner" method="POST" action="getMyQna">
+            <form id="mypage_inner" action="getMyQna">
                <button type=\"button\" class=\"btn_collection\" style="position: relative;left: 20%;top: 15px;padding: 7px 17px;border-radius: 3px;font-family:nanum;font-weight: bold;font-size: 13px;background-color:#fff;color:#E8CE48;outline-color:#E8CE48;outline-style: default;">내가 쓴 문의글</button>
             </form>
-               <form id="mypage_inner" method="POST" action="getmypage">
+              
                <br> <br> <br><table class="mypage_inner">
 
 
@@ -327,7 +336,7 @@ setInterval(function() {
 
                <button type="button" class="btn_question_submit"
                   onClick="location.href='mypage_edit.jsp' ">수정하기</button>
-            </form>
+            
       </div>
 
    </section>

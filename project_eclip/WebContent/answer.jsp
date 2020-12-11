@@ -66,6 +66,16 @@
       window.open(popUrl, "", popOption);
    }
 </script>
+<% 
+if(session.getAttribute("ID")==null){
+	out.print("<script>");
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
 	type="text/javascript"></script>
