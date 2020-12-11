@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
+
 <script type="text/javascript">
 	var n = 0;
 	var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
@@ -47,15 +48,7 @@
 		step(1);
 	});
 </script>
-<% 
-if(session.getAttribute("ID")==null){
-	out.print("<script>");
-	out.print("<h1> 로그인 후 이용해주세요. </h1>");
-	out.print("<script>");
-	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
-	out.print("</script>");
-}
-%>
+
 <script>
 	function showplay() {
 		var flag = $('#hidTempSynopsis');
@@ -131,6 +124,15 @@ if(session.getAttribute("ID")==null){
 
 
 <body onload='rotate()'>
+<%
+
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
