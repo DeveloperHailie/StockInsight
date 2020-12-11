@@ -383,7 +383,7 @@
             </p>
             <!-- yh 사용 -->
             <p style="font-size: 40px; color: black; padding-left: 30px;">
-               <b>${selectCompany}</b></br>
+               <b>${selectCompany}</b>
                <%
                   if (session.getAttribute("ID") != null) { //세션 존재 
                   String user_id = (String) session.getAttribute("ID"); // 세션에 저장된 user_id 
