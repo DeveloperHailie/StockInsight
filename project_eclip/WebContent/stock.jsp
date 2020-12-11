@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -140,6 +141,7 @@
 <body onload='rotate()'>
 	<script>
 // 보여지는 순위만 reload
+
 		var loadShowRank = function() {
 			var btn = document.getElementById('showRank');
 			var table = "stock_volume"
