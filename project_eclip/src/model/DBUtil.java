@@ -1046,4 +1046,119 @@ public class DBUtil {
 		}
 		return null;
 	}
+	
+	public static ResultSet sortVolumeLow(Connection con, String search) {
+		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sql = "ORDER BY stock_volume ASC";
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+				return st.getResultSet();
+			}
+
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+	
+	public static ResultSet sortVolumeHigh(Connection con, String search) {
+		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sql = "ORDER BY stock_volume DESC";
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+				return st.getResultSet();
+			}
+
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+	
+	public static ResultSet sortBeforeLow(Connection con, String search) {
+		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sql = "ORDER BY stock_before ASC";
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+				return st.getResultSet();
+			}
+
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+	
+	public static ResultSet sortBeforeHigh(Connection con, String search) {
+		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sql = "ORDER BY stock_before DESC";
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+				return st.getResultSet();
+			}
+
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+	
+	public static ResultSet sortName(Connection con, String search) {
+		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sql = "ORDER BY stock_company ASC";
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+				return st.getResultSet();
+			}
+
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
 }
