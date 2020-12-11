@@ -1047,4 +1047,27 @@ public class DBUtil {
 		return null;
 	}
 	
+	public static boolean removeInfo(Connection con, String user_index) {
+		String sql = "DELETE u, ui, uq from "
+				+ "Stockinsight.User as u left join Stockinsight.Interest as ui on u.user_index = ui.User_user_index "
+				+ "left join Stockinsight.Question as uq on u.user_index = uq.User_user_index "
+				+ "where u.user_index="; 
+		Statement st;
+		try {
+
+			st = con.createStatement();
+
+			if (st.execute(sql + "'" + user_index + "'" )) {
+				//interest_index = - 1;
+				return true; // field 넘김 
+			}
+
+		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return true;
+	}
 }
