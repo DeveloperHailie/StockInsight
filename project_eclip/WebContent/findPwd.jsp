@@ -245,7 +245,8 @@ setInterval(function() {
 	<div>
 		<header>
 			<center>
-				<img src="title.PNG" id="slide" style="width: 1200px; height: auto";>
+				<img src="title_ver3_1.png" id="slide"
+					style="width: 1200; height: auto"; >
 			</center>
 		</header>
 	</div>
