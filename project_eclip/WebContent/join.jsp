@@ -69,47 +69,10 @@
 
       window.open(popUrl, "", popOption);
    }
-</script><script>
-   function validate() {
-      var re = /^[a-zA-Z0-9]{4,16}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
-      var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      // 이메일이 적합한지 검사할 정규식
-;
-      var email = document.getElementById("email");
+</script>
 
+<script>
 
-      if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-         return false;
-      }
-
-      if (!check(re, pw, "패스워드는 4~12자 사이의 영문 대소문자와 숫자를 포함해야 합니다.")) {
-         return false;
-      }
-
-      if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 확인을 입력해주세요.");
-         join.checkpw.value = "";
-         join.checkpw.focus();
-         return false;
-      }
-
-      if (join.pw.value != join.checkpw.value) {
-         alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-         join.checkpw.value = "";
-         join.checkpw.focus();
-         return false;
-      }
-
-   }
-   function check(re, what, message) {
-      if (re.test(what.value)) {
-         return true;
-      }
-      alert(message);
-      what.value = "";
-      what.focus();
-      //return false;
-   }
 	var n = 0;
 	var imgs = new Array("title_ver3_1.png", "title_ver3_2.png");
 
