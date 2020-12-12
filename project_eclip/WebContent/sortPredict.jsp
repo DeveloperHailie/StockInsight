@@ -186,7 +186,8 @@ if (session.getAttribute("ID") == null) {
 			console.log("야" + top_name[i-1] + " "+ top_per[i-1]);
 			plus_row.push(top_name[i-1]);
 			// float 바꿔주기
-			plus_row.push(parseFloat(top_per[i-1]));			
+			plus_row.push(parseFloat(top_per[i-1]));
+			plus_row.push('red');
 			all_row.push(plus_row);
 		}
 		
@@ -196,10 +197,10 @@ if (session.getAttribute("ID") == null) {
 		for(var i = 4; i>=0; i--){
 			var plus_row = [];
 			
-			console.log("야" + down_name[i] + " "+ down_per[i]);
 			plus_row.push(down_name[i]);
 			// float 바꿔주기
-			plus_row.push(parseFloat(down_per[i]));				
+			plus_row.push(parseFloat(down_per[i]));	
+			plus_row.push('blue');
 			all_row.push(plus_row);
 		}
 
@@ -207,8 +208,17 @@ if (session.getAttribute("ID") == null) {
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'companyName');
 		data.addColumn('number', 'percent');
+		data.addColumn({type:'string', role:'style'});
 		data.addRows(all_row);
 
+		var view = new google.visualization.DataView(data);
+	     view.setColumns([0, 1,
+	                      { calc: "stringify",
+	                        sourceColumn: 1,
+	                        type: "string",
+	                        role: "annotation" },
+	                      2]);
+	     
 		var options = null;
 		var options = {
 			hAxis : {
@@ -218,7 +228,6 @@ if (session.getAttribute("ID") == null) {
 			vAxis : {
 				title : 'Company'
 			}
-		
 		};
 		var chart = new google.visualization.BarChart(document.getElementById("gap_chart"));
 		chart.draw(data, options);
