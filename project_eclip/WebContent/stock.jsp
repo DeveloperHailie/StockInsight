@@ -257,7 +257,7 @@ setInterval(function() {
 			<li><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
 			&nbsp;
 			<li><a href="interest.jsp">관심종목</a></li> &nbsp; &nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 

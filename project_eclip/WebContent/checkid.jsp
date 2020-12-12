@@ -260,7 +260,7 @@ alert("아이디가 중복됩니다.\n다시입력해주세요");
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
 			<li><a href="discuss.jsp">토론하기</a></li> &nbsp; &nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 	</div>
