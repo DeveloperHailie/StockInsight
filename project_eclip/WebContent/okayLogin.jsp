@@ -62,8 +62,8 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
-
+      //var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	var popUrl =	"/Stock_Insigh/doPop";
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
       window.open(popUrl, "", popOption);
@@ -121,6 +121,9 @@
 	<!-- 차트 그리기 -->
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
+		
+	<script type="text/javascript">
+	</script>
 
 	<script type="text/javascript">
 		//Google Stuff
@@ -343,7 +346,7 @@
 	</script>
 
 	<script type="text/javascript">
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+      var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -388,6 +391,7 @@
          %>
 			</li>
 			</br>
+			
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;

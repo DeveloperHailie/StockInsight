@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>팝업 알림</title>
+<title>팝업 알림 안내</title>
 </head>
 <style type="text/css">
 body {
@@ -150,35 +150,32 @@ textarea {
 	transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 </style>
-<body>
 
-	<%
-      String session_user_id = (String) session.getAttribute("ID");
-      //out.println("팝업이에용"+session.getAttribute("ID"));
+<body>        
+	
+	<% 
+	String increase = (String)request.getAttribute("increase");
+	String decrease = (String)request.getAttribute("decrease");
+	String increase_gap = (String)request.getAttribute("increase_gap");
+	String decrease_gap = (String)request.getAttribute("decrease_gap");
+   	System.out.println(increase);
+   	System.out.println(decrease);
+   	%>
+    
 
-      ServletContext sc = getServletContext();
-      Connection conn = (Connection) sc.getAttribute("DBconnection");
-      ResultSet rs = DBUtil.popupplus(conn, session_user_id);
-      ResultSet rs2 = DBUtil.popupminus(conn, session_user_id);
-      
-      %>
 	<div class="modal-content"><center>
 		<h1 class="title"><span style="color:#E8CE48">급등·락</span> 예상 종목</h1>
 		<span style="color:black; font-size: small;">당신의 관심종목 중 가격이 가장</span> 
 		<br>
 		<span style="color:black; font-size: small;">급변할 것으로 예상되는 종목을 확인하세요! </span>
 		<label>급등 종목</label>
-		<%if(rs.next()){out.println("<div id=\"info\" name=\"increase\">"+rs.getString(1)+" <sapn style=\"color:red;\"> ▲ </span>"+rs.getString(2)+" 예상</div>");}else out.println("적합한 종목이 없습니다");%> <label></label>
+		<%if(increase_gap != null){out.println("<div id=\"info\" name=\"increase\">"+increase+" <sapn style=\"color:red;\"> ▲ </span>"+increase_gap+" 예상</div>");} else {out.println(increase);}; %> <label></label>
 		<label>급락 종목</label> 
-		<%if(rs2.next()){out.println("<div id=\"info\" name=\"decrease\">"+rs2.getString(1)+" <sapn style=\"color:blue;\"> ▼ </span>"+rs2.getString(2)+" 예상</div>");}else out.println("적합한 종목이 없습니다");%> <label></label>
-		<button type="button" id="okay" onClick="window.close()">확인</button><br><br>
-		<%if(!DBUtil.popupplus(conn, session_user_id).next()&&!DBUtil.popupminus(conn, session_user_id).next()){out.println(" <sapn style=\"color:black; font-size:small;\"> 관심종목이 없습니다.</br> 관심종목을 먼저 추가해주세요 </span>");}%>
-		<label></label></center>
+		<%if(decrease_gap != null){out.println("<div id=\"info\" name=\"decrease\">"+decrease+" <sapn style=\"color:blue;\"> ▼ </span>"+decrease_gap+" 예상</div>");} else {out.println(decrease);}; %> <label></label>
+		
+		<%if((increase_gap== null)&&(decrease_gap== null)){out.println(" <sapn style=\"color:black; font-size:small;\"> 관심종목이 없습니다.</br> 관심종목을 먼저 추가해주세요 <br/><br/></span>");}%>
+		<button type="button" id="okay" onClick="window.close()">확인</button><br><br><label></label></center>
 	</div>
-
-	
-	</script>
-
 </body>
 </html>
 
