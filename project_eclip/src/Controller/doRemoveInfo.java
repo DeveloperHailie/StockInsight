@@ -3,8 +3,6 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -15,19 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.protocol.Resultset;
+
 import model.DBUtil;
 
 /**
- * Servlet implementation class getmypage
+ * Servlet implementation class doRemoveInfo
  */
-@WebServlet("/getmypage")
-public class getmypage extends HttpServlet {
+@WebServlet("/removeId")
+public class doRemoveInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getmypage() {
+    public doRemoveInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,39 +38,21 @@ public class getmypage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
-		 PrintWriter out = response.getWriter();
-	     
-		HttpSession session = request.getSession();
-	    String user_id = (String)session.getAttribute("ID");
-		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out= response.getWriter(); 
 
-	      ServletContext sc = getServletContext();
-	      Connection conn = (Connection) sc.getAttribute("DBconnection");
+		ServletContext sc = getServletContext();
+		Connection conn = (Connection) sc.getAttribute("DBconnection");
+		
+		HttpSession session = request.getSession(false);
+		String user_index = (String)session.getAttribute("INDEX");
 
-	      ResultSet rs = DBUtil.checkMypageinner(conn, user_id); //id �뜮袁㏉꺍
-        try
-        {
-       	 //System.out.println(rs);
-           if(rs.next()) { // existing user
-              String checkpw = rs.getString(1);
-              System.out.println(checkpw);
-             
-                 // valid user and passwd
-                 //response.sendRedirect("main.html");
-              } 
-              
-          
-           else { // invalid user
-              out.println("not invalid");
-           }
-        } catch (SQLException e) { 
-       	 out.println("just Fail Fail Fail....");
-           e.printStackTrace();
-        } 
-     } 
-  
+		Boolean check = DBUtil.removeInfo(conn, user_index);
+		if(check == true) {
+			 session.invalidate();
+			 out.println("<script>alert('정말로 탈퇴하실 생각이신가요? 😭'); location.href='/Stock_Insigh/';</script>");
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

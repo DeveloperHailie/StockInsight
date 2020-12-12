@@ -65,6 +65,7 @@
 }
 </style>
 <script src="./js/myAjax.js"></script>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
 	type="text/javascript"></script>
@@ -115,6 +116,15 @@
 
 
     <body onload='rotate()'>
+    <%
+
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
     <script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
@@ -232,7 +242,7 @@ setInterval(function() {
                 &nbsp; &nbsp;  
                 <li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
                 &nbsp;  &nbsp; 
-                <li><a  href="login.jsp">마이페이지</a></li>
+                <li><a  href="mypage.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
                 <li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>

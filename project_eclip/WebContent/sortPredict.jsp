@@ -266,111 +266,55 @@ setInterval(function() {
 	<section id="content">
 
 		<nav>
-         <%
-            ArrayList<String> findStockFieldList = (ArrayList<String>) request.getAttribute("findStockFieldFromStockIndex");
-            ArrayList<String> companyList = (ArrayList<String>) request.getAttribute("searchCompanyList");
-            ArrayList<String> stockindexList = (ArrayList<String>) request.getAttribute("findStockIndexFromUser");
-            ArrayList<String> beforeList = (ArrayList<String>) request.getAttribute("findBeforeList");
-            ArrayList<String> futureList = (ArrayList<String>) request.getAttribute("findFutureList");
-          %>
-         관심종목<br /> <img class="bar" src="bar.jpg"
-            style="padding-top: 20px; width: 121px; height: 10px; float: center;">
-      </nav>
-<div class="interst_stock">
-   <div >                   <fieldset>
-      <%
-       if(session.getAttribute("ID")!=null){ //세션 존재 
-        
-    	%>
-       
-       <br/>
-       
-       <h1 style="text-align:center;">예측 가격 <b style="color:#E84620;"> 상승</b> 종목은 <b style="color:#E84620;"> 빨간색</b>, <b style="color:#0066FF;"> 하락</b> 종목은 <b style="color:#0066FF;"> 파란색</b>으로 표시됩니다. </h1><br/><br/><br/>
-       
-         	
-           <form method="POST" action="doSearchFinal">                       
-               <div class = "alllike">
-               <%
-                  if (stockindexList != null) {
-                  for (int i = 0; i < stockindexList.size(); i++) {
-                	  
-               	  out.print("<div class = \"like\">");
-               	  out.print("<button type = \"submit\" class=\"likebtn\" name= \"selectCompany\"  value = \"");
-               	  out.print(companyList.get(i));
-               	  out.print("\">"); 
-               
-               	  out.print("<img src=\"heart.png\" style=\"width: 30px; height: auto; \">");
-               	  out.print("<br/>");
-               	  out.print("<br/>");
-               
-               	  int gap = Integer.parseInt(beforeList.get(i))-Integer.parseInt(futureList.get(i));
-               	  boolean up = true;
-               	  if(gap < 0)
-               		  up = true;
-               	  else
-               		  up = false;	  
-               %>
-               <h1 style="font-size: 17pt;"><b><%= companyList.get(i)%></b></h1>
-               <br/>
-               <h1 style="font-size: 13pt;"><%= findStockFieldList.get(i)%></h1>
-               <br/>
-               <p class = "today" ><b>실시간 가격 : <%= beforeList.get(i)%>원</b></p>  
-               <%
-               	  if (up == true){%>
-               		<p class = "today"><b>내일 예측 가격 : <b style="color:#E84620;"><%= futureList.get(i)%>원</b></b></p>
-               <% }
-               
-               	  else { %>
-               		<p class = "today"><b>내일 예측 가격 : <b style="color:#0066FF;"><%= futureList.get(i)%>원</b></b></p>
-               	 <% }  %>
-               </button>
-               </div>
-               <%
-                  }
-                  
-               }
-                  else{
-                	  out.print("<center>");
-                	  out.print("<img src=\"empty_heart.png\" style=\"width: 30px; height: auto; background: white;\">");
-                	  out.print("<br/>");
-                	  out.print("<br/>");
-                	  out.print("<h1>");
-                	  out.print("관심종목이 없습니다.");
-                	  out.print("</h1>");
-                	  out.print("<br/>");
-                	  out.print("<h3>");
-                	  out.print("관심 표시 된 종목들은 한 번에 확인할 수 있어요!");
-                	  out.print("</h3>");
-                	  out.print("</center>");
-                	 
-                  }
-               %>
-              </div>
-            </form>
-      <% } 
-       else { // 세션존재하지 않음
-       %><center>
-                 <% 
-                  out.print("<h1> 로그인 후 이용해주세요. </h1>");
-                  out.print("<script>");
-                  out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
-                  out.print("</script>");
-                  %>
-         </center>
-    <% } %></div>
-   </fieldset>
-                
-                
+			예상 급등/급락 항목<br /> <img class="bar" src="bar.jpg"
+				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
+		</nav>
 
+	
+		<div class="main">
+			<table style="width: 90%; margin-left: auto; margin-right: auto; ">
+				
+				<tr >
+					<td >
+					<div id="gap_chart"
+							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;">급등급락퍼센트</div>
+					</td>
+					<td >
+						<div id="gap_list">
+							<div id="up_list" style="padding:50px; font-size:25px;">
+								<div style="margin-bottom:10px; font-size:30px;"><b>👍 예상 <span style="color:red;">급상승</span> 종목</b></div>
+								<%
+								String[][] top = (String[][])request.getAttribute("top");
+								String[][] down = (String[][])request.getAttribute("down");
+								for(int i=1;i<=5;i++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[i-1][1];
+									out.print("<a href='"+path+"'> "+i+". "+top[i-1][1]+"<a/><br/> ");
+								}
+								%>
+							</div>
+							<div id="down_list" style="padding:50px; font-size:25px;">
+								<div style="font-size:30px;"><b>👎 예상 <span style="color:blue;">급하강</span> 종목</b></div>
+								<%
+								for(int i=1;i<=5;i++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[i-1][1];
+									out.print("<a href='"+path+"'> "+i+". "+down[i-1][1]+"<a/><br/> ");
+								}
+								%>
+							</div>
+							
+						</div>
+					</td>					
+				</tr>
+				
+				
+			</table>
+		</div>
 
-</div></div>
-<br /><br/><br /><br /><br/><br />
+	</section>
 
-   </section>
-
-   <footer>
-      <p>© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
-   </footer>
+	<footer>
+		<p>​© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
+	</footer>
 
 </body>
 </html>

@@ -1,8 +1,8 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,19 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.DBUtil;
-import model.QnAList;
 
 /**
- * Servlet implementation class GetQuestionLayout
+ * Servlet implementation class SortPredict
  */
-@WebServlet("/getQuestionLayout")
-public class GetQuestionLayout extends HttpServlet {
+@WebServlet("/sortPredict")
+public class SortPredict extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetQuestionLayout() {
+    public SortPredict() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +34,24 @@ public class GetQuestionLayout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
-		HttpSession session = request.getSession(false);
-		String check_index = (String)session.getAttribute("INDEX");
-		if (session == null || check_index==null) {
-		   // 세션 없음
-		   // 혹시 모르니까 한번 더 무효화
-		   session.invalidate();
-		   response.sendRedirect("login.jsp");
-		} else {
-		   // 세션있음
-			RequestDispatcher view = request.getRequestDispatcher("question.jsp");
-			view.forward(request, response);
-		}
-		
-		
+		 // TODO Auto-generated method stub
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        
+        ServletContext sc = getServletContext();
+        Connection conn = (Connection) sc.getAttribute("DBconnection");
+	
+        // 상위권 5개 받아오기
+        String[][] top = DBUtil.getTopFive(conn);
+        // 하위권 5개 받아오기
+        String[][] down = DBUtil.getDownFive(conn);
+        
+        request.setAttribute("top", top);
+        request.setAttribute("down", down);
+        
+        // sortPredict.jsp로
+        RequestDispatcher view = request.getRequestDispatcher("sortPredict.jsp");
+		view.forward(request, response);
 	}
 
 	/**

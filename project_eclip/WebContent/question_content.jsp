@@ -94,9 +94,8 @@
 			if (flagValue == "0") {
 				real.css("display", "block");
 				var tag;
-				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -188,9 +187,7 @@ setInterval(function() {
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
-		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
 
@@ -231,7 +228,7 @@ setInterval(function() {
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
@@ -258,7 +255,7 @@ setInterval(function() {
 
 
 			<center>
-				<form form method="POST" action="getAnswerPage">
+				
 					<table class="question_content_table">
 						<%
                     	// name, title, content, date, number
@@ -278,23 +275,48 @@ setInterval(function() {
 
 						<tr class="button_table_content">
 							<th></th>
+							
 							<td colspan="5" height="50">
+							<form method="POST" action="getAnswerPage" style="padding-top:10px;padding-bottom:10px;">
 								<%
                             	if((Boolean)request.getAttribute("admin")){
                             		out.println("<button type=\"submit\" class=\"btn_answer\">답변하기</button>");
                             	}
                             %> <a
 								href="/Stock_Insigh/postList?pageIndex=1" class="btn_list">목록가기</a>
-							</td>
-						</tr>
-					</table>
-					<%
+							<%
                     out.println("<input type=\"hidden\" name=\"title\" value=\""+title+"\">");
                     out.println("<input type=\"hidden\" name=\"name\" value=\""+name+"\">");
                     out.println("<input type=\"hidden\" name=\"date\" value=\""+date+"\">");
                     out.println("<input type=\"hidden\" name=\"content\" value=\""+content+"\">");
                     out.println("<input type=\"hidden\" name=\"number\" value=\""+number+"\">");
                     %>
+	                    </form>
+	                    
+                    	<%
+                    	// 글번호가 [re]로 시작하는 글(=답변글)고 보고 있는 사람이 관리자
+                    	if(number.contains("[re]")&&session.getAttribute("ID")!=null&&session.getAttribute("ID").equals("admin")){
+                    		out.println("<form method='POST' action='deleteAnswer'>");
+                			out.println("<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">삭제하기</button>");
+                			out.println("<input type='hidden' name='number' value='"+number+"'/>");
+                			out.println("</form>");      		
+                    	}
+                    	else if(session.getAttribute("ID")!=null&&session.getAttribute("ID").equals(name)){
+                    			out.println("<form method='POST' action='deleteQuestion'>");
+                    			out.println("<button type=\"submit\" style=\"font-weight: bold; width: 85px; height: 29px; border-radius: 3px; font-family: 'nanum'; font-size: 12px;  color: #000;background:#fff;\">삭제하기</button>");
+                    			out.println("<input type='hidden' name='number' value='"+number+"'/>");
+                    			out.println("</form>");
+                    		}
+                    	%>
+                    	
+                    
+							</td>
+							
+   
+						</tr>
+					</table>
+					
+                    
 				</form>
 			</center>
 		</div>

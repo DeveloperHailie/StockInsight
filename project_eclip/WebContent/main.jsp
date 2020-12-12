@@ -47,6 +47,8 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
+
+
 <script type="text/javascript">
 	var n = 0;
 	var imgs = new Array("title_ver2.png", "title_ver2_2.png");
@@ -95,8 +97,8 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위  &nbsp;</b></a></br>";
+				tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -365,7 +367,7 @@
 			</dl>
 		</div>
 		<div id="D"
-			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+			style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
@@ -407,7 +409,7 @@
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
@@ -453,7 +455,7 @@
 					<td >
 						<div id="kosdaq_chart"
 							style=" border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
-					</td>
+					</td>					
 				</tr>
 				<tr>
 					<td>
@@ -461,6 +463,18 @@
 					</td>
 					<td>
 						<div id="kosdaq_pre_data" style="font-size:15pt"></div>
+					</td>					
+				</tr>
+				<tr>
+				<td style="padding:20px;">
+					<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%BD%94%EC%8A%A4%ED%94%BC" 
+            	target="_blank" style="text-decoration: underline;  color: gray; ">
+            	<b style="font-size: 20px; margin-top: 25%;"> 📢 코스피 관련 이슈가 궁금하신가요?</b></a>					
+					</td>
+					<td style="padding:20px;">
+					<a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=news&query=%EC%BD%94%EC%8A%A4%EB%8B%A5&oquery=%EC%BD%94%EC%8A%A4%ED%94%BC&tqi=U9nm2lprvxZsshIjg5CssssssX0-066341" 
+            	target="_blank" style="text-decoration: underline; color: gray; ">
+            	<b style="font-size: 20px; margin-top: 25%;"> 📢 코스닥 관련 이슈가 궁금하신가요?</b></a>					
 					</td>
 				</tr>
 			</table>

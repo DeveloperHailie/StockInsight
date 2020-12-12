@@ -16,9 +16,6 @@ public class RunProgram {
 	public void stopPrograms() {
 		if(process != null) {
 			process.destroyForcibly();
-			System.out.print(">>>");
-			System.out.print(processName);
-			System.out.println(" 프로세스 종료!");
 		} 
 	}
 
@@ -32,7 +29,6 @@ public class RunProgram {
 
 			// C:/StockInsightPython 폴더 안에 파일들 넣기
 			processBuilder.directory(new File("\\StockInsightPython"));
-			//process.destroyForcibly()
 		
 			// 외부 프로그램의 출력을 웹서버의 출력으로 redirect
 			processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);

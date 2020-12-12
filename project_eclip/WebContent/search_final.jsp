@@ -138,6 +138,7 @@
    %>
 
    // 차트 부분만 reload
+
    var repeatChart = function() {
       myAjax("/Stock_Insigh/csv", "code=" + "${stock_code}", function() {
          ajaxMakeChart(right_final, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
