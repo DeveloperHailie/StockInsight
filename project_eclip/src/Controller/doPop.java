@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,41 +42,49 @@ public class doPop extends HttpServlet {
 	      PrintWriter out = response.getWriter();
 	      
 	      HttpSession session = request.getSession();
-	      String user_id = (String)session.getAttribute("ID");//�뜝�룞�삕�뜝�떎�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙣�븘�슱�삕
+	      String session_user_id = (String) session.getAttribute("ID");
 	      
 	      ServletContext sc = getServletContext();
 	      Connection conn = (Connection) sc.getAttribute("DBconnection");
+	      ResultSet rs = DBUtil.popupplus(conn, session_user_id);
+	      ResultSet rs2 = DBUtil.popupminus(conn, session_user_id);
 
-	      ResultSet rs = DBUtil.popupplus(conn, user_id); //id �뜮袁㏉꺍
-	      System.out.println(rs);
-	      
-	      try {
-			while(rs.next()) { //rs.next()를 통해 다음행을 내려갈 수 있으면 true를 반환하고, 커서를 한칸 내린다. 다음행이 없으면 false를 반환한다. 
-				  try {
-					System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+      try {
+			if(rs.next()) {
+				try {
+					request.setAttribute("increase", rs.getString(1));
+					request.setAttribute("increase_gap", rs.getString(2));
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-			  }
-		} catch (SQLException e) {
+						e.printStackTrace();
+				}
+			}
+			else {
+				request.setAttribute("increase", "적합한 종목이 없습니다");
+			}
+			if(rs2.next()) {
+				try {
+					request.setAttribute("decrease", rs2.getString(1));
+					request.setAttribute("decrease_gap", rs2.getString(2));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+						e.printStackTrace();
+				}
+			}
+			else {
+				request.setAttribute("decrease", "적합한 종목이 없습니다");
+			}
+			RequestDispatcher view = request.getRequestDispatcher("popup.jsp");
+			view.forward(request, response);
+			
+			}
+      
+      catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+      }
 
-		
-	      
-	      out.println("<html><body>");
-	      out.println("<script type=\"text/javascript\">");
-	      out.println("var popUrl=\"popup.jsp\"");
-	      out.println("var popOption = \"width=400, height=400, resizable=no, scrollbars=no, status=no;\"");
-	      out.println("window.open(popUrl,\"\", popOption)");
-	      //out.println("var popwin = window.open(\"popup.jsp\")");
-	      //out.println("setTimeout(function(){ popwin.close(); window.location.href='pageB.jsp';},5000)");
-	      out.println("</script>");
-	      out.println("</body></html>");
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -409,7 +409,7 @@
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 
@@ -455,7 +455,7 @@
 					<td >
 						<div id="kosdaq_chart"
 							style=" border: 1px solid black; width:400px; height: 300px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
-					</td>
+					</td>					
 				</tr>
 				<tr>
 					<td>
@@ -463,6 +463,18 @@
 					</td>
 					<td>
 						<div id="kosdaq_pre_data" style="font-size:15pt"></div>
+					</td>					
+				</tr>
+				<tr>
+				<td style="padding:20px;">
+					<a href="https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%BD%94%EC%8A%A4%ED%94%BC" 
+            	target="_blank" style="text-decoration: underline;  color: gray; ">
+            	<b style="font-size: 20px; margin-top: 25%;"> 📢 코스피 관련 이슈가 궁금하신가요?</b></a>					
+					</td>
+					<td style="padding:20px;">
+					<a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=news&query=%EC%BD%94%EC%8A%A4%EB%8B%A5&oquery=%EC%BD%94%EC%8A%A4%ED%94%BC&tqi=U9nm2lprvxZsshIjg5CssssssX0-066341" 
+            	target="_blank" style="text-decoration: underline; color: gray; ">
+            	<b style="font-size: 20px; margin-top: 25%;"> 📢 코스닥 관련 이슈가 궁금하신가요?</b></a>					
 					</td>
 				</tr>
 			</table>

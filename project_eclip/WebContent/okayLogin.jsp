@@ -62,8 +62,8 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
-
+      //var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	var popUrl =	"/Stock_Insigh/doPop";
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
       window.open(popUrl, "", popOption);
@@ -98,8 +98,8 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -121,6 +121,9 @@
 	<!-- 차트 그리기 -->
 	<script type="text/javascript"
 		src="https://www.gstatic.com/charts/loader.js"></script>
+		
+	<script type="text/javascript">
+	</script>
 
 	<script type="text/javascript">
 		//Google Stuff
@@ -343,7 +346,7 @@
 	</script>
 
 	<script type="text/javascript">
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+      var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -374,9 +377,7 @@
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
-		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
 
@@ -388,6 +389,7 @@
          %>
 			</li>
 			</br>
+			
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;

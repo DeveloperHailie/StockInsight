@@ -154,8 +154,8 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -249,9 +249,7 @@ alert("아이디가 중복됩니다.\n다시입력해주세요");
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
-		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
 
@@ -262,7 +260,7 @@ alert("아이디가 중복됩니다.\n다시입력해주세요");
 			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
 			<li><a href="discuss.jsp">토론하기</a></li> &nbsp; &nbsp;
-			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
+			<li><a href="mypage.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
 	</div>
