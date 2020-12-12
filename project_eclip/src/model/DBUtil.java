@@ -1264,14 +1264,17 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {try {
-				pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
 		}
+	}
 
 	// 상위권 5개 받아오는 코드
 	public static String[][] getTopFive(Connection conn) {
