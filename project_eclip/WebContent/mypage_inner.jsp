@@ -24,7 +24,7 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -61,9 +61,8 @@
             real.css("display", "block");
             var tag;
             //tag = "<ul>";
-            tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-            tag += "<section id='hiddenRank'>";
-            
+            tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
             tag += "</section>";
             //tag += "</ul>";
             btn.innerHTML = tag;
@@ -206,8 +205,7 @@ setInterval(function() {
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
@@ -219,24 +217,25 @@ setInterval(function() {
 		<ul id="okaylogin_ul">
 			<li id="okaylogin_li">
 				<%
-               String name = (String) session.getAttribute("NAME");
-            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
-            %>
+					String name = (String) session.getAttribute("NAME");
+				out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+				%>
 			</li>
-			</br>
+			</br> 			
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
+			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li>
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
 			&nbsp; &nbsp;
-			<li id="okaylogin_li"><a id="yellow" href="mypage.jsp">마이페이지</a></li>
-			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a id="yellow" href="mypage.jsp">마이페이지</a></li> &nbsp;
+			&nbsp;
 			<li id="okaylogin_li"><a
 				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
-
 			</br>
 		</ul>
 		<%
@@ -287,57 +286,30 @@ setInterval(function() {
 
 
 					<%
-                     String session_user_id = (String) session.getAttribute("ID");
-                  //out.println(session.getAttribute("ID"));
-
-                  ServletContext sc = getServletContext();
-                  Connection conn = (Connection) sc.getAttribute("DBconnection");
-
-                  ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id  뜮袁㏉꺍
-
-
-                  try {
-                     if (rs.next()) { // existing user
-                        String name = rs.getString(2);
-                        String user_id = rs.getString(3);
-                        String email = rs.getString(4);
-                        String user_pwd = rs.getString(5);
+                       // existing user
 
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + name + "</font></td></tr>");
+                               + (String)request.getAttribute("name") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + user_id + "</font></td></tr>");
+                              + (String)request.getAttribute("user_mid") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + email + "</font></td></tr>");
+                              + (String)request.getAttribute("email") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + user_pwd + "</font></td></tr>");
+                              + (String)request.getAttribute("user_passwd") + "</font></td></tr>");
                         
                   %>
 				</table>
 				<br> <br> <br>
-				<%
-                        
-                  }
-
-               else { // invalid user
-               out.println("not invalid");
-               }
-               } catch (SQLException e) {
-               out.println("just Fail Fail Fail....");
-               e.printStackTrace();
-               }
-               %>
-				</table>
-				<br> <br> <br>
-				</form>
 			</center>
 			<div>
+			
+			
 				<button type="button" class="btn_question_submit"
-					onClick="location.href='mypage_edit.jsp' ">수정하기</button>
+					onClick="location.href='/Stock_Insigh/GetMypage' ">수정하기</button>
 				<button type="button" class="btn_question_submit"
 					style="color: black; background: white; border-style: solid;"
 					onClick="location.href='/Stock_Insigh/removeId' ">탈퇴하기</button>

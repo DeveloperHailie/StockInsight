@@ -64,7 +64,7 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -201,29 +201,29 @@ setInterval(function() {
                      // 세션 존재
       %>
       <ul id="okaylogin_ul">
-         <li id="okaylogin_li">
-            <%
-            String name = (String) session.getAttribute("NAME");
-            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
-            %>
-         </li>
-         </br>
-         <li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
-         <li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
-         </a></li> &nbsp; &nbsp;
-         <li id="okaylogin_li"><a  href="okayLogin.jsp">메인화면</a></li>
-         &nbsp; &nbsp;
-         <li id="okaylogin_li"><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
-         &nbsp;
-         <li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
-         &nbsp;
-         <li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
-         &nbsp;
-         <li id="okaylogin_li"><a
-            href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
-
-         </br>
-      </ul>
+			<li id="okaylogin_li">
+				<%
+					String name = (String) session.getAttribute("NAME");
+				out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+				%>
+			</li>
+			</br> 			
+			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
+			</a></li> &nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
+			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a id="yellow" href="/Stock_Insigh/doStock">종목조회</a></li>
+			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
+			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
+			&nbsp;
+			<li id="okaylogin_li"><a
+				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+			</br>
+		</ul>
       <%
          } else {
       // 세션존재하지 않음

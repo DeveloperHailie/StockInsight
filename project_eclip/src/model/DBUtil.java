@@ -1049,29 +1049,6 @@ public class DBUtil {
 		return null;
 	}
 
-	public static boolean removeInfo(Connection con, String user_index) {
-		String sql = "DELETE u, ui, uq from "
-				+ "Stockinsight.User as u left join Stockinsight.Interest as ui on u.user_index = ui.User_user_index "
-				+ "left join Stockinsight.Question as uq on u.user_index = uq.User_user_index "
-				+ "where u.user_index="; 
-		Statement st;
-		try {
-
-			st = con.createStatement();
-
-			if (st.execute(sql + "'" + user_index + "'" )) {
-				//interest_index = - 1;
-				return true; // field 넘김 
-			}
-		} catch (SQLException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();	
-		}
-		return true;
-	}
-
-
 	public static ResultSet sortVolumeLow(Connection con, String search) {
 		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume ASC";
@@ -1183,7 +1160,6 @@ public class DBUtil {
 		}
 		return null;
 	}
-
 
 	// 질문글 인덱스로 답변글 인덱스 받아오기
 	public static String find_answerIndex(Connection con, String que_index) {
@@ -1308,7 +1284,7 @@ public class DBUtil {
 		// 실패 시
 		return null;
 	}
-	
+
 	// 하위권 5개 받아오는 코드
 	public static String[][] getDownFive(Connection conn) {
 		String[][] result = new String[5][3];
@@ -1343,4 +1319,104 @@ public class DBUtil {
 		return null;
 
 	}
+
+	public static ResultSet infoAnswerIndex(Connection conn, String user_index) {
+		String sql = "SELECT Answer_answer_index from Stockinsight.Question where User_user_index =";
+		Statement st;
+
+		try {
+			st = conn.createStatement();
+
+			if (st.execute(sql + "'" + user_index + "'")) {
+				return st.getResultSet();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;     
+	}
+
+	public static Boolean rmAnswer(Connection conn, String answer_index) throws SQLException {
+		PreparedStatement pstmt = null;
+		System.out.println("디비유틸 엔설: "+ answer_index);
+		try {
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement("DELETE from Answer where answer_index = ?");
+			pstmt.setString(1, answer_index);
+			pstmt.executeUpdate();
+
+			conn.commit();
+			conn.setAutoCommit(true);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+		}
+		return null;
+	}
+
+	public static Boolean rmInterest(Connection conn, String user_index) throws SQLException {
+		PreparedStatement pstmt = null;
+
+		try {
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement("DELETE from Interest where User_user_index = ?");
+			pstmt.setString(1, user_index);
+			pstmt.executeUpdate();
+
+			conn.commit();
+			conn.setAutoCommit(true);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+		}
+		return null;
+	}
+	public static Boolean rmQuestion(Connection conn, String user_index) throws SQLException {
+		PreparedStatement pstmt = null;
+
+		try {
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement("DELETE from Question where User_user_index = ?");
+			pstmt.setString(1, user_index);
+			pstmt.executeUpdate();
+
+			conn.commit();
+			conn.setAutoCommit(true);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+		}
+		return null;
+	}
+	public static Boolean rmUser(Connection conn, String user_index) throws SQLException {
+		PreparedStatement pstmt = null;
+
+		try {
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement("DELETE from User where user_index = ?");
+			pstmt.setString(1, user_index);
+			pstmt.executeUpdate();
+
+			conn.commit();
+			conn.setAutoCommit(true);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+		}
+		return null;
+	}
 }
+
+

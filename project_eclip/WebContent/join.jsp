@@ -63,7 +63,7 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -131,12 +131,11 @@ tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 <script>
    function validate() {
       var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
-    	  ///^[A-Za-z0-9]{8,12}$/;
-    	  ///^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식
+      // 아이디와 패스워드가 적합한지 검사할 정규식
     	  
       var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       // 이메일이 적합한지 검사할 정규식
-;
+
       var email = document.getElementById("email");
 
 
@@ -149,7 +148,7 @@ tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
       }
 
       if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 확인을 입력해주세요.");
+         alert("비밀번호를 확인란을 입력해주세요.");
          join.checkpw.value = "";
          join.checkpw.focus();
          return false;
@@ -259,15 +258,16 @@ setInterval(function() {
 		<ul id="okaylogin_ul">
 			<li id="okaylogin_li">
 				<%
-            String name = (String) session.getAttribute("NAME");
-            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
-            %>
+					String name = (String) session.getAttribute("NAME");
+				out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+				%>
 			</li>
-			</br>
+			</br> 			
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a id="yellow" href="okayLogin.jsp">메인화면</a></li>
+			<li id="okaylogin_li"><a id="yellow" href="main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li>
 			&nbsp; &nbsp;
@@ -277,7 +277,6 @@ setInterval(function() {
 			&nbsp;
 			<li id="okaylogin_li"><a
 				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
-
 			</br>
 		</ul>
 		<%

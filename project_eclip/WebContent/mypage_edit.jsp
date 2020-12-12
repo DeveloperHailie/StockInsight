@@ -64,7 +64,7 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -74,10 +74,8 @@
 <script>
 	function input_passwd_check() {
 		//var new_passwd = document.getElementById('user_pwd').value;
-		var re = /^[A-Za-z0-9+]{4,12}$/;
-		/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
-		"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-		// 아이디와 패스워드가 적합한지 검사할 정규식
+		var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
+    	// 아이디와 패스워드가 적합한지 검사할 정규식
 		///^[a-zA-Z0-9]{10,15}$/
 		///^[A-Za-z0-9+]{4,12}$/; 
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -153,9 +151,8 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-				tag += "<section id='hiddenRank'>";
-				
+				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 				tag += "</section>";
 				//tag += "</ul>";
 				btn.innerHTML = tag;
@@ -246,8 +243,7 @@ setInterval(function() {
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
 			value="0">
 		<!-- value 체크값을 위함 -->
@@ -264,20 +260,21 @@ setInterval(function() {
 				out.println("<b>" + name + "</b> 님 환영합니다. </br>");
 				%>
 			</li>
-			</br>
+			</br> 			
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a  href="main.jsp">메인화면</a></li>
+			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
-			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
-			&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li>
+			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
+			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a id="yellow" href="mypage.jsp">마이페이지</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a
 				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
-
 			</br>
 		</ul>
 		<%
@@ -325,27 +322,18 @@ setInterval(function() {
 
 
 						<%
-							String session_user_id = (String) session.getAttribute("ID");
-						//out.println(session.getAttribute("ID"));
-
-						ServletContext sc = getServletContext();
-						Connection conn = (Connection) sc.getAttribute("DBconnection");
-
-						ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id �뜮袁㏉꺍
-
-						try {
-							if (rs.next()) { // existing user
-								String name = rs.getString(2);
-								String user_id = rs.getString(3);
-								String email = rs.getString(4);
-								String user_pwd = rs.getString(5);
+						
+								String name = (String)request.getAttribute("name");
+								String user_mid = (String)request.getAttribute("user_mid");
+								String email = (String)request.getAttribute("email");
+								String user_passwd = (String)request.getAttribute("user_passwd");
 
 								out.println(
 								"<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ name + "</font></td></tr>");
 								out.println(
 								"<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-										+ user_id + "</font></td></tr>");
+										+ user_mid + "</font></td></tr>");
 
 								// 변경가능
 								out.println(
@@ -361,15 +349,6 @@ setInterval(function() {
 					</table>
 					<br> <br> <br>
 
-					<%
-						} else { // invalid user
-					out.println("not invalid");
-					}
-					} catch (SQLException e) {
-					out.println("just Fail Fail Fail....");
-					e.printStackTrace();
-					}
-					%>
 
 					</table>
 					<br> <br> <br> <input type="submit"

@@ -64,7 +64,7 @@
         <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -128,9 +128,111 @@ if (session.getAttribute("ID") == null) {
 </script>
 </head>
 
-
 <body onload='rotate()'>
 
+	<!-- 차트 그리기 -->
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+		//Google Stuff
+		google.charts.load('current', {
+			packages : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(function() {
+			gap_draw();
+		});
+	</script>
+	<script type="text/javascript">
+	function gap_draw() {
+		<%
+		String[][] top = (String[][])request.getAttribute("top");
+		String[][] down = (String[][])request.getAttribute("down");
+		
+		String topStr = "";
+		String downStr = "";
+		String top_perStr ="";
+		String down_perStr ="";
+		
+		for(int k = 1; k <= 5; k++){
+			if(k <=4){
+				topStr += top[k-1][1] + "@";
+				downStr += down[k-1][1] + "@";
+				top_perStr += top[k-1][2] + "@";
+				down_perStr += down[k-1][2] + "@";
+			}
+			else{
+				topStr += top[k-1][1];
+				downStr += down[k-1][1];
+				top_perStr += top[k-1][2];
+				down_perStr += down[k-1][2];
+			}
+		}%>
+		var topStr = "<%=topStr%>";
+		var downStr = "<%=downStr%>";
+		var top_perStr = "<%=top_perStr%>";
+		var down_perStr = "<%=down_perStr%>";
+		
+		//var plus_row = [];
+		var all_row = [];
+		var j = 0;
+		
+		var top_name = topStr.split("@");
+		var top_per = top_perStr.split("@");
+		
+		for(var i = 1; i<=5; i++){
+			var plus_row = [];
+			
+			console.log("야" + top_name[i-1] + " "+ top_per[i-1]);
+			plus_row.push(top_name[i-1]);
+			// float 바꿔주기
+			plus_row.push(parseFloat(top_per[i-1]));
+			plus_row.push('red');
+			all_row.push(plus_row);
+		}
+		
+		var down_name = downStr.split("@");
+		var down_per = down_perStr.split("@");
+		
+		for(var i = 4; i>=0; i--){
+			var plus_row = [];
+			
+			plus_row.push(down_name[i]);
+			// float 바꿔주기
+			plus_row.push(parseFloat(down_per[i]));	
+			plus_row.push('blue');
+			all_row.push(plus_row);
+		}
+
+		// [[,],[,]]
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'companyName');
+		data.addColumn('number', 'percent');
+		data.addColumn({type:'string', role:'style'});
+		data.addRows(all_row);
+
+		var view = new google.visualization.DataView(data);
+	     view.setColumns([0, 1,
+	                      { calc: "stringify",
+	                        sourceColumn: 1,
+	                        type: "string",
+	                        role: "annotation" },
+	                      2]);
+	     
+		var options = null;
+		var options = {
+			hAxis : {
+				title : 'Percent(%)',
+				textPosition: 'none'
+			},
+			vAxis : {
+				title : 'Company'
+			}
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("gap_chart"));
+		chart.draw(data, options);
+	};
+	</script>
 	<script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
@@ -223,13 +325,14 @@ setInterval(function() {
 			</li>
 			</br>
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a  id="yellow" href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
 			&nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
 			&nbsp;
-			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest" id="yellow">관심종목</a></li> &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
 			&nbsp;
 			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
 			&nbsp;
@@ -277,27 +380,27 @@ setInterval(function() {
 				<tr >
 					<td >
 					<div id="gap_chart"
-							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;">급등급락퍼센트</div>
+							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
 					</td>
 					<td >
 						<div id="gap_list">
 							<div id="up_list" style="padding:50px; font-size:25px;">
 								<div style="margin-bottom:10px; font-size:30px;"><b>👍 예상 <span style="color:red;">급상승</span> 종목</b></div>
 								<%
-								String[][] top = (String[][])request.getAttribute("top");
-								String[][] down = (String[][])request.getAttribute("down");
-								for(int i=1;i<=5;i++){
-									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[i-1][1];
-									out.print("<a href='"+path+"'> "+i+". "+top[i-1][1]+"<a/><br/> ");
+								//String[][] top = (String[][])request.getAttribute("top");
+								//String[][] down = (String[][])request.getAttribute("down");
+								for(int j=1;j<=5;j++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[j-1][1];
+									out.print("<a href='"+path+"'> "+j+". "+top[j-1][1]+"<a/><br/> ");
 								}
 								%>
 							</div>
 							<div id="down_list" style="padding:50px; font-size:25px;">
 								<div style="font-size:30px;"><b>👎 예상 <span style="color:blue;">급하강</span> 종목</b></div>
 								<%
-								for(int i=1;i<=5;i++){
-									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[i-1][1];
-									out.print("<a href='"+path+"'> "+i+". "+down[i-1][1]+"<a/><br/> ");
+								for(int j=1;j<=5;j++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[j-1][1];
+									out.print("<a href='"+path+"'> "+j+". "+down[j-1][1]+"<a/><br/> ");
 								}
 								%>
 							</div>
