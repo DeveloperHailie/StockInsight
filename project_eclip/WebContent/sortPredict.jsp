@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <title>Stock Insight</title>
-<link rel="stylesheet" type="text/css" href="style.css?ver=1.2">
-<!--design 폴더 내에 있는 css-->
+<link rel="stylesheet" type="text/css" href="style.css" />
+
 <style>
 #rank-list a {
 	color: #FFF;
@@ -49,17 +51,17 @@
 </style>
 <script src="./js/myAjax.js"></script>
 
-<script type="text/javascript">
-        var n = 0;
-        var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
 
-        function rotate() {
-            document.images.slide.src = imgs[n];
-            (n == (imgs.length - 1)) ? n = 0: n++;
-            setTimeout("rotate()", 800);
-        }
-    </script>
-    <script type="text/javascript">
+<script type="text/javascript">
+			var n = 0;
+			var imgs = new Array("title_ver3_1.png","title_ver3_2.png");
+			
+         function rotate() {
+				document.images.slide.src = imgs[n];
+				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
+			}
+        </script>
+        <script type="text/javascript">
    function popupOpen() {
 
       var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
@@ -69,22 +71,15 @@
       window.open(popUrl, "", popOption);
    }
 </script>
-    
-<script>
-   function validate() {
-      if (login.id.value == "") {
-         alert("아이디를 입력해 주세요");
-         login.id.focus();
-         return false;
-      }
-      if (login.pw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 입력해주세요.");
-         login.pw.value = "";
-         login.pw.focus();
-         return false;
-      }
-   }
-</script>
+<%
+
+if (session.getAttribute("ID") == null) {
+	out.print("<h1> 로그인 후 이용해주세요. </h1>");
+	out.print("<script>");
+	out.print("alert(\"로그인 후 이용해주세요\"); location.href = \"login.jsp\"; ");
+	out.print("</script>");
+}
+%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
 	type="text/javascript"></script>
@@ -114,8 +109,8 @@
 				real.css("display", "block");
 				var tag;
 				//tag = "<ul>";
-				tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
-tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
+				tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
+				tag += "<section id='hiddenRank'>";
 				
 				tag += "</section>";
 				//tag += "</ul>";
@@ -133,7 +128,9 @@ tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
 </script>
 </head>
 
+
 <body onload='rotate()'>
+
 	<script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
@@ -181,56 +178,82 @@ setInterval(function() {
 			loadShowRank();
 			loadHiddenRank();
 		} </script>
-
-	<script type="text/javascript">
-	<%
-		String check = (String)request.getAttribute("checkid");
-		String name = (String)request.getAttribute("name");
-	   	System.out.println(check);
-		if(check.equals("가입된 정보가 없습니다."))
-			out.println("alert(\"가입된 정보가 없습니다.\");");
-		else
-			out.println("alert(\"" + name + "님의 아이디는 " + check + "입니다.\");");
-	%>
-	</script>
+	<div id="content-rank"
+			style="position: absolute; margin-left: 380px; margin-top: 65px;">
+			<dl id="rank-list">
+				<dd>
+					<ol id="showRank" style="font-family: 'nanum';" >
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>
+						<li><a href='javascript:showplay();'> </a></li>						
+					</ol>
+				</dd>
+			</dl>
+		</div>
+		<div id="D"
+			style="position: absolute;  margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size:14px; font-family: 'nanum';"></div>
+		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
+			value="0">
+		<!-- value 체크값을 위함 -->
+	
 
 	<div class="front">
 		<div class="logo">
 			<a href="main.jsp"><img src="logo.png"
 				style="width: 336px; height: 148px; float: left;"></a>
 		</div>
-		<div id="content-rank"
-			style="position: absolute; margin-left: 380px; margin-top: 65px;">
-			<dl id="rank-list">
-				<dd>
-					<ol id="showRank" style="font-family: 'nanum';">
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-						<li><a href='javascript:showplay();'> </a></li>
-					</ol>
-				</dd>
-			</dl>
-		</div>
-		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis"
-			value="0">
-		<!-- value 체크값을 위함 -->
 
+		<%
+         if(session.getAttribute("ID")!=null){
+                     // 세션 존재
+      %>
+		<ul id="okaylogin_ul">
+			<li id="okaylogin_li">
+				<%
+            String name = (String) session.getAttribute("NAME");
+            out.println("<b>" + name + "</b> 님 환영합니다. </br>");
+            %>
+			</li>
+			</br>
+			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
+			</a></li> &nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
+			&nbsp; &nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp;
+			&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/doSearchInterest" id="yellow">관심종목</a></li> &nbsp;
+			&nbsp;
+			<li id="okaylogin_li"><a href="mypage.jsp">마이페이지</a></li> &nbsp;
+			&nbsp;
+			<li id="okaylogin_li"><a
+				href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
+
+			</br>
+		</ul>
+		<%
+         } else {
+      // 세션존재하지 않음
+            %>
 		<ul>
-			<li><a id="yellow" href="login.jsp">로그인</a></li> &nbsp; &nbsp;
+			<li><a href="login.jsp">로그인</a></li> &nbsp; &nbsp;
 			<li><a href="main.jsp">메인화면</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/doStock">종목조회</a></li> &nbsp; &nbsp;
-			<li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp;
-			&nbsp;
+			<li><a id="yellow" href="/Stock_Insigh/doSearchInterest">관심종목</a></li> &nbsp; &nbsp;
 			<li><a href="login.jsp">마이페이지</a></li> &nbsp; &nbsp;
 			<li><a href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
 		</ul>
+
+		<% 
+      }
+      %>
 	</div>
 	<div>
 		<header>
@@ -241,47 +264,57 @@ setInterval(function() {
 		</header>
 	</div>
 	<section id="content">
-		<nav>
-			로그인<br /> <img class="bar" src="bar.jpg"
-				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 
-			<br />
-			<div style="font-size: 20px; margin-top: 10px;">
-				<b class="welcome">스톡인사이트 </b>에 오신 것을 환영합니다!
-			</div>
+		<nav>
+			예상 급등/급락 항목<br /> <img class="bar" src="bar.jpg"
+				style="padding-top: 20px; width: 121px; height: 10px; float: center;">
 		</nav>
 
-		<div class="inner_login">
-			<div class="login_start">
-				<form id="login" onsubmit="return validate();" method="POST"
-					action="doLogin">
-					<fieldset>
-						<div class="box_login">
-							<div class="inp_text">
-								<label for="loginId" class="login_show">아이디</label> <input
-									type="text" id="id" name="user_id" placeholder="ID">
+	
+		<div class="main">
+			<table style="width: 90%; margin-left: auto; margin-right: auto; ">
+				
+				<tr >
+					<td >
+					<div id="gap_chart"
+							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;">급등급락퍼센트</div>
+					</td>
+					<td >
+						<div id="gap_list">
+							<div id="up_list" style="padding:50px; font-size:25px;">
+								<div style="margin-bottom:10px; font-size:30px;"><b>👍 예상 <span style="color:red;">급상승</span> 종목</b></div>
+								<%
+								String[][] top = (String[][])request.getAttribute("top");
+								String[][] down = (String[][])request.getAttribute("down");
+								for(int i=1;i<=5;i++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[i-1][1];
+									out.print("<a href='"+path+"'> "+i+". "+top[i-1][1]+"<a/><br/> ");
+								}
+								%>
 							</div>
-							<div class="inp_text">
-								<label for="loginPw" class="login_show">비밀번호</label> <input
-									type="password" id="pw" name="user_pwd" placeholder="Password">
+							<div id="down_list" style="padding:50px; font-size:25px;">
+								<div style="font-size:30px;"><b>👎 예상 <span style="color:blue;">급하강</span> 종목</b></div>
+								<%
+								for(int i=1;i<=5;i++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[i-1][1];
+									out.print("<a href='"+path+"'> "+i+". "+down[i-1][1]+"<a/><br/> ");
+								}
+								%>
 							</div>
+							
 						</div>
-						<input type="submit" class="btn_login" value="로그인">
-					</fieldset>
-				</form>
-				<fieldset class="login_under">
-					<a href="findId.jsp">ID 찾기 </a> / <a href="findPwd.jsp">PASSWORD
-						찾기</a> <a href="join.jsp" class="join">회원가입</a>
-
-				</fieldset>
-
-			</div>
+					</td>					
+				</tr>
+				
+				
+			</table>
 		</div>
+
 	</section>
+
 	<footer>
-		<p>© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
+		<p>​© 2020 본 홈페이지의 모든 권리는 베짱이찬가에 귀속됩니다.</p>
 	</footer>
 
 </body>
-
 </html>
