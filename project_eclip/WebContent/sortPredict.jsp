@@ -128,9 +128,101 @@ if (session.getAttribute("ID") == null) {
 </script>
 </head>
 
-
 <body onload='rotate()'>
 
+	<!-- 차트 그리기 -->
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+		//Google Stuff
+		google.charts.load('current', {
+			packages : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(function() {
+			gap_draw();
+		});
+	</script>
+	<script type="text/javascript">
+	function gap_draw() {
+		<%
+		String[][] top = (String[][])request.getAttribute("top");
+		String[][] down = (String[][])request.getAttribute("down");
+		%>
+		var topStr = "";
+		var downStr = "";
+		var top_perStr ="";
+		var down_perStr ="";
+		
+		/*for(var k = 1; k <= 5; k++){
+			if(k <=4){
+				topStr += top[k-1][1] + "@";
+				
+				downStr += down[k-1][1] + "@";
+				top_perStr += top[k-1][2] + "@";
+				down_perStr += down[k-1][2] + "@";
+			}
+			else{
+				topStr += top[k-1][1];
+				downStr += down[k-1][1];
+				top_perStr += top[k-1][2];
+				down_perStr += down[k-1][2];
+			}
+		}*/	
+
+
+		//var plus_row = [];
+		var all_row = [];
+		var j = 0;
+
+		for(var i = 1; i<=5; i++){
+			var plus_row = [];
+			var top_name = topStr.split("@");
+			var top_per = top_perStr.split("@");
+			
+			plus_row.push(top_name[i]);
+			plus_row.push(top_per[i]);			
+			all_row.push(plus_row);
+		}
+		for(var i = 4; i>=0; i--){
+			var plus_row = [];
+			var down_name = downStr.split("@");
+			var down_per = down_perStr.split("@");
+			console.log("야" + down_name[1] + " "+ down_per[1]);
+			plus_row.push(down_name[i]);
+			plus_row.push(down_per[i]);				
+			all_row.push(plus_row);
+		}
+	/*	for(var i = 4; i>=0; i--){
+			var plus_row = [];
+			var down_name = downStr.split("@");
+			var down_per = down_perStr.split("@");
+			console.log("야" + down_name);
+			plus_row.push(down_name);
+			plus_row.push(down_per);				
+			all_row.push(plus_row);
+		}*/
+		// [[,],[,]]
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'companyName');
+		data.addColumn('number', 'percent');
+		data.addRows(all_row);
+
+		var options = null;
+		var options = {
+			hAxis : {
+				title : 'Percent(%)',
+				textPosition: 'none'
+			},
+			vAxis : {
+				title : 'Company'
+			}
+		
+		};
+		var chart = new google.visualization.BarChart(document.getElementById("gap_chart"));
+		chart.draw(data, options);
+	};
+	</script>
 	<script>
 // 보여지는 순위만 reload
 		var loadShowRank = function() {
@@ -223,6 +315,7 @@ setInterval(function() {
 			</li>
 			</br>
 			<li id="okaylogin_li"><a href="javascript:popupOpen();" id="red"><b>알림확인</b></a></li>&nbsp;&nbsp;&nbsp;
+			<li id="okaylogin_li"><a href="/Stock_Insigh/sortPredict">🥇예측순위</a></li>&nbsp;&nbsp;&nbsp;
 			<li id="okaylogin_li"><a href="/Stock_Insigh/doLogout"> 로그아웃
 			</a></li> &nbsp; &nbsp;
 			<li id="okaylogin_li"><a href="main.jsp">메인화면</a></li>
@@ -277,27 +370,27 @@ setInterval(function() {
 				<tr >
 					<td >
 					<div id="gap_chart"
-							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;">급등급락퍼센트</div>
+							style="border: 1px solid black; width:700px; height: 600px;margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:10px;"></div>
 					</td>
 					<td >
 						<div id="gap_list">
 							<div id="up_list" style="padding:50px; font-size:25px;">
 								<div style="margin-bottom:10px; font-size:30px;"><b>👍 예상 <span style="color:red;">급상승</span> 종목</b></div>
 								<%
-								String[][] top = (String[][])request.getAttribute("top");
-								String[][] down = (String[][])request.getAttribute("down");
-								for(int i=1;i<=5;i++){
-									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[i-1][1];
-									out.print("<a href='"+path+"'> "+i+". "+top[i-1][1]+"<a/><br/> ");
+								//String[][] top = (String[][])request.getAttribute("top");
+								//String[][] down = (String[][])request.getAttribute("down");
+								for(int j=1;j<=5;j++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+top[j-1][1];
+									out.print("<a href='"+path+"'> "+j+". "+top[j-1][1]+"<a/><br/> ");
 								}
 								%>
 							</div>
 							<div id="down_list" style="padding:50px; font-size:25px;">
 								<div style="font-size:30px;"><b>👎 예상 <span style="color:blue;">급하강</span> 종목</b></div>
 								<%
-								for(int i=1;i<=5;i++){
-									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[i-1][1];
-									out.print("<a href='"+path+"'> "+i+". "+down[i-1][1]+"<a/><br/> ");
+								for(int j=1;j<=5;j++){
+									String path =  "/Stock_Insigh/getRankInfo?companyName="+down[j-1][1];
+									out.print("<a href='"+path+"'> "+j+". "+down[j-1][1]+"<a/><br/> ");
 								}
 								%>
 							</div>
