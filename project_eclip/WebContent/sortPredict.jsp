@@ -148,16 +148,15 @@ if (session.getAttribute("ID") == null) {
 		<%
 		String[][] top = (String[][])request.getAttribute("top");
 		String[][] down = (String[][])request.getAttribute("down");
-		%>
-		var topStr = "";
-		var downStr = "";
-		var top_perStr ="";
-		var down_perStr ="";
 		
-		/*for(var k = 1; k <= 5; k++){
+		String topStr = "";
+		String downStr = "";
+		String top_perStr ="";
+		String down_perStr ="";
+		
+		for(int k = 1; k <= 5; k++){
 			if(k <=4){
 				topStr += top[k-1][1] + "@";
-				
 				downStr += down[k-1][1] + "@";
 				top_perStr += top[k-1][2] + "@";
 				down_perStr += down[k-1][2] + "@";
@@ -168,40 +167,42 @@ if (session.getAttribute("ID") == null) {
 				top_perStr += top[k-1][2];
 				down_perStr += down[k-1][2];
 			}
-		}*/	
-
-
+		}%>
+		var topStr = "<%=topStr%>";
+		var downStr = "<%=downStr%>";
+		var top_perStr = "<%=top_perStr%>";
+		var down_perStr = "<%=down_perStr%>";
+		
 		//var plus_row = [];
 		var all_row = [];
 		var j = 0;
-
+		
+		var top_name = topStr.split("@");
+		var top_per = top_perStr.split("@");
+		
 		for(var i = 1; i<=5; i++){
 			var plus_row = [];
-			var top_name = topStr.split("@");
-			var top_per = top_perStr.split("@");
 			
-			plus_row.push(top_name[i]);
-			plus_row.push(top_per[i]);			
+			console.log("야" + top_name[i-1] + " "+ top_per[i-1]);
+			plus_row.push(top_name[i-1]);
+			// float 바꿔주기
+			plus_row.push(parseFloat(top_per[i-1]));			
 			all_row.push(plus_row);
 		}
+		
+		var down_name = downStr.split("@");
+		var down_per = down_perStr.split("@");
+		
 		for(var i = 4; i>=0; i--){
 			var plus_row = [];
-			var down_name = downStr.split("@");
-			var down_per = down_perStr.split("@");
-			console.log("야" + down_name[1] + " "+ down_per[1]);
+			
+			console.log("야" + down_name[i] + " "+ down_per[i]);
 			plus_row.push(down_name[i]);
-			plus_row.push(down_per[i]);				
+			// float 바꿔주기
+			plus_row.push(parseFloat(down_per[i]));				
 			all_row.push(plus_row);
 		}
-	/*	for(var i = 4; i>=0; i--){
-			var plus_row = [];
-			var down_name = downStr.split("@");
-			var down_per = down_perStr.split("@");
-			console.log("야" + down_name);
-			plus_row.push(down_name);
-			plus_row.push(down_per);				
-			all_row.push(plus_row);
-		}*/
+
 		// [[,],[,]]
 		var data = new google.visualization.DataTable();
 		data.addColumn('string', 'companyName');
