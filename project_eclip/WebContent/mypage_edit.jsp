@@ -74,10 +74,8 @@
 <script>
 	function input_passwd_check() {
 		//var new_passwd = document.getElementById('user_pwd').value;
-		var re = /^[A-Za-z0-9+]{4,12}$/;
-		/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
-		"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-		// 아이디와 패스워드가 적합한지 검사할 정규식
+		var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{4,12}$/;
+    	// 아이디와 패스워드가 적합한지 검사할 정규식
 		///^[a-zA-Z0-9]{10,15}$/
 		///^[A-Za-z0-9+]{4,12}$/; 
 		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -323,27 +321,18 @@ setInterval(function() {
 
 
 						<%
-							String session_user_id = (String) session.getAttribute("ID");
-						//out.println(session.getAttribute("ID"));
-
-						ServletContext sc = getServletContext();
-						Connection conn = (Connection) sc.getAttribute("DBconnection");
-
-						ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id �뜮袁㏉꺍
-
-						try {
-							if (rs.next()) { // existing user
-								String name = rs.getString(2);
-								String user_id = rs.getString(3);
-								String email = rs.getString(4);
-								String user_pwd = rs.getString(5);
+						
+								String name = (String)request.getAttribute("name");
+								String user_mid = (String)request.getAttribute("user_mid");
+								String email = (String)request.getAttribute("email");
+								String user_passwd = (String)request.getAttribute("user_passwd");
 
 								out.println(
 								"<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
 										+ name + "</font></td></tr>");
 								out.println(
 								"<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-										+ user_id + "</font></td></tr>");
+										+ user_mid + "</font></td></tr>");
 
 								// 변경가능
 								out.println(
@@ -359,15 +348,6 @@ setInterval(function() {
 					</table>
 					<br> <br> <br>
 
-					<%
-						} else { // invalid user
-					out.println("not invalid");
-					}
-					} catch (SQLException e) {
-					out.println("just Fail Fail Fail....");
-					e.printStackTrace();
-					}
-					%>
 
 					</table>
 					<br> <br> <br> <input type="submit"

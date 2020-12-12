@@ -285,57 +285,30 @@ setInterval(function() {
 
 
 					<%
-                     String session_user_id = (String) session.getAttribute("ID");
-                  //out.println(session.getAttribute("ID"));
-
-                  ServletContext sc = getServletContext();
-                  Connection conn = (Connection) sc.getAttribute("DBconnection");
-
-                  ResultSet rs = DBUtil.checkMypageinner(conn, session_user_id); //id  뜮袁㏉꺍
-
-
-                  try {
-                     if (rs.next()) { // existing user
-                        String name = rs.getString(2);
-                        String user_id = rs.getString(3);
-                        String email = rs.getString(4);
-                        String user_pwd = rs.getString(5);
+                       // existing user
 
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>이름</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + name + "</font></td></tr>");
+                               + (String)request.getAttribute("name") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>아이디</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + user_id + "</font></td></tr>");
+                              + (String)request.getAttribute("user_mid") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>이메일</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + email + "</font></td></tr>");
+                              + (String)request.getAttribute("email") + "</font></td></tr>");
                         out.println(
                         "<tr><td align=right><font size=\"5\"><b>패스워드</b></font></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><font size=\"4\">"
-                              + user_pwd + "</font></td></tr>");
+                              + (String)request.getAttribute("user_passwd") + "</font></td></tr>");
                         
                   %>
 				</table>
 				<br> <br> <br>
-				<%
-                        
-                  }
-
-               else { // invalid user
-               out.println("not invalid");
-               }
-               } catch (SQLException e) {
-               out.println("just Fail Fail Fail....");
-               e.printStackTrace();
-               }
-               %>
-				</table>
-				<br> <br> <br>
-				</form>
 			</center>
 			<div>
+			
+			
 				<button type="button" class="btn_question_submit"
-					onClick="location.href='mypage_edit.jsp' ">수정하기</button>
+					onClick="location.href='/Stock_Insigh/GetMypage' ">수정하기</button>
 				<button type="button" class="btn_question_submit"
 					style="color: black; background: white; border-style: solid;"
 					onClick="location.href='/Stock_Insigh/removeId' ">탈퇴하기</button>

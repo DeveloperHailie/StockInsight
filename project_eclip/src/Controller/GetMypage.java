@@ -18,16 +18,16 @@ import javax.servlet.http.HttpSession;
 import model.DBUtil;
 
 /**
- * Servlet implementation class doMypagecheck
+ * Servlet implementation class GetMypage
  */
-@WebServlet("/doMypagecheck")
-public class doMypagecheck extends HttpServlet {
+@WebServlet("/GetMypage")
+public class GetMypage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public doMypagecheck() {
+    public GetMypage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +36,15 @@ public class doMypagecheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     // TODO Auto-generated method stub
-        request.setCharacterEncoding("UTF-8");
+		// TODO Auto-generated method stub
+
+		request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         
         
         HttpSession session = request.getSession();
         String user_id = (String)session.getAttribute("ID");
-        String user_pwd = request.getParameter("user_pwd");//  뜝 룞 삕艅섇뜝 떕占   뜝 뙣 븘 슱 삕
-        
         
         ServletContext sc = getServletContext();
         Connection conn = (Connection) sc.getAttribute("DBconnection");
@@ -66,13 +65,8 @@ public class doMypagecheck extends HttpServlet {
                   request.setAttribute("email", email);
                  request.setAttribute("user_passwd", user_passwd); //사용자의 pw
                  
-                 //System.out.println(checkpw);
-                 if(!user_passwd.equals(user_pwd)){
-                	 out.println("<script>alert(\"올바른 비밀번호가 아닙니다. 다시 입력해주세요.\"); location.href='mypage.jsp';</script>");
-                     out.flush();
-                 }
                  
-                 RequestDispatcher view = request.getRequestDispatcher("mypage_inner.jsp");
+                 RequestDispatcher view = request.getRequestDispatcher("mypage_edit.jsp");
 				  view.forward(request, response);
                  
                  
@@ -82,7 +76,7 @@ public class doMypagecheck extends HttpServlet {
            } 
         } 
      }
-
+       
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
