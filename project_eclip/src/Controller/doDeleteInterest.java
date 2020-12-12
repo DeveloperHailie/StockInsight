@@ -63,6 +63,9 @@ public class doDeleteInterest extends HttpServlet {
             Boolean interCheck = DBUtil.interestCheck(conn, del_user_index, del_stock_index); //관심 종목에 있는지 없는지 체크 
             
             if(interCheck == true) { //관심종목에 있으면 
+            	DBUtil.deleteInterest(conn, del_user_index, del_stock_index);// user_id로 user_index 찾기 
+            	interCheck = false;
+            }else {
             	interCheck = false;
             }
             
