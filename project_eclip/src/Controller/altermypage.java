@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,16 +38,25 @@ public class altermypage extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
 	    
+	    
 	    HttpSession session = request.getSession();
 	    String user_id = (String)session.getAttribute("ID");//�뜝�룞�삕�뜝�떎�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙣�븘�슱�삕
+	    String user_name = (String)session.getAttribute("NAME");
 	    String new_email = (String)request.getParameter("user_email");
 		String new_passwd = (String)request.getParameter("user_pwd");
 		
-
-	    ServletContext sc = getServletContext();
+		ServletContext sc = getServletContext();
 	    Connection conn = (Connection) sc.getAttribute("DBconnection");
-	    ResultSet rs = DBUtil.checkMypageedit(conn, user_id, new_email, new_passwd); //id �뜮袁㏉꺍
-		response.sendRedirect("mypage_inner.jsp");
+	    ResultSet rs = DBUtil.checkMypageedit(conn, user_id, new_email, new_passwd);
+		
+        request.setAttribute("name", user_name);
+        request.setAttribute("user_mid", user_id);
+        request.setAttribute("email", new_email);
+        request.setAttribute("user_passwd", new_passwd);
+        
+        RequestDispatcher view = request.getRequestDispatcher("mypage_inner.jsp");
+		view.forward(request, response);
+       
 	}
 
 	/**

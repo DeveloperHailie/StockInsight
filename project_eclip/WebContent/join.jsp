@@ -148,7 +148,7 @@ tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
       }
 
       if (join.checkpw.value == "") { // 비밀번호 확인 입력하지 않을때,
-         alert("비밀번호를 확인을 입력해주세요.");
+         alert("비밀번호를 확인란을 입력해주세요.");
          join.checkpw.value = "";
          join.checkpw.focus();
          return false;
