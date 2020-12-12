@@ -1161,6 +1161,97 @@ public class DBUtil {
 		return null;
 	}
 
+	// 질문글 인덱스로 답변글 인덱스 받아오기
+	public static String find_answerIndex(Connection con, String que_index) {
+		String sql = "SELECT Answer_answer_index from Question where ques_index=" + que_index;
+
+		Statement st;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				String ans_index = rs.getString(1);				
+				return ans_index;
+
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;		
+	}
+
+	// 답변글 인덱스로 답변글 삭제하기
+	public static void removeAnswerIndex(Connection con, String answer_index) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement("delete from Answer where answer_index=?");
+			pstmt.setString(1, answer_index);
+			pstmt.executeUpdate();
+			
+			con.commit();
+			con.setAutoCommit(true);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+
+		}
+	}
+
+	// 질문글 인덱스로 질문글 삭제하기
+	public static void removeQuestionIndex(Connection con, String que_index) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement("delete from Question where ques_index=?");
+			pstmt.setString(1, que_index);
+			pstmt.executeUpdate();
+
+			con.commit();
+			con.setAutoCommit(true);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {pstmt.close();}
+
+		}
+	}
+	
+	// 질문글 index로 질문글 table의 답변 null로 수정
+	public static void updateAnswerIndex(Connection con, String que_index) {
+		PreparedStatement pstmt = null;
+		try {
+			con.setAutoCommit(false);
+			pstmt = con.prepareStatement("UPDATE Question SET Answer_answer_index=null WHERE ques_index=?");
+			pstmt.setString(1, que_index);
+			pstmt.executeUpdate();
+
+			con.commit();
+			con.setAutoCommit(true);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+
 	// 상위권 5개 받아오는 코드
 	public static String[][] getTopFive(Connection conn) {
 		String[][] result = new String[5][3];
@@ -1226,6 +1317,7 @@ public class DBUtil {
 		}
 		// 실패 시
 		return null;
+
 	}
 
 	public static ResultSet infoAnswerIndex(Connection conn, String user_index) {

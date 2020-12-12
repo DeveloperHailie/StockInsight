@@ -59,7 +59,7 @@
         <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -238,7 +238,7 @@ setInterval(function() {
                 &nbsp; &nbsp;  
                 <li><a href="/Stock_Insigh/doSearchInterest">관심종목</a></li>
                 &nbsp;  &nbsp; 
-                <li><a href="login.jsp">마이페이지</a></li>
+                <li><a href="mypage.jsp">마이페이지</a></li>
                 &nbsp;  &nbsp; 
                 <li><a id="yellow" href="/Stock_Insigh/postList?pageIndex=1">문의하기</a></li>
             </ul>

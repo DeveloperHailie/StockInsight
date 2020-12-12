@@ -61,7 +61,7 @@
 <script type="text/javascript">
    function popupOpen() {
 
-      var popUrl = "popup.jsp"; //팝업창에 출력될 페이지 URL
+	   var popUrl = "/Stock_Insigh/doPop";//팝업창에 출력될 페이지 URL
 
       var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -97,8 +97,8 @@
             real.css("display", "block");
             var tag;
             //tag = "<ul>";
-            tag  = "<a href=\"#\"><b>실시간 거래량 순위</b></a></br>";
-            tag += "<section id='hiddenRank'>";
+            tag  = "<a href=\"#\" style='color: cornflowerblue;font-size: 16px;'><b>실시간 거래량 순위</b></a></br>";
+tag += "<section id='hiddenRank' style='padding:3px 10px 10px 10px;'>";
             
             tag += "</section>";
             //tag += "</ul>";
@@ -309,8 +309,7 @@
 				</dd>
 			</dl>
 		</div>
-		<div id="D"
-			style="position: absolute; margin-left: 380px; margin-top: 85px; background-color: #ffffffcc; font-size: 14px; font-family: 'nanum';"></div>
+		<div id="D" style="display:none; border-radius:20px; position: absolute;  margin-left: 380px; margin-top: 85px; padding-top: 10px; padding-left: 10px; background-color: #ffffffdd; font-size:14px; font-family: 'nanum';"></div>
 		<input name="hidTempSynopsis" type="hidden" id="hidTempSynopsis" value="0">
 		<!-- value 체크값을 위함 -->
 		<%
