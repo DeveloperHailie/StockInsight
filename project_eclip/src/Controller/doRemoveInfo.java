@@ -56,6 +56,7 @@ public class doRemoveInfo extends HttpServlet {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			System.out.println(e1);
 		}
 		Boolean check4 = false;
 		//Question에서 user_index를 통해 answer_index얻기
@@ -72,6 +73,7 @@ public class doRemoveInfo extends HttpServlet {
 					}
 				}catch (Exception e) {
 						e.printStackTrace();
+						System.out.println(e);
 					}
 				}
 			}
@@ -83,6 +85,7 @@ public class doRemoveInfo extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println(e);
 			}
 
 			//User에서 user_index 행 삭제
@@ -92,12 +95,16 @@ public class doRemoveInfo extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println(e);
 			}
 			System.out.println("check값들 : " + check + " " + check2 + " " + check3 + " " + check4);
 			
-			if(check == true && check2 == true && check3 == true && check4==true) {
+			if(check == true && check2 == true && check3 == true) {
 				session.invalidate();
-				out.println("<script>alert('정말로 탈퇴하실 생각이신가요? 😭'); location.href='/Stock_Insigh/';</script>");
+				out.println("<script>alert('정말로 탈퇴하실 생각이신가요? 아쉽지만 다음에 다시 봐요 😭 '); location.href='/Stock_Insigh/';</script>");
+			}else {
+				session.invalidate();
+				out.println("<script>alert('연결이 원활하지 않아 탈퇴가 되지 않았습니다. 다시 한번 탈퇴해주세요.'); location.href='/Stock_Insigh/';</script>");
 			}
 		}
 
