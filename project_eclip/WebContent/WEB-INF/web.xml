@@ -26,7 +26,7 @@
 	</context-param>
 	<context-param>
 		<param-name>DBpasswd</param-name>
-		<param-value>adminadmin</param-value>
+		<param-value>gozldrmawl1013!</param-value>
 	</context-param>
 	<context-param>
 		<param-name>DBTimeZone</param-name>

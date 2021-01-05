@@ -61,15 +61,16 @@
 				(n == (imgs.length - 1)) ? n=0 : n++; setTimeout("rotate()",800);
 			}
         </script>
-        <script type="text/javascript">
-   function popupOpen() {
+<script type="text/javascript">
+   
+	function popupOpen() {
 
-	   var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
+		var popUrl = "/Stock_Insigh/doPop"; //팝업창에 출력될 페이지 URL
 
-      var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+		var popOption = "width=400, height=400, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
-      window.open(popUrl, "", popOption);
-   }
+		window.open(popUrl, "", popOption);
+	}
 </script>
 <%
 
