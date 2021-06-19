@@ -292,7 +292,7 @@ public class DBUtil {
 				PreparedStatement pstmt = null;
 				try {
 					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
+					// INSERT INTO  Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
 					// �븘�땶媛��슂?','20201115',null,'1');
 					String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
 					pstmt = conn.prepareStatement(sqlSt);
@@ -369,7 +369,7 @@ public class DBUtil {
 				try {
 
 					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
+					// INSERT INTO  Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
 					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
 					pstmt = conn.prepareStatement(sqlSt);
 					pstmt.setString(1, Integer.toString(number));
@@ -396,7 +396,7 @@ public class DBUtil {
 
 	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
 		// Question DB�뿉 question_index row�쓽 Answer_answer_index �닔�젙
-		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
+		// update  Question SET Answer_answer_index=2 where ques_index=1;
 		System.out.println("updateQuestion:"+question_index+" "+answer_index);
 		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
 		Statement stmt = null;
@@ -574,7 +574,7 @@ public class DBUtil {
 
 	public static ResultSet findCompany(Connection con, String field) { // 선택한 분야의 회사 찾는 함수 
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_field =";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_field =";
 		Statement st;
 		try {
 
@@ -595,7 +595,7 @@ public class DBUtil {
 
 	public static ResultSet findSearchCompany(Connection con, String search) { // 검색문자가 들어간 회사 종류 찾는 함수 
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		Statement st;
 		try {
 
@@ -618,7 +618,7 @@ public class DBUtil {
 
 	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에 검색 결과 뿌려줄 때 사용 
 
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴 
+		String sqlinter = "SELECT stock_field FROM  Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴 
 		Statement st;
 		try {
 
@@ -640,7 +640,7 @@ public class DBUtil {
 
 	public static ResultSet findFieldSet(Connection con) {
 
-		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // 모든 분야 리턴 
+		String sqlinter = "SELECT DISTINCT stock_field FROM  Stock"; // 모든 분야 리턴 
 		Statement st;
 		try {
 
@@ -712,7 +712,7 @@ public class DBUtil {
 
 	public static ResultSet findUserIndex(Connection con, String user_id) {
 
-		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // 회사명에 일치하는 분야 리턴 
+		String sqlinter = "SELECT user_index From  User WHERE user_id ="; // 회사명에 일치하는 분야 리턴 
 		Statement st;
 		try {
 
@@ -734,7 +734,7 @@ public class DBUtil {
 
 	public static ResultSet findStockIndex(Connection con, String selectCompany) {
 
-		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기 
+		String sqlinter = "SELECT stock_index FROM  Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기 
 		Statement st;
 		try {
 
@@ -761,7 +761,7 @@ public class DBUtil {
 		try {  
 			//System.out.print("  interest_index: " + interest_index);
 			con.setAutoCommit(false);
-			pstmt = con.prepareStatement("INSERT INTO Stockinsight.Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // 관심 종목 삽입 
+			pstmt = con.prepareStatement("INSERT INTO  Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // 관심 종목 삽입 
 			pstmt.setInt(1, interest_index);
 			pstmt.setString(2, user_index);
 			pstmt.setString(3, stock_index);
@@ -785,7 +785,7 @@ public class DBUtil {
 
 	public static ResultSet deleteInterest(Connection con, String user_index, String stock_index ) {
 
-		String sqlinter = "DELETE FROM Stockinsight.Interest WHERE User_user_index="; // 관심 종목에 들어가있는 항목 삭제 
+		String sqlinter = "DELETE FROM  Interest WHERE User_user_index="; // 관심 종목에 들어가있는 항목 삭제 
 		String sqlinter2 = "and Stock_stock_index=";
 		Statement st;
 		try {
@@ -810,7 +810,7 @@ public class DBUtil {
 
 	public static ResultSet findStockIndexFromUser(Connection con, String user_index) {
 
-		String sqlinter = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE User_user_index ="; // 유저로부터 stock_index 얻어내기 
+		String sqlinter = "SELECT Stock_stock_index FROM  Interest WHERE User_user_index ="; // 유저로부터 stock_index 얻어내기 
 		String sqlfield = "";
 		Statement st;
 		try {
@@ -833,7 +833,7 @@ public class DBUtil {
 
 	public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
 
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index = "; 
+		String sqlinter = "SELECT stock_field FROM  Stock WHERE stock_index = "; 
 		Statement st;
 		try {
 
@@ -855,7 +855,7 @@ public class DBUtil {
 
 	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_index로 company 이름 구하기 
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_index ="; 
 		Statement st;
 		try {
 
@@ -877,7 +877,7 @@ public class DBUtil {
 
 	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
 
-		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_before FROM  Stock WHERE stock_index ="; 
 		Statement st;
 		try {
 
@@ -900,7 +900,7 @@ public class DBUtil {
 
 	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
 
-		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_future FROM  Stock WHERE stock_index ="; 
 		Statement st;
 		try {
 
@@ -923,7 +923,7 @@ public class DBUtil {
 
 	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
 
-		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
+		String sqlstock = "SELECT Stock_stock_index FROM  Interest WHERE Stock_stock_index IN (SELECT stock_index FROM  Stock WHERE  Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
 
 		Statement st;
 
@@ -947,7 +947,7 @@ public class DBUtil {
 
 	public static Boolean interestCheck(Connection con, String user_index ,String stock_index) { // interest table 안의 stock_index를 분야별로 나누기 
 
-		String sql = "SELECT interest_index FROM Stockinsight.Interest WHERE User_user_index ="; 
+		String sql = "SELECT interest_index FROM  Interest WHERE User_user_index ="; 
 		String sqltwo = "AND Stock_stock_index =";
 
 		Statement st;
@@ -976,7 +976,7 @@ public class DBUtil {
 	}
 	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
 		System.out.println("DBU: " + stock_index);
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sql = "SELECT stock_code FROM  Stock WHERE stock_index ="; 
 		Statement st;
 		try {
 
@@ -1029,7 +1029,7 @@ public class DBUtil {
 		return null;
 	}
 	public static ResultSet getStockCode(Connection con, String companyName) {
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_company ="; 
+		String sql = "SELECT stock_code FROM  Stock WHERE stock_company ="; 
 		Statement st;
 		try {
 
@@ -1050,7 +1050,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortVolumeLow(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume ASC";
 		Statement st;
 		try {
@@ -1073,7 +1073,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortVolumeHigh(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume DESC";
 		Statement st;
 		try {
@@ -1096,7 +1096,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortBeforeLow(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_before ASC";
 		Statement st;
 		try {
@@ -1117,7 +1117,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortBeforeHigh(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_before DESC";
 		Statement st;
 		try {
@@ -1140,7 +1140,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortName(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_company ASC";
 		Statement st;
 		try {
@@ -1321,7 +1321,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet infoAnswerIndex(Connection conn, String user_index) {
-		String sql = "SELECT Answer_answer_index from Stockinsight.Question where User_user_index =";
+		String sql = "SELECT Answer_answer_index from  Question where User_user_index =";
 		Statement st;
 
 		try {

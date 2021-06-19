@@ -77,7 +77,7 @@ public class GetRankInfo extends HttpServlet {
 		}}
 		
 		HttpSession session = request.getSession(false);
-		String check_index = (String)session.getAttribute("INDEX");
+		String check_index = "";
 		System.out.println(session);
 		if (session == null || check_index==null) {
 			System.out.println("세션없음");
@@ -85,6 +85,7 @@ public class GetRankInfo extends HttpServlet {
 			session.invalidate();
 		} else {
 			// 세션 있으면
+			check_index=(String)session.getAttribute("INDEX");
 			request.setAttribute("user_index",check_index); // 받아온 user_index 
 			
 			// 회사명으로 회사인덱스 받아오는 함수 사용

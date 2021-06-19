@@ -28,6 +28,7 @@ public class DBConnection implements ServletContextListener {
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
     public void contextDestroyed(ServletContextEvent sce)  { 
+        
        Connection conn = (Connection) sce.getServletContext().getAttribute("DBconnection");
 
         try {
@@ -56,11 +57,15 @@ public class DBConnection implements ServletContextListener {
         connectionProps.put("serverTimezone", DBTimeZone);
         
         try {
+           DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
            conn = DriverManager.getConnection(DBUrl, connectionProps);
+           
           
         } catch (SQLException e) {
            e.printStackTrace();
-        }
+           System.out.println("에러!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+conn+"");
+        } 
+        System.out.println("성공!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+conn+"");
         sc.setAttribute("DBconnection", conn);
      }
   }
