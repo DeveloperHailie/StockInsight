@@ -48,7 +48,7 @@ public class dochart extends HttpServlet {
          // code.csv파일 열어서 그 안의 내용 저장
          //System.out.println("야 : C:\\StockInsightPython\\realtimeData\\"+name+".csv");
 
-         ArrayList<String[]> file = model.CsvToData.addToList("C:\\StockInsightPython\\realtimeData\\"+name+".csv");
+         ArrayList<String[]> file = model.CsvToData.addToList("/home/ubuntu/StockInsightPython/realTime/"+name+".csv");
          request.setAttribute("file", file); 
          RequestDispatcher view = request.getRequestDispatcher("data.jsp");
          view.forward(request, response);

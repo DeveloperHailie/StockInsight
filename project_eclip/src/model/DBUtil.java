@@ -23,12 +23,11 @@ public class DBUtil {
 			if (st.execute(sql + "'" + mid + "'")) {
 				return st.getResultSet();
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-
 
 	public static ResultSet findUser(Connection con, String mid) {
 
@@ -83,7 +82,7 @@ public class DBUtil {
 			String str = (sqlSt + "'" + mid + "'");
 
 			if (st.execute(str)) {
-				//System.out.println("1");
+				// System.out.println("1");
 				System.out.println("여기왔어?");
 				return st.executeQuery(str);
 			}
@@ -99,12 +98,10 @@ public class DBUtil {
 
 	public static ResultSet popupplus(Connection con, String mid) {
 
-		String sqlSt = 
-				"select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
-						"from Stock\r\n" + 
-						"where stock_future-stock_before>0 and stock_index=any(select Stock_stock_index\r\n" + 
-						"from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
-						"where user_id = '"+mid+"') order by gap desc limit 1;";
+		String sqlSt = "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + "from Stock\r\n"
+				+ "where stock_future-stock_before>0 and stock_index=any(select Stock_stock_index\r\n"
+				+ "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + "where user_id = '"
+				+ mid + "') order by gap desc limit 1;";
 		Statement st;
 		try {
 
@@ -112,14 +109,14 @@ public class DBUtil {
 			// String str = (sqlSt + "'" + mid + "'");
 
 			if (st.execute(sqlSt)) {
-				//System.out.println("1");
+				// System.out.println("1");
 				// System.out.println("여기왔어?");
 				// System.out.println("here");
 				return st.executeQuery(sqlSt);
 			}
 
 		} catch (SQLException e) {
-			//System.out.println("2");
+			// System.out.println("2");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
@@ -129,12 +126,10 @@ public class DBUtil {
 
 	public static ResultSet popupminus(Connection con, String mid) {
 
-		String sqlSt = 
-				"select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + 
-						"from Stock\r\n" + 
-						"where stock_future-stock_before<0 and stock_index=any(select Stock_stock_index\r\n" + 
-						"from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + 
-						"where user_id = '"+mid+"') order by gap limit 1;";
+		String sqlSt = "select stock_company, stock_future-stock_before as Gap, stock_code\r\n" + "from Stock\r\n"
+				+ "where stock_future-stock_before<0 and stock_index=any(select Stock_stock_index\r\n"
+				+ "from User inner join Interest on User.user_index=Interest.User_user_index \r\n" + "where user_id = '"
+				+ mid + "') order by gap limit 1;";
 		Statement st;
 		try {
 
@@ -142,14 +137,14 @@ public class DBUtil {
 			// String str = (sqlSt + "'" + mid + "'");
 
 			if (st.execute(sqlSt)) {
-				//System.out.println("1");
+				// System.out.println("1");
 				// System.out.println("여기왔어?");
 				// System.out.println("here");
 				return st.executeQuery(sqlSt);
 			}
 
 		} catch (SQLException e) {
-			//System.out.println("2");
+			// System.out.println("2");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
@@ -159,14 +154,15 @@ public class DBUtil {
 
 	public static ResultSet checkMypageedit(Connection con, String mid, String new_email, String new_passwd) {
 
-		String sqlSt = "UPDATE User SET user_email ='" + new_email+"', user_pwd='" +new_passwd+"' WHERE user_id='"+mid+"'";
+		String sqlSt = "UPDATE User SET user_email ='" + new_email + "', user_pwd='" + new_passwd + "' WHERE user_id='"
+				+ mid + "'";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
 			if (st.execute(sqlSt)) {
-				//System.out.println("1");
+				// System.out.println("1");
 				System.out.println("수정하러왔어요");
 				return st.executeQuery(sqlSt);
 			}
@@ -180,9 +176,6 @@ public class DBUtil {
 		return null;
 	}
 
-
-
-
 	public static Boolean checkID(Connection conn, String input_id) {
 
 		String idfind_Sql = "SELECT user_id FROM User WHERE user_id=";
@@ -190,24 +183,22 @@ public class DBUtil {
 		Statement st;
 		try {
 			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(idfind_Sql+ "'" + input_id + "'");
+			ResultSet rs = st.executeQuery(idfind_Sql + "'" + input_id + "'");
 
 			while (rs.next()) {
 				String id = rs.getString(1);
-				if(id.equals(input_id)) {
+				if (id.equals(input_id)) {
 					return true;
-				}
-				else {
+				} else {
 					return false;
 				}
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return false;
 	}
-
 
 	public static ResultSet findID(Connection conn, String input_name, String input_email) {
 
@@ -235,7 +226,8 @@ public class DBUtil {
 
 			st = conn.createStatement();
 
-			if (st.execute(sqlSt + "'" + input_name + "'and user_id = '" + input_id + "'and user_email='" + input_email + "'")) {
+			if (st.execute(sqlSt + "'" + input_name + "'and user_id = '" + input_id + "'and user_email='" + input_email
+					+ "'")) {
 				return st.getResultSet();
 			}
 
@@ -243,15 +235,16 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 		return null;
-	}  
+	}
 
-	public static void addMember(Connection con, String new_name, String new_id,
-			String new_email, String new_pwd) throws SQLException {
+	public static void addMember(Connection con, String new_name, String new_id, String new_email, String new_pwd)
+			throws SQLException {
 
 		PreparedStatement pstmt = null;
 		try {
 			con.setAutoCommit(false);
-			pstmt = con.prepareStatement("INSERT INTO User (user_name, user_id, user_email, user_pwd) VALUES(?, ?,? ,?)");
+			pstmt = con
+					.prepareStatement("INSERT INTO User (user_name, user_id, user_email, user_pwd) VALUES(?, ?,? ,?)");
 			pstmt.setString(1, new_name);
 			pstmt.setString(2, new_id);
 			pstmt.setString(3, new_email);
@@ -265,13 +258,13 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 
 		}
 
 	}
-
-
 
 	public static int addQuestion(Connection conn, int uidx, String title, String content, String date) {
 		// index 諛쏆븘�삤湲�
@@ -292,7 +285,7 @@ public class DBUtil {
 				PreparedStatement pstmt = null;
 				try {
 					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
+					// INSERT INTO Question VALUES('','臾몄쓽�뱶由쎈땲�떎.','移댁뭅�삤 �꼫臾� �넂寃� �삁痢≫븯�뒗嫄�
 					// �븘�땶媛��슂?','20201115',null,'1');
 					String sqlSt = "INSERT INTO Question VALUES(?,?,?,?,?,?)";
 					pstmt = conn.prepareStatement(sqlSt);
@@ -321,10 +314,9 @@ public class DBUtil {
 
 	}
 
-
 	public static Boolean checkAdmin(Connection conn, int uidx) {
 		// admin�씠硫� true, admin�븘�땲硫� false
-		String selectSql = "SELECT user_admin FROM User WHERE user_index="+Integer.toString(uidx);
+		String selectSql = "SELECT user_admin FROM User WHERE user_index=" + Integer.toString(uidx);
 
 		Statement st;
 		int number = -1;
@@ -336,11 +328,11 @@ public class DBUtil {
 			System.out.println(rs.toString());
 			while (rs.next()) {
 				number = rs.getInt(1);
-				if(number==1) {
+				if (number == 1) {
 					return true;
 				}
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -369,7 +361,7 @@ public class DBUtil {
 				try {
 
 					conn.setAutoCommit(false);
-					// INSERT INTO Stockinsight.Answer  VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
+					// INSERT INTO Answer VALUES('','�떟蹂��뱶由쎈땲�떎.','�떟蹂��궡�슜','2020.11.15');
 					String sqlSt = "INSERT INTO Answer VALUES(?,?,?,?)";
 					pstmt = conn.prepareStatement(sqlSt);
 					pstmt.setString(1, Integer.toString(number));
@@ -396,38 +388,38 @@ public class DBUtil {
 
 	public static Boolean updateQuestion(Connection conn, int question_index, int answer_index) {
 		// Question DB�뿉 question_index row�쓽 Answer_answer_index �닔�젙
-		// update Stockinsight.Question SET Answer_answer_index=2 where ques_index=1;
-		System.out.println("updateQuestion:"+question_index+" "+answer_index);
-		String selectSql = "SELECT * FROM Question WHERE ques_index="+ question_index;
+		// update Question SET Answer_answer_index=2 where ques_index=1;
+		System.out.println("updateQuestion:" + question_index + " " + answer_index);
+		String selectSql = "SELECT * FROM Question WHERE ques_index=" + question_index;
 		Statement stmt = null;
 		try {
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet uprs = stmt.executeQuery(selectSql);
-			while(uprs.next()) {
+			while (uprs.next()) {
 				conn.setAutoCommit(false);
 
-				uprs.updateString("Answer_answer_index",Integer.toString(answer_index));
+				uprs.updateString("Answer_answer_index", Integer.toString(answer_index));
 				uprs.updateRow();
 
 				conn.commit();
 				conn.setAutoCommit(true);
 			}
 			return true;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
 
-	public static ArrayList<QnAList> getPostList(Connection conn){
+	public static ArrayList<QnAList> getPostList(Connection conn) {
 		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
 
-		String qu_title="";
-		String qu_content="";
-		String qu_date="";
-		String qu_writer="";
-		String qu_index="";
-		String qu_reply="";
+		String qu_title = "";
+		String qu_content = "";
+		String qu_date = "";
+		String qu_writer = "";
+		String qu_index = "";
+		String qu_reply = "";
 
 		Statement stmt = null;
 		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
@@ -435,25 +427,25 @@ public class DBUtil {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				QnAList post = new QnAList();
 				QnAList post_answer = new QnAList();
 				// index, title, content, date, answer_index, user_index
 				qu_index = rs.getString(1);
-				qu_title= rs.getString(2);
-				qu_content= rs.getString(3);
-				qu_date= rs.getString(4);
-				qu_reply= rs.getString(5);
-				qu_writer= rs.getString(6);
+				qu_title = rs.getString(2);
+				qu_content = rs.getString(3);
+				qu_date = rs.getString(4);
+				qu_reply = rs.getString(5);
+				qu_writer = rs.getString(6);
 				// writer (index)로 사용자 id 받아오기
 				qu_writer = getUserId(conn, qu_writer);
 
-				if(qu_writer!=null) {
+				if (qu_writer != null) {
 					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
 					// question_post를 list에 넣기
 					qnaList.add(post);
-					// reply가 null이 아니면  reply_post 받아오기
-					if(qu_reply!=null) {
+					// reply가 null이 아니면 reply_post 받아오기
+					if (qu_reply != null) {
 						post_answer = getAnswerPost(conn, qu_reply);
 						post_answer.setIndex(qu_index);
 						// reply_post를 list에 넣기
@@ -462,7 +454,7 @@ public class DBUtil {
 				}
 			}
 			return qnaList;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -471,43 +463,41 @@ public class DBUtil {
 
 	public static QnAList getAnswerPost(Connection conn, String idx) {
 		QnAList answer = new QnAList();
-		String an_title="";
-		String an_content="";
-		String an_date="";
+		String an_title = "";
+		String an_content = "";
+		String an_date = "";
 
 		Statement stmt = null;
-		String questionQuery = "SELECT * FROM Answer WHERE answer_index="+idx;
+		String questionQuery = "SELECT * FROM Answer WHERE answer_index=" + idx;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				an_title = rs.getString(2);
 				an_content = rs.getString(3);
 				an_date = rs.getString(4);
 			}
 			answer.setQnAList(false, idx, "admin", an_title, an_content, an_date);
 			return answer;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-
-
 	public static String getUserId(Connection conn, String idx) {
 		Statement stmt = null;
-		String questionQuery = "SELECT user_id FROM User WHERE user_index="+idx;
+		String questionQuery = "SELECT user_id FROM User WHERE user_index=" + idx;
 		String user_id = "";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				user_id = rs.getString(1);
 			}
 			return user_id;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -515,36 +505,36 @@ public class DBUtil {
 
 	public static QnAList getQuestionPost(Connection conn, String idx) {
 		Statement stmt = null;
-		String questionQuery = "SELECT * FROM Question WHERE ques_index="+idx;
-		String qu_title="";
-		String qu_content="";
-		String qu_date="";
-		String qu_writer="";
-		String qu_index="";
-		String qu_reply="";
+		String questionQuery = "SELECT * FROM Question WHERE ques_index=" + idx;
+		String qu_title = "";
+		String qu_content = "";
+		String qu_date = "";
+		String qu_writer = "";
+		String qu_index = "";
+		String qu_reply = "";
 
 		try {
 			QnAList post = new QnAList();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				// index, title, content, date, answer_index, user_index
 				qu_index = rs.getString(1);
-				qu_title= rs.getString(2);
-				qu_content= rs.getString(3);
-				qu_date= rs.getString(4);
-				qu_reply= rs.getString(5);
-				qu_writer= rs.getString(6);
+				qu_title = rs.getString(2);
+				qu_content = rs.getString(3);
+				qu_date = rs.getString(4);
+				qu_reply = rs.getString(5);
+				qu_writer = rs.getString(6);
 				// writer (index)로 사용자 id 받아오기
 				qu_writer = getUserId(conn, qu_writer);
 
-				if(qu_writer!=null) {
+				if (qu_writer != null) {
 					// question_post를 list에 넣기
 					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
 				}
 			}
 			return post;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -552,29 +542,29 @@ public class DBUtil {
 
 	public static QnAList getAnswerPostUseQuesIdx(Connection conn, String ques_idx) {
 		Statement stmt = null;
-		String questionQuery = "SELECT Answer_answer_index FROM Question WHERE ques_index="+ques_idx;
+		String questionQuery = "SELECT Answer_answer_index FROM Question WHERE ques_index=" + ques_idx;
 
-		String ans_idx="";
+		String ans_idx = "";
 		try {
 			QnAList post = new QnAList();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				ans_idx = rs.getString(1);
 			}
 			post = getAnswerPost(conn, ans_idx);
 			post.setIndex(ques_idx);
-			System.out.println("getAPUQI: "+post);
-			return post;			
-		}catch(SQLException e) {
+			System.out.println("getAPUQI: " + post);
+			return post;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public static ResultSet findCompany(Connection con, String field) { // 선택한 분야의 회사 찾는 함수 
+	public static ResultSet findCompany(Connection con, String field) { // 선택한 분야의 회사 찾는 함수
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_field =";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_field =";
 		Statement st;
 		try {
 
@@ -593,18 +583,17 @@ public class DBUtil {
 		return null;
 	}
 
-	public static ResultSet findSearchCompany(Connection con, String search) { // 검색문자가 들어간 회사 종류 찾는 함수 
+	public static ResultSet findSearchCompany(Connection con, String search) { // 검색문자가 들어간 회사 종류 찾는 함수
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'")) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'")) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
-
 
 		} catch (SQLException e) {
 
@@ -616,16 +605,17 @@ public class DBUtil {
 		return null;
 	}
 
-	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에 검색 결과 뿌려줄 때 사용 
+	public static ResultSet findFieldSelectCompany(Connection con, String selectCompany) { // 회사명에 일치하는 분야 리턴 --> 마지막에
+																							// 검색 결과 뿌려줄 때 사용
 
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴 
+		String sqlinter = "SELECT stock_field FROM  Stock WHERE stock_company ="; // 회사명에 일치하는 분야 리턴
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
 			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field 넘김
 
 			}
 
@@ -640,13 +630,13 @@ public class DBUtil {
 
 	public static ResultSet findFieldSet(Connection con) {
 
-		String sqlinter = "SELECT DISTINCT stock_field FROM Stockinsight.Stock"; // 모든 분야 리턴 
+		String sqlinter = "SELECT DISTINCT stock_field FROM  Stock"; // 모든 분야 리턴
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			if (st.execute(sqlinter)) {
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field 넘김
 
 			}
 
@@ -659,16 +649,16 @@ public class DBUtil {
 		return null;
 	}
 
-	public static ArrayList<QnAList> getmyPostList(Connection conn, String param_user_index){
+	public static ArrayList<QnAList> getmyPostList(Connection conn, String param_user_index) {
 		ArrayList<QnAList> qnaList = new ArrayList<QnAList>();
 
-		String qu_title="";
-		String qu_content="";
-		String qu_date="";
+		String qu_title = "";
+		String qu_content = "";
+		String qu_date = "";
 		String qu_writer_index = "";
-		String qu_writer="";
-		String qu_index="";
-		String qu_reply="";
+		String qu_writer = "";
+		String qu_index = "";
+		String qu_reply = "";
 
 		Statement stmt = null;
 		String questionQuery = "SELECT * FROM Question order by ques_index DESC";
@@ -676,25 +666,25 @@ public class DBUtil {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(questionQuery);
-			while(rs.next()) {
+			while (rs.next()) {
 				QnAList post = new QnAList();
 				QnAList post_answer = new QnAList();
 				// index, title, content, date, answer_index, user_index
 				qu_index = rs.getString(1);
-				qu_title= rs.getString(2);
-				qu_content= rs.getString(3);
-				qu_date= rs.getString(4);
-				qu_reply= rs.getString(5);
-				qu_writer_index= rs.getString(6);
+				qu_title = rs.getString(2);
+				qu_content = rs.getString(3);
+				qu_date = rs.getString(4);
+				qu_reply = rs.getString(5);
+				qu_writer_index = rs.getString(6);
 				// writer (index)로 사용자 id 받아오기
 				qu_writer = getUserId(conn, qu_writer_index);
 
-				if(qu_writer!=null && qu_writer_index.contentEquals(param_user_index)) {
+				if (qu_writer != null && qu_writer_index.contentEquals(param_user_index)) {
 					post.setQnAList(true, qu_index, qu_writer, qu_title, qu_content, qu_date);
 					// question_post를 list에 넣기
 					qnaList.add(post);
-					// reply가 null이 아니면  reply_post 받아오기
-					if(qu_reply!=null) {
+					// reply가 null이 아니면 reply_post 받아오기
+					if (qu_reply != null) {
 						post_answer = getAnswerPost(conn, qu_reply);
 						post_answer.setIndex(qu_index);
 						// reply_post를 list에 넣기
@@ -703,7 +693,7 @@ public class DBUtil {
 				}
 			}
 			return qnaList;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -712,14 +702,14 @@ public class DBUtil {
 
 	public static ResultSet findUserIndex(Connection con, String user_id) {
 
-		String sqlinter = "SELECT user_index From Stockinsight.User WHERE user_id ="; // 회사명에 일치하는 분야 리턴 
+		String sqlinter = "SELECT user_index From  User WHERE user_id ="; // 회사명에 일치하는 분야 리턴
 		Statement st;
 		try {
 
 			st = con.createStatement();
 			System.out.println("user_id:" + user_id);
 			if (st.execute(sqlinter + "'" + user_id + "'")) {
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field 넘김
 
 			}
 
@@ -734,14 +724,14 @@ public class DBUtil {
 
 	public static ResultSet findStockIndex(Connection con, String selectCompany) {
 
-		String sqlinter = "SELECT stock_index FROM Stockinsight.Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기 
+		String sqlinter = "SELECT stock_index FROM  Stock WHERE stock_company ="; // Stock 테이블에서 stock_index 가져오기
 		Statement st;
 		try {
 
 			st = con.createStatement();
-			//System.out.println("DBUtil_findStockIndex_selectCompany:" + selectCompany);
+			// System.out.println("DBUtil_findStockIndex_selectCompany:" + selectCompany);
 			if (st.execute(sqlinter + "'" + selectCompany + "'")) {
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field 넘김
 
 			}
 
@@ -755,13 +745,17 @@ public class DBUtil {
 	}
 
 	static int interest_index = 0;
-	public static void insertInterest(Connection con, String user_index, String stock_index ) {
+
+	public static void insertInterest(Connection con, String user_index, String stock_index) {
 
 		PreparedStatement pstmt = null;
-		try {  
-			//System.out.print("  interest_index: " + interest_index);
+		try {
+			// System.out.print(" interest_index: " + interest_index);
 			con.setAutoCommit(false);
-			pstmt = con.prepareStatement("INSERT INTO Stockinsight.Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // 관심 종목 삽입 
+			pstmt = con.prepareStatement(
+					"INSERT INTO  Interest (interest_index, User_user_index, Stock_stock_index) VALUES(?, ?, ?)"); // 관심
+																													// 종목
+																													// 삽입
 			pstmt.setInt(1, interest_index);
 			pstmt.setString(2, user_index);
 			pstmt.setString(3, stock_index);
@@ -773,31 +767,30 @@ public class DBUtil {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (pstmt != null) {try {
-				pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
+	public static ResultSet deleteInterest(Connection con, String user_index, String stock_index) {
 
-	public static ResultSet deleteInterest(Connection con, String user_index, String stock_index ) {
-
-		String sqlinter = "DELETE FROM Stockinsight.Interest WHERE User_user_index="; // 관심 종목에 들어가있는 항목 삭제 
+		String sqlinter = "DELETE FROM  Interest WHERE User_user_index="; // 관심 종목에 들어가있는 항목 삭제
 		String sqlinter2 = "and Stock_stock_index=";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + user_index + "'" + sqlinter2 + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sqlinter + "'" + user_index + "'" + sqlinter2 + "'" + stock_index + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
-
-
 
 		} catch (SQLException e) {
 
@@ -810,16 +803,16 @@ public class DBUtil {
 
 	public static ResultSet findStockIndexFromUser(Connection con, String user_index) {
 
-		String sqlinter = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE User_user_index ="; // 유저로부터 stock_index 얻어내기 
+		String sqlinter = "SELECT Stock_stock_index FROM  Interest WHERE User_user_index ="; // 유저로부터 stock_index 얻어내기
 		String sqlfield = "";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + user_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sqlinter + "'" + user_index + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -833,15 +826,15 @@ public class DBUtil {
 
 	public static ResultSet findStockFieldFromStockIndex(Connection con, String stock_index) {
 
-		String sqlinter = "SELECT stock_field FROM Stockinsight.Stock WHERE stock_index = "; 
+		String sqlinter = "SELECT stock_field FROM  Stock WHERE stock_index = ";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
+			if (st.execute(sqlinter + "'" + stock_index + "'")) {
 
-				return st.getResultSet(); // field 넘김 
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -853,17 +846,18 @@ public class DBUtil {
 		return null;
 	}
 
-	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { //stock_index로 company 이름 구하기 
+	public static ResultSet findStockCompanyFromStockIndex(Connection con, String stock_company) { // stock_index로
+																									// company 이름 구하기
 
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_index =";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + stock_company + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sqlinter + "'" + stock_company + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -875,17 +869,18 @@ public class DBUtil {
 		return null;
 	}
 
-	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+	public static ResultSet findStockBeforeFromStockIndex(Connection con, String stock_index) { // stock_index로 company
+																								// 이름 구하기
 
-		String sqlinter = "SELECT stock_before FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_before FROM  Stock WHERE stock_index =";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sqlinter + "'" + stock_index + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -897,18 +892,18 @@ public class DBUtil {
 		return null;
 	}
 
+	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { // stock_index로 company
+																								// 이름 구하기
 
-	public static ResultSet findStockFutureFromStockIndex(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
-
-		String sqlinter = "SELECT stock_future FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sqlinter = "SELECT stock_future FROM  Stock WHERE stock_index =";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sqlinter + "'" + stock_index + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -920,10 +915,13 @@ public class DBUtil {
 		return null;
 	}
 
+	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를
+																						// 분야별로 나누기
 
-	public static ResultSet divStockIndexByField(Connection con, String stock_field) { // interest table 안의 stock_index를 분야별로 나누기 
-
-		String sqlstock = "SELECT Stock_stock_index FROM Stockinsight.Interest WHERE Stock_stock_index IN (SELECT stock_index FROM Stockinsight.Stock WHERE Stockinsight.Stock.stock_field ="; //분야에 해당하는 stock_index 가져오기 
+		String sqlstock = "SELECT Stock_stock_index FROM  Interest WHERE Stock_stock_index IN (SELECT stock_index FROM  Stock WHERE  Stock.stock_field ="; // 분야에
+																																							// 해당하는
+																																							// stock_index
+																																							// 가져오기
 
 		Statement st;
 
@@ -931,9 +929,9 @@ public class DBUtil {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlstock + "'" + stock_field + "')" )) {
+			if (st.execute(sqlstock + "'" + stock_field + "')")) {
 
-				return st.getResultSet(); 
+				return st.getResultSet();
 			}
 
 		} catch (SQLException e) {
@@ -945,22 +943,23 @@ public class DBUtil {
 		return null;
 	}
 
-	public static Boolean interestCheck(Connection con, String user_index ,String stock_index) { // interest table 안의 stock_index를 분야별로 나누기 
+	public static Boolean interestCheck(Connection con, String user_index, String stock_index) { // interest table 안의
+																									// stock_index를 분야별로
+																									// 나누기
 
-		String sql = "SELECT interest_index FROM Stockinsight.Interest WHERE User_user_index ="; 
+		String sql = "SELECT interest_index FROM  Interest WHERE User_user_index =";
 		String sqltwo = "AND Stock_stock_index =";
 
 		Statement st;
 
 		try {
 
-			st = con.createStatement(); 
+			st = con.createStatement();
 
-			if (st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'" )) {
-				if(st.getResultSet().next()) {
+			if (st.execute(sql + "'" + user_index + "'" + sqltwo + "'" + stock_index + "'")) {
+				if (st.getResultSet().next()) {
 					return true;
-				}
-				else {
+				} else {
 					return false;
 				}
 
@@ -974,17 +973,18 @@ public class DBUtil {
 		}
 		return null;
 	}
-	public static ResultSet find_stockcode(Connection con, String stock_index) { //stock_index로 company 이름 구하기 
+
+	public static ResultSet find_stockcode(Connection con, String stock_index) { // stock_index로 company 이름 구하기
 		System.out.println("DBU: " + stock_index);
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_index ="; 
+		String sql = "SELECT stock_code FROM  Stock WHERE stock_index =";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sql + "'" + stock_index + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sql + "'" + stock_index + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -994,14 +994,16 @@ public class DBUtil {
 
 		}
 		return null;
-	} 
+	}
+
 	public static String[] getRanking(Connection con, String standard) {
 		// standard 기준으로 상위 10개 반환
 
 		String[] companyName = new String[10];
 
-		//SELECT stock_company FROM Stock ORDER BY stock_volume DESC, stock_before
-		String sql = "SELECT stock_company FROM Stock ORDER BY "+ standard +" DESC, stock_before"; 
+		// SELECT stock_company FROM Stock ORDER BY stock_volume DESC, stock_before
+		String sql = "SELECT stock_company FROM Stock ORDER BY " + standard + " DESC, stock_before";
+		System.out.println("getRanking DB: "+sql);
 		Statement st;
 		try {
 			st = con.createStatement();
@@ -1009,11 +1011,10 @@ public class DBUtil {
 			int count = 0;
 			while (rs.next()) {
 				// 상위 10개만 companyName에 추가
-				if(count<=9) {
+				if (count <= 9) {
 					companyName[count] = rs.getString(1);
 					count++;
-				}
-				else {
+				} else {
 					break;
 				}
 			}
@@ -1028,16 +1029,17 @@ public class DBUtil {
 		// 실패 시
 		return null;
 	}
+
 	public static ResultSet getStockCode(Connection con, String companyName) {
-		String sql = "SELECT stock_code FROM Stockinsight.Stock WHERE stock_company ="; 
+		String sql = "SELECT stock_code FROM  Stock WHERE stock_company =";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sql + "'" + companyName + "'" )) {
-				//interest_index = - 1;
-				return st.getResultSet(); // field 넘김 
+			if (st.execute(sql + "'" + companyName + "'")) {
+				// interest_index = - 1;
+				return st.getResultSet(); // field 넘김
 			}
 
 		} catch (SQLException e) {
@@ -1050,17 +1052,16 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortVolumeLow(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume ASC";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
-
 
 		} catch (SQLException e) {
 
@@ -1073,17 +1074,16 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortVolumeHigh(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_volume DESC";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
-
 
 		} catch (SQLException e) {
 
@@ -1096,14 +1096,14 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortBeforeLow(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_before ASC";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
 		} catch (SQLException e) {
@@ -1117,17 +1117,16 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortBeforeHigh(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_before DESC";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
-
 
 		} catch (SQLException e) {
 
@@ -1140,14 +1139,14 @@ public class DBUtil {
 	}
 
 	public static ResultSet sortName(Connection con, String search) {
-		String sqlinter = "SELECT stock_company FROM Stockinsight.Stock WHERE stock_company LIKE '%";
+		String sqlinter = "SELECT stock_company FROM  Stock WHERE stock_company LIKE '%";
 		String sql = "ORDER BY stock_company ASC";
 		Statement st;
 		try {
 
 			st = con.createStatement();
 
-			if (st.execute(sqlinter +  search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환 
+			if (st.execute(sqlinter + search + "%'" + sql)) { // 해당 문자열이 들어간 결과 반환
 				return st.getResultSet();
 			}
 
@@ -1169,17 +1168,17 @@ public class DBUtil {
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			
+
 			while (rs.next()) {
-				String ans_index = rs.getString(1);				
+				String ans_index = rs.getString(1);
 				return ans_index;
 
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return null;		
+		return null;
 	}
 
 	// 답변글 인덱스로 답변글 삭제하기
@@ -1190,7 +1189,7 @@ public class DBUtil {
 			pstmt = con.prepareStatement("delete from Answer where answer_index=?");
 			pstmt.setString(1, answer_index);
 			pstmt.executeUpdate();
-			
+
 			con.commit();
 			con.setAutoCommit(true);
 
@@ -1198,7 +1197,9 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 
 		}
 	}
@@ -1219,11 +1220,13 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 
 		}
 	}
-	
+
 	// 질문글 index로 질문글 table의 답변 null로 수정
 	public static void updateAnswerIndex(Connection con, String que_index) {
 		PreparedStatement pstmt = null;
@@ -1263,13 +1266,12 @@ public class DBUtil {
 			int count = 0;
 			while (rs.next()) {
 				// 상위 5개만 companyName에 추가
-				if(count<=4) {
+				if (count <= 4) {
 					result[count][0] = rs.getString(1);
 					result[count][1] = rs.getString(2);
 					result[count][2] = rs.getString(3);
 					count++;
-				}
-				else {
+				} else {
 					break;
 				}
 			}
@@ -1296,7 +1298,7 @@ public class DBUtil {
 			int count = 0;
 			while (rs.next()) {
 				// 하위 5개만 companyName에 추가
-				if(rs.getString(3).equals("-100.0000"))
+				if (rs.getString(3).equals("-100.0000"))
 					continue;
 				if (count <= 4) {
 					result[count][0] = rs.getString(1);
@@ -1321,7 +1323,7 @@ public class DBUtil {
 	}
 
 	public static ResultSet infoAnswerIndex(Connection conn, String user_index) {
-		String sql = "SELECT Answer_answer_index from Stockinsight.Question where User_user_index =";
+		String sql = "SELECT Answer_answer_index from  Question where User_user_index =";
 		Statement st;
 
 		try {
@@ -1330,15 +1332,15 @@ public class DBUtil {
 			if (st.execute(sql + "'" + user_index + "'")) {
 				return st.getResultSet();
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;     
+		return null;
 	}
 
 	public static Boolean rmAnswer(Connection conn, String answer_index) throws SQLException {
 		PreparedStatement pstmt = null;
-		System.out.println("디비유틸 엔설: "+ answer_index);
+		System.out.println("디비유틸 엔설: " + answer_index);
 		try {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement("DELETE from Answer where answer_index = ?");
@@ -1352,7 +1354,9 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 		}
 		return null;
 	}
@@ -1373,10 +1377,13 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 		}
 		return null;
 	}
+
 	public static Boolean rmQuestion(Connection conn, String user_index) throws SQLException {
 		PreparedStatement pstmt = null;
 
@@ -1393,10 +1400,13 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 		}
 		return null;
 	}
+
 	public static Boolean rmUser(Connection conn, String user_index) throws SQLException {
 		PreparedStatement pstmt = null;
 
@@ -1413,10 +1423,10 @@ public class DBUtil {
 			e.printStackTrace();
 
 		} finally {
-			if (pstmt != null) {pstmt.close();}
+			if (pstmt != null) {
+				pstmt.close();
+			}
 		}
 		return null;
 	}
 }
-
-

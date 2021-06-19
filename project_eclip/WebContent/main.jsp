@@ -138,20 +138,20 @@
 		var kosdaq = "111111";
 		// 차트 부분만 reload
 		var repeatChart = function() {
-			myAjax("/Stock_Insigh/csv", "code=" + kospi, function() {
+			myAjax("/STOCKINSIGHT/csv", "code=" + kospi, function() {
 				ajaxMakeChart_kospi(kospi_chart, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
 			});
-			myAjax("/Stock_Insigh/csv", "code=" + kosdaq, function() {
+			myAjax("/STOCKINSIGHT/csv", "code=" + kosdaq, function() {
 				ajaxMakeChart_kosdaq(kosdaq_chart, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
 			});
 		}
 		// 현재 가격 부분만 reload
 		var loadPresentPrice = function() {
 			var btn = document.getElementById('btn');
-			myAjax("/Stock_Insigh/csv", "code=" + kospi, function() {
+			myAjax("/STOCKINSIGHT/csv", "code=" + kospi, function() {
 				currentData_kospi(kospi_pre_data, this.responseText.trim()); //현재가격 영역
 			});
-			myAjax("/Stock_Insigh/csv", "code=" + kosdaq, function() {
+			myAjax("/STOCKINSIGHT/csv", "code=" + kosdaq, function() {
 				currentData_kosdaq(kosdaq_pre_data, this.responseText.trim()); //데이터, 그리기 함수가 들어간 함수
 			});
 		};
@@ -159,7 +159,7 @@
 		var loadShowRank = function() {
 			var btn = document.getElementById('showRank');
 			var table = "stock_volume"
-			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+			myAjax("/STOCKINSIGHT/getRank", "table="+table, function() {
 				updateShowRank(btn, this.responseText.trim()); //현재가격 영역
 			});
 		}
@@ -167,7 +167,7 @@
 		var loadHiddenRank = function() {
 			var btn = document.getElementById('hiddenRank');
 			var table = "stock_volume"
-			myAjax("/Stock_Insigh/getRank", "table="+table, function() {
+			myAjax("/STOCKINSIGHT/getRank", "table="+table, function() {
 				updateHiddenRank(btn, this.responseText.trim()); //현재가격 영역
 			});
 		}

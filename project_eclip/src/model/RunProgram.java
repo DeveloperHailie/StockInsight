@@ -21,14 +21,16 @@ public class RunProgram {
 
 	public void runProgram(String fileName) { // 프로그램 실행
 		// cmd 창에 python crawling.py 입력하는 것과 동일 
-		String[] cmd = new String[] { "cmd", "/c", "python", fileName };
+		String[] cmd = new String[] { "/bin/sh", "-c", "python", fileName };
 		processName = fileName;
 		// 프로세스 빌더를 통하여 외부 프로그램 실행
 		try {
+			System.out.println("외부프로그램실행"+fileName);
 			processBuilder = new ProcessBuilder(cmd);
 
 			// C:/StockInsightPython 폴더 안에 파일들 넣기
-			processBuilder.directory(new File("\\StockInsightPython"));
+			// /home/ubuntu/StockInsightPython
+			processBuilder.directory(new File("/home/ubuntu/StockInsightPython"));
 		
 			// 외부 프로그램의 출력을 웹서버의 출력으로 redirect
 			processBuilder.redirectInput(ProcessBuilder.Redirect.INHERIT);
