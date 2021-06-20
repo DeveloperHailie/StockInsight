@@ -21,7 +21,7 @@ public class RunProgram {
 
 	public void runProgram(String fileName) { // 프로그램 실행
 		// cmd 창에 python crawling.py 입력하는 것과 동일 
-		String[] cmd = new String[] { "/bin/sh", "-c", "python", fileName };
+		String[] cmd = new String[] { "/bin/sh", "-c", "python3", fileName };
 		processName = fileName;
 		// 프로세스 빌더를 통하여 외부 프로그램 실행
 		try {

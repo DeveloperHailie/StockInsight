@@ -1003,7 +1003,7 @@ public class DBUtil {
 
 		// SELECT stock_company FROM Stock ORDER BY stock_volume DESC, stock_before
 		String sql = "SELECT stock_company FROM Stock ORDER BY " + standard + " DESC, stock_before";
-		System.out.println("getRanking DB: "+sql);
+		//System.out.println("getRanking DB: "+sql);
 		Statement st;
 		try {
 			st = con.createStatement();
